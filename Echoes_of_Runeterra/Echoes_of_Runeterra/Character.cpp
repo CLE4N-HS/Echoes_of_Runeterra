@@ -12,7 +12,7 @@ Character::Character(std::string _name, int _level, int _xp, int _hp, int _defen
 	m_name(_name), m_level(_level), m_xp(_xp), m_hp(_hp), m_defense(_defense), m_stamina(_stamina), m_speed(_speed), m_alignement(_alignement),
 
 	m_maxHp(m_hp),
-	m_levelXp(100), m_abilityPoint(0),
+	m_levelXp(100), m_skillPoint(0),
 	m_pos(), m_foward(), m_velocity()
 {
 }
@@ -42,6 +42,7 @@ void Character::giveXp(int _xp)
 void Character::gainLevel()
 {
 	m_level++;
+	m_skillPoint++;
 	m_xp -= m_levelXp;
 	upgradeLevelXp();
 

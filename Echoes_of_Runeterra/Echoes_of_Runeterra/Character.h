@@ -23,7 +23,7 @@ protected:
 	int m_level;
 	int m_xp;
 	int m_levelXp;
-	int m_abilityPoint;
+	int m_skillPoint;
 
 	int m_hp, m_maxHp;
 	int m_defense;
