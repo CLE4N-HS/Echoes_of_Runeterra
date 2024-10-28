@@ -1,6 +1,7 @@
 #pragma once
 #include "windowManager.h"
 #include "alignement.h"
+#include "Race.h"
 
 class Character
 {
@@ -18,6 +19,8 @@ public:
 protected:
 	void upgradeLevelXp();
 	void gainLevel();
+
+	Race m_race;
 
 	std::string m_name;
 	int m_level;

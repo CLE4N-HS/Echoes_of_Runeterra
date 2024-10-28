@@ -12,3 +12,8 @@ Shuriman::Shuriman(std::string _name, int _lifeBonus, int _defenseBonus, int _sp
 Shuriman::~Shuriman()
 {
 }
+
+void Shuriman::displayStats() const
+{
+	std::cout << "Shuriman allows " << m_resurrectionHealthBonus << " bonus resurrection health" << std::endl;
+}

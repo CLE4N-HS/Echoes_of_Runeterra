@@ -12,3 +12,8 @@ Noxian::Noxian(std::string _name, int _lifeBonus, int _defenseBonus, int _speedB
 Noxian::~Noxian()
 {
 }
+
+void Noxian::displayStats() const
+{
+	std::cout << "Noxian allows " << m_damageBonus << " bonus damage" << std::endl;
+}

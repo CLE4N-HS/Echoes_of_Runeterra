@@ -73,7 +73,7 @@
       <Filter>Fichiers sources\GAME\RACE</Filter>
     </ClCompile>
     <ClCompile Include="Shuriman.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\GAME\RACE</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,7 +108,7 @@
       <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
     </ClInclude>
     <ClInclude Include="Shuriman.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -12,3 +12,8 @@ Freljordian::Freljordian(std::string _name, int _lifeBonus, int _defenseBonus, i
 Freljordian::~Freljordian()
 {
 }
+
+void Freljordian::displayStats() const
+{
+	std::cout << "Freljordian allows " << m_passiveHealthBonus << " bonus passive health" << std::endl;
+}

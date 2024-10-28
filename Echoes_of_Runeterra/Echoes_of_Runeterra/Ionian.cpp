@@ -12,3 +12,9 @@ Ionian::Ionian(std::string _name, int _lifeBonus, int _defenseBonus, int _speedB
 Ionian::~Ionian()
 {
 }
+
+void Ionian::displayStats() const
+{
+	Race::displayStats();
+	std::cout << "Ionian allows " << m_agilityBonus << " bonus agility" << std::endl;
+}

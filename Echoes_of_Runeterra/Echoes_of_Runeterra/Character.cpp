@@ -1,4 +1,5 @@
 #include "Character.h"
+#include "Ionian.h"
 
 Character::Character() : Character("Default Name")
 {
@@ -15,6 +16,7 @@ Character::Character(std::string _name, int _level, int _xp, int _hp, int _defen
 	m_levelXp(100), m_skillPoint(0),
 	m_pos(), m_foward(), m_velocity()
 {
+	m_race = Ionian("Ionian Name", 5, 2, 20, 20);
 }
 
 Character::~Character()
@@ -27,6 +29,7 @@ void Character::update()
 	{
 		gainLevel();
 	}
+	m_race.displayStats();
 }
 
 int Character::getLevel() const

@@ -12,3 +12,8 @@ Demacian::Demacian(std::string _name, int _lifeBonus, int _defenseBonus, int _sp
 Demacian::~Demacian()
 {
 }
+
+void Demacian::displayStats() const
+{
+	std::cout << "Demacian allows " << m_shieldBonus << " bonus shield" << std::endl;
+}

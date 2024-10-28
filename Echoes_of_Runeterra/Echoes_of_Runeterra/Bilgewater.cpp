@@ -12,3 +12,8 @@ Bilegewater::Bilegewater(std::string _name, int _lifeBonus, int _defenseBonus, i
 Bilegewater::~Bilegewater()
 {
 }
+
+void Bilegewater::displayStats() const
+{
+	std::cout << "Bilegewater allows " << m_criticalDamageBonus << " bonus critical damage" << std::endl;
+}

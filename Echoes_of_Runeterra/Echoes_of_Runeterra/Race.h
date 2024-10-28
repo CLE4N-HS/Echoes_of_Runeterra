@@ -4,14 +4,39 @@
 class Race
 {
 public:
+	typedef enum {
+		RACE_NULL = -1,
+		RACE_IONIAN = 0,  // This race uses its agile sences to fight
+		RACE_DEMACIAN,    // This race uses its physical resistance and shields to fight
+		RACE_NOXIAN,      // This race uses its brute strength to fight
+		RACE_FRELJORDIAN, // This race uses its survival skills to fight
+		RACE_BILGEWATER,  // This race uses its fast and imprevisible skills to fight
+		RACE_SHURIMAN,    // This race uses its resurrection skills to fight
+
+		RACE_COUNT // <- keep last
+	}RaceType;
+
 	Race();
-	Race(std::string _name, int _lifeBonus, int _defenseBonus, int _speedBonus);
+	Race(RaceType _race);
+	Race(RaceType _race, std::string _name, int _lifeBonus, int _defenseBonus, int _speedBonus);
 	~Race();
 
-protected:
+	void displayStats() const;
+
+private:
+	// common
+	RaceType m_race;
 	std::string m_name;
 	int m_lifeBonus;
 	int m_defenseBonus;
 	int m_speedBonus;
+	//
+
+	int m_agilityBonus;
+	int m_shieldBonus;
+	int m_damageBonus;
+	int m_passiveHealBonus;
+	int m_criticalDamageBonus;
+	int m_resurrectionHealthBonus;
 
 };

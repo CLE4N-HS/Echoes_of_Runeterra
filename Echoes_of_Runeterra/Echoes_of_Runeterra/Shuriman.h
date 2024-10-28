@@ -11,6 +11,8 @@ public:
 	Shuriman(std::string _name, int _lifeBonus, int _defenseBonus, int _speedBonus, int _resurrectionHealthBonus);
 	~Shuriman();
 
+	virtual void displayStats() const;
+
 private:
 	int m_resurrectionHealthBonus;
 

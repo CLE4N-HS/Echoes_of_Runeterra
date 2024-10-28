@@ -11,6 +11,8 @@ public:
 	Freljordian(std::string _name, int _lifeBonus, int _defenseBonus, int _speedBonus, int _passiveHealthBonus);
 	~Freljordian();
 
+	virtual void displayStats() const;
+
 private:
 	int m_passiveHealthBonus;
 
