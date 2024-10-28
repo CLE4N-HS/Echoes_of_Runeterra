@@ -17,11 +17,12 @@ public:
 	}RaceType;
 
 	Race();
-	Race(RaceType _race);
 	Race(RaceType _race, std::string _name, int _lifeBonus, int _defenseBonus, int _speedBonus);
 	~Race();
 
 	void displayStats() const;
+	void changeStats(std::string _name);
+	void changeStats(int _lifeBonus, int _defenseBonus, int _speedBonus);
 
 private:
 	// common
@@ -32,11 +33,22 @@ private:
 	int m_speedBonus;
 	//
 
+	// fighting skills
 	int m_agilityBonus;
 	int m_shieldBonus;
 	int m_damageBonus;
 	int m_passiveHealBonus;
 	int m_criticalDamageBonus;
 	int m_resurrectionHealthBonus;
+	//
+
+	// world skills
+	bool m_natureSkill;
+	bool m_justiceSkill;
+	bool m_ambitiousSkill;
+	bool m_handleColdSkill;
+	bool m_unpredictableSkill;
+	bool m_sunVisionSkill;
+	//
 
 };

@@ -150,28 +150,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="alignement.cpp" />
-    <ClCompile Include="Bilgewater.cpp" />
     <ClCompile Include="Character.cpp" />
-    <ClCompile Include="Demacian.cpp" />
-    <ClCompile Include="Freljordian.cpp" />
-    <ClCompile Include="Ionian.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Noxian.cpp" />
     <ClCompile Include="Race.cpp" />
-    <ClCompile Include="Shuriman.cpp" />
     <ClCompile Include="tools.cpp" />
     <ClCompile Include="windowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="alignement.h" />
-    <ClInclude Include="Bilgewater.h" />
     <ClInclude Include="Character.h" />
-    <ClInclude Include="Demacian.h" />
-    <ClInclude Include="Freljordian.h" />
-    <ClInclude Include="Ionian.h" />
-    <ClInclude Include="Noxian.h" />
     <ClInclude Include="Race.h" />
-    <ClInclude Include="Shuriman.h" />
     <ClInclude Include="tools.h" />
     <ClInclude Include="windowManager.h" />
   </ItemGroup>

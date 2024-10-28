@@ -57,24 +57,6 @@
     <ClCompile Include="Race.cpp">
       <Filter>Fichiers sources\GAME\RACE</Filter>
     </ClCompile>
-    <ClCompile Include="Ionian.cpp">
-      <Filter>Fichiers sources\GAME\RACE</Filter>
-    </ClCompile>
-    <ClCompile Include="Demacian.cpp">
-      <Filter>Fichiers sources\GAME\RACE</Filter>
-    </ClCompile>
-    <ClCompile Include="Noxian.cpp">
-      <Filter>Fichiers sources\GAME\RACE</Filter>
-    </ClCompile>
-    <ClCompile Include="Freljordian.cpp">
-      <Filter>Fichiers sources\GAME\RACE</Filter>
-    </ClCompile>
-    <ClCompile Include="Bilgewater.cpp">
-      <Filter>Fichiers sources\GAME\RACE</Filter>
-    </ClCompile>
-    <ClCompile Include="Shuriman.cpp">
-      <Filter>Fichiers sources\GAME\RACE</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
@@ -90,24 +72,6 @@
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
     </ClInclude>
     <ClInclude Include="Race.h">
-      <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
-    </ClInclude>
-    <ClInclude Include="Ionian.h">
-      <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
-    </ClInclude>
-    <ClInclude Include="Demacian.h">
-      <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
-    </ClInclude>
-    <ClInclude Include="Noxian.h">
-      <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
-    </ClInclude>
-    <ClInclude Include="Freljordian.h">
-      <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
-    </ClInclude>
-    <ClInclude Include="Bilgewater.h">
-      <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
-    </ClInclude>
-    <ClInclude Include="Shuriman.h">
       <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
     </ClInclude>
   </ItemGroup>

@@ -12,7 +12,7 @@ int main()
 		c.giveXp(10);
 
 		std::cout << c.getLevel() << std::endl;
-	} while (i++ < 1 || c.getLevel() > 20);
+	} while (i++ < 100 && c.getLevel() < 5);
 
 	return EXIT_SUCCESS;
 }

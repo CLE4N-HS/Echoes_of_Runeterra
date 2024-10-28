@@ -1,49 +1,40 @@
 #include "Race.h"
 
-Race::Race() : Race(RACE_NULL)
+Race::Race() : Race(RACE_NULL, "Default Race Name", 0, 0, 0)
 {
-}
-
-Race::Race(RaceType _race)
-{
-	switch (_race)
-	{
-	case RACE_IONIAN:
-		Race(RACE_IONIAN, "Ionian", 0, 0, 20); break;
-	case RACE_DEMACIAN:
-		Race(RACE_DEMACIAN, "Demacian", 15, 10, -5); break;
-	case RACE_NOXIAN:
-		Race(RACE_NOXIAN, "Noxian", 10, 0, 5); break;
-	case RACE_FRELJORDIAN:
-		Race(RACE_FRELJORDIAN, "Freljordian", 25, 0, 0); break;
-	case RACE_BILGEWATER:
-		Race(RACE_BILGEWATER, "Bilgewater", -2, -5, 25); break;
-	case RACE_SHURIMAN:
-		Race(RACE_SHURIMAN, "Shuriman", 4, 4, 4); break;
-	default:
-		Race(RACE_NULL, "Default Race Name", 0, 0, 0);
-		break;
-	}
 }
 
 Race::Race(RaceType _race, std::string _name, int _lifeBonus, int _defenseBonus, int _speedBonus) :
 	m_race(_race), m_name(_name), m_lifeBonus(_lifeBonus), m_defenseBonus(_defenseBonus), m_speedBonus(_speedBonus),
-	m_agilityBonus(0), m_shieldBonus(0), m_damageBonus(0), m_passiveHealBonus(0), m_criticalDamageBonus(0), m_resurrectionHealthBonus(0)
+	m_agilityBonus(0), m_shieldBonus(0), m_damageBonus(0), m_passiveHealBonus(0), m_criticalDamageBonus(0), m_resurrectionHealthBonus(0),
+	m_natureSkill(false), m_justiceSkill(false), m_ambitiousSkill(false), m_handleColdSkill(false), m_unpredictableSkill(false), m_sunVisionSkill(false)
 {
 	switch (_race)
 	{
 	case RACE_IONIAN:
-		m_agilityBonus = 20; break;
+		m_agilityBonus = 20;
+		m_natureSkill = true;
+		break;
 	case RACE_DEMACIAN:
-		m_shieldBonus = 20; break;
+		m_shieldBonus = 20;
+		m_justiceSkill = true;
+		break;
 	case RACE_NOXIAN:
-		m_damageBonus = 15; break;
+		m_damageBonus = 15;
+		m_ambitiousSkill = true;
+		break;
 	case RACE_FRELJORDIAN:
-		m_passiveHealBonus = 10; break;
+		m_passiveHealBonus = 10;
+		m_handleColdSkill = true;
+		break;
 	case RACE_BILGEWATER:
-		m_criticalDamageBonus = 30; break;
+		m_criticalDamageBonus = 30;
+		m_unpredictableSkill = true;
+		break;
 	case RACE_SHURIMAN:
-		m_resurrectionHealthBonus = 20; break;
+		m_resurrectionHealthBonus = 20;
+		m_sunVisionSkill = true;
+		break;
 	default:
 		break;
 	}
@@ -60,7 +51,7 @@ void Race::displayStats() const
 	std::cout << "Defense Bonus : " << m_defenseBonus << std::endl;
 	std::cout << "Speed Bonus : " << m_speedBonus << std::endl;
 
-	std::cout << "Race stats bonus :" << std::endl;
+	std::cout << "\nRace stats skills :" << std::endl;
 	switch (m_race)
 	{
 	case RACE_IONIAN:
@@ -78,4 +69,29 @@ void Race::displayStats() const
 	default:
 		break;
 	}
+
+	if (m_natureSkill)
+		std::cout << "You are familar with nature" << std::endl;
+	if (m_justiceSkill)
+		std::cout << "You are familiar with justice" << std::endl;
+	if (m_ambitiousSkill)
+		std::cout << "You are familiar with ambition" << std::endl;
+	if (m_handleColdSkill)
+		std::cout << "You can handle cold easily" << std::endl;
+	if (m_unpredictableSkill)
+		std::cout << "You are unpredictable" << std::endl;
+	if (m_sunVisionSkill)
+		std::cout << "You are familiar with sun visions" << std::endl;
+}
+
+void Race::changeStats(std::string _name)
+{
+	m_name = _name;
+}
+
+void Race::changeStats(int _lifeBonus, int _defenseBonus, int _speedBonus)
+{
+	m_lifeBonus = _lifeBonus;
+	m_defenseBonus = _defenseBonus;
+	m_speedBonus = _speedBonus;
 }
