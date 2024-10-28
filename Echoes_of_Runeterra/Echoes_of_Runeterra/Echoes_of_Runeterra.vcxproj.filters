@@ -13,10 +13,60 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers sources\TOOLS">
+      <UniqueIdentifier>{575ec17f-84c4-4d66-87c6-a1b310abb328}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME">
+      <UniqueIdentifier>{df7c30f0-4fb9-4bef-b7be-04a0f19b1d34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\TOOLS">
+      <UniqueIdentifier>{3f68d33a-a487-43c8-adbb-4c370918f316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME">
+      <UniqueIdentifier>{628cab84-7fd4-4b31-b0c8-b77448673e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\CHARACTER">
+      <UniqueIdentifier>{a6c26327-a7d6-4184-982d-38c3c51d0df3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\CHARACTER">
+      <UniqueIdentifier>{53615c7c-a4c5-47c1-840b-1541e35c4892}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="alignement.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER</Filter>
+    </ClCompile>
+    <ClCompile Include="tools.cpp">
+      <Filter>Fichiers sources\TOOLS</Filter>
+    </ClCompile>
+    <ClCompile Include="windowManager.cpp">
+      <Filter>Fichiers sources\TOOLS</Filter>
+    </ClCompile>
+    <ClCompile Include="Race.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tools.h">
+      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
+    </ClInclude>
+    <ClInclude Include="windowManager.h">
+      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
+    </ClInclude>
+    <ClInclude Include="alignement.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
+    </ClInclude>
+    <ClInclude Include="Race.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

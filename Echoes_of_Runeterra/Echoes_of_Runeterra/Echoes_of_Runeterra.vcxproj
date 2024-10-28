@@ -149,7 +149,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="alignement.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Race.cpp" />
+    <ClCompile Include="tools.cpp" />
+    <ClCompile Include="windowManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="alignement.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="Race.h" />
+    <ClInclude Include="tools.h" />
+    <ClInclude Include="windowManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
