@@ -31,6 +31,12 @@
     <Filter Include="Fichiers sources\GAME\CHARACTER">
       <UniqueIdentifier>{53615c7c-a4c5-47c1-840b-1541e35c4892}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\RACE">
+      <UniqueIdentifier>{000ef110-b158-4dad-bfa7-baa449f8e357}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\RACE">
+      <UniqueIdentifier>{92c177bd-d792-4819-b6f0-4982f8881b38}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -49,7 +55,25 @@
       <Filter>Fichiers sources\TOOLS</Filter>
     </ClCompile>
     <ClCompile Include="Race.cpp">
-      <Filter>Fichiers sources\GAME\CHARACTER</Filter>
+      <Filter>Fichiers sources\GAME\RACE</Filter>
+    </ClCompile>
+    <ClCompile Include="Ionian.cpp">
+      <Filter>Fichiers sources\GAME\RACE</Filter>
+    </ClCompile>
+    <ClCompile Include="Demacian.cpp">
+      <Filter>Fichiers sources\GAME\RACE</Filter>
+    </ClCompile>
+    <ClCompile Include="Noxian.cpp">
+      <Filter>Fichiers sources\GAME\RACE</Filter>
+    </ClCompile>
+    <ClCompile Include="Freljordian.cpp">
+      <Filter>Fichiers sources\GAME\RACE</Filter>
+    </ClCompile>
+    <ClCompile Include="Bilgewater.cpp">
+      <Filter>Fichiers sources\GAME\RACE</Filter>
+    </ClCompile>
+    <ClCompile Include="Shuriman.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -66,7 +90,25 @@
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
     </ClInclude>
     <ClInclude Include="Race.h">
-      <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
+      <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
+    </ClInclude>
+    <ClInclude Include="Ionian.h">
+      <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
+    </ClInclude>
+    <ClInclude Include="Demacian.h">
+      <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
+    </ClInclude>
+    <ClInclude Include="Noxian.h">
+      <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
+    </ClInclude>
+    <ClInclude Include="Freljordian.h">
+      <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
+    </ClInclude>
+    <ClInclude Include="Bilgewater.h">
+      <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
+    </ClInclude>
+    <ClInclude Include="Shuriman.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
