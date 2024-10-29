@@ -18,10 +18,12 @@ public:
 	void draw(const sf::Drawable& drawable, const sf::RenderStates& states = sf::RenderStates::Default);
 
 	sf::RectangleShape rectangle;
+	sf::Text text;
 
 private:
 	sf::RenderWindow m_renderWindow;
 	sf::RenderTexture m_renderTexture;
+	sf::Font m_font;
 
 	sf::VideoMode m_videoMode;
 	sf::String m_title;

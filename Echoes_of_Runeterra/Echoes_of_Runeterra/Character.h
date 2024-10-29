@@ -8,7 +8,7 @@ class Character
 public:
 	Character();
 	Character(std::string _name);
-	Character(std::string _name, int _level, int _hp, int _defense, int _xp, int _stamina, int _speed, Alignement _alignement);
+	Character(std::string _name, int _level, int _hp, int _attack, int _defense, int _xp, int _stamina, int _speed, Alignement _alignement);
 	~Character();
 
 	void update(Window& _window);
@@ -16,9 +16,12 @@ public:
 
 	int getLevel() const;
 	void giveXp(int _xp);
-	void setPos(sf::Vector2f _pos);
 
-private:
+	sf::Vector2f getPos() const;
+	void setPos(sf::Vector2f _pos);
+	void attack(Character& _character);
+
+protected:
 	void upgradeLevelXp();
 	void gainLevel();
 
@@ -31,6 +34,7 @@ private:
 	int m_skillPoint;
 
 	int m_hp, m_maxHp;
+	int m_attack;
 	int m_defense;
 	int m_stamina;
 	int m_speed;
@@ -40,5 +44,7 @@ private:
 	sf::Vector2f m_targetPos;
 	sf::Vector2f m_foward;
 	float m_moveSpeed;
+
+	float m_attackTimer;
 
 };

@@ -25,12 +25,12 @@ void MouseManager::update(Window& _window)
 	}
 }
 
-bool MouseManager::hasJustPressed(const sf::Mouse::Button& _button)
+bool MouseManager::hasJustPressed(sf::Mouse::Button _button)
 {
 	return (m_buttonState[(int)_button] == MouseManager::JUST_BEEN_PRESSED);
 }
 
-bool MouseManager::hasJustReleased(const sf::Mouse::Button& _button)
+bool MouseManager::hasJustReleased(sf::Mouse::Button _button)
 {
 	return (m_buttonState[(int)_button] == MouseManager::JUST_BEEN_RELEASED);
 }

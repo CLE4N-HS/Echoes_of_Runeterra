@@ -17,8 +17,8 @@ public:
 	~MouseManager();
 
 	void update(Window& _window);
-	bool hasJustPressed(const sf::Mouse::Button& _button);
-	bool hasJustReleased(const sf::Mouse::Button& _button);
+	bool hasJustPressed(sf::Mouse::Button _button);
+	bool hasJustReleased(sf::Mouse::Button _button);
 
 private:
 	ButtonState m_buttonState[(int)sf::Mouse::ButtonCount];

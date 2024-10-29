@@ -14,7 +14,9 @@ void Master::loop()
 	{
 		m_window.update();
 
-		m_state.update(m_window);
+		if (m_window.hasFocus())
+			m_state.update(m_window);
+
 		m_state.display(m_window);
 
 		m_window.display();

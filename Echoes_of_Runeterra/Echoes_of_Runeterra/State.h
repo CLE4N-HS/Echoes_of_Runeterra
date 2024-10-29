@@ -15,5 +15,6 @@ public:
 private:
 	MouseManager m_mouseManager;
 	Character m_character;
+	Character m_character2;
 
 };
