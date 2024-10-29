@@ -51,18 +51,24 @@
     <ClCompile Include="tools.cpp">
       <Filter>Fichiers sources\TOOLS</Filter>
     </ClCompile>
-    <ClCompile Include="windowManager.cpp">
-      <Filter>Fichiers sources\TOOLS</Filter>
-    </ClCompile>
     <ClCompile Include="Race.cpp">
       <Filter>Fichiers sources\GAME\RACE</Filter>
+    </ClCompile>
+    <ClCompile Include="Master.cpp">
+      <Filter>Fichiers sources\TOOLS</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseManager.cpp">
+      <Filter>Fichiers sources\TOOLS</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Fichiers sources\TOOLS</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Fichiers sources\TOOLS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
-      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
-    </ClInclude>
-    <ClInclude Include="windowManager.h">
       <Filter>Fichiers d%27en-tête\TOOLS</Filter>
     </ClInclude>
     <ClInclude Include="alignement.h">
@@ -73,6 +79,18 @@
     </ClInclude>
     <ClInclude Include="Race.h">
       <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
+    </ClInclude>
+    <ClInclude Include="Master.h">
+      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseManager.h">
+      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

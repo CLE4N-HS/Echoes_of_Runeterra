@@ -1,18 +1,9 @@
-#include "windowManager.h"
-#include "Character.h"
+#include "Master.h"
 
 int main()
 {
-	Character c;
-
-	int i(0);
-	do
-	{
-		c.update();
-		c.giveXp(10);
-
-		std::cout << c.getLevel() << std::endl;
-	} while (i++ < 100 && c.getLevel() < 5);
+	Master master;
+	master.loop();
 
 	return EXIT_SUCCESS;
 }

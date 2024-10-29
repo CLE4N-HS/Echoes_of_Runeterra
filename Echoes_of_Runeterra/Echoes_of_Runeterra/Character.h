@@ -1,5 +1,5 @@
 #pragma once
-#include "windowManager.h"
+#include "Window.h"
 #include "alignement.h"
 #include "Race.h"
 
@@ -11,12 +11,13 @@ public:
 	Character(std::string _name, int _level, int _hp, int _defense, int _xp, int _stamina, int _speed, Alignement _alignement);
 	~Character();
 
-	void update();
+	void update(Window& _window);
+	void display(Window& _window);
 
 	int getLevel() const;
 	void giveXp(int _xp);
 
-protected:
+private:
 	void upgradeLevelXp();
 	void gainLevel();
 

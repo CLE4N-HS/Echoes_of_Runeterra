@@ -22,13 +22,17 @@ Character::~Character()
 {
 }
 
-void Character::update()
+void Character::update(Window& _window)
 {
 	if (m_xp >= m_levelXp)
 	{
 		gainLevel();
 		m_race.displayStats();
 	}
+}
+
+void Character::display(Window& _window)
+{
 }
 
 int Character::getLevel() const
