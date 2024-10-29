@@ -19,6 +19,7 @@ void tex_animLoad(tex_SData* _tex, char* _filePath, char* _animPath)
 	fgets(tmpLine, 180, file);
 	sscanf(tmpLine, "%s", tmpWord);
 	sprintf(tmpName, "%s%s", _filePath, tmpWord);
+	_tex->texture = new sf::Texture();
 	_tex->texture->loadFromFile(tmpName);
 
 	while (fgets(tmpLine, 180, file) != NULL)
@@ -81,8 +82,10 @@ void tex_load(int _state)
 			tmpFilePath[tmpTexPathLengthCount + 1] = '\0';
 			tex_animLoad(tmpTex, tmpFilePath, tmpTexFullPath);
 		}
-		else
+		else {
+			tmpTex->texture = new sf::Texture();
 			tmpTex->texture->loadFromFile(tmpTexFullPath);
+		}
 
 		tex_add(tmpTex);
 	}
@@ -152,7 +155,7 @@ sf::IntRect tex_getAnimRect(const char* _name, const char* _anim)
 	return tmpAnim->rect;
 }
 
-sf::IntRect texGetRectAnim(Window& _window, char* _name, char* _anim, int* frameX, float* timer)
+sf::IntRect texGetRectAnim(Window& _window, const char* _name, const char* _anim, int* frameX, float* timer)
 {
 	float dt = _window.getDeltaTime();
 	tex_SData* tmpTexture = tex_BeginTex;

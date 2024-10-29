@@ -3,7 +3,7 @@
 
 State::State() : m_mouseManager(), m_character("Player"), m_character2()
 {
-	//res_load(RES_ALL);
+	res_load(RES_ALL);
 	m_character.setPos(sf::Vector2f(960.f, 800.f));
 	m_character2.setPos(sf::Vector2f(1200.f, 100.f));
 }

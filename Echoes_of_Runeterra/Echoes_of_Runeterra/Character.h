@@ -45,6 +45,11 @@ protected:
 	sf::Vector2f m_foward;
 	float m_moveSpeed;
 
+	int m_frameX;
+	float m_animTimer;
+	std::string m_animState;
+
 	float m_attackTimer;
+
 
 };

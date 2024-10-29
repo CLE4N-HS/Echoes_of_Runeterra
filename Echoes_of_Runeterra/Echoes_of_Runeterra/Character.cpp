@@ -17,7 +17,7 @@ Character::Character(std::string _name, int _level, int _xp, int _hp, int _attac
 	m_race(Race::RACE_IONIAN, "Ionian", 0, 0, 20),
 	m_levelXp(100), m_skillPoint(0),
 	m_pos(), m_targetPos(m_pos), m_foward(), m_moveSpeed(100.f),
-	m_attackTimer(0.f)
+	m_animState("idle"), m_frameX(0), m_animTimer(0.f), m_attackTimer(0.f)
 {
 }
 
@@ -48,17 +48,27 @@ void Character::update(Window& _window)
 	if (m_name == "Player" && vec2fGetMagnitude(sf::Vector2f(m_targetPos - m_pos)) > 26.f)
 	{
 		m_pos += m_foward * m_moveSpeed * dt;
+		m_animState = "walk";
+	}
+	else
+	{
+		m_animState = "idle";
 	}
 }
 
 void Character::display(Window& _window)
 {
 	_window.rectangle.setPosition(m_pos);
-	_window.rectangle.setSize(sf::Vector2f(52.f, 44.f));
-	_window.rectangle.setOrigin(sf::Vector2f(26.f, 22.f));
-	_window.rectangle.setFillColor(sf::Color::Cyan);
-	//_window.rectangle.setTexture(tex_getTexture("viego"));
-	//_window.rectangle.setTextureRect(tex_getAnimRect("viego", "idle"));
+	_window.rectangle.setTexture(tex_getTexture("viego"));
+	sf::IntRect tmpRect = texGetRectAnim(_window, "viego", m_animState.c_str(), &m_frameX, &m_animTimer);
+	_window.rectangle.setSize(sf::Vector2f(sf::Vector2i(tmpRect.width, tmpRect.height)));
+	_window.rectangle.setOrigin(sf::Vector2f(sf::Vector2i(tmpRect.width / 2, tmpRect.height / 2)));
+	_window.rectangle.setTextureRect(tmpRect);
+	if (m_animState == "walk" && m_foward.x < 0.f)
+		_window.rectangle.setScale(sf::Vector2f(-2.f, 2.f));
+	else
+		_window.rectangle.setScale(sf::Vector2f(2.f, 2.f));
+
 	_window.draw(_window.rectangle);
 
 	char buffer[100]{};
