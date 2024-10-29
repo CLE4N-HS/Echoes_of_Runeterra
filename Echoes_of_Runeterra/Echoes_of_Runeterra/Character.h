@@ -16,6 +16,7 @@ public:
 
 	int getLevel() const;
 	void giveXp(int _xp);
+	void setPos(sf::Vector2f _pos);
 
 private:
 	void upgradeLevelXp();
@@ -36,7 +37,8 @@ private:
 	Alignement m_alignement;
 
 	sf::Vector2f m_pos;
+	sf::Vector2f m_targetPos;
 	sf::Vector2f m_foward;
-	sf::Vector2f m_velocity;
+	float m_moveSpeed;
 
 };

@@ -39,7 +39,7 @@ void tex_add(tex_SData* _tex);
 tex_SData* tex_remove(tex_SData* _tex);
 void tex_deinit(bool _deinitStateAll);
 
-sf::Texture* tex_getTexture(char* _name);
-sf::IntRect tex_getAnimRect(char* _name, char* _anim);
+sf::Texture* tex_getTexture(const char* _name);
+sf::IntRect tex_getAnimRect(const char* _name, const char* _anim);
 
 sf::IntRect texGetRectAnim(Window& _window, char* _name, char* _anim, int* frameX, float* timer);

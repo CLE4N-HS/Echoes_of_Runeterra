@@ -124,7 +124,7 @@ void tex_deinit(bool _deinitStateAll)
 	}
 }
 
-sf::Texture* tex_getTexture(char* _name)
+sf::Texture* tex_getTexture(const char* _name)
 {
 	tex_SData* tmpTexture = tex_BeginTex;
 	while (strcmp(tmpTexture->name, _name) != 0)
@@ -135,7 +135,7 @@ sf::Texture* tex_getTexture(char* _name)
 	return tmpTexture->texture;
 }
 
-sf::IntRect tex_getAnimRect(char* _name, char* _anim)
+sf::IntRect tex_getAnimRect(const char* _name, const char* _anim)
 {
 	tex_SData* tmpTexture = tex_BeginTex;
 	while (strcmp(tmpTexture->name, _name) != 0)

@@ -1,7 +1,10 @@
 #include "State.h"
+#include "ressourcesManager.h"
 
 State::State() : m_mouseManager(), m_character()
 {
+	//res_load(RES_ALL);
+	m_character.setPos(sf::Vector2f(960.f, 800.f));
 }
 
 State::~State()
