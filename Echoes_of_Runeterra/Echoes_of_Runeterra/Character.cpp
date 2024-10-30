@@ -1,6 +1,7 @@
 #include "Character.h"
 #include "MouseManager.h"
 #include "textureManager.h"
+#include "particleManager.h"
 
 Character::Character() : Character("Default Name")
 {
@@ -35,9 +36,12 @@ void Character::update(Window& _window)
 	{
 		gainLevel();
 		m_race.displayStats();
+
+		sf::Texture a;
+		prt_CreateSquareParticles(m_pos, 10, sf::Color::White, sf::Color::Red, 5.f, sf::Vector2f(10.f, 10.f), sf::Vector2f(20.f, 20.f), 0.f, 360.f, 50.f,
+			10.f, 1.f, sf::Color::Blue, sf::Color::Blue, false, false, false, &a, false, false, wichParticles::LOADING);
 	}
 	
-	//if (MouseManager::hasJustPressed(sf::Mouse::Button::Left))
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		m_targetPos = _window.getMousePos();
@@ -54,6 +58,8 @@ void Character::update(Window& _window)
 	{
 		m_animState = "idle";
 	}
+
+	prt_UpdateParticles(dt);
 }
 
 void Character::display(Window& _window)
@@ -84,6 +90,9 @@ void Character::display(Window& _window)
 	sprintf(buffer, "Xp : %d/%d", m_xp, m_levelXp);
 	_window.text.setString(buffer);
 	_window.draw(_window.text);
+
+	prt_DisplayParticlesInFront(_window, _window.getDeltaTime());
+	prt_DisplayParticlesBehind(_window, _window.getDeltaTime());
 
 }
 

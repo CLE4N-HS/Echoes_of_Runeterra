@@ -24,6 +24,7 @@
     <ProjectGuid>{3802856c-4488-47f4-8041-a652014059cd}</ProjectGuid>
     <RootNamespace>Echoes_of_Runeterra</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Echoes_of_Runeterra</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -156,6 +157,7 @@
     <ClCompile Include="Master.cpp" />
     <ClCompile Include="MouseManager.cpp" />
     <ClCompile Include="musicManager.cpp" />
+    <ClCompile Include="particleManager.cpp" />
     <ClCompile Include="Race.cpp" />
     <ClCompile Include="ressourcesManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
@@ -172,6 +174,7 @@
     <ClInclude Include="Master.h" />
     <ClInclude Include="MouseManager.h" />
     <ClInclude Include="musicManager.h" />
+    <ClInclude Include="particleManager.h" />
     <ClInclude Include="Race.h" />
     <ClInclude Include="ressourcesManager.h" />
     <ClInclude Include="soundManager.h" />

@@ -90,6 +90,9 @@
     <ClCompile Include="Game.cpp">
       <Filter>Fichiers sources\GAME</Filter>
     </ClCompile>
+    <ClCompile Include="particleManager.cpp">
+      <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Fichiers d%27en-tête\GAME</Filter>
+    </ClInclude>
+    <ClInclude Include="particleManager.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\MANAGERS</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
