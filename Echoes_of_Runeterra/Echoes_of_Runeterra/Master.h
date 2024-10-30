@@ -1,6 +1,6 @@
 #pragma once
 #include "Window.h"
-#include "State.h"
+#include "StateManager.h"
 
 // Masterclass
 class Master
@@ -13,6 +13,6 @@ public:
 
 private:
 	Window m_window;
-	State m_state;
+	StateManager m_stateManager;
 
 };
