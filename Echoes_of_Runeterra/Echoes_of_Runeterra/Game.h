@@ -1,6 +1,7 @@
 #pragma once
 #include "State.h"
 #include "Character.h"
+#include "ItemDatabase.h"
 
 class Game : public State
 {
@@ -13,5 +14,6 @@ public:
 private:
 	Character m_character1;
 	Character m_character2;
+	ItemDataBase m_itemDataBase;
 
 };

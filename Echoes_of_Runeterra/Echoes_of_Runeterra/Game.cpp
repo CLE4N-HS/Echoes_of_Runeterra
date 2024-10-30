@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game() : m_character1("Player"), m_character2()
+Game::Game() : m_character1("Player"), m_character2(), m_itemDataBase()
 {
 	m_character1.setPos(sf::Vector2f(960.f, 800.f));
 	m_character2.setPos(sf::Vector2f(1200.f, 100.f));

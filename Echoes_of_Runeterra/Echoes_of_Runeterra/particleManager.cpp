@@ -13,10 +13,11 @@ sf::RenderStates renderStateParticles;
 sf::Color color_lerp_no_opacity(sf::Color v0, sf::Color v1, float t)
 {
 	sf::Color tmp;
-	tmp.r = (sf::Uint8)(1.f - t) * v0.r + (sf::Uint8)t * v1.r;
-	tmp.g = (sf::Uint8)(1.f - t) * v0.g + (sf::Uint8)t * v1.g;
-	tmp.b = (sf::Uint8)(1.f - t) * v0.b + (sf::Uint8)t * v1.b;
-	tmp.a = (sf::Uint8)(1.f - t) * v0.a;
+	tmp.r = (sf::Uint8)((1.f - t) * (float)v0.r + t * (float)v1.r);
+	tmp.g = (sf::Uint8)((1.f - t) * (float)v0.g + t * (float)v1.g);
+	tmp.b = (sf::Uint8)((1.f - t) * (float)v0.b + t * (float)v1.b);
+	tmp.a = v0.a;
+	//tmp.a = (sf::Uint8)(1.f - t) * v0.a;
 	return tmp;
 }
 
@@ -92,7 +93,7 @@ void prt_UpdateParticles(float const& _dt)
 
 	float dt = _dt;
 
-	for (std::list<particles>::iterator it = particlesList.begin(); it != particlesList.end(); it++)
+	for (std::list<particles>::iterator it = particlesList.begin(); it != particlesList.end();)
 	{
 		it->timer += dt;
 		it->timerFirefly += dt;
@@ -124,9 +125,9 @@ void prt_UpdateParticles(float const& _dt)
 		it->teta += it->rotateVelocity * dt;
 
 		if (it->timer > it->timeToDie)
-		{
 			it = particlesList.erase(it);
-		}
+		else
+			it++;
 	}
 }
 

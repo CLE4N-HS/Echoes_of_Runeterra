@@ -37,9 +37,8 @@ void Character::update(Window& _window)
 		gainLevel();
 		m_race.displayStats();
 
-		sf::Texture a;
 		prt_CreateSquareParticles(m_pos, 10, sf::Color::White, sf::Color::Red, 5.f, sf::Vector2f(10.f, 10.f), sf::Vector2f(20.f, 20.f), 0.f, 360.f, 50.f,
-			10.f, 1.f, sf::Color::Blue, sf::Color::Blue, false, false, false, &a, false, false, wichParticles::LOADING);
+			10.f, 1.f, sf::Color::Blue, sf::Color::Blue, false, false, false, nullptr, false, false, wichParticles::LOADING);
 	}
 	
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))

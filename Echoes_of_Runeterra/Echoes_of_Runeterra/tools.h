@@ -4,6 +4,7 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 #include <fstream>
+#include <map>
 
 #define EPSILON ((float)1e-6)
 #define DEG2RAD ((float)0.01745329f)

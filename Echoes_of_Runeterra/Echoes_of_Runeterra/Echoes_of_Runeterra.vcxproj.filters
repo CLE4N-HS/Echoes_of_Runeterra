@@ -43,6 +43,12 @@
     <Filter Include="Fichiers d%27en-tête\TOOLS\MANAGERS">
       <UniqueIdentifier>{df99a03b-50fd-4b0a-a63d-fabaf5749db3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\ITEMS">
+      <UniqueIdentifier>{d31aa6bf-8343-482a-8152-d6a048a6f6c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\ITEMS">
+      <UniqueIdentifier>{cfa78e78-5b1a-4704-acec-4caad05eb903}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -93,6 +99,18 @@
     <ClCompile Include="particleManager.cpp">
       <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
     </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Fichiers sources\GAME\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="Armor.cpp">
+      <Filter>Fichiers sources\GAME\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="Consumable.cpp">
+      <Filter>Fichiers sources\GAME\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemDatabase.cpp">
+      <Filter>Fichiers sources\GAME\ITEMS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
@@ -139,6 +157,18 @@
     </ClInclude>
     <ClInclude Include="particleManager.h">
       <Filter>Fichiers d%27en-tête\TOOLS\MANAGERS</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="Armor.h">
+      <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="Consumable.h">
+      <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemDatabase.h">
+      <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
