@@ -4,7 +4,7 @@ State::~State()
 {
 }
 
-void State::update(Window& _window)
+void State::update(Window& _window, State*& _state)
 {
 }
 

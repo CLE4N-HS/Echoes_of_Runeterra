@@ -14,5 +14,6 @@ public:
 private:
 	Window m_window;
 	StateManager m_stateManager;
+	State* m_newState;
 
 };
