@@ -14,12 +14,12 @@ ItemDataBase::~ItemDataBase()
 {
 }
 
-void ItemDataBase::displayItems(Window& _window)
+Item* ItemDataBase::takeItem(std::string _name)
 {
-	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
-	{
-		(*it)->display(_window);
-	}
+	Item* item = m_item[_name];
+	if (item != nullptr)
+		m_item.erase(_name);
+	return item;
 }
 
 void ItemDataBase::readWeaponDB(std::string _filePath)
@@ -39,7 +39,9 @@ void ItemDataBase::readWeaponDB(std::string _filePath)
 			file >> tmpCriticalDamage;
 			file >> tmpSpeed;
 
-			m_item.push_back(new Weapon(tmpName, tmpDamage, tmpCriticalDamage, tmpSpeed));
+			
+			m_item.insert({ tmpName, new Weapon(tmpName, tmpDamage, tmpCriticalDamage, tmpSpeed) });
+			//m_item.push_back(new Weapon(tmpName, tmpDamage, tmpCriticalDamage, tmpSpeed));
 		}
 	}
 	else
@@ -63,7 +65,8 @@ void ItemDataBase::readArmorDB(std::string _filePath)
 			file >> tmpSpeed;
 			file >> tmpDurability;
 
-			m_item.push_back(new Armor(tmpName, tmpDefense, tmpSpeed, tmpDurability));
+			m_item.insert({ tmpName, new Armor(tmpName, tmpDefense, tmpSpeed, tmpDurability) });
+			//m_item.push_back(new Armor(tmpName, tmpDefense, tmpSpeed, tmpDurability));
 		}
 	}
 	else
@@ -87,7 +90,8 @@ void ItemDataBase::readConsumableDB(std::string _filePath)
 			file >> tmpDefense;
 			file >> tmpSpeed;
 
-			m_item.push_back(new Consumable(tmpName, tmpHp, tmpDefense, tmpSpeed));
+			m_item.insert({ tmpName, new Consumable(tmpName, tmpHp, tmpDefense, tmpSpeed) });
+			//m_item.push_back(new Consumable(tmpName, tmpHp, tmpDefense, tmpSpeed));
 		}
 	}
 	else

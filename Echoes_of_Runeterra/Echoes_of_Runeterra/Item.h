@@ -6,7 +6,7 @@ class Item
 public:
 	typedef enum {
 		IN_INVENTORY,
-		ON_GROUND
+		ON_MAP
 	}State;
 
 	Item();
@@ -14,6 +14,7 @@ public:
 	~Item();
 
 	virtual void display(Window& _window) = 0;
+	void setState(Item::State _state);
 	Item::State getState();
 
 protected:

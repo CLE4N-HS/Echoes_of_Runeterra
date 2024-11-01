@@ -2,20 +2,18 @@
 #include "Window.h"
 #include "Item.h"
 
-class Inventory
+class Map
 {
 public:
-	Inventory();
-	~Inventory();
+	Map();
+	~Map();
 
 	void update(Window& _window);
 	void display(Window& _window);
 
-	void setOpening(bool _shouldBeOpened);
-	bool isOpen();
+	void addItem(Item* _item);
 
 private:
 	std::list<Item*> m_item;
-	bool m_isOpen;
 
 };

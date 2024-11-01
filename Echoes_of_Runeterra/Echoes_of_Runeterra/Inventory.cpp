@@ -1,6 +1,6 @@
 #include "Inventory.h"
 
-Inventory::Inventory() : m_itemDB(new ItemDataBase), m_isOpen(false)
+Inventory::Inventory() : m_item(), m_isOpen(false)
 {
 }
 
@@ -36,7 +36,12 @@ void Inventory::display(Window& _window)
 	_window.text.setPosition(sf::Vector2f(10.f, 5.f));
 	_window.draw(_window.text);
 
-	m_itemDB->displayItems(_window);
+
+	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	{
+		(*it)->display(_window);
+	}
+
 }
 
 void Inventory::setOpening(bool _shouldBeOpened)

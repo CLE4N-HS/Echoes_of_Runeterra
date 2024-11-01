@@ -1,6 +1,7 @@
 #pragma once
 #include "Window.h"
 #include "Item.h"
+#include <unordered_map>
 
 class ItemDataBase
 {
@@ -8,13 +9,14 @@ public:
 	ItemDataBase();
 	~ItemDataBase();
 
-	void displayItems(Window& _window);
+	// This function removes the item from the DataBase
+	Item* takeItem(std::string _name);
 
 private:
 	void readWeaponDB(std::string _filePath);
 	void readArmorDB(std::string _filePath);
 	void readConsumableDB(std::string _filePath);
 
-	std::list<Item*> m_item;
+	std::unordered_map<std::string, Item*> m_item;
 
 };

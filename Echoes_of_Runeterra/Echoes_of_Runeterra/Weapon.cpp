@@ -28,7 +28,7 @@ void Weapon::display(Window& _window)
 		_window.rectangle.setPosition(sf::Vector2f((float)(tmpRect.left), (float)(tmpRect.top))); // should not be that TODO Entity class
 		_window.rectangle.setScale(sf::Vector2f(5.f, 5.f));
 		break;
-	case Item::State::ON_GROUND:
+	case Item::State::ON_MAP:
 		_window.rectangle.setPosition(sf::Vector2f((float)(tmpRect.left), (float)(tmpRect.top))); // should not be that TODO Entity class
 		_window.rectangle.setScale(sf::Vector2f(5.f, 5.f));
 		break;

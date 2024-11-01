@@ -1,6 +1,8 @@
 #pragma once
 #include "State.h"
+#include "ItemDatabase.h"
 #include "Character.h"
+#include "Map.h"
 
 class Game : public State
 {
@@ -11,6 +13,8 @@ public:
 	virtual void display(Window& _window);
 
 private:
+	ItemDataBase* m_itemDB;
+	Map m_map;
 	Character m_character1;
 	Character m_character2;
 
