@@ -1,7 +1,12 @@
 #include "Consumable.h"
 #include <fstream>
 
-Consumable::Consumable() : m_name("Default Consumable Name"), m_hp(0), m_defense(0), m_speed(0)
+Consumable::Consumable() : Consumable("Default Consumable Name", 0, 0, 0)
+{
+}
+
+Consumable::Consumable(std::string _name, int _hp, int _defense, int _speed) : Item(_name),
+	m_name(_name), m_hp(_hp), m_defense(_defense), m_speed(_speed)
 {
 }
 
@@ -9,34 +14,6 @@ Consumable::~Consumable()
 {
 }
 
-void cons_read(std::string _filePath, std::vector<Consumable> _vector)
+void Consumable::display(Window& _window)
 {
-	std::ifstream file(_filePath);
-
-	if (file)
-	{
-		int c(0);
-		std::string tmpName;
-		bool readName(true);
-		while (c = file.get())
-		{
-			if (c == '\n')
-			{
-
-			}
-			if (c == ',')
-			{
-				if (readName)
-				{
-					
-				}
-			}
-			else if (readName)
-			{
-				tmpName += c;
-			}
-		}
-	}
-	else
-		std::cerr << "Error while opening a file" << std::endl;
 }

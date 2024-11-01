@@ -12,15 +12,15 @@ MouseManager::~MouseManager()
 {
 }
 
-void MouseManager::update(Window& _window)
+void MouseManager::update()
 {
 	for (int button = 0; button < sf::Mouse::ButtonCount; button++)
 	{
 		if (sf::Mouse::isButtonPressed((sf::Mouse::Button)button)) {
-			m_buttonState[button] = (m_buttonState[button] == MouseManager::JUST_BEEN_PRESSED ? MouseManager::PRESSED : MouseManager::JUST_BEEN_PRESSED);
+			m_buttonState[button] = (m_buttonState[button] < MouseManager::JUST_BEEN_PRESSED ? MouseManager::JUST_BEEN_PRESSED : MouseManager::PRESSED);
 		}
 		else {
-			m_buttonState[button] = (m_buttonState[button] == MouseManager::JUST_BEEN_RELEASED ? MouseManager::RELEASED : MouseManager::JUST_BEEN_RELEASED);
+			m_buttonState[button] = (m_buttonState[button] > MouseManager::JUST_BEEN_RELEASED ? MouseManager::JUST_BEEN_RELEASED : MouseManager::RELEASED);
 		}
 	}
 }

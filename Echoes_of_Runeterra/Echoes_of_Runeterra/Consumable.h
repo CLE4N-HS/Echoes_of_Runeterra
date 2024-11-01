@@ -1,11 +1,15 @@
 #pragma once
 #include "tools.h"
+#include "Item.h"
 
-class Consumable
+class Consumable : public Item
 {
 public:
 	Consumable();
+	Consumable(std::string _name, int _hp, int _defense, int _speed);
 	~Consumable();
+
+	virtual void display(Window& _window);
 
 private:
 	std::string m_name;
@@ -14,5 +18,3 @@ private:
 	int m_speed;
 
 };
-
-void cons_read(std::string _filePath);

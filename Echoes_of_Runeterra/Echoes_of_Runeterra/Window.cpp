@@ -6,7 +6,7 @@ Window::Window() : Window("Title", sf::Style::Default)
 }
 
 Window::Window(const sf::String& title, sf::Uint32 style) : m_videoMode(sf::VideoMode::getDesktopMode()), m_title(title), m_style(style),
-	rectangle(), text(), m_renderTexture(), m_font(),
+	rectangle(), text(), mouseManager(), keyboardManager(), m_renderTexture(), m_font(),
 	m_framerateLimit(60), m_isDone(false), m_fullscreenTimer(0.f),
 	m_event(), m_clock(), m_time(), m_deltaTime(), m_mousePos(), m_sprite(), m_texture()
 {
@@ -40,6 +40,9 @@ void Window::update()
 	m_fullscreenTimer += ((m_fullscreenTimer > 0.5f) ? 0.f : m_deltaTime);
 	if (m_hasFocus && m_fullscreenTimer >= 0.5f && sf::Keyboard::isKeyPressed(sf::Keyboard::F11))
 		toggleFullscreen();
+
+	mouseManager.update();
+	keyboardManager.update();
 }
 
 void Window::display()

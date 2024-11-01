@@ -1,5 +1,8 @@
 #pragma once
 #include "tools.h"
+// could/should be an Input Manager
+#include "MouseManager.h"
+#include "KeyboardManager.h"
 
 class Window
 {
@@ -19,6 +22,8 @@ public:
 
 	sf::RectangleShape rectangle;
 	sf::Text text;
+	MouseManager mouseManager;
+	KeyboardManager keyboardManager;
 
 private:
 	sf::RenderWindow m_renderWindow;

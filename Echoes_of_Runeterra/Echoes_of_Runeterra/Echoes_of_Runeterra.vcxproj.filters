@@ -111,6 +111,15 @@
     <ClCompile Include="ItemDatabase.cpp">
       <Filter>Fichiers sources\GAME\ITEMS</Filter>
     </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Fichiers sources\GAME\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardManager.cpp">
+      <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Fichiers sources\GAME\ITEMS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
@@ -168,6 +177,15 @@
       <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
     </ClInclude>
     <ClInclude Include="ItemDatabase.h">
+      <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardManager.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\MANAGERS</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
       <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
     </ClInclude>
   </ItemGroup>

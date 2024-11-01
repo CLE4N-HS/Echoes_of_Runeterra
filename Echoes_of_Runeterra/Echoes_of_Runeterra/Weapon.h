@@ -1,15 +1,19 @@
 #pragma once
 #include "tools.h"
+#include "Item.h"
 
-class Weapon
+class Weapon : public Item
 {
 public:
 	Weapon();
 	Weapon(std::string _name, int _damage, int _criticalDamage, int _speed);
 	~Weapon();
 
+	virtual void display(Window& _window);
+
 	int getDamage() const;
 	int getSpeed() const;
+
 
 private:
 	bool isAttackCritical() const;

@@ -1,2 +1,2 @@
-george 1 2 3
-papi 4 5 6
+sword 1 2 3
+pickaxe 4 5 6

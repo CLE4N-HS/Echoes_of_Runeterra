@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "alignement.h"
 #include "Race.h"
+#include "Inventory.h"
 
 class Character
 {
@@ -21,10 +22,15 @@ public:
 	void setPos(sf::Vector2f _pos);
 	void attack(Character& _character);
 
+	void inventorySetOpening(bool _shouldBeOpened);
+	bool isInventoryOpen();
+	void displayInventory(Window& _window);
+
 protected:
 	void upgradeLevelXp();
 	void gainLevel();
 
+	Inventory* m_inventory;
 	Race m_race;
 
 	std::string m_name;

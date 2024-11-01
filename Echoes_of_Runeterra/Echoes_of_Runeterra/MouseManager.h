@@ -1,5 +1,5 @@
 #pragma once
-#include "Window.h"
+#include "tools.h"
 
 class MouseManager
 {
@@ -16,7 +16,7 @@ public:
 	MouseManager();
 	~MouseManager();
 
-	void update(Window& _window);
+	void update();
 	bool hasJustPressed(sf::Mouse::Button _button);
 	bool hasJustReleased(sf::Mouse::Button _button);
 
