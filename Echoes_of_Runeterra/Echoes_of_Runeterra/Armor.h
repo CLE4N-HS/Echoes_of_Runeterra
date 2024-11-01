@@ -10,6 +10,7 @@ public:
 	~Armor();
 
 	virtual void display(Window& _window);
+	virtual void displayStats(Window& _window, sf::Vector2f _pos);
 
 	int getDefense() const;
 	int getSpeed() const;

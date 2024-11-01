@@ -10,6 +10,7 @@ public:
 	~Consumable();
 
 	virtual void display(Window& _window);
+	virtual void displayStats(Window& _window, sf::Vector2f _pos);
 
 private:
 	std::string m_name;

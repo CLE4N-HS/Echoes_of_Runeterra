@@ -26,6 +26,8 @@ public:
 	bool isInventoryOpen();
 	void displayInventory(Window& _window);
 
+	void addItem(Item* _item);
+
 protected:
 	void upgradeLevelXp();
 	void gainLevel();
@@ -56,6 +58,9 @@ protected:
 	std::string m_animState;
 
 	float m_attackTimer;
+
+	// player
+	bool m_takingAnItem;
 
 
 };

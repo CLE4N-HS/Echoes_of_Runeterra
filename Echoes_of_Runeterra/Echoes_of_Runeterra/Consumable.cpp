@@ -17,3 +17,7 @@ Consumable::~Consumable()
 void Consumable::display(Window& _window)
 {
 }
+
+void Consumable::displayStats(Window& _window, sf::Vector2f _pos)
+{
+}

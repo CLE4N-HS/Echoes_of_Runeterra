@@ -26,6 +26,7 @@ void Weapon::display(Window& _window)
 	{
 	case Item::State::IN_INVENTORY:
 		_window.rectangle.setPosition(sf::Vector2f((float)(tmpRect.left), (float)(tmpRect.top))); // should not be that TODO Entity class
+		_window.rectangle.setPosition(sf::Vector2f(500.f, 500.f)); // should not be that TODO Entity class
 		_window.rectangle.setScale(sf::Vector2f(5.f, 5.f));
 		break;
 	case Item::State::ON_MAP:
@@ -38,6 +39,42 @@ void Weapon::display(Window& _window)
 
 	_window.draw(_window.rectangle);
 	_window.rectangle.setScale(sf::Vector2f(1.f, 1.f));
+}
+
+void Weapon::displayStats(Window& _window, sf::Vector2f _pos)
+{
+	_window.rectangle.setPosition(sf::Vector2f(_pos));
+	_window.rectangle.setOrigin(sf::Vector2f());
+	_window.rectangle.setSize(sf::Vector2f(200.f, 200.f));
+	_window.rectangle.setFillColor(sf::Color(128, 128, 128, 200));
+	_window.rectangle.setTexture(nullptr);
+
+	_window.draw(_window.rectangle);
+	_window.rectangle.setFillColor(sf::Color(255, 255, 255));
+
+	_window.text.setCharacterSize(20);
+	_window.text.setFillColor(sf::Color::White);
+	_window.text.setOrigin(sf::Vector2f());
+	sf::Vector2f textPos(_pos);
+	char buffer[100]{};
+
+	textPos.y += 100.f;
+	_window.text.setPosition(textPos);
+	sprintf(buffer, "Damage : %d", m_damage);
+	_window.text.setString(buffer);
+	_window.draw(_window.text);
+
+	textPos.y += 100.f;
+	_window.text.setPosition(textPos);
+	sprintf(buffer, "Critical Damage : %d", m_critcalDamage);
+	_window.text.setString(buffer);
+	_window.draw(_window.text);
+
+	textPos.y += 100.f;
+	_window.text.setPosition(textPos);
+	sprintf(buffer, "Speed : %d", m_speed);
+	_window.text.setString(buffer);
+	_window.draw(_window.text);
 }
 
 int Weapon::getDamage() const

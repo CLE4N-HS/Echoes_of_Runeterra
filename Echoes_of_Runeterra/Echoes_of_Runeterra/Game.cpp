@@ -6,6 +6,7 @@ Game::Game() : m_itemDB(new ItemDataBase), m_map(), m_character1("Player"), m_ch
 	m_character2.setPos(sf::Vector2f(1200.f, 100.f));
 
 	m_map.addItem(m_itemDB->takeItem("sword"));
+	m_character1.addItem(m_itemDB->takeItem("pickaxe"));
 }
 
 Game::~Game()

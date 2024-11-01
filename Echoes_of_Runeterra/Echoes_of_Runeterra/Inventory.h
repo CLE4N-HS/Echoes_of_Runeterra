@@ -11,6 +11,8 @@ public:
 	void update(Window& _window);
 	void display(Window& _window);
 
+	void addItem(Item* _item);
+
 	void setOpening(bool _shouldBeOpened);
 	bool isOpen();
 

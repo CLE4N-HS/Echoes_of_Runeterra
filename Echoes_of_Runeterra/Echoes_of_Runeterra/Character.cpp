@@ -18,7 +18,8 @@ Character::Character(std::string _name, int _level, int _xp, int _hp, int _attac
 	m_maxHp(m_hp),
 	m_levelXp(100), m_skillPoint(0),
 	m_pos(), m_targetPos(m_pos), m_foward(), m_moveSpeed(100.f),
-	m_animState("idle"), m_frameX(0), m_animTimer(0.f), m_attackTimer(0.f)
+	m_animState("idle"), m_frameX(0), m_animTimer(0.f), m_attackTimer(0.f),
+	m_takingAnItem(false)
 {
 }
 
@@ -59,7 +60,9 @@ void Character::update(Window& _window)
 
 	// Player
 	if (m_name == "Player")
+	{
 		m_inventory->update(_window);
+	}
 }
 
 void Character::display(Window& _window)
@@ -141,6 +144,11 @@ bool Character::isInventoryOpen()
 void Character::displayInventory(Window& _window)
 {
 	m_inventory->display(_window);
+}
+
+void Character::addItem(Item* _item)
+{
+	m_inventory->addItem(_item);
 }
 
 void Character::gainLevel()

@@ -17,6 +17,10 @@ void Armor::display(Window& _window)
 {
 }
 
+void Armor::displayStats(Window& _window, sf::Vector2f _pos)
+{
+}
+
 int Armor::getDefense() const
 {
 	return m_defense;

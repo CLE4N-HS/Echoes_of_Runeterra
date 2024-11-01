@@ -13,6 +13,24 @@ void Inventory::update(Window& _window)
 	if (_window.keyboardManager.hasJustPressed(sf::Keyboard::I)) {
 		m_isOpen = !m_isOpen;
 	}
+
+	if (m_isOpen)
+	{
+		bool hasJustPressed = _window.mouseManager.hasJustPressed(sf::Mouse::Left);
+		sf::Vector2f mousePos = _window.getMousePos();
+		for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+		{
+			(*it)->update(_window);
+			if (hasJustPressed)
+			{
+				sf::FloatRect itemRect = (*it)->getRect();
+				if (itemRect.contains(mousePos))
+				{
+					//(*it)->
+				}
+			}
+		}
+	}
 }
 
 void Inventory::display(Window& _window)
@@ -37,11 +55,22 @@ void Inventory::display(Window& _window)
 	_window.draw(_window.text);
 
 
-	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	if (m_isOpen)
 	{
-		(*it)->display(_window);
+		for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+		{
+			(*it)->display(_window);
+			if ((*it)->shouldDisplayStats())
+				(*it)->displayStats(_window, sf::Vector2f(700.f, 500.f));
+		}
 	}
 
+}
+
+void Inventory::addItem(Item* _item)
+{
+	_item->setState(Item::State::IN_INVENTORY);
+	m_item.push_back(_item);
 }
 
 void Inventory::setOpening(bool _shouldBeOpened)
