@@ -1,4 +1,5 @@
 #include "DialogueDataBase.h"
+#include "Dialogue.h"
 #include "Question.h"
 #include "Answer.h"
 #include "Comment.h"
@@ -18,4 +19,22 @@ DialogueDataBase::DialogueDataBase() : m_interactionTextDB()
 
 DialogueDataBase::~DialogueDataBase()
 {
+}
+
+void DialogueDataBase::createText(std::vector<InteractionText*>& _text, std::string _name)
+{
+	if (m_interactionTextDB[_name + " Q1"])
+		_text.push_back(m_interactionTextDB[_name + " Q1"]);
+	if (m_interactionTextDB[_name + " A1"])
+		_text.push_back(m_interactionTextDB[_name + " A1"]);
+	if (m_interactionTextDB[_name + " A2"])
+		_text.push_back(m_interactionTextDB[_name + " A2"]);
+	if (m_interactionTextDB[_name + " A3"])
+		_text.push_back(m_interactionTextDB[_name + " A3"]);
+	if (m_interactionTextDB[_name + " C1"])
+		_text.push_back(m_interactionTextDB[_name + " C1"]);
+	if (m_interactionTextDB[_name + " C2"])
+		_text.push_back(m_interactionTextDB[_name + " C2"]);
+	if (m_interactionTextDB[_name + " C3"])
+		_text.push_back(m_interactionTextDB[_name + " C3"]);
 }

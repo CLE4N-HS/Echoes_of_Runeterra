@@ -8,7 +8,10 @@ public:
 	DialogueManager();
 	~DialogueManager();
 
-	void createDialogue(std::string _name);
+	void setupDialogue(std::string _name);
+
+	void update(Window& _window);
+	void display(Window& _window);
 
 private:
 	DialogueDataBase* m_dialogueDB;

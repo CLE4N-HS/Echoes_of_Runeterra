@@ -8,3 +8,11 @@ Comment::Comment(std::string _comment)
 Comment::~Comment()
 {
 }
+
+void Comment::update(Window& _window)
+{
+}
+
+void Comment::display(Window& _window)
+{
+}

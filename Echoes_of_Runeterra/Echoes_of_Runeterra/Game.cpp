@@ -16,6 +16,8 @@ Game::Game() : m_itemDB(new ItemDataBase), m_map(), m_character(), m_dialogueMan
 	m_character["Player"]->addItem(m_itemDB->takeItem("metalArmor"));
 	m_character["Player"]->addItem(m_itemDB->takeItem("speedPotion"));
 	m_character["Player"]->addItem(m_itemDB->takeItem("dzfzf"));
+
+	m_dialogueManager.setupDialogue("intro");
 }
 
 Game::~Game()
@@ -30,6 +32,8 @@ void Game::update(Window& _window , State*& _state)
 	{
 		it->second->update(_window);
 	}
+
+	m_dialogueManager.update(_window);
 }
 
 void Game::display(Window& _window)
@@ -40,4 +44,6 @@ void Game::display(Window& _window)
 	{
 		it->second->display(_window);
 	}
+
+	m_dialogueManager.display(_window);
 }

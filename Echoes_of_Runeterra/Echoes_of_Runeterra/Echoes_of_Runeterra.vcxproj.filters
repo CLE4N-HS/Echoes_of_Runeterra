@@ -251,20 +251,20 @@
     <ClInclude Include="DialogueDataBase.h">
       <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
     </ClInclude>
-    <ClInclude Include="Question.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Answer.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
     </ClInclude>
     <ClInclude Include="Comment.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="InteractionText.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
     </ClInclude>
     <ClInclude Include="DialogueManager.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractionText.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClInclude>
+    <ClInclude Include="Question.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

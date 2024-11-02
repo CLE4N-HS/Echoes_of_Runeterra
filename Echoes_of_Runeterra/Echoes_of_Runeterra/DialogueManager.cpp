@@ -8,7 +8,19 @@ DialogueManager::~DialogueManager()
 {
 }
 
-void DialogueManager::createDialogue(std::string _name)
+void DialogueManager::setupDialogue(std::string _name)
 {
+	std::vector<InteractionText*> tmpText;
+	m_dialogueDB->createText(tmpText, _name);
+	m_dialogue.setup(tmpText);
+}
 
+void DialogueManager::update(Window& _window)
+{
+	m_dialogue.update(_window);
+}
+
+void DialogueManager::display(Window& _window)
+{
+	m_dialogue.display(_window);
 }

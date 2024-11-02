@@ -7,7 +7,8 @@ public:
 	InteractionText();
 	~InteractionText();
 
-	// TODO maybe delete all texts when the interaction is finished
+	virtual void update(Window& _window) = 0;
+	virtual void display(Window& _window) = 0;
 
 protected:
 	// TODO sureley getSize
