@@ -1,10 +1,14 @@
 #include "Dialogue.h"
 
-Dialogue::Dialogue()
+Dialogue::Dialogue() : m_question(""), m_answer(), m_comment("")
 {
 }
 
 Dialogue::~Dialogue()
+{
+}
+
+void Dialogue::createQuestion(std::string _name)
 {
 }
 

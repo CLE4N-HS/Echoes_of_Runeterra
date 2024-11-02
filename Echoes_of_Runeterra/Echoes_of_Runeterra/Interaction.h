@@ -7,8 +7,8 @@ public:
 	Interaction();
 	~Interaction();
 
-	virtual void update(Window& _window) = 0;
-	virtual void display(Window& _window) = 0;
+	virtual void update(Window& _window);
+	virtual void display(Window& _window);
 
 private:
 

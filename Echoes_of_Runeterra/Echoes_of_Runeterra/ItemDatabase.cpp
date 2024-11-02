@@ -18,7 +18,7 @@ Item* ItemDataBase::takeItem(std::string _name)
 {
 	Item* item = m_item[_name];
 	if (item != nullptr)
-		m_item.erase(_name);
+		m_item.erase(_name); // TODO not sure if this is correct to erase it
 	return item;
 }
 

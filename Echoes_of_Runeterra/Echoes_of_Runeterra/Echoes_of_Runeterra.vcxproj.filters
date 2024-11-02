@@ -55,6 +55,12 @@
     <Filter Include="Fichiers d%27en-tête\GAME\INTERACTION">
       <UniqueIdentifier>{ad597565-e197-4b1e-8062-bb25a75d0591}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\GAME\INTERACTION\DIALOGUE">
+      <UniqueIdentifier>{2c1fd528-6737-4cc1-8e58-36f8dedecdc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE">
+      <UniqueIdentifier>{389ca040-04ea-42a5-8404-a7ea12d797ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -139,7 +145,25 @@
       <Filter>Fichiers sources\GAME\INTERACTION</Filter>
     </ClCompile>
     <ClCompile Include="Dialogue.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogueDataBase.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClCompile>
+    <ClCompile Include="Question.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClCompile>
+    <ClCompile Include="Answer.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClCompile>
+    <ClCompile Include="Comment.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractionText.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogueManager.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +246,24 @@
       <Filter>Fichiers d%27en-tête\GAME\INTERACTION</Filter>
     </ClInclude>
     <ClInclude Include="Dialogue.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogueDataBase.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClInclude>
+    <ClInclude Include="Question.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Answer.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Comment.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractionText.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogueManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

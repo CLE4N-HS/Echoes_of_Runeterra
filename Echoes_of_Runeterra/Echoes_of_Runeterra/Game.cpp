@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "Npc.h"
 
-Game::Game() : m_itemDB(new ItemDataBase), m_map(), m_character()
+Game::Game() : m_itemDB(new ItemDataBase), m_map(), m_character(), m_dialogueManager()
 {
 	m_character.insert({ "Player", new Player() });
 	m_character.insert({ "Npc", new Npc() });
@@ -15,6 +15,7 @@ Game::Game() : m_itemDB(new ItemDataBase), m_map(), m_character()
 	m_character["Player"]->addItem(m_itemDB->takeItem("pickaxe"));
 	m_character["Player"]->addItem(m_itemDB->takeItem("metalArmor"));
 	m_character["Player"]->addItem(m_itemDB->takeItem("speedPotion"));
+	m_character["Player"]->addItem(m_itemDB->takeItem("dzfzf"));
 }
 
 Game::~Game()

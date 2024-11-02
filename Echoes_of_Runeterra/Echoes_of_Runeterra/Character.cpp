@@ -151,7 +151,8 @@ void Character::displayInventory(Window& _window)
 
 void Character::addItem(Item* _item)
 {
-	m_inventory->addItem(_item);
+	if (_item != nullptr)
+		m_inventory->addItem(_item);
 }
 
 void Character::gainLevel()
