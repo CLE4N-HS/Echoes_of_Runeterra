@@ -49,6 +49,12 @@
     <Filter Include="Fichiers sources\GAME\ITEMS">
       <UniqueIdentifier>{cfa78e78-5b1a-4704-acec-4caad05eb903}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\GAME\INTERACTION">
+      <UniqueIdentifier>{fb8dd6cd-8b83-4466-907f-f45d758d6c49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\INTERACTION">
+      <UniqueIdentifier>{ad597565-e197-4b1e-8062-bb25a75d0591}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -129,6 +135,12 @@
     <ClCompile Include="Npc.cpp">
       <Filter>Fichiers sources\GAME\CHARACTER</Filter>
     </ClCompile>
+    <ClCompile Include="Interaction.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION</Filter>
+    </ClCompile>
+    <ClCompile Include="Dialogue.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
@@ -205,6 +217,12 @@
     </ClInclude>
     <ClInclude Include="Npc.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
+    </ClInclude>
+    <ClInclude Include="Interaction.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION</Filter>
+    </ClInclude>
+    <ClInclude Include="Dialogue.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

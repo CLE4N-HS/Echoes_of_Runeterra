@@ -51,7 +51,7 @@ void Weapon::display(Window& _window)
 
 void Weapon::displayStats(Window& _window)
 {
-	sf::Vector2f statsPos = sf::Vector2f(500.f, 700.f);
+	sf::Vector2f statsPos = sf::Vector2f(500.f, 500.f);
 
 	_window.rectangle.setPosition(sf::Vector2f(statsPos));
 	_window.rectangle.setOrigin(sf::Vector2f());
@@ -68,19 +68,19 @@ void Weapon::displayStats(Window& _window)
 	sf::Vector2f textPos(statsPos);
 	char buffer[100]{};
 
-	textPos.y += 100.f;
+	textPos.y += 30.f;
 	_window.text.setPosition(textPos);
 	sprintf(buffer, "Damage : %d", m_damage);
 	_window.text.setString(buffer);
 	_window.draw(_window.text);
 
-	textPos.y += 100.f;
+	textPos.y += 30.f;
 	_window.text.setPosition(textPos);
 	sprintf(buffer, "Critical Damage : %d", m_critcalDamage);
 	_window.text.setString(buffer);
 	_window.draw(_window.text);
 
-	textPos.y += 100.f;
+	textPos.y += 30.f;
 	_window.text.setPosition(textPos);
 	sprintf(buffer, "Speed : %d", m_speed);
 	_window.text.setString(buffer);

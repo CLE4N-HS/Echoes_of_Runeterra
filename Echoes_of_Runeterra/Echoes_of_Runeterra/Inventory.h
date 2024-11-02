@@ -12,6 +12,7 @@ public:
 	void display(Window& _window);
 
 	void addItem(Item* _item);
+	Item* takeItem();
 
 	void setOpening(bool _shouldBeOpened);
 	bool isOpen();

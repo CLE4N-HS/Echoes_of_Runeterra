@@ -39,9 +39,24 @@ Item::State Item::getState()
 	return m_state;
 }
 
+bool Item::isHovered()
+{
+	return m_isHovered;
+}
+
+Item* Item::getItem()
+{
+	return this;
+}
+
+std::string Item::getName()
+{
+	return m_name;
+}
+
 sf::FloatRect Item::getRect()
 {
 	// TODO ENTITY
 	sf::IntRect tmpRect = tex_getAnimRect("items", m_name.c_str());
-	return sf::FloatRect(sf::Vector2f(500.f, 700.f), sf::Vector2f((float)(tmpRect.width), (float)(tmpRect.height)));
+	return sf::FloatRect(sf::Vector2f(500.f, 500.f), sf::Vector2f((float)(tmpRect.width * 5), (float)(tmpRect.height * 5)));
 }

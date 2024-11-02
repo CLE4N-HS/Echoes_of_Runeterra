@@ -11,5 +11,6 @@ public:
 	virtual void display(Window& _window);
 
 private:
+	std::list<Item*> m_item;
 
 };

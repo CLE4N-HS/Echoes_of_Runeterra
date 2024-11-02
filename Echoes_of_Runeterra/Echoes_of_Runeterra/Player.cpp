@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "textureManager.h"
 
-Player::Player() : Character("Player")
+Player::Player() : Character("Player"), m_item()
 {
 }
 
@@ -33,6 +33,15 @@ void Player::update(Window& _window)
 	}
 
 	m_inventory->update(_window);
+	if (m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
+	{
+		Item* item = m_inventory->takeItem();
+		if (item != nullptr)
+		{
+			m_item.push_back(item);
+		}
+	}
+
 }
 
 void Player::display(Window& _window)
@@ -64,6 +73,22 @@ void Player::display(Window& _window)
 	sprintf(buffer, "Xp : %d/%d", m_xp, m_levelXp);
 	_window.text.setString(buffer);
 	_window.draw(_window.text);
+
+	sf::Vector2f itemPos = m_pos;
+	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	{
+		_window.rectangle.setPosition(itemPos);
+		_window.rectangle.setTexture(tex_getTexture("items"));
+		sf::IntRect tmpRect = tex_getAnimRect("items", (*it)->getName().c_str());
+		_window.rectangle.setSize(sf::Vector2f(sf::Vector2i(tmpRect.width, tmpRect.height)));
+		_window.rectangle.setOrigin(sf::Vector2f(sf::Vector2i(tmpRect.width / 2, tmpRect.height / 2)));
+		_window.rectangle.setTextureRect(tmpRect);
+		_window.rectangle.setScale(sf::Vector2f(3.f, 3.f));
+
+		_window.draw(_window.rectangle);
+		_window.rectangle.setScale(sf::Vector2f(1.f, 1.f));
+		itemPos.y += 50.f;
+	}
 
 	m_inventory->display(_window);
 }

@@ -9,8 +9,9 @@ public:
 	Consumable(std::string _name, int _hp, int _defense, int _speed);
 	~Consumable();
 
+	virtual void update(Window& _window);
 	virtual void display(Window& _window);
-	virtual void displayStats(Window& _window, sf::Vector2f _pos);
+	virtual void displayStats(Window& _window);
 
 private:
 	std::string m_name;

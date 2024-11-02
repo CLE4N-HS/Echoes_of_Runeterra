@@ -18,6 +18,9 @@ public:
 	virtual void displayStats(Window& _window) = 0;
 	void setState(Item::State _state);
 	Item::State getState();
+	bool isHovered();
+	Item* getItem();
+	std::string getName();
 
 protected:
 	sf::FloatRect getRect();

@@ -61,6 +61,21 @@ void Inventory::addItem(Item* _item)
 	m_item.push_back(_item);
 }
 
+Item* Inventory::takeItem()
+{
+	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	{
+		if ((*it)->isHovered())
+		{
+			Item* item = (*it)->getItem();
+			it = m_item.erase(it);
+			return item;
+		}
+	}
+
+	return nullptr;
+}
+
 void Inventory::setOpening(bool _shouldBeOpened)
 {
 	m_isOpen = _shouldBeOpened;
