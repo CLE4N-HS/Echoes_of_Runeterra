@@ -12,8 +12,8 @@ public:
 	Character(std::string _name, int _level, int _hp, int _attack, int _defense, int _xp, int _stamina, int _speed, Alignement _alignement);
 	~Character();
 
-	void update(Window& _window);
-	void display(Window& _window);
+	virtual void update(Window& _window) = 0;
+	virtual void display(Window& _window) = 0;
 
 	int getLevel() const;
 	void giveXp(int _xp);

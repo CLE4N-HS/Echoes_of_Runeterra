@@ -15,7 +15,6 @@ public:
 private:
 	ItemDataBase* m_itemDB;
 	Map m_map;
-	Character m_character1;
-	Character m_character2;
+	std::unordered_map<std::string, Character*> m_character;
 
 };

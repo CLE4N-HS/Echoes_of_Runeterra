@@ -164,7 +164,9 @@
     <ClCompile Include="Master.cpp" />
     <ClCompile Include="MouseManager.cpp" />
     <ClCompile Include="musicManager.cpp" />
+    <ClCompile Include="Npc.cpp" />
     <ClCompile Include="particleManager.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Race.cpp" />
     <ClCompile Include="ressourcesManager.cpp" />
     <ClCompile Include="soundManager.cpp" />
@@ -189,7 +191,9 @@
     <ClInclude Include="Master.h" />
     <ClInclude Include="MouseManager.h" />
     <ClInclude Include="musicManager.h" />
+    <ClInclude Include="Npc.h" />
     <ClInclude Include="particleManager.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Race.h" />
     <ClInclude Include="ressourcesManager.h" />
     <ClInclude Include="soundManager.h" />

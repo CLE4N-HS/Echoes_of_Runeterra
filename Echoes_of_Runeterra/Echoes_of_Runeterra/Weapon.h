@@ -9,8 +9,9 @@ public:
 	Weapon(std::string _name, int _damage, int _criticalDamage, int _speed);
 	~Weapon();
 
+	virtual void update(Window& _window);
 	virtual void display(Window& _window);
-	virtual void displayStats(Window& _window, sf::Vector2f _pos);
+	virtual void displayStats(Window& _window);
 
 	int getDamage() const;
 	int getSpeed() const;

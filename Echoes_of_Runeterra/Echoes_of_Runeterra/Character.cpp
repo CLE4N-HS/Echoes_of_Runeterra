@@ -29,6 +29,7 @@ Character::~Character()
 
 void Character::update(Window& _window)
 {
+	/*
 	float dt = _window.getDeltaTime();
 
 	m_attackTimer += dt;
@@ -63,11 +64,13 @@ void Character::update(Window& _window)
 	{
 		m_inventory->update(_window);
 	}
+	*/
+
 }
 
 void Character::display(Window& _window)
 {
-	_window.rectangle.setPosition(m_pos);
+	/*_window.rectangle.setPosition(m_pos);
 	_window.rectangle.setTexture(tex_getTexture("viego"));
 	sf::IntRect tmpRect = texGetRectAnim(_window, "viego", m_animState.c_str(), &m_frameX, &m_animTimer);
 	_window.rectangle.setSize(sf::Vector2f(sf::Vector2i(tmpRect.width, tmpRect.height)));
@@ -95,7 +98,7 @@ void Character::display(Window& _window)
 	_window.text.setString(buffer);
 	_window.draw(_window.text);
 
-	m_inventory->display(_window);
+	m_inventory->display(_window);*/
 }
 
 int Character::getLevel() const

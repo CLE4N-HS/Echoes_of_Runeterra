@@ -14,6 +14,11 @@ Weapon::~Weapon()
 {
 }
 
+void Weapon::update(Window& _window)
+{
+	Item::update(_window);
+}
+
 void Weapon::display(Window& _window)
 {
 	_window.rectangle.setTexture(tex_getTexture("items"));
@@ -39,11 +44,16 @@ void Weapon::display(Window& _window)
 
 	_window.draw(_window.rectangle);
 	_window.rectangle.setScale(sf::Vector2f(1.f, 1.f));
+
+	if (m_isHovered)
+		displayStats(_window);
 }
 
-void Weapon::displayStats(Window& _window, sf::Vector2f _pos)
+void Weapon::displayStats(Window& _window)
 {
-	_window.rectangle.setPosition(sf::Vector2f(_pos));
+	sf::Vector2f statsPos = sf::Vector2f(500.f, 700.f);
+
+	_window.rectangle.setPosition(sf::Vector2f(statsPos));
 	_window.rectangle.setOrigin(sf::Vector2f());
 	_window.rectangle.setSize(sf::Vector2f(200.f, 200.f));
 	_window.rectangle.setFillColor(sf::Color(128, 128, 128, 200));
@@ -55,7 +65,7 @@ void Weapon::displayStats(Window& _window, sf::Vector2f _pos)
 	_window.text.setCharacterSize(20);
 	_window.text.setFillColor(sf::Color::White);
 	_window.text.setOrigin(sf::Vector2f());
-	sf::Vector2f textPos(_pos);
+	sf::Vector2f textPos(statsPos);
 	char buffer[100]{};
 
 	textPos.y += 100.f;

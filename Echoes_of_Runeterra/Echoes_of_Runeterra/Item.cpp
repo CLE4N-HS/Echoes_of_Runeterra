@@ -5,7 +5,7 @@ Item::Item() : Item("Default Item Name")
 {
 }
 
-Item::Item(std::string _name) : m_name(_name), m_state(Item::State::ON_MAP), m_displayStats(false)
+Item::Item(std::string _name) : m_name(_name), m_state(Item::State::ON_MAP), m_isHovered(false)
 {
 }
 
@@ -15,12 +15,18 @@ Item::~Item()
 
 void Item::update(Window& _window)
 {
-	if (_window.getMousePos().x > 960.f)
+	sf::Vector2f mousePos = _window.getMousePos();
+
+	sf::FloatRect itemRect = Item::getRect();
+
+	if (itemRect.contains(mousePos))
 	{
-		m_displayStats = true;
+		m_isHovered = true;
 	}
 	else
-		m_displayStats = false;
+	{
+		m_isHovered = false;
+	}
 }
 
 void Item::setState(Item::State _state)
@@ -31,11 +37,6 @@ void Item::setState(Item::State _state)
 Item::State Item::getState()
 {
 	return m_state;
-}
-
-bool Item::shouldDisplayStats()
-{
-	return m_displayStats;
 }
 
 sf::FloatRect Item::getRect()

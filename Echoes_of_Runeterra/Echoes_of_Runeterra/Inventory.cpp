@@ -16,19 +16,9 @@ void Inventory::update(Window& _window)
 
 	if (m_isOpen)
 	{
-		bool hasJustPressed = _window.mouseManager.hasJustPressed(sf::Mouse::Left);
-		sf::Vector2f mousePos = _window.getMousePos();
 		for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
 		{
 			(*it)->update(_window);
-			if (hasJustPressed)
-			{
-				sf::FloatRect itemRect = (*it)->getRect();
-				if (itemRect.contains(mousePos))
-				{
-					//(*it)->
-				}
-			}
 		}
 	}
 }
@@ -60,8 +50,6 @@ void Inventory::display(Window& _window)
 		for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
 		{
 			(*it)->display(_window);
-			if ((*it)->shouldDisplayStats())
-				(*it)->displayStats(_window, sf::Vector2f(700.f, 500.f));
 		}
 	}
 
