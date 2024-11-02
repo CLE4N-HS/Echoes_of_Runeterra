@@ -8,7 +8,7 @@ Dialogue::~Dialogue()
 {
 }
 
-void Dialogue::setup(std::vector<InteractionText*>& _text)
+void Dialogue::setup(std::map<std::string, InteractionText*>& _text)
 {
 	m_text = _text;
 }
@@ -17,9 +17,9 @@ void Dialogue::update(Window& _window)
 {
 	if (m_text.size() > 0) // if not then there's no dialogue
 	{
-		for (std::vector<InteractionText*>::iterator it = m_text.begin(); it != m_text.end(); it++)
+		for (std::map<std::string, InteractionText*>::iterator it = m_text.begin(); it != m_text.end(); it++)
 		{
-			(*it)->update(_window);
+			(*it).second->update(_window);
 		}
 	}
 }
@@ -37,9 +37,9 @@ void Dialogue::display(Window& _window)
 		_window.draw(_window.rectangle);
 		_window.rectangle.setFillColor(sf::Color(255, 255, 255));
 
-		for (std::vector<InteractionText*>::iterator it = m_text.begin(); it != m_text.end(); it++)
+		for (std::map<std::string, InteractionText*>::iterator it = m_text.begin(); it != m_text.end(); it++)
 		{
-			(*it)->display(_window);
+			(*it).second->display(_window);
 		}
 	}
 }

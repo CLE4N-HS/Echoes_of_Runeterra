@@ -8,12 +8,12 @@ public:
 	Dialogue();
 	~Dialogue();
 
-	void setup(std::vector<InteractionText*>& _text);
+	void setup(std::map<std::string, InteractionText*>& _text);
 
 	void update(Window& _window);
 	void display(Window& _window);
 
 private:
-	std::vector<InteractionText*> m_text;
+	std::map<std::string, InteractionText*> m_text;
 
 };

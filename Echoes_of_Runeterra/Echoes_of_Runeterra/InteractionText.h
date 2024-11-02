@@ -12,6 +12,6 @@ public:
 
 protected:
 	// TODO sureley getSize
-	std::vector<std::string> m_text;
+	std::string m_text;
 
 };

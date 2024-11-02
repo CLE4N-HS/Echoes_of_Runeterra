@@ -2,7 +2,7 @@
 
 Comment::Comment(std::string _comment)
 {
-	m_text.push_back(_comment);
+	m_text = _comment;
 }
 
 Comment::~Comment()

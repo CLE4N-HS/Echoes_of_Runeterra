@@ -10,7 +10,7 @@ DialogueManager::~DialogueManager()
 
 void DialogueManager::setupDialogue(std::string _name)
 {
-	std::vector<InteractionText*> tmpText;
+	std::map<std::string, InteractionText*> tmpText;
 	m_dialogueDB->createText(tmpText, _name);
 	m_dialogue.setup(tmpText);
 }

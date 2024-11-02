@@ -21,20 +21,20 @@ DialogueDataBase::~DialogueDataBase()
 {
 }
 
-void DialogueDataBase::createText(std::vector<InteractionText*>& _text, std::string _name)
+void DialogueDataBase::createText(std::map<std::string, InteractionText*>& _text, std::string _name)
 {
 	if (m_interactionTextDB[_name + " Q1"])
-		_text.push_back(m_interactionTextDB[_name + " Q1"]);
+		_text.insert({ "Q1", m_interactionTextDB[_name + " Q1"] });
 	if (m_interactionTextDB[_name + " A1"])
-		_text.push_back(m_interactionTextDB[_name + " A1"]);
+		_text.insert({ "A1", m_interactionTextDB[_name + " A1"] });
 	if (m_interactionTextDB[_name + " A2"])
-		_text.push_back(m_interactionTextDB[_name + " A2"]);
+		_text.insert({ "A2", m_interactionTextDB[_name + " A2"] });
 	if (m_interactionTextDB[_name + " A3"])
-		_text.push_back(m_interactionTextDB[_name + " A3"]);
+		_text.insert({ "A3", m_interactionTextDB[_name + " A3"] });
 	if (m_interactionTextDB[_name + " C1"])
-		_text.push_back(m_interactionTextDB[_name + " C1"]);
+		_text.insert({ "C1", m_interactionTextDB[_name + " C1"] });
 	if (m_interactionTextDB[_name + " C2"])
-		_text.push_back(m_interactionTextDB[_name + " C2"]);
+		_text.insert({ "C2", m_interactionTextDB[_name + " C2"] });
 	if (m_interactionTextDB[_name + " C3"])
-		_text.push_back(m_interactionTextDB[_name + " C3"]);
+		_text.insert({ "C3", m_interactionTextDB[_name + " C3"] });
 }
