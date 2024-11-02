@@ -1,10 +1,16 @@
 #pragma once
-#include "Window.h"
+#include "Entity.h"
 #include "InteractionText.h"
 
-class Dialogue
+class Dialogue : public Entity
 {
 public:
+	typedef enum {
+		QUESTION_ANSWER,
+		COMMENT,
+		END
+	}State;
+
 	Dialogue();
 	~Dialogue();
 
@@ -15,5 +21,6 @@ public:
 
 private:
 	std::map<std::string, InteractionText*> m_text;
+	Dialogue::State m_state;
 
 };

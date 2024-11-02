@@ -165,6 +165,9 @@
     <ClCompile Include="DialogueManager.cpp">
       <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
     </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Fichiers sources\TOOLS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
@@ -265,6 +268,9 @@
     </ClInclude>
     <ClInclude Include="Question.h">
       <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #include "Dialogue.h"
 
-Dialogue::Dialogue() : m_text()
+Dialogue::Dialogue() : m_text(), Entity(sf::Vector2f(50.f, 600.f)), m_state(Dialogue::State::QUESTION_ANSWER)
 {
 }
 
@@ -11,6 +11,7 @@ Dialogue::~Dialogue()
 void Dialogue::setup(std::map<std::string, InteractionText*>& _text)
 {
 	m_text = _text;
+	m_state = Dialogue::State::QUESTION_ANSWER;
 }
 
 void Dialogue::update(Window& _window)
@@ -19,7 +20,7 @@ void Dialogue::update(Window& _window)
 	{
 		for (std::map<std::string, InteractionText*>::iterator it = m_text.begin(); it != m_text.end(); it++)
 		{
-			(*it).second->update(_window);
+			it->second->update(_window);
 		}
 	}
 }
@@ -30,16 +31,22 @@ void Dialogue::display(Window& _window)
 	{
 		_window.rectangle.setFillColor(sf::Color(0, 200, 0, 200));
 		_window.rectangle.setOrigin(sf::Vector2f());
-		_window.rectangle.setPosition(sf::Vector2f(50.f, 600.f));
+		_window.rectangle.setPosition(m_pos);
 		_window.rectangle.setSize(sf::Vector2f(1820.f, 400.f));
 		_window.rectangle.setTexture(nullptr);
 
 		_window.draw(_window.rectangle);
 		_window.rectangle.setFillColor(sf::Color(255, 255, 255));
 
+		// text
+		_window.text.setFillColor(sf::Color::White);
+		_window.text.setCharacterSize(30);
+		_window.text.setOrigin(sf::Vector2f());
+
+		_window.rectangle.setFillColor(sf::Color(255, 255, 255, 100));
 		for (std::map<std::string, InteractionText*>::iterator it = m_text.begin(); it != m_text.end(); it++)
 		{
-			(*it).second->display(_window);
+			it->second->display(_window);
 		}
 	}
 }
