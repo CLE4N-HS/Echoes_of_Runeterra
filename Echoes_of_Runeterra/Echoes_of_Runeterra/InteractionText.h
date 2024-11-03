@@ -9,7 +9,11 @@ public:
 	InteractionText(std::string _text, sf::Vector2f _pos);
 	~InteractionText();
 
-	int getChoosenAnswer();
+	virtual void setup();
+
+	bool hasChoosen() const;
+	void setVisibility(bool _isVisible);
+	void resetChoice();
 
 	virtual void update(Window& _window) = 0;
 	virtual void display(Window& _window) = 0;
@@ -19,6 +23,6 @@ protected:
 	std::string m_text;
 	bool m_isVisible;
 	bool m_isHovered;
-	int m_choosenAnswer;
+	bool m_hasChoosen;
 
 };

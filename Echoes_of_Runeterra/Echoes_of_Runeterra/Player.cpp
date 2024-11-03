@@ -1,7 +1,11 @@
 #include "Player.h"
 #include "textureManager.h"
 
-Player::Player() : Character("Player"), m_item()
+Player::Player() : Player("Player")
+{
+}
+
+Player::Player(std::string _name) : Character(_name), m_item()
 {
 }
 
@@ -91,4 +95,11 @@ void Player::display(Window& _window)
 	}
 
 	m_inventory->display(_window);
+}
+
+sf::FloatRect Player::getRect()
+{
+	sf::IntRect animRect = tex_getAnimRect(m_name.c_str(), m_animState.c_str());
+	m_size = sf::Vector2f((float)animRect.width, (float)animRect.height);
+	return sf::FloatRect(m_pos, m_size);
 }

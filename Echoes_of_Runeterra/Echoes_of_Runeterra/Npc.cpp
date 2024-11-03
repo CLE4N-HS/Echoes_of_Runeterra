@@ -1,7 +1,11 @@
 #include "Npc.h"
 #include "textureManager.h"
 
-Npc::Npc()
+Npc::Npc() : Character("Npc")
+{
+}
+
+Npc::Npc(std::string _name, std::string _dialogueKey) : Character(_name, _dialogueKey)
 {
 }
 
@@ -42,4 +46,24 @@ void Npc::display(Window& _window)
 	sprintf(buffer, "Xp : %d/%d", m_xp, m_levelXp);
 	_window.text.setString(buffer);
 	_window.draw(_window.text);
+
+	if (m_isHovered)
+	{
+		_window.rectangle.setOrigin(sf::Vector2f());
+		_window.rectangle.setPosition(m_pos);
+		_window.rectangle.setSize(m_size);
+		_window.rectangle.setTexture(nullptr);
+		_window.rectangle.setFillColor(sf::Color(255, 255, 255, 100));
+
+		_window.draw(_window.rectangle);
+
+		_window.rectangle.setFillColor(sf::Color(255, 255, 255));
+	}
+}
+
+sf::FloatRect Npc::getRect()
+{
+	sf::IntRect animRect = tex_getAnimRect("viego", m_animState.c_str());
+	m_size = sf::Vector2f((float)animRect.width, (float)animRect.height);
+	return sf::FloatRect(m_pos, m_size);
 }

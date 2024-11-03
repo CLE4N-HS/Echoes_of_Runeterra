@@ -168,6 +168,18 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Fichiers sources\TOOLS</Filter>
     </ClCompile>
+    <ClCompile Include="EndButton.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterManager.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractionPlayerNpc.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractionManager.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
@@ -271,6 +283,18 @@
     </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Fichiers d%27en-tête\TOOLS</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractionPlayerNpc.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractionManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="EndButton.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

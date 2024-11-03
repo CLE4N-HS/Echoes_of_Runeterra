@@ -1,0 +1,58 @@
+#include "CharacterManager.h"
+#include "Player.h"
+#include "Npc.h"
+
+CharacterManager::CharacterManager() : m_character()
+{
+	m_character.insert({ "Player", new Player("Player")});
+	m_character.insert({ "Npc", new Npc("Npc", "npcHello")});
+
+
+	m_character["Player"]->setPos(sf::Vector2f(960.f, 800.f));
+	m_character["Npc"]->setPos(sf::Vector2f(1200.f, 100.f));
+}
+
+CharacterManager::~CharacterManager()
+{
+}
+
+void CharacterManager::update(Window& _window)
+{
+	for (std::map<std::string, Character*>::iterator it = m_character.begin(); it != m_character.end(); it++)
+	{
+		it->second->update(_window);
+	}
+}
+
+void CharacterManager::display(Window& _window)
+{
+	for (std::map<std::string, Character*>::iterator it = m_character.begin(); it != m_character.end(); it++)
+	{
+		it->second->display(_window);
+	}
+}
+
+Character* CharacterManager::getClosestNpc(sf::Vector2f _pos, float _minDistance)
+{
+	float closestDistance(_minDistance);
+	Character* closestNpc(nullptr);
+	for (std::map<std::string, Character*>::iterator it = m_character.begin(); it != m_character.end(); it++)
+	{
+		if (it->first != "Player")
+		{
+			float magnitude = vec2fGetSqrMagnitude(_pos - it->second->getPos());
+			if (magnitude < _minDistance)
+			{
+				closestDistance = magnitude;
+				closestNpc = it->second;
+			}
+		}
+	}
+
+	return closestNpc;
+}
+
+sf::Vector2f CharacterManager::getCharacterPos(std::string _name)
+{
+	return m_character[_name]->getPos();
+}

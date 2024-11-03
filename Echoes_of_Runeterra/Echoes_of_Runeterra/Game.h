@@ -1,9 +1,10 @@
 #pragma once
 #include "State.h"
 #include "ItemDatabase.h"
-#include "Character.h"
+#include "CharacterManager.h"
 #include "Map.h"
 #include "DialogueManager.h"
+#include "InteractionManager.h"
 
 class Game : public State
 {
@@ -15,8 +16,9 @@ public:
 
 private:
 	ItemDataBase* m_itemDB;
+	CharacterManager m_characterManager;
 	Map m_map;
-	std::map<std::string, Character*> m_character;
 	DialogueManager m_dialogueManager;
+	InteractionManager m_interactionManager;
 
 };

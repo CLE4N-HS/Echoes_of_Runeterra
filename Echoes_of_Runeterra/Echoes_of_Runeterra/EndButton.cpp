@@ -1,17 +1,17 @@
-#include "Answer.h"
+#include "EndButton.h"
 
-Answer::Answer(std::string _answer, sf::Vector2f _pos) : InteractionText(_answer, _pos)
+EndButton::EndButton(std::string _button, sf::Vector2f _pos) : InteractionText(_button, _pos)
 {
-	m_isVisible = true;
+	m_isVisible = false;
 }
 
-void Answer::setup()
+void EndButton::setup()
 {
 	InteractionText::setup();
-	m_isVisible = true;
+	m_isVisible = false;
 }
 
-void Answer::update(Window& _window)
+void EndButton::update(Window& _window)
 {
 	if (m_isVisible)
 	{
@@ -31,7 +31,7 @@ void Answer::update(Window& _window)
 	}
 }
 
-void Answer::display(Window& _window)
+void EndButton::display(Window& _window)
 {
 	if (m_isVisible)
 	{

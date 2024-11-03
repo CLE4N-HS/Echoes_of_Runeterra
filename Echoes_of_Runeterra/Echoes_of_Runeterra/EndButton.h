@@ -1,10 +1,10 @@
 #pragma once
 #include "InteractionText.h"
 
-class Question : public InteractionText
+class EndButton : public InteractionText
 {
 public:
-	Question(std::string _question, sf::Vector2f _pos);
+	EndButton(std::string _button, sf::Vector2f _pos);
 
 	virtual void setup();
 

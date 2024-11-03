@@ -1,19 +1,24 @@
 #pragma once
 #include "Window.h"
+#include "Entity.h"
 #include "alignement.h"
 #include "Race.h"
 #include "Inventory.h"
 
-class Character
+class Character : public Entity
 {
 public:
 	Character();
 	Character(std::string _name);
-	Character(std::string _name, int _level, int _hp, int _attack, int _defense, int _xp, int _stamina, int _speed, Alignement _alignement);
+	Character(std::string _name, std::string _dialogueKey);
+	Character(std::string _name, std::string _dialogueKey, int _level, int _hp, int _attack, int _defense, int _xp, int _stamina, int _speed, Alignement _alignement);
 	~Character();
 
 	virtual void update(Window& _window) = 0;
 	virtual void display(Window& _window) = 0;
+
+	void setDialogueKey(std::string _dialogueKey);
+	std::string getDialogueKey();
 
 	int getLevel() const;
 	void giveXp(int _xp);
@@ -28,12 +33,17 @@ public:
 
 	void addItem(Item* _item);
 
+	void setHover(bool _isHovered);
+	virtual sf::FloatRect getRect() = 0;
+
 protected:
 	void upgradeLevelXp();
 	void gainLevel();
 
 	Inventory* m_inventory;
 	Race m_race;
+
+	std::string m_dialogueKey;
 
 	std::string m_name;
 	int m_level;
@@ -48,7 +58,6 @@ protected:
 	int m_speed;
 	Alignement m_alignement;
 
-	sf::Vector2f m_pos;
 	sf::Vector2f m_targetPos;
 	sf::Vector2f m_foward;
 	float m_moveSpeed;
@@ -61,6 +70,9 @@ protected:
 
 	// player
 	bool m_takingAnItem;
+
+	bool m_isHovered;
+	sf::Vector2f m_size;
 
 
 };
