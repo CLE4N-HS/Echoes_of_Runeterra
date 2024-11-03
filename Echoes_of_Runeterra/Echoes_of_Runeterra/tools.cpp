@@ -34,10 +34,10 @@ int randomInt(int min, int max)
 
 float randomFloat(float min, float max)
 {
-    return (float)randomInt(min, max);
+    return (float)randomInt((int)min, (int)max);
 }
 
 float lerp(float v0, float v1, float t)
 {
-    return (1 - t) * v0 + t * v1;
+    return (1.f - t) * v0 + t * v1;
 }

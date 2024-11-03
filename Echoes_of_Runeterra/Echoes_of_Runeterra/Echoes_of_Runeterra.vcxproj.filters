@@ -201,6 +201,9 @@
     <ClCompile Include="CraftManager.cpp">
       <Filter>Fichiers sources\GAME\ITEMS\CRAFT</Filter>
     </ClCompile>
+    <ClCompile Include="CraftDataBase.cpp">
+      <Filter>Fichiers sources\GAME\ITEMS\CRAFT</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
@@ -324,6 +327,9 @@
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER\RACE</Filter>
     </ClInclude>
     <ClInclude Include="CraftManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\ITEMS\CRAFT</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftDataBase.h">
       <Filter>Fichiers d%27en-tête\GAME\ITEMS\CRAFT</Filter>
     </ClInclude>
   </ItemGroup>
