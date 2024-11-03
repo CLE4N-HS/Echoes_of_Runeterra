@@ -1,6 +1,6 @@
 #include "Inventory.h"
 
-Inventory::Inventory() : m_item(), m_isOpen(false)
+Inventory::Inventory() : Entity(sf::Vector2f(100.f, 100.f)), m_item(), m_isOpen(false)
 {
 }
 
@@ -14,9 +14,10 @@ void Inventory::update(Window& _window)
 		m_isOpen = !m_isOpen;
 	}
 
-	if (m_isOpen)
+	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
 	{
-		for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+		(*it)->setHover(false);
+		if (m_isOpen)
 		{
 			(*it)->update(_window);
 		}
@@ -27,7 +28,7 @@ void Inventory::display(Window& _window)
 {
 	if (m_isOpen)
 	{
-		_window.rectangle.setPosition(sf::Vector2f(100.f, 100.f));
+		_window.rectangle.setPosition(Inventory::m_pos);
 		_window.rectangle.setOrigin(sf::Vector2f());
 		_window.rectangle.setSize(sf::Vector2f(1720.f, 880.f));
 		_window.rectangle.setFillColor(sf::Color(123, 63, 0, 200));
@@ -58,6 +59,8 @@ void Inventory::display(Window& _window)
 void Inventory::addItem(Item* _item)
 {
 	_item->setState(Item::State::IN_INVENTORY);
+	_item->setHover(false);
+	_item->setPos(sf::Vector2f(Inventory::m_pos.x + 100.f + 200.f * m_item.size(), Inventory::m_pos.y + 500.f));
 	m_item.push_back(_item);
 }
 

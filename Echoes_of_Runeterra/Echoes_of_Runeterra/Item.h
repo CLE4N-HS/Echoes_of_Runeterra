@@ -1,7 +1,8 @@
 #pragma once
 #include "Window.h"
+#include "Entity.h"
 
-class Item
+class Item : public Entity
 {
 public:
 	typedef enum {
@@ -21,13 +22,18 @@ public:
 	bool isHovered();
 	Item* getItem();
 	std::string getName();
+	sf::FloatRect getRect();
+	void setHover(bool _isHover);
 
 protected:
-	sf::FloatRect getRect();
 
 	std::string m_name;
 	Item::State m_state;
 	bool m_isHovered;
+
+	sf::Vector2f m_size;
+	sf::Vector2f m_origin;
+	sf::Vector2f m_scale;
 
 private:
 

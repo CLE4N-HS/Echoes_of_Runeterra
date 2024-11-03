@@ -20,6 +20,11 @@ void Dialogue::setup(std::map<std::string, InteractionText*>& _text)
 	m_state = Dialogue::State::QUESTION_ANSWER;
 }
 
+bool Dialogue::isInDialogue()
+{
+	return (m_text.size() > 0);
+}
+
 void Dialogue::update(Window& _window)
 {
 	if (m_text.size() > 0) // if not then there's no dialogue

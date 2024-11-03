@@ -5,8 +5,12 @@ Item::Item() : Item("Default Item Name")
 {
 }
 
-Item::Item(std::string _name) : m_name(_name), m_state(Item::State::ON_MAP), m_isHovered(false)
+Item::Item(std::string _name) : Entity(sf::Vector2f(randomFloat(100.f, 1700.f), randomFloat(100.f, 800.f))), m_name(_name), m_state(Item::State::ON_MAP), m_isHovered(false)
 {
+	sf::IntRect animRect = tex_getAnimRect("items", m_name.c_str());
+	m_size = sf::Vector2f((float)animRect.width, (float)animRect.height);
+	m_origin = m_size * 0.5f;
+	m_scale = sf::Vector2f(5.f, 5.f);
 }
 
 Item::~Item()
@@ -19,11 +23,18 @@ void Item::update(Window& _window)
 
 	sf::FloatRect itemRect = Item::getRect();
 
-	if (itemRect.contains(mousePos))
+	if (m_state == Item::State::IN_INVENTORY)
 	{
-		m_isHovered = true;
+		if (itemRect.contains(mousePos))
+		{
+			m_isHovered = true;
+		}
+		else
+		{
+			m_isHovered = false;
+		}
 	}
-	else
+	else if (m_state == Item::State::ON_MAP)
 	{
 		m_isHovered = false;
 	}
@@ -56,7 +67,10 @@ std::string Item::getName()
 
 sf::FloatRect Item::getRect()
 {
-	// TODO ENTITY
-	sf::IntRect tmpRect = tex_getAnimRect("items", m_name.c_str());
-	return sf::FloatRect(sf::Vector2f(500.f, 500.f), sf::Vector2f((float)(tmpRect.width * 5), (float)(tmpRect.height * 5)));
+	return sf::FloatRect(m_pos - vec2fMultiply(m_origin, m_scale), vec2fMultiply(m_size, m_scale));
+}
+
+void Item::setHover(bool _isHover)
+{
+	m_isHovered = _isHover;
 }

@@ -9,6 +9,7 @@ public:
 	~DialogueManager();
 
 	void setupDialogue(std::string _name);
+	bool isInDialogue();
 
 	void update(Window& _window);
 	void display(Window& _window);

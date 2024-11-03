@@ -2,7 +2,7 @@
 #include "State.h"
 #include "ItemDatabase.h"
 #include "CharacterManager.h"
-#include "Map.h"
+#include "MapManager.h"
 #include "DialogueManager.h"
 #include "InteractionManager.h"
 
@@ -17,7 +17,7 @@ public:
 private:
 	ItemDataBase* m_itemDB;
 	CharacterManager m_characterManager;
-	Map m_map;
+	MapManager m_mapManager;
 	DialogueManager m_dialogueManager;
 	InteractionManager m_interactionManager;
 

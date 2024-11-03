@@ -31,12 +31,6 @@
     <Filter Include="Fichiers sources\GAME\CHARACTER">
       <UniqueIdentifier>{53615c7c-a4c5-47c1-840b-1541e35c4892}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\GAME\RACE">
-      <UniqueIdentifier>{000ef110-b158-4dad-bfa7-baa449f8e357}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\GAME\RACE">
-      <UniqueIdentifier>{92c177bd-d792-4819-b6f0-4982f8881b38}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fichiers sources\TOOLS\MANAGERS">
       <UniqueIdentifier>{9faca506-8cdd-4855-b89d-11c22622b497}</UniqueIdentifier>
     </Filter>
@@ -61,13 +55,28 @@
     <Filter Include="Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE">
       <UniqueIdentifier>{389ca040-04ea-42a5-8404-a7ea12d797ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\GAME\MAP">
+      <UniqueIdentifier>{eb7580a8-173e-4596-9dc5-27d9e73ba18c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\MAP">
+      <UniqueIdentifier>{a2abbd95-c17c-42d5-b894-b83dd3dfff08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\ITEMS\CRAFT">
+      <UniqueIdentifier>{09cbdcf2-6495-4361-8e45-dd8ce6def96a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\CHARACTER\RACE">
+      <UniqueIdentifier>{92c177bd-d792-4819-b6f0-4982f8881b38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\CHARACTER\RACE">
+      <UniqueIdentifier>{000ef110-b158-4dad-bfa7-baa449f8e357}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\ITEMS\CRAFT">
+      <UniqueIdentifier>{e0de660a-b3ce-42e8-9197-8c3b27d55874}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="alignement.cpp">
-      <Filter>Fichiers sources\GAME\CHARACTER</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>Fichiers sources\GAME\CHARACTER</Filter>
@@ -76,7 +85,7 @@
       <Filter>Fichiers sources\TOOLS</Filter>
     </ClCompile>
     <ClCompile Include="Race.cpp">
-      <Filter>Fichiers sources\GAME\RACE</Filter>
+      <Filter>Fichiers sources\GAME\CHARACTER\RACE</Filter>
     </ClCompile>
     <ClCompile Include="Master.cpp">
       <Filter>Fichiers sources\TOOLS</Filter>
@@ -132,9 +141,6 @@
     <ClCompile Include="Item.cpp">
       <Filter>Fichiers sources\GAME\ITEMS</Filter>
     </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Fichiers sources\GAME</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Fichiers sources\GAME\CHARACTER</Filter>
     </ClCompile>
@@ -180,19 +186,31 @@
     <ClCompile Include="InteractionManager.cpp">
       <Filter>Fichiers sources\GAME\INTERACTION</Filter>
     </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Fichiers sources\GAME\MAP</Filter>
+    </ClCompile>
+    <ClCompile Include="MapManager.cpp">
+      <Filter>Fichiers sources\GAME\MAP</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractionPlayerMap.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION</Filter>
+    </ClCompile>
+    <ClCompile Include="alignement.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\RACE</Filter>
+    </ClCompile>
+    <ClCompile Include="CraftManager.cpp">
+      <Filter>Fichiers sources\GAME\ITEMS\CRAFT</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
       <Filter>Fichiers d%27en-tête\TOOLS</Filter>
     </ClInclude>
-    <ClInclude Include="alignement.h">
-      <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
-    </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
     </ClInclude>
     <ClInclude Include="Race.h">
-      <Filter>Fichiers d%27en-tête\GAME\RACE</Filter>
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\RACE</Filter>
     </ClInclude>
     <ClInclude Include="Master.h">
       <Filter>Fichiers d%27en-tête\TOOLS</Filter>
@@ -248,9 +266,6 @@
     <ClInclude Include="Item.h">
       <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Fichiers d%27en-tête\GAME</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
     </ClInclude>
@@ -295,6 +310,21 @@
     </ClInclude>
     <ClInclude Include="CharacterManager.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Fichiers d%27en-tête\GAME\MAP</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractionPlayerMap.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION</Filter>
+    </ClInclude>
+    <ClInclude Include="MapManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\MAP</Filter>
+    </ClInclude>
+    <ClInclude Include="alignement.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\RACE</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\ITEMS\CRAFT</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

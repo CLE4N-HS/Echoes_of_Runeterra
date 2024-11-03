@@ -15,6 +15,7 @@ public:
 	~Dialogue();
 
 	void setup(std::map<std::string, InteractionText*>& _text);
+	bool isInDialogue();
 
 	void update(Window& _window);
 	void display(Window& _window);

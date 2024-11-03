@@ -157,6 +157,7 @@
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="Comment.cpp" />
     <ClCompile Include="Consumable.cpp" />
+    <ClCompile Include="CraftManager.cpp" />
     <ClCompile Include="Dialogue.cpp" />
     <ClCompile Include="DialogueDataBase.cpp" />
     <ClCompile Include="DialogueManager.cpp" />
@@ -165,6 +166,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Interaction.cpp" />
     <ClCompile Include="InteractionManager.cpp" />
+    <ClCompile Include="InteractionPlayerMap.cpp" />
     <ClCompile Include="InteractionPlayerNpc.cpp" />
     <ClCompile Include="InteractionText.cpp" />
     <ClCompile Include="Inventory.cpp" />
@@ -173,6 +175,7 @@
     <ClCompile Include="KeyboardManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="Master.cpp" />
     <ClCompile Include="MouseManager.cpp" />
     <ClCompile Include="musicManager.cpp" />
@@ -198,6 +201,7 @@
     <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="Comment.h" />
     <ClInclude Include="Consumable.h" />
+    <ClInclude Include="CraftManager.h" />
     <ClInclude Include="Dialogue.h" />
     <ClInclude Include="DialogueDataBase.h" />
     <ClInclude Include="DialogueManager.h" />
@@ -206,6 +210,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Interaction.h" />
     <ClInclude Include="InteractionManager.h" />
+    <ClInclude Include="InteractionPlayerMap.h" />
     <ClInclude Include="InteractionPlayerNpc.h" />
     <ClInclude Include="InteractionText.h" />
     <ClInclude Include="Inventory.h" />
@@ -213,6 +218,7 @@
     <ClInclude Include="ItemDatabase.h" />
     <ClInclude Include="KeyboardManager.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapManager.h" />
     <ClInclude Include="Master.h" />
     <ClInclude Include="MouseManager.h" />
     <ClInclude Include="musicManager.h" />

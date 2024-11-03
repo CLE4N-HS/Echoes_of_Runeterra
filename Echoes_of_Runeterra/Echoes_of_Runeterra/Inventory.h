@@ -1,8 +1,9 @@
 #pragma once
 #include "Window.h"
 #include "Item.h"
+#include "Entity.h"
 
-class Inventory
+class Inventory : public Entity
 {
 public:
 	Inventory();

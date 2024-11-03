@@ -22,13 +22,13 @@ Character::Character(std::string _name, std::string _dialogueKey, int _level, in
 	m_race(Race::RACE_IONIAN, "Ionian", 0, 0, 20),
 	m_maxHp(m_hp),
 	m_levelXp(100), m_skillPoint(0),
-	m_targetPos(m_pos), m_foward(), m_moveSpeed(100.f),
+	m_targetPos(m_pos), m_foward(), m_moveSpeed(200.f),
 	m_animState("idle"), m_frameX(0), m_animTimer(0.f), m_attackTimer(0.f),
 	m_takingAnItem(false), m_isHovered(false)
 {
 	sf::IntRect animRect = tex_getAnimRect("viego", m_animState.c_str());
 	m_size = sf::Vector2f((float)animRect.width, (float)animRect.height);
-	m_origin = m_size / 2.f;
+	m_origin = m_size * 0.5f;
 	m_scale = sf::Vector2f(2.f, 2.f);
 }
 

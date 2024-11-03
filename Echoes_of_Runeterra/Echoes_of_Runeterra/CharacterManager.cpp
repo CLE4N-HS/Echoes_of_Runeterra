@@ -59,3 +59,8 @@ sf::Vector2f CharacterManager::getCharacterPos(std::string _name)
 {
 	return m_character[_name]->getPos();
 }
+
+void CharacterManager::addCharacterItem(std::string _name, Item* _item)
+{
+	m_character[_name]->addItem(_item);
+}

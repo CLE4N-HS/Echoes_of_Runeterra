@@ -15,6 +15,11 @@ void DialogueManager::setupDialogue(std::string _name)
 	m_dialogue.setup(tmpText);
 }
 
+bool DialogueManager::isInDialogue()
+{
+	return m_dialogue.isInDialogue();
+}
+
 void DialogueManager::update(Window& _window)
 {
 	m_dialogue.update(_window);

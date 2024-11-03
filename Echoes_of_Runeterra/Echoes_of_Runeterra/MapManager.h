@@ -1,12 +1,12 @@
 #pragma once
 #include "Window.h"
-#include "Item.h"
+#include "Map.h"
 
-class Map
+class MapManager
 {
 public:
-	Map();
-	~Map();
+	MapManager();
+	~MapManager();
 
 	void update(Window& _window);
 	void display(Window& _window);
@@ -16,6 +16,7 @@ public:
 	Item* getClosestItem(sf::Vector2f _pos, float _minDistance);
 
 private:
-	std::list<Item*> m_item;
+	std::map<std::string, Map*> m_map;
+	std::string m_currentMap;
 
 };
