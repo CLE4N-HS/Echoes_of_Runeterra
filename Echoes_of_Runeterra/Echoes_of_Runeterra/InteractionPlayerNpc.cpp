@@ -13,7 +13,7 @@ void InteractionPlayerNpc::update(Window& _window, CharacterManager* _characterM
 	sf::Vector2f playerPos = _characterManager->getCharacterPos("Player");
 	sf::Vector2f mousePos = _window.getMousePos();
 
-	Character* closestNpc = _characterManager->getClosestNpc(playerPos, 10000.f);
+	Character* closestNpc = _characterManager->getClosestNpc(playerPos, 50000.f);
 
 	if (closestNpc != nullptr)
 	{

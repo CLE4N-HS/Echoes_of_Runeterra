@@ -2,9 +2,10 @@
 #include "ressourcesManager.h"
 #include "Game.h"
 
-StateManager::StateManager() : m_state(new Game)
+StateManager::StateManager()
 {
 	res_load(RES_ALL);
+	m_state = new Game;
 }
 
 StateManager::~StateManager()

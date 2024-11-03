@@ -73,6 +73,8 @@ protected:
 
 	bool m_isHovered;
 	sf::Vector2f m_size;
+	sf::Vector2f m_origin;
+	sf::Vector2f m_scale;
 
 
 };

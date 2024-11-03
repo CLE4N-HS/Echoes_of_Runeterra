@@ -21,17 +21,15 @@ void Npc::display(Window& _window)
 {
 	_window.rectangle.setPosition(m_pos);
 	_window.rectangle.setTexture(tex_getTexture("viego"));
-	sf::IntRect tmpRect = texGetRectAnim(_window, "viego", m_animState.c_str(), &m_frameX, &m_animTimer);
-	_window.rectangle.setSize(sf::Vector2f(sf::Vector2i(tmpRect.width, tmpRect.height)));
-	_window.rectangle.setOrigin(sf::Vector2f(sf::Vector2i(tmpRect.width / 2, tmpRect.height / 2)));
-	_window.rectangle.setTextureRect(tmpRect);
+	_window.rectangle.setSize(m_size);
+	_window.rectangle.setOrigin(m_origin);
+	_window.rectangle.setTextureRect(texGetRectAnim(_window, "viego", m_animState.c_str(), &m_frameX, &m_animTimer));
 	if (m_animState == "walk" && m_foward.x < 0.f)
-		_window.rectangle.setScale(sf::Vector2f(-2.f, 2.f));
+		_window.rectangle.setScale(sf::Vector2f(m_scale.x * -1.f, m_scale.y));
 	else
-		_window.rectangle.setScale(sf::Vector2f(2.f, 2.f));
+		_window.rectangle.setScale(m_scale);
 
 	_window.draw(_window.rectangle);
-	_window.rectangle.setScale(sf::Vector2f(1.f, 1.f));
 
 	char buffer[100]{};
 	_window.text.setCharacterSize(30);
@@ -49,21 +47,22 @@ void Npc::display(Window& _window)
 
 	if (m_isHovered)
 	{
-		_window.rectangle.setOrigin(sf::Vector2f());
+		_window.rectangle.setOrigin(m_origin);
 		_window.rectangle.setPosition(m_pos);
 		_window.rectangle.setSize(m_size);
+		_window.rectangle.setScale(m_scale);
 		_window.rectangle.setTexture(nullptr);
 		_window.rectangle.setFillColor(sf::Color(255, 255, 255, 100));
 
 		_window.draw(_window.rectangle);
 
-		_window.rectangle.setFillColor(sf::Color(255, 255, 255));
 	}
+
+	_window.rectangle.setFillColor(sf::Color(255, 255, 255));
+	_window.rectangle.setScale(sf::Vector2f(1.f, 1.f));
 }
 
 sf::FloatRect Npc::getRect()
 {
-	sf::IntRect animRect = tex_getAnimRect("viego", m_animState.c_str());
-	m_size = sf::Vector2f((float)animRect.width, (float)animRect.height);
-	return sf::FloatRect(m_pos, m_size);
+	return sf::FloatRect(m_pos - vec2fMultiply(m_origin, m_scale), vec2fMultiply(m_size, m_scale));
 }

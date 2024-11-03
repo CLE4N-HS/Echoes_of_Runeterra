@@ -14,6 +14,7 @@
 float vec2fGetMagnitude(sf::Vector2f _vec);
 float vec2fGetSqrMagnitude(sf::Vector2f _vec);
 void vec2fNormalize(sf::Vector2f& _vec);
+sf::Vector2f vec2fMultiply(sf::Vector2f _v1, sf::Vector2f _v2);
 sf::Vector2f polarCoord(sf::Vector2f const& _a, float const& _r, float const& _teta);
 int randomInt(int min, int max);
 float randomFloat(float min, float max);

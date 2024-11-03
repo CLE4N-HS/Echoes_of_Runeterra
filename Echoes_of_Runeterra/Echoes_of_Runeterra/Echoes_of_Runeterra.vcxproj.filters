@@ -284,17 +284,17 @@
     <ClInclude Include="Entity.h">
       <Filter>Fichiers d%27en-tête\TOOLS</Filter>
     </ClInclude>
-    <ClInclude Include="CharacterManager.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="InteractionPlayerNpc.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="InteractionManager.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="EndButton.h">
       <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractionPlayerNpc.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractionManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

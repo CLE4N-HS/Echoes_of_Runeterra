@@ -36,4 +36,12 @@ void Game::display(Window& _window)
 	m_characterManager.display(_window);
 
 	m_dialogueManager.display(_window);
+
+
+	// test
+	_window.text.setFillColor(sf::Color::White);
+	_window.text.setCharacterSize(30);
+	_window.text.setString("You can interact with an NPC by being\nclose to him and clicking on him");
+	_window.text.setPosition(sf::Vector2f(100.f, 55.f));
+	_window.draw(_window.text);
 }

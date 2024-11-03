@@ -20,6 +20,7 @@ void CharacterManager::update(Window& _window)
 {
 	for (std::map<std::string, Character*>::iterator it = m_character.begin(); it != m_character.end(); it++)
 	{
+		it->second->setHover(false);
 		it->second->update(_window);
 	}
 }

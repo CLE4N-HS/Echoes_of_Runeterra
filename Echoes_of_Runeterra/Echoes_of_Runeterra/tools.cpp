@@ -17,6 +17,11 @@ void vec2fNormalize(sf::Vector2f& _vec)
         _vec /= magnitude;
 }
 
+sf::Vector2f vec2fMultiply(sf::Vector2f _v1, sf::Vector2f _v2)
+{
+    return sf::Vector2f(_v1.x * _v2.x, _v1.y * _v2.y);
+}
+
 sf::Vector2f polarCoord(sf::Vector2f const& _a, float const& _r, float const& _teta)
 {
     return sf::Vector2f(_a.x + (_r * cosf(_teta)), _a.y + (_r * sinf(_teta)));
