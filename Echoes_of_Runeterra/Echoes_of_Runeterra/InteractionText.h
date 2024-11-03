@@ -1,7 +1,6 @@
 #pragma once
 #include "Entity.h"
 
-// TODO add a button to end the dialog
 class InteractionText : public Entity
 {
 public:

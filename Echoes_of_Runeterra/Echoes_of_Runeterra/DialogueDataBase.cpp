@@ -7,7 +7,7 @@
 
 DialogueDataBase::DialogueDataBase() : m_interactionTextDB()
 {
-	// TODO maybe at alignement of the anwser in the Answer constructor
+	// TODO maybe add alignement of the anwser in the Answer constructor
 
 	sf::Vector2f questionPos = sf::Vector2f(100.f, 600.f);
 	sf::Vector2f answerPos = sf::Vector2f(100.f, 700.f);
