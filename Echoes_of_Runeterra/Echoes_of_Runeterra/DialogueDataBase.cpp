@@ -20,10 +20,14 @@ DialogueDataBase::DialogueDataBase() : m_interactionTextDB()
 	m_interactionTextDB.insert({ "intro A2", new Answer("I don't really know..", answerPos + answerOffset)});
 	m_interactionTextDB.insert({ "intro A3", new Answer("No.", answerPos + answerOffset * 2.f)});
 	m_interactionTextDB.insert({ "intro A4", new Answer("I AM A MURLOC", answerPos + answerOffset * 3.f)});
+	m_interactionTextDB.insert({ "intro A5", new Answer("HUGO", answerPos + answerOffset * 4.f)});
+	m_interactionTextDB.insert({ "intro A6", new Answer("MICELI", answerPos + answerOffset * 5.f)});
 	m_interactionTextDB.insert({ "intro C1", new Comment("Nice i knew it !", commentPos)});
 	m_interactionTextDB.insert({ "intro C2", new Comment("Hum, okay try to find out i guess", commentPos)});
 	m_interactionTextDB.insert({ "intro C3", new Comment("Oh, sorry for you", commentPos)});
 	m_interactionTextDB.insert({ "intro C4", new Comment("MURLOC", commentPos)});
+	m_interactionTextDB.insert({ "intro C5", new Comment("MICELI", commentPos)});
+	m_interactionTextDB.insert({ "intro C6", new Comment("HUGO", commentPos)});
 	m_interactionTextDB.insert({ "intro E1", new EndButton("Ok.", endButtonPos)});
 
 	m_interactionTextDB.insert({ "npcHello Q1", new Question("How are you ?", questionPos)});
@@ -34,6 +38,13 @@ DialogueDataBase::DialogueDataBase() : m_interactionTextDB()
 	m_interactionTextDB.insert({ "npcHello C2", new Comment("Okay it could be worse", commentPos)});
 	m_interactionTextDB.insert({ "npcHello C3", new Comment("Oh, sorry for you", commentPos)});
 	m_interactionTextDB.insert({ "npcHello E1", new EndButton("Quit.", endButtonPos)});
+
+	m_interactionTextDB.insert({ "murloc Q1", new Question("I AM A MURLOC", questionPos)});
+	m_interactionTextDB.insert({ "murloc A1", new Answer("ME TOO", answerPos)});
+	m_interactionTextDB.insert({ "murloc A2", new Answer("AAAAAAAAAAAAAAAAAAAAAAAA", answerPos + answerOffset)});
+	m_interactionTextDB.insert({ "murloc C1", new Comment("MURLOC", commentPos)});
+	m_interactionTextDB.insert({ "murloc C2", new Comment("You're scared ?", commentPos)});
+	m_interactionTextDB.insert({ "murloc E1", new EndButton("Leave.", endButtonPos)});
 }
 
 DialogueDataBase::~DialogueDataBase()

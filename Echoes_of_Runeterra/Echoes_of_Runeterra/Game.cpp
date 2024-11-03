@@ -4,7 +4,7 @@
 
 Game::Game() : m_itemDB(new ItemDataBase), m_map(), m_characterManager(), m_dialogueManager(), m_interactionManager()
 {
-	m_map.addItem(m_itemDB->takeItem("sword"));
+	m_map.addItem(m_itemDB->getItem("sword"));
 
 	//m_character["Player"]->addItem(m_itemDB->takeItem("pickaxe"));
 	//m_character["Player"]->addItem(m_itemDB->takeItem("metalArmor"));

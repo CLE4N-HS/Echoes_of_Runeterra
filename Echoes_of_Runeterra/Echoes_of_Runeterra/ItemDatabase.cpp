@@ -14,12 +14,9 @@ ItemDataBase::~ItemDataBase()
 {
 }
 
-Item* ItemDataBase::takeItem(std::string _name)
+Item* ItemDataBase::getItem(std::string _name)
 {
-	Item* item = m_item[_name];
-	if (item != nullptr)
-		m_item.erase(_name); // TODO not sure if this is correct to erase it
-	return item;
+	return m_item[_name];
 }
 
 void ItemDataBase::readWeaponDB(std::string _filePath)
@@ -41,7 +38,6 @@ void ItemDataBase::readWeaponDB(std::string _filePath)
 
 			
 			m_item.insert({ tmpName, new Weapon(tmpName, tmpDamage, tmpCriticalDamage, tmpSpeed) });
-			//m_item.push_back(new Weapon(tmpName, tmpDamage, tmpCriticalDamage, tmpSpeed));
 		}
 	}
 	else
@@ -66,7 +62,6 @@ void ItemDataBase::readArmorDB(std::string _filePath)
 			file >> tmpDurability;
 
 			m_item.insert({ tmpName, new Armor(tmpName, tmpDefense, tmpSpeed, tmpDurability) });
-			//m_item.push_back(new Armor(tmpName, tmpDefense, tmpSpeed, tmpDurability));
 		}
 	}
 	else
@@ -91,7 +86,6 @@ void ItemDataBase::readConsumableDB(std::string _filePath)
 			file >> tmpSpeed;
 
 			m_item.insert({ tmpName, new Consumable(tmpName, tmpHp, tmpDefense, tmpSpeed) });
-			//m_item.push_back(new Consumable(tmpName, tmpHp, tmpDefense, tmpSpeed));
 		}
 	}
 	else

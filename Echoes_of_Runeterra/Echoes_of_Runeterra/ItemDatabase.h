@@ -8,8 +8,7 @@ public:
 	ItemDataBase();
 	~ItemDataBase();
 
-	// This function removes the item from the DataBase
-	Item* takeItem(std::string _name);
+	Item* getItem(std::string _name);
 
 private:
 	void readWeaponDB(std::string _filePath);
