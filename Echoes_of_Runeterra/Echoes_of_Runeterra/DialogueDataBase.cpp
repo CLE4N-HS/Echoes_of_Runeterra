@@ -8,11 +8,10 @@
 DialogueDataBase::DialogueDataBase() : m_interactionTextDB()
 {
 	// TODO maybe at alignement of the anwser in the Answer constructor
-	// TODO Answer will have a Type to specify, like Quest, CanSayItAgain..
 
 	sf::Vector2f questionPos = sf::Vector2f(100.f, 600.f);
 	sf::Vector2f answerPos = sf::Vector2f(100.f, 700.f);
-	sf::Vector2f answerOffset = sf::Vector2f(0.f, 100.f);
+	sf::Vector2f answerOffset = sf::Vector2f(0.f, 50.f);
 	sf::Vector2f commentPos = sf::Vector2f(750.f, 750.f);
 	sf::Vector2f endButtonPos = sf::Vector2f(950.f, 900.f);
 
@@ -20,9 +19,11 @@ DialogueDataBase::DialogueDataBase() : m_interactionTextDB()
 	m_interactionTextDB.insert({ "intro A1", new Answer("Yes I am !", answerPos)});
 	m_interactionTextDB.insert({ "intro A2", new Answer("I don't really know..", answerPos + answerOffset)});
 	m_interactionTextDB.insert({ "intro A3", new Answer("No.", answerPos + answerOffset * 2.f)});
+	m_interactionTextDB.insert({ "intro A4", new Answer("I AM A MURLOC", answerPos + answerOffset * 3.f)});
 	m_interactionTextDB.insert({ "intro C1", new Comment("Nice i knew it !", commentPos)});
 	m_interactionTextDB.insert({ "intro C2", new Comment("Hum, okay try to find out i guess", commentPos)});
 	m_interactionTextDB.insert({ "intro C3", new Comment("Oh, sorry for you", commentPos)});
+	m_interactionTextDB.insert({ "intro C4", new Comment("MURLOC", commentPos)});
 	m_interactionTextDB.insert({ "intro E1", new EndButton("Ok.", endButtonPos)});
 
 	m_interactionTextDB.insert({ "npcHello Q1", new Question("How are you ?", questionPos)});
@@ -46,20 +47,18 @@ void DialogueDataBase::createText(std::map<std::string, InteractionText*>& _text
 		_text.insert({ "Q1", m_interactionTextDB[_name + " Q1"] });
 
 	// Answers
-	if (m_interactionTextDB[_name + " A1"])
-		_text.insert({ "A1", m_interactionTextDB[_name + " A1"] });
-	if (m_interactionTextDB[_name + " A2"])
-		_text.insert({ "A2", m_interactionTextDB[_name + " A2"] });
-	if (m_interactionTextDB[_name + " A3"])
-		_text.insert({ "A3", m_interactionTextDB[_name + " A3"] });
+	int answerIndex(0);
+	while (m_interactionTextDB[_name + " A" + std::to_string(++answerIndex)])
+	{
+		_text.insert({ "A" + std::to_string(answerIndex), m_interactionTextDB[_name + " A" + std::to_string(answerIndex)]});
+	}
 
 	// Comments
-	if (m_interactionTextDB[_name + " C1"])
-		_text.insert({ "C1", m_interactionTextDB[_name + " C1"] });
-	if (m_interactionTextDB[_name + " C2"])
-		_text.insert({ "C2", m_interactionTextDB[_name + " C2"] });
-	if (m_interactionTextDB[_name + " C3"])
-		_text.insert({ "C3", m_interactionTextDB[_name + " C3"] });
+	int commentIndex(0);
+	while (m_interactionTextDB[_name + " C" + std::to_string(++commentIndex)])
+	{
+		_text.insert({ "C" + std::to_string(commentIndex), m_interactionTextDB[_name + " C" + std::to_string(commentIndex)]});
+	}
 
 	// End button
 	if (m_interactionTextDB[_name + " E1"])

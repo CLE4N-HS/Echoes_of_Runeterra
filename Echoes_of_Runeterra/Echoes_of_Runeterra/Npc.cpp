@@ -55,7 +55,6 @@ void Npc::display(Window& _window)
 		_window.rectangle.setFillColor(sf::Color(255, 255, 255, 100));
 
 		_window.draw(_window.rectangle);
-
 	}
 
 	_window.rectangle.setFillColor(sf::Color(255, 255, 255));
