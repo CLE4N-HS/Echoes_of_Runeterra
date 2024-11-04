@@ -16,6 +16,7 @@ CharacterManager::CharacterManager() : m_character()
 
 CharacterManager::~CharacterManager()
 {
+	m_character.clear();
 }
 
 void CharacterManager::update(Window& _window)

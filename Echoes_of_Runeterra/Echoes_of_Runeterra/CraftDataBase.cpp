@@ -3,9 +3,9 @@
 #include "Armor.h"
 #include "Consumable.h"
 
-CraftDataBase::CraftDataBase() : m_database()
+CraftDataBase::CraftDataBase(ItemDataBase* _itemDB) : m_database()
 {
-	m_database.push_back({new Weapon("Hammer", 5, 5, 5), std::vector<Item*>({ new Weapon(), new Weapon() }) });
+	m_database.push_back({_itemDB->getItem("goldenPickaxe"), std::vector<Item*>({_itemDB->getItem("sword"), _itemDB->getItem("pickaxe")}) });
 }
 
 CraftDataBase::~CraftDataBase()
@@ -38,6 +38,28 @@ Item* CraftDataBase::getItem(std::vector<Item*> _item)
 		}
 
 		if (correctItem > 0 && correctItem == _item.size())
+		{
+			return it->first;
+		}
+	}
+
+	return nullptr;
+}
+
+Item* CraftDataBase::getItem(std::vector<std::string> _names)
+{
+	for (std::list<std::pair<Item*, std::vector<Item*>>>::iterator it = m_database.begin(); it != m_database.end(); it++)
+	{
+		int correctItem(0);
+		for (int i = 0; i < _names.size(); i++)
+		{
+			if (_names[i] != it->second[i]->getName())
+				break;
+
+			correctItem++;
+		}
+
+		if (correctItem > 0 && correctItem == _names.size())
 		{
 			return it->first;
 		}
