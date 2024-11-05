@@ -1,5 +1,7 @@
 #pragma once
 #include "Character.h"
+#include "Weapon.h"
+#include "Armor.h"
 
 class Player : public Character
 {
@@ -13,6 +15,9 @@ public:
 	sf::FloatRect getRect();
 
 private:
-	std::list<Item*> m_item;
+	void updateInventoryInteractions(Window& _window);
+
+	Weapon* m_weapon;
+	Armor* m_armor;
 
 };

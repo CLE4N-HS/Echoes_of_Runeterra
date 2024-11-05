@@ -13,6 +13,10 @@ public:
 	virtual void display(Window& _window);
 	virtual void displayStats(Window& _window);
 
+	int getHpBuff() const;
+	int getDefenseBuff() const;
+	int getSpeedBuff() const;
+
 private:
 	std::string m_name;
 	int m_hp;

@@ -62,21 +62,35 @@ void Inventory::addItem(Item* _item)
 	_item->setHover(false);
 	_item->setPos(sf::Vector2f(Inventory::m_pos.x + 100.f + 200.f * m_item.size(), Inventory::m_pos.y + 500.f));
 	m_item.push_back(_item);
+
+	repositionItems();
 }
 
-Item* Inventory::takeItem()
+Item* Inventory::getItem()
 {
 	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
 	{
 		if ((*it)->isHovered())
 		{
-			Item* item = (*it)->getItem();
-			it = m_item.erase(it);
-			return item;
+			return (*it)->Item::getItem();
 		}
 	}
 
 	return nullptr;
+}
+
+void Inventory::eraseItem(Item* _item)
+{
+	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	{
+		if ((*it) == _item)
+		{
+			it = m_item.erase(it);
+			break;
+		}
+	}
+
+	repositionItems();
 }
 
 void Inventory::setOpening(bool _shouldBeOpened)
@@ -87,4 +101,14 @@ void Inventory::setOpening(bool _shouldBeOpened)
 bool Inventory::isOpen()
 {
 	return m_isOpen;
+}
+
+void Inventory::repositionItems()
+{
+	int count(0);
+	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	{
+		(*it)->setPos(sf::Vector2f(Inventory::m_pos.x + 100.f + 200.f * (float)count , Inventory::m_pos.y + 500.f));
+		count++;
+	}
 }

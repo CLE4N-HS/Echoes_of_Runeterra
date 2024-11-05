@@ -1,11 +1,12 @@
 #include "Player.h"
 #include "textureManager.h"
+#include "Consumable.h"
 
 Player::Player() : Player("Player")
 {
 }
 
-Player::Player(std::string _name) : Character(_name), m_item()
+Player::Player(std::string _name) : Character(_name), m_weapon(nullptr), m_armor(nullptr)
 {
 }
 
@@ -37,15 +38,9 @@ void Player::update(Window& _window)
 	}
 
 	m_inventory->update(_window);
-	if (m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
-	{
-		Item* item = m_inventory->takeItem();
-		if (item != nullptr)
-		{
-			m_item.push_back(item);
-		}
-	}
 
+	this->updateInventoryInteractions(_window);
+	
 }
 
 void Player::display(Window& _window)
@@ -77,21 +72,48 @@ void Player::display(Window& _window)
 	_window.text.setString(buffer);
 	_window.draw(_window.text);
 
-	sf::Vector2f itemPos = m_pos;
-	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
-	{
-		_window.rectangle.setPosition(itemPos);
-		_window.rectangle.setTexture(tex_getTexture("items"));
-		sf::IntRect tmpRect = tex_getAnimRect("items", (*it)->getName().c_str());
-		_window.rectangle.setSize(sf::Vector2f(sf::Vector2i(tmpRect.width, tmpRect.height)));
-		_window.rectangle.setOrigin(sf::Vector2f(sf::Vector2i(tmpRect.width / 2, tmpRect.height / 2)));
-		_window.rectangle.setTextureRect(tmpRect);
-		_window.rectangle.setScale(sf::Vector2f(3.f, 3.f));
 
+	if (m_armor != nullptr)
+	{
+		_window.rectangle.setPosition(m_pos);
+		_window.rectangle.setTexture(tex_getTexture("items"));
+		sf::IntRect tmpArmorRect = tex_getAnimRect("items", m_armor->getName().c_str());
+		_window.rectangle.setSize(sf::Vector2f(sf::Vector2i(tmpArmorRect.width, tmpArmorRect.height)));
+		_window.rectangle.setOrigin(sf::Vector2f(sf::Vector2i(tmpArmorRect.width / 2, tmpArmorRect.height / 2)));
+		_window.rectangle.setTextureRect(tmpArmorRect);
+		_window.rectangle.setScale(sf::Vector2f(3.f, 3.f));
 		_window.draw(_window.rectangle);
-		_window.rectangle.setScale(sf::Vector2f(1.f, 1.f));
-		itemPos.y += 50.f;
 	}
+
+	if (m_weapon != nullptr)
+	{
+		_window.rectangle.setPosition(m_pos + sf::Vector2f(0.f, -50.f));
+		_window.rectangle.setTexture(tex_getTexture("items"));
+		sf::IntRect tmpWeaponRect = tex_getAnimRect("items", m_weapon->getName().c_str());
+		_window.rectangle.setSize(sf::Vector2f(sf::Vector2i(tmpWeaponRect.width, tmpWeaponRect.height)));
+		_window.rectangle.setOrigin(sf::Vector2f(sf::Vector2i(tmpWeaponRect.width / 2, tmpWeaponRect.height / 2)));
+		_window.rectangle.setTextureRect(tmpWeaponRect);
+		_window.rectangle.setScale(sf::Vector2f(3.f, 3.f));
+		_window.draw(_window.rectangle);
+	}
+
+
+
+	_window.rectangle.setScale(sf::Vector2f(1.f, 1.f));
+	//for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	//{
+	//	_window.rectangle.setPosition(itemPos);
+	//	_window.rectangle.setTexture(tex_getTexture("items"));
+	//	sf::IntRect tmpRect = tex_getAnimRect("items", (*it)->getName().c_str());
+	//	_window.rectangle.setSize(sf::Vector2f(sf::Vector2i(tmpRect.width, tmpRect.height)));
+	//	_window.rectangle.setOrigin(sf::Vector2f(sf::Vector2i(tmpRect.width / 2, tmpRect.height / 2)));
+	//	_window.rectangle.setTextureRect(tmpRect);
+	//	_window.rectangle.setScale(sf::Vector2f(3.f, 3.f));
+
+	//	_window.draw(_window.rectangle);
+	//	_window.rectangle.setScale(sf::Vector2f(1.f, 1.f));
+	//	itemPos.y += 50.f;
+	//}
 
 	m_inventory->display(_window);
 }
@@ -99,4 +121,46 @@ void Player::display(Window& _window)
 sf::FloatRect Player::getRect()
 {
 	return sf::FloatRect(m_pos - vec2fMultiply(m_origin, m_scale), vec2fMultiply(m_size, m_scale));
+}
+
+void Player::updateInventoryInteractions(Window& _window)
+{
+	if (m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
+	{
+		Item* item = m_inventory->getItem();
+		if (item != nullptr) // to know if we have choosen an item
+		{
+			// differentiate items type
+			Weapon* tmpWeapon = dynamic_cast<Weapon*>(item);
+			Armor* tmpArmor = dynamic_cast<Armor*>(item);
+			Consumable* tmpConsumable = dynamic_cast<Consumable*>(item);
+
+			if (tmpWeapon != nullptr)
+			{
+				m_inventory->eraseItem(item);
+				if (m_weapon != nullptr) // if we already have a Weapon, return it back to the Inventory
+					m_inventory->addItem(m_weapon);
+
+				m_weapon = tmpWeapon;
+			}
+			else if (tmpArmor != nullptr)
+			{
+				m_inventory->eraseItem(item);
+				if (m_armor != nullptr) // if we already have an Armor, return it back to the Inventory
+					m_inventory->addItem(m_armor);
+
+				m_armor = tmpArmor;
+			}
+			else if (tmpConsumable != nullptr)
+			{
+				// gain consumable Stats
+				m_maxHp += tmpConsumable->getHpBuff();
+				m_hp += tmpConsumable->getHpBuff();
+				m_defense += tmpConsumable->getDefenseBuff();
+				m_speed += tmpConsumable->getSpeedBuff();
+				Character::giveXp(50);
+				m_inventory->eraseItem(item);
+			}
+		}
+	}
 }

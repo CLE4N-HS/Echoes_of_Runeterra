@@ -13,12 +13,15 @@ public:
 	void display(Window& _window);
 
 	void addItem(Item* _item);
-	Item* takeItem();
+	Item* getItem();
+	void eraseItem(Item* _item);
 
 	void setOpening(bool _shouldBeOpened);
 	bool isOpen();
 
 private:
+	void repositionItems();
+
 	std::list<Item*> m_item;
 	bool m_isOpen;
 

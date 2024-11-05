@@ -1,7 +1,7 @@
 #include "Armor.h"
 #include "textureManager.h"
 
-Armor::Armor() : Armor("Default Armor Name", 0, 0, 0)
+Armor::Armor() : Armor("", 0, 0, 0)
 {
 }
 

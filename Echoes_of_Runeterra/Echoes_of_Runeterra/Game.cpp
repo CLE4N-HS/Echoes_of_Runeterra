@@ -5,7 +5,10 @@
 Game::Game() : m_itemDB(new ItemDataBase), m_mapManager(), m_characterManager(), m_dialogueManager(), m_interactionManager(), m_craftManager(m_itemDB)
 {
 	m_mapManager.addItem(m_itemDB->getItem("sword"));
+	m_mapManager.addItem(m_itemDB->getItem("pickaxe"));
 	m_mapManager.addItem(m_itemDB->getItem("metalArmor"));
+	m_mapManager.addItem(m_itemDB->getItem("shield"));
+	m_mapManager.addItem(m_itemDB->getItem("heart"));
 	m_mapManager.addItem(m_itemDB->getItem("speedPotion"));
 	m_dialogueManager.setupDialogue("intro");
 }

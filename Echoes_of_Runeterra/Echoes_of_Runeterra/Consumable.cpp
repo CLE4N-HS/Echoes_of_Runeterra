@@ -1,7 +1,7 @@
 #include "Consumable.h"
 #include "textureManager.h"
 
-Consumable::Consumable() : Consumable("Default Consumable Name", 0, 0, 0)
+Consumable::Consumable() : Consumable("", 0, 0, 0)
 {
 }
 
@@ -85,4 +85,19 @@ void Consumable::displayStats(Window& _window)
 	sprintf(buffer, "Speed : %d", m_speed);
 	_window.text.setString(buffer);
 	_window.draw(_window.text);
+}
+
+int Consumable::getHpBuff() const
+{
+	return m_hp;
+}
+
+int Consumable::getDefenseBuff() const
+{
+	return m_defense;
+}
+
+int Consumable::getSpeedBuff() const
+{
+	return m_speed;
 }

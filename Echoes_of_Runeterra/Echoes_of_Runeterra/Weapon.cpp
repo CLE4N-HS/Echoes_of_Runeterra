@@ -1,7 +1,7 @@
 #include "Weapon.h"
 #include "textureManager.h"
 
-Weapon::Weapon() : Weapon("Default Weapon Name", 0, 0, 0)
+Weapon::Weapon() : Weapon("", 0, 0, 0)
 {
 }
 
