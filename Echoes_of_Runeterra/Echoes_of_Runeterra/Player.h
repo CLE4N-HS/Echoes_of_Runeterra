@@ -15,6 +15,7 @@ public:
 	sf::FloatRect getRect();
 
 private:
+	void updateMovement(Window& _window);
 	void updateInventoryInteractions(Window& _window);
 
 	Weapon* m_weapon;

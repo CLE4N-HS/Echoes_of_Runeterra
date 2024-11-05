@@ -60,7 +60,6 @@ void Inventory::addItem(Item* _item)
 {
 	_item->setState(Item::State::IN_INVENTORY);
 	_item->setHover(false);
-	_item->setPos(sf::Vector2f(Inventory::m_pos.x + 100.f + 200.f * m_item.size(), Inventory::m_pos.y + 500.f));
 	m_item.push_back(_item);
 
 	repositionItems();

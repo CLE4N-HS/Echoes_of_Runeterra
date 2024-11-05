@@ -54,6 +54,9 @@ int Character::getLevel() const
 void Character::giveXp(int _xp)
 {
 	m_xp += _xp;
+
+	if (m_xp >= m_levelXp)
+		gainLevel();
 }
 
 sf::Vector2f Character::getPos() const

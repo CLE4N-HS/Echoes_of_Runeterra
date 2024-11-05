@@ -20,22 +20,7 @@ void Player::update(Window& _window)
 
 	m_attackTimer += dt;
 
-	if (!m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
-	{
-		m_targetPos = _window.getMousePos();
-		m_foward = sf::Vector2f(m_targetPos - m_pos);
-		vec2fNormalize(m_foward);
-	}
-
-	if (vec2fGetMagnitude(sf::Vector2f(m_targetPos - m_pos)) > 26.f)
-	{
-		m_pos += m_foward * m_moveSpeed * dt;
-		m_animState = "walk";
-	}
-	else
-	{
-		m_animState = "idle";
-	}
+	this->updateMovement(_window);
 
 	m_inventory->update(_window);
 
@@ -97,23 +82,7 @@ void Player::display(Window& _window)
 		_window.draw(_window.rectangle);
 	}
 
-
-
 	_window.rectangle.setScale(sf::Vector2f(1.f, 1.f));
-	//for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
-	//{
-	//	_window.rectangle.setPosition(itemPos);
-	//	_window.rectangle.setTexture(tex_getTexture("items"));
-	//	sf::IntRect tmpRect = tex_getAnimRect("items", (*it)->getName().c_str());
-	//	_window.rectangle.setSize(sf::Vector2f(sf::Vector2i(tmpRect.width, tmpRect.height)));
-	//	_window.rectangle.setOrigin(sf::Vector2f(sf::Vector2i(tmpRect.width / 2, tmpRect.height / 2)));
-	//	_window.rectangle.setTextureRect(tmpRect);
-	//	_window.rectangle.setScale(sf::Vector2f(3.f, 3.f));
-
-	//	_window.draw(_window.rectangle);
-	//	_window.rectangle.setScale(sf::Vector2f(1.f, 1.f));
-	//	itemPos.y += 50.f;
-	//}
 
 	m_inventory->display(_window);
 }
@@ -121,6 +90,28 @@ void Player::display(Window& _window)
 sf::FloatRect Player::getRect()
 {
 	return sf::FloatRect(m_pos - vec2fMultiply(m_origin, m_scale), vec2fMultiply(m_size, m_scale));
+}
+
+void Player::updateMovement(Window& _window)
+{
+	float dt = _window.getDeltaTime();
+
+	if (!m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
+	{
+		m_targetPos = _window.getMousePos();
+		m_foward = sf::Vector2f(m_targetPos - m_pos);
+		vec2fNormalize(m_foward);
+	}
+
+	if (vec2fGetMagnitude(sf::Vector2f(m_targetPos - m_pos)) > 26.f)
+	{
+		m_pos += m_foward * m_moveSpeed * dt;
+		m_animState = "walk";
+	}
+	else
+	{
+		m_animState = "idle";
+	}
 }
 
 void Player::updateInventoryInteractions(Window& _window)
