@@ -150,9 +150,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Alchemist.cpp" />
     <ClCompile Include="alignement.cpp" />
     <ClCompile Include="Answer.cpp" />
     <ClCompile Include="Armor.cpp" />
+    <ClCompile Include="Blacksmith.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="Comment.cpp" />
@@ -183,6 +185,7 @@
     <ClCompile Include="Npc.cpp" />
     <ClCompile Include="particleManager.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Profession.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="Race.cpp" />
     <ClCompile Include="ressourcesManager.cpp" />
@@ -195,9 +198,11 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Alchemist.h" />
     <ClInclude Include="alignement.h" />
     <ClInclude Include="Answer.h" />
     <ClInclude Include="Armor.h" />
+    <ClInclude Include="Blacksmith.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="Comment.h" />
@@ -227,6 +232,7 @@
     <ClInclude Include="Npc.h" />
     <ClInclude Include="particleManager.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Profession.h" />
     <ClInclude Include="Question.h" />
     <ClInclude Include="Race.h" />
     <ClInclude Include="ressourcesManager.h" />

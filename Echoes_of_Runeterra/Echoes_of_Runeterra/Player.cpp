@@ -1,12 +1,14 @@
 #include "Player.h"
 #include "textureManager.h"
 #include "Consumable.h"
+#include "Blacksmith.h"
+#include "Alchemist.h"
 
 Player::Player() : Player("Player")
 {
 }
 
-Player::Player(std::string _name) : Character(_name), m_weapon(nullptr), m_armor(nullptr)
+Player::Player(std::string _name) : Character(_name), m_weapon(nullptr), m_armor(nullptr), m_profession(new Blacksmith)
 {
 }
 
@@ -21,6 +23,8 @@ void Player::update(Window& _window)
 	m_attackTimer += dt;
 
 	this->updateMovement(_window);
+
+	m_profession->update(_window);
 
 	m_inventory->update(_window);
 
@@ -85,6 +89,9 @@ void Player::display(Window& _window)
 	_window.rectangle.setScale(sf::Vector2f(1.f, 1.f));
 
 	m_inventory->display(_window);
+
+	m_profession->display(_window);
+
 }
 
 sf::FloatRect Player::getRect()

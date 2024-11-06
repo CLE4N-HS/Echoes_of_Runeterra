@@ -2,6 +2,7 @@
 #include "Character.h"
 #include "Weapon.h"
 #include "Armor.h"
+#include "Profession.h"
 
 class Player : public Character
 {
@@ -20,5 +21,7 @@ private:
 
 	Weapon* m_weapon;
 	Armor* m_armor;
+
+	Profession* m_profession;
 
 };

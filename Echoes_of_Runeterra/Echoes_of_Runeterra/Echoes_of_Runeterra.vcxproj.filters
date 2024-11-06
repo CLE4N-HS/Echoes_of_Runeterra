@@ -61,17 +61,23 @@
     <Filter Include="Fichiers d%27en-tête\GAME\MAP">
       <UniqueIdentifier>{a2abbd95-c17c-42d5-b894-b83dd3dfff08}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\GAME\ITEMS\CRAFT">
-      <UniqueIdentifier>{09cbdcf2-6495-4361-8e45-dd8ce6def96a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fichiers sources\GAME\CHARACTER\RACE">
       <UniqueIdentifier>{92c177bd-d792-4819-b6f0-4982f8881b38}</UniqueIdentifier>
     </Filter>
     <Filter Include="Fichiers d%27en-tête\GAME\CHARACTER\RACE">
       <UniqueIdentifier>{000ef110-b158-4dad-bfa7-baa449f8e357}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\GAME\ITEMS\CRAFT">
+    <Filter Include="Fichiers sources\GAME\CRAFT">
       <UniqueIdentifier>{e0de660a-b3ce-42e8-9197-8c3b27d55874}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\CRAFT">
+      <UniqueIdentifier>{09cbdcf2-6495-4361-8e45-dd8ce6def96a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\PROFESSION">
+      <UniqueIdentifier>{5b2e0a2d-e1bd-4f0f-aecd-5b61695ae2cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\PROFESSION">
+      <UniqueIdentifier>{d22f975f-ae1d-487b-8c0d-d67828fd4dea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -199,10 +205,19 @@
       <Filter>Fichiers sources\GAME\CHARACTER\RACE</Filter>
     </ClCompile>
     <ClCompile Include="CraftManager.cpp">
-      <Filter>Fichiers sources\GAME\ITEMS\CRAFT</Filter>
+      <Filter>Fichiers sources\GAME\CRAFT</Filter>
     </ClCompile>
     <ClCompile Include="CraftDataBase.cpp">
-      <Filter>Fichiers sources\GAME\ITEMS\CRAFT</Filter>
+      <Filter>Fichiers sources\GAME\CRAFT</Filter>
+    </ClCompile>
+    <ClCompile Include="Profession.cpp">
+      <Filter>Fichiers sources\GAME\PROFESSION</Filter>
+    </ClCompile>
+    <ClCompile Include="Blacksmith.cpp">
+      <Filter>Fichiers sources\GAME\PROFESSION</Filter>
+    </ClCompile>
+    <ClCompile Include="Alchemist.cpp">
+      <Filter>Fichiers sources\GAME\PROFESSION</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -327,10 +342,19 @@
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER\RACE</Filter>
     </ClInclude>
     <ClInclude Include="CraftManager.h">
-      <Filter>Fichiers d%27en-tête\GAME\ITEMS\CRAFT</Filter>
+      <Filter>Fichiers d%27en-tête\GAME\CRAFT</Filter>
     </ClInclude>
     <ClInclude Include="CraftDataBase.h">
-      <Filter>Fichiers d%27en-tête\GAME\ITEMS\CRAFT</Filter>
+      <Filter>Fichiers d%27en-tête\GAME\CRAFT</Filter>
+    </ClInclude>
+    <ClInclude Include="Profession.h">
+      <Filter>Fichiers d%27en-tête\GAME\PROFESSION</Filter>
+    </ClInclude>
+    <ClInclude Include="Blacksmith.h">
+      <Filter>Fichiers d%27en-tête\GAME\PROFESSION</Filter>
+    </ClInclude>
+    <ClInclude Include="Alchemist.h">
+      <Filter>Fichiers d%27en-tête\GAME\PROFESSION</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
