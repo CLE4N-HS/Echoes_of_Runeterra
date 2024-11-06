@@ -159,8 +159,11 @@
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="Comment.cpp" />
     <ClCompile Include="Consumable.cpp" />
+    <ClCompile Include="craftdbtest.cpp" />
     <ClCompile Include="CraftDataBase.cpp" />
     <ClCompile Include="CraftManager.cpp" />
+    <ClCompile Include="Database.cpp" />
+    <ClCompile Include="DatabaseManager.cpp" />
     <ClCompile Include="Dialogue.cpp" />
     <ClCompile Include="DialogueDataBase.cpp" />
     <ClCompile Include="DialogueManager.cpp" />
@@ -207,8 +210,11 @@
     <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="Comment.h" />
     <ClInclude Include="Consumable.h" />
+    <ClInclude Include="craftdbtest.h" />
     <ClInclude Include="CraftDataBase.h" />
     <ClInclude Include="CraftManager.h" />
+    <ClInclude Include="Database.h" />
+    <ClInclude Include="DatabaseManager.h" />
     <ClInclude Include="Dialogue.h" />
     <ClInclude Include="DialogueDataBase.h" />
     <ClInclude Include="DialogueManager.h" />

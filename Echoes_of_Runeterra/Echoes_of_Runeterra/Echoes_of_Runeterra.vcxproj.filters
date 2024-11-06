@@ -79,6 +79,12 @@
     <Filter Include="Fichiers sources\GAME\PROFESSION">
       <UniqueIdentifier>{d22f975f-ae1d-487b-8c0d-d67828fd4dea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\DATABASE">
+      <UniqueIdentifier>{5298ed57-15e0-4d63-a68d-bc5ef99ab265}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\DATABASE">
+      <UniqueIdentifier>{d1003172-2d87-4a8b-80f6-6d0630880a27}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -219,6 +225,15 @@
     <ClCompile Include="Alchemist.cpp">
       <Filter>Fichiers sources\GAME\PROFESSION</Filter>
     </ClCompile>
+    <ClCompile Include="DatabaseManager.cpp">
+      <Filter>Fichiers sources\DATABASE</Filter>
+    </ClCompile>
+    <ClCompile Include="Database.cpp">
+      <Filter>Fichiers sources\DATABASE</Filter>
+    </ClCompile>
+    <ClCompile Include="craftdbtest.cpp">
+      <Filter>Fichiers sources\DATABASE</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
@@ -355,6 +370,15 @@
     </ClInclude>
     <ClInclude Include="Alchemist.h">
       <Filter>Fichiers d%27en-tête\GAME\PROFESSION</Filter>
+    </ClInclude>
+    <ClInclude Include="DatabaseManager.h">
+      <Filter>Fichiers d%27en-tête\DATABASE</Filter>
+    </ClInclude>
+    <ClInclude Include="Database.h">
+      <Filter>Fichiers d%27en-tête\DATABASE</Filter>
+    </ClInclude>
+    <ClInclude Include="craftdbtest.h">
+      <Filter>Fichiers d%27en-tête\DATABASE</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
