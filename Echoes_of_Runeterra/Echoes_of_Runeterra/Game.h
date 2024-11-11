@@ -7,6 +7,7 @@
 #include "InteractionManager.h"
 #include "CraftManager.h"
 #include "SkillsSystem.h"
+#include "TreeDataBase.h"
 
 class Game : public State
 {
@@ -24,6 +25,7 @@ private:
 	InteractionManager m_interactionManager;
 	CraftManager m_craftManager;
 
+	TreeDataBase* m_treeDB;
 	SkillsSystem m_skillsSystem;
 
 };

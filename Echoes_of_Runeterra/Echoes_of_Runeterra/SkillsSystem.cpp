@@ -1,9 +1,8 @@
 #include "SkillsSystem.h"
-#include "TreeDataBase.h"
 
-SkillsSystem::SkillsSystem()
+SkillsSystem::SkillsSystem(TreeDataBase* _treeDB)
 {
-	m_skillTree = TreeDataBase::getTree("tree1");
+	m_skillTree = _treeDB->getTree("tree1");
 }
 
 SkillsSystem::~SkillsSystem()
