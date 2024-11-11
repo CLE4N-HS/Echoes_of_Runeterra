@@ -11,5 +11,8 @@ SkillsLeaf::~SkillsLeaf()
 
 void SkillsLeaf::update(Window& _window)
 {
-	m_skill->update(_window);
+	if (m_isUnlocked)
+	{
+		m_skill->update(_window);
+	}
 }

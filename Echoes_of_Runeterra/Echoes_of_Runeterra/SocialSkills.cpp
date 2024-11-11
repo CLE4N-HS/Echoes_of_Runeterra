@@ -10,5 +10,4 @@ SocialSkills::~SocialSkills()
 
 void SocialSkills::update(Window& _window)
 {
-	int a = m_socialBonus;
 }

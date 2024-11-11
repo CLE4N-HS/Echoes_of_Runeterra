@@ -15,8 +15,6 @@ TreeDataBase::TreeDataBase()
 	/// A tree is made up of branches, which are made up of leaves
 	///
 	//////////////////////////////////////////////////////////////
-	
-	SkillsLeaf* tr(new SkillsLeaf(new FightingSkills()));
 
 	SkillsLeaf* tree1_branch1_leaf1(new SkillsLeaf(new FightingSkills()));
 	SkillsLeaf* tree1_branch1_leaf2(new SkillsLeaf(new FightingSkills()));
@@ -62,12 +60,4 @@ TreeDataBase::TreeDataBase()
 
 TreeDataBase::~TreeDataBase()
 {
-}
-
-SkillsTree*& TreeDataBase::getTree(std::string _name)
-{
-	SkillsTree* a = m_treeDB[_name];
-
-	return m_treeDB[_name];
-	// TODO: insérer une instruction return ici
 }

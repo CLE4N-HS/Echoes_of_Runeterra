@@ -13,4 +13,8 @@ public:
 private:
 	std::vector<SkillsBranch*> m_tree;
 
+	int m_xp;
+	int m_levelXp;
+
+
 };
