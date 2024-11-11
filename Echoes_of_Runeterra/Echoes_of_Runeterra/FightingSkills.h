@@ -4,8 +4,10 @@
 class FightingSkills : public Skills
 {
 public:
-	FightingSkills() = default;
+	FightingSkills();
 	~FightingSkills();
+
+	virtual void update(Window& _window) override;
 
 private:
 

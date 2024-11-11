@@ -7,6 +7,8 @@ public:
 	Skills();
 	~Skills();
 
+	virtual void update(Window& _window) = 0;
+
 private:
 
 };

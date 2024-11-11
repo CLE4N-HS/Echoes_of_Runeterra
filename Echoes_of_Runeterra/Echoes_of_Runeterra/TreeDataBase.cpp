@@ -26,9 +26,9 @@ TreeDataBase::TreeDataBase()
 	SkillsLeaf tree1_branch2_leaf3(new FightingSkills());
 	SkillsBranch tree1_branch2(std::vector<SkillsLeaf*>{&tree1_branch2_leaf1, &tree1_branch2_leaf2, &tree1_branch2_leaf3});
 
-	SkillsLeaf tree1_branch3_leaf1(new SocialSkills());
+	SkillsLeaf tree1_branch3_leaf1(new SocialSkills(1));
 	SkillsLeaf tree1_branch3_leaf2(new ExplorationSkills());
-	SkillsLeaf tree1_branch3_leaf3(new SocialSkills());
+	SkillsLeaf tree1_branch3_leaf3(new SocialSkills(2));
 	SkillsBranch tree1_branch3(std::vector<SkillsLeaf*>{&tree1_branch3_leaf2, &tree1_branch3_leaf2, &tree1_branch3_leaf3});
 
 	SkillsTree tree1(std::vector<SkillsBranch*>{&tree1_branch1, & tree1_branch2, & tree1_branch3});
@@ -45,9 +45,9 @@ TreeDataBase::TreeDataBase()
 	SkillsLeaf tree2_branch2_leaf3(new FightingSkills());
 	SkillsBranch tree2_branch2(std::vector<SkillsLeaf*>{&tree1_branch2_leaf1, &tree1_branch2_leaf2, &tree1_branch2_leaf3});
 
-	SkillsLeaf tree2_branch3_leaf1(new SocialSkills());
+	SkillsLeaf tree2_branch3_leaf1(new SocialSkills(3));
 	SkillsLeaf tree2_branch3_leaf2(new ExplorationSkills());
-	SkillsLeaf tree2_branch3_leaf3(new SocialSkills());
+	SkillsLeaf tree2_branch3_leaf3(new SocialSkills(4));
 	SkillsBranch tree2_branch3(std::vector<SkillsLeaf*>{&tree1_branch3_leaf2, &tree1_branch3_leaf2, &tree1_branch3_leaf3});
 
 	SkillsTree tree2(std::vector<SkillsBranch*>{&tree1_branch1, & tree1_branch2, & tree1_branch3});

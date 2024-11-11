@@ -8,7 +8,9 @@ public:
 	SkillsSystem();
 	~SkillsSystem();
 
+	void update(Window& _window);
+
 private:
-	//SkillsTree m_skillTree;
+	SkillsTree* m_skillTree;
 
 };

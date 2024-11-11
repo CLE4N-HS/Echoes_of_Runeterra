@@ -12,3 +12,11 @@ SkillsTree::SkillsTree(const std::vector<SkillsBranch*>& _branches)
 SkillsTree::~SkillsTree()
 {
 }
+
+void SkillsTree::update(Window& _window)
+{
+	for (size_t i = 0; i < m_tree.size(); i++)
+	{
+		m_tree[i]->update(_window);
+	}
+}

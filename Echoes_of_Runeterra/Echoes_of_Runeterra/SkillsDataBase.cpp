@@ -22,9 +22,9 @@ SkillsDataBase::SkillsDataBase()
 	m_skillsDB.insert({ "profession2", new ProfessionSkills() });
 	m_skillsDB.insert({ "profession3", new ProfessionSkills() });
 	
-	m_skillsDB.insert({ "social1", new SocialSkills() });
-	m_skillsDB.insert({ "social2", new SocialSkills() });
-	m_skillsDB.insert({ "social3", new SocialSkills() });
+	m_skillsDB.insert({ "social1", new SocialSkills(1) });
+	m_skillsDB.insert({ "social2", new SocialSkills(2) });
+	m_skillsDB.insert({ "social3", new SocialSkills(3) });
 }
 
 SkillsDataBase::~SkillsDataBase()

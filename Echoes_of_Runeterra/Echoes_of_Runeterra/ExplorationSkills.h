@@ -7,6 +7,8 @@ public:
 	ExplorationSkills();
 	~ExplorationSkills();
 
+	virtual void update(Window& _window) override;
+
 private:
 
 };

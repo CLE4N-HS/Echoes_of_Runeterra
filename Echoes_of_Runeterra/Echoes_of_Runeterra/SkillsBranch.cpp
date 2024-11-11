@@ -12,3 +12,11 @@ SkillsBranch::SkillsBranch(const std::vector<SkillsLeaf*>& _leaves)
 SkillsBranch::~SkillsBranch()
 {
 }
+
+void SkillsBranch::update(Window& _window)
+{
+	for (size_t i = 0; i < m_branch.size(); i++)
+	{
+		m_branch[i]->update(_window);
+	}
+}

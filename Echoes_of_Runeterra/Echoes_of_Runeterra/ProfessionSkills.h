@@ -7,6 +7,8 @@ public:
 	ProfessionSkills();
 	~ProfessionSkills();
 
+	virtual void update(Window& _window) override;
+
 private:
 
 };

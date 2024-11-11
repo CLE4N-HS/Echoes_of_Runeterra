@@ -4,9 +4,12 @@
 class SocialSkills : public Skills
 {
 public:
-	SocialSkills() = default;
+	SocialSkills(int _socialBonus);
 	~SocialSkills();
 
+	virtual void update(Window& _window) override;
+
 private:
+	int m_socialBonus;
 
 };
