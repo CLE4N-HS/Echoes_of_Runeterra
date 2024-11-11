@@ -6,6 +6,7 @@
 #include "DialogueManager.h"
 #include "InteractionManager.h"
 #include "CraftManager.h"
+#include "SkillsTree.h"
 
 class Game : public State
 {
@@ -22,5 +23,7 @@ private:
 	DialogueManager m_dialogueManager;
 	InteractionManager m_interactionManager;
 	CraftManager m_craftManager;
+
+	SkillsTree* m_testSkillTree;
 
 };
