@@ -106,6 +106,15 @@
     <Filter Include="Fichiers sources\GAME\SKILLS_SYSTEM\DATABASE">
       <UniqueIdentifier>{3d467bd6-ae72-42d5-83ee-a7e0ae4f3a43}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\TOOLS\ENTITY">
+      <UniqueIdentifier>{b281fcc2-6aaa-4f21-9a48-c21c434f0496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\TOOLS\ENTITY">
+      <UniqueIdentifier>{79151044-d8e0-4fbe-b60d-eff166e3fe67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\TOOLS\ENTITY\COMPONENT">
+      <UniqueIdentifier>{0eed117e-dc35-4d2a-a80f-a09dde3c4ed6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -204,9 +213,6 @@
     <ClCompile Include="DialogueManager.cpp">
       <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Fichiers sources\TOOLS</Filter>
-    </ClCompile>
     <ClCompile Include="EndButton.cpp">
       <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
     </ClCompile>
@@ -287,6 +293,15 @@
     </ClCompile>
     <ClCompile Include="TreeDataBase.cpp">
       <Filter>Fichiers sources\GAME\SKILLS_SYSTEM\DATABASE</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Fichiers sources\TOOLS\ENTITY</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Fichiers sources\TOOLS\ENTITY\COMPONENT</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Fichiers sources\TOOLS\ENTITY\COMPONENT</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -383,9 +398,6 @@
     <ClInclude Include="Question.h">
       <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
-    </ClInclude>
     <ClInclude Include="EndButton.h">
       <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
     </ClInclude>
@@ -465,6 +477,15 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="TreeDataBase.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\ENTITY</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
