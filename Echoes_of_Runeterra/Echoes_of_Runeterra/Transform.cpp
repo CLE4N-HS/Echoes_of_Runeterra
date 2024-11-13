@@ -1,6 +1,7 @@
 #include "Transform.h"
 
-Transform::Transform()
+Transform::Transform() :
+	Transform(sf::Vector2f(), sf::Vector2f())
 {
 }
 

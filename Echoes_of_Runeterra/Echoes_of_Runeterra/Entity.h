@@ -35,6 +35,8 @@ public:
 
 protected:
 	sf::Vector2f m_pos;
+
+private:
 	std::vector<Component*> m_component;
 
 };
