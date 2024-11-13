@@ -22,7 +22,7 @@ Character::Character(std::string _name, std::string _dialogueKey, int _level, in
 	m_race(Race::RACE_IONIAN, "Ionian", 0, 0, 20),
 	m_maxHp(m_hp),
 	m_levelXp(100), m_skillPoint(0),
-	m_targetPos(m_pos), m_foward(), m_moveSpeed(200.f),
+	m_targetPos(sf::Vector2f()), m_foward(), m_moveSpeed(200.f),
 	m_animState("idle"), m_frameX(0), m_animTimer(0.f), m_attackTimer(0.f),
 	m_takingAnItem(false), m_isHovered(false)
 {
@@ -57,17 +57,6 @@ void Character::giveXp(int _xp)
 
 	if (m_xp >= m_levelXp)
 		gainLevel();
-}
-
-sf::Vector2f Character::getPos() const
-{
-	return m_pos;
-}
-
-void Character::setPos(sf::Vector2f _pos)
-{
-	m_pos = _pos;
-	m_targetPos = _pos;
 }
 
 void Character::attack(Character& _character)

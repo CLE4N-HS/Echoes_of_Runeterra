@@ -7,11 +7,6 @@ CharacterManager::CharacterManager() : m_character()
 	m_character.insert({ "Player", new Player("Player")});
 	m_character.insert({ "Npc", new Npc("Npc", "npcHello")});
 	m_character.insert({ "Npc2", new Npc("Npc", "murloc")});
-
-
-	m_character["Player"]->setPos(sf::Vector2f(960.f, 800.f));
-	m_character["Npc"]->setPos(sf::Vector2f(1200.f, 100.f));
-	m_character["Npc2"]->setPos(sf::Vector2f(1700.f, 600.f));
 }
 
 CharacterManager::~CharacterManager()

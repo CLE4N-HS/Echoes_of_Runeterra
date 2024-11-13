@@ -1,5 +1,5 @@
 #pragma once
-#include "Window.h"
+#include "tools.h"
 
 class Component
 {

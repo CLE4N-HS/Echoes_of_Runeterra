@@ -70,7 +70,8 @@ std::string Item::getName()
 
 sf::FloatRect Item::getRect()
 {
-	return sf::FloatRect(m_pos - vec2fMultiply(m_origin, m_scale), vec2fMultiply(m_size, m_scale));
+	return sf::FloatRect();
+	//return sf::FloatRect(m_pos - vec2fMultiply(m_origin, m_scale), vec2fMultiply(m_size, m_scale));
 }
 
 void Item::setHover(bool _isHover)

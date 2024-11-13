@@ -41,12 +41,12 @@ Item* Map::getClosestItem(sf::Vector2f _pos, float _minDistance)
 	Item* closestItem(nullptr);
 	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
 	{
-		float magnitude = vec2fGetSqrMagnitude(_pos - (*it)->getPos());
-		if (magnitude < _minDistance)
-		{
-			closestDistance = magnitude;
-			closestItem = (*it);
-		}
+		//float magnitude = vec2fGetSqrMagnitude(_pos - (*it)->getPos());
+		//if (magnitude < _minDistance)
+		//{
+		//	closestDistance = magnitude;
+		//	closestItem = (*it);
+		//}
 	}
 
 	return closestItem;

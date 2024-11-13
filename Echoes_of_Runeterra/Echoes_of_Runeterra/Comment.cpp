@@ -19,11 +19,11 @@ void Comment::display(Window& _window)
 {
 	if (m_isVisible)
 	{
-		_window.text.setStyle(sf::Text::Style::Italic);
-		_window.text.setPosition(m_pos);
-		_window.text.setString(m_text);
+		//_window.text.setStyle(sf::Text::Style::Italic);
+		//_window.text.setPosition(m_pos);
+		//_window.text.setString(m_text);
 
-		_window.draw(_window.text);
-		_window.text.setStyle(sf::Text::Style::Regular);
+		//_window.draw(_window.text);
+		//_window.text.setStyle(sf::Text::Style::Regular);
 	}
 }

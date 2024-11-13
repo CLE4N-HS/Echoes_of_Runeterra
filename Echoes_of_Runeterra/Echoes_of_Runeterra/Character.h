@@ -23,8 +23,6 @@ public:
 	int getLevel() const;
 	void giveXp(int _xp);
 
-	sf::Vector2f getPos() const;
-	void setPos(sf::Vector2f _pos);
 	void attack(Character& _character);
 
 	void inventorySetOpening(bool _shouldBeOpened);

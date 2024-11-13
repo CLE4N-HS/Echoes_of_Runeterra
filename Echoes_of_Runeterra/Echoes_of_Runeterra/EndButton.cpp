@@ -35,18 +35,18 @@ void EndButton::display(Window& _window)
 {
 	if (m_isVisible)
 	{
-		_window.text.setPosition(m_pos);
-		_window.text.setString(m_text);
+		//_window.text.setPosition(m_pos);
+		//_window.text.setString(m_text);
 
-		_window.draw(_window.text);
-		m_rect = _window.text.getGlobalBounds();
+		//_window.draw(_window.text);
+		//m_rect = _window.text.getGlobalBounds();
 
-		if (m_isHovered)
-		{
-			_window.rectangle.setPosition(m_rect.getPosition());
-			_window.rectangle.setSize(m_rect.getSize());
+		//if (m_isHovered)
+		//{
+		//	_window.rectangle.setPosition(m_rect.getPosition());
+		//	_window.rectangle.setSize(m_rect.getSize());
 
-			_window.draw(_window.rectangle);
-		}
+		//	_window.draw(_window.rectangle);
+		//}
 	}
 }
