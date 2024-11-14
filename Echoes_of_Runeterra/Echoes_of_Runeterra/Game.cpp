@@ -13,6 +13,8 @@ Game::Game() : m_itemDB(new ItemDataBase), m_mapManager(), m_characterManager(),
 	m_mapManager.addItem(m_itemDB->getItem("heart"));
 	m_mapManager.addItem(m_itemDB->getItem("speedPotion"));
 	m_dialogueManager.setupDialogue("intro");
+
+	m_characterManager.addCharacterItem("Player", m_itemDB->getItem("sword"));
 }
 
 Game::~Game()
@@ -23,7 +25,7 @@ void Game::update(Window& _window, State*& _state)
 {
 	m_mapManager.update(_window);
 
-	if (!m_dialogueManager.isInDialogue())
+	//if (!m_dialogueManager.isInDialogue())
 		m_characterManager.update(_window);
 
 	m_dialogueManager.update(_window);

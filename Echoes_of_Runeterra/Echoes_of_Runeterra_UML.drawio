@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.4">
   <diagram name="Page-1" id="PlWj3B3dQWKrGn9RvDhj">
-    <mxGraphModel dx="989" dy="509" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3840" pageHeight="2160" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="738" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3840" pageHeight="2160" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -235,10 +235,10 @@
         <mxCell id="wERcz5VRjjp3bPj3p1RH-78" value="DialogueDatabase" style="swimlane;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontStyle=1;fillColor=#dae8fc;startSize=40;fillStyle=auto;" parent="1" vertex="1">
           <mxGeometry x="440" y="360" width="160" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="wERcz5VRjjp3bPj3p1RH-79" value="vector&amp;lt;Dialogue&amp;gt;" style="whiteSpace=wrap;html=1;fillStyle=auto;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fontStyle=1;fillColor=#dae8fc;" parent="wERcz5VRjjp3bPj3p1RH-78" vertex="1">
+        <mxCell id="wERcz5VRjjp3bPj3p1RH-79" value="list&amp;lt;DialogueText&amp;gt;" style="whiteSpace=wrap;html=1;fillStyle=auto;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fontStyle=1;fillColor=#dae8fc;" parent="wERcz5VRjjp3bPj3p1RH-78" vertex="1">
           <mxGeometry x="20" y="60" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="wERcz5VRjjp3bPj3p1RH-81" value="Dialogue" style="rhombus;whiteSpace=wrap;html=1;fillStyle=auto;strokeColor=#d79b00;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontStyle=1;fillColor=#F2CC8F;" parent="1" vertex="1">
+        <mxCell id="wERcz5VRjjp3bPj3p1RH-81" value="DialogueText" style="rhombus;whiteSpace=wrap;html=1;fillStyle=auto;strokeColor=#d79b00;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontStyle=1;fillColor=#F2CC8F;" parent="1" vertex="1">
           <mxGeometry x="280" y="520" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="wERcz5VRjjp3bPj3p1RH-82" value="Question" style="whiteSpace=wrap;html=1;fillStyle=auto;strokeColor=#d79b00;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;fontStyle=1;fillColor=#F2CC8F;" parent="1" vertex="1">
@@ -329,25 +329,25 @@
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-2" value="CraftManager" style="swimlane;fillColor=#dae8fc;strokeColor=#6c8ebf;startSize=38;" vertex="1" parent="1">
           <mxGeometry x="2120" y="562" width="200" height="278" as="geometry" />
         </mxCell>
-        <mxCell id="XGUxbLaPOQHml9Gsg8VW-7" value="Item &lt;b&gt;Craft&lt;/b&gt;(vector&amp;lt;Item&amp;gt;)&lt;div&gt;// return an Item from //the craft if correct&lt;/div&gt;" style="shape=delay;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-2">
+        <mxCell id="XGUxbLaPOQHml9Gsg8VW-7" value="&lt;b&gt;Item&lt;/b&gt;* &lt;b&gt;Craft&lt;/b&gt;(vector&amp;lt;&lt;b&gt;Item&lt;/b&gt;&amp;gt;)&lt;div&gt;// return an Item from //the craft if correct&lt;/div&gt;" style="shape=delay;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-2">
           <mxGeometry x="40" y="58" width="120" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="XGUxbLaPOQHml9Gsg8VW-53" value="Item &lt;b&gt;Craft&lt;/b&gt;(vector&amp;lt;Item&amp;gt;&lt;div&gt;Profession)&lt;div&gt;// return an Item from //the craft if correct&lt;/div&gt;&lt;/div&gt;&lt;div&gt;//using Profession&lt;/div&gt;" style="shape=delay;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-2">
+        <mxCell id="XGUxbLaPOQHml9Gsg8VW-53" value="&lt;b&gt;Item&lt;/b&gt;*&lt;div&gt;&lt;b&gt;Craft&lt;/b&gt;(vector&amp;lt;&lt;b&gt;Item&lt;/b&gt;&amp;gt;&lt;div&gt;Profession)&lt;div&gt;// return an Item from //the craft if correct&lt;/div&gt;&lt;/div&gt;&lt;div&gt;//using Profession&lt;/div&gt;&lt;/div&gt;" style="shape=delay;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-2">
           <mxGeometry x="40" y="158" width="120" height="100" as="geometry" />
         </mxCell>
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-3" value="CraftDatabase" style="swimlane;fillColor=#dae8fc;strokeColor=#6c8ebf;startSize=40;" vertex="1" parent="1">
           <mxGeometry x="2400" y="400" width="240" height="360" as="geometry" />
         </mxCell>
-        <mxCell id="XGUxbLaPOQHml9Gsg8VW-4" value="list&amp;lt;CraftItem&amp;gt;" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-3">
+        <mxCell id="XGUxbLaPOQHml9Gsg8VW-4" value="list&amp;lt;&lt;b&gt;CraftItem&lt;/b&gt;*&amp;gt;" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-3">
           <mxGeometry x="60" y="220" width="120" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="XGUxbLaPOQHml9Gsg8VW-8" value="&lt;font size=&quot;1&quot;&gt;&lt;b style=&quot;font-size: 12px;&quot;&gt;struct&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&lt;b&gt;CraftItem&lt;/b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;div&gt;- Item // crafted&lt;/div&gt;&lt;div&gt;- vector&amp;lt;pair&amp;lt;int, Item&amp;gt;&amp;gt;&lt;/div&gt;&lt;div&gt;// int -&amp;gt; quantity&lt;/div&gt;&lt;/div&gt;" style="shape=loopLimit;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-3">
+        <mxCell id="XGUxbLaPOQHml9Gsg8VW-8" value="&lt;font size=&quot;1&quot;&gt;&lt;b style=&quot;font-size: 12px;&quot;&gt;struct&lt;/b&gt;&lt;/font&gt;&amp;nbsp;&lt;b&gt;CraftItem&lt;/b&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;div&gt;- &lt;b&gt;Item&lt;/b&gt; // crafted&lt;/div&gt;&lt;div&gt;- vector&amp;lt;pair&amp;lt;int, &lt;b&gt;Item&lt;/b&gt;&amp;gt;&amp;gt;&lt;/div&gt;&lt;div&gt;// int -&amp;gt; quantity&lt;/div&gt;&lt;/div&gt;" style="shape=loopLimit;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-3">
           <mxGeometry x="40" y="60" width="160" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="XGUxbLaPOQHml9Gsg8VW-14" value="bool &lt;b&gt;CorrectCraft&lt;/b&gt;(&lt;div&gt;vector&amp;lt;Item&amp;gt;)&lt;/div&gt;" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-3">
+        <mxCell id="XGUxbLaPOQHml9Gsg8VW-14" value="bool &lt;b&gt;CorrectCraft&lt;/b&gt;(&lt;div&gt;vector&amp;lt;&lt;b&gt;Item&lt;/b&gt;*&amp;gt;)&lt;/div&gt;" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-3">
           <mxGeometry x="60" y="280" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="XGUxbLaPOQHml9Gsg8VW-44" value="&lt;b&gt;AddCraftItem&lt;/b&gt;(&lt;div&gt;CraftItem)&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;fillColor=#dae8fc;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-3">
+        <mxCell id="XGUxbLaPOQHml9Gsg8VW-44" value="&lt;b&gt;AddCraftItem&lt;/b&gt;(&lt;div&gt;&lt;b&gt;CraftItem&lt;/b&gt;)&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;fillColor=#dae8fc;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-3">
           <mxGeometry x="60" y="160" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=none;" edge="1" parent="1" source="XGUxbLaPOQHml9Gsg8VW-7" target="XGUxbLaPOQHml9Gsg8VW-14">
@@ -406,13 +406,13 @@
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-43" value="ProfessionCraftDatabase" style="swimlane;rounded=0;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;fillColor=#dae8fc;startSize=40;" vertex="1" parent="1">
           <mxGeometry x="2400" y="950" width="200" height="290" as="geometry" />
         </mxCell>
-        <mxCell id="XGUxbLaPOQHml9Gsg8VW-45" value="BlacksmithList&amp;lt;CraftItem&amp;gt;" style="whiteSpace=wrap;html=1;rounded=0;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;fillColor=#dae8fc;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-43">
+        <mxCell id="XGUxbLaPOQHml9Gsg8VW-45" value="BlacksmithList&amp;lt;&lt;b&gt;CraftItem&lt;/b&gt;*&amp;gt;" style="whiteSpace=wrap;html=1;rounded=0;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;fillColor=#dae8fc;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-43">
           <mxGeometry x="20" y="100" width="160" height="40" as="geometry" />
         </mxCell>
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-57" value="bool &lt;b&gt;CorrectCraft&lt;/b&gt;(&lt;div&gt;vector&amp;lt;Item&amp;gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;fillColor=#dae8fc;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-43">
           <mxGeometry x="20" y="210" width="160" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="XGUxbLaPOQHml9Gsg8VW-77" value="AlchemistList&amp;lt;CraftItem&amp;gt;" style="whiteSpace=wrap;html=1;rounded=0;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;fillColor=#dae8fc;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-43">
+        <mxCell id="XGUxbLaPOQHml9Gsg8VW-77" value="AlchemistList&amp;lt;&lt;b&gt;CraftItem&lt;/b&gt;*&amp;gt;" style="whiteSpace=wrap;html=1;rounded=0;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;fillColor=#dae8fc;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-43">
           <mxGeometry x="20" y="50" width="160" height="40" as="geometry" />
         </mxCell>
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-55" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#E07A5F;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#393C56;labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="XGUxbLaPOQHml9Gsg8VW-7" target="XGUxbLaPOQHml9Gsg8VW-14">
@@ -583,7 +583,7 @@
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-165" value="SkillTreeDatabase" style="swimlane;rounded=0;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;fillColor=#dae8fc;startSize=40;" vertex="1" parent="1">
           <mxGeometry x="2400" y="1470" width="160" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="XGUxbLaPOQHml9Gsg8VW-166" value="list&amp;lt;&lt;b&gt;SkillTree&lt;/b&gt;&amp;gt;" style="whiteSpace=wrap;html=1;rounded=0;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;fillColor=#dae8fc;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-165">
+        <mxCell id="XGUxbLaPOQHml9Gsg8VW-166" value="list&amp;lt;&lt;b&gt;SkillTree&lt;/b&gt;*&amp;gt;" style="whiteSpace=wrap;html=1;rounded=0;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;labelBackgroundColor=none;fillColor=#dae8fc;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-165">
           <mxGeometry x="20" y="60" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-168" value="" style="endArrow=classic;html=1;rounded=0;strokeColor=#E07A5F;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#393C56;labelBackgroundColor=none;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="XGUxbLaPOQHml9Gsg8VW-165" target="XGUxbLaPOQHml9Gsg8VW-84">
@@ -623,27 +623,27 @@
           <mxGeometry x="40" y="60" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-185" value="Component" style="swimlane;rounded=0;strokeColor=#d79b00;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=24;labelBackgroundColor=none;fillColor=#ffe6cc;startSize=40;fontStyle=1;horizontal=1;" vertex="1" parent="1">
-          <mxGeometry x="2720" y="90" width="180" height="130" as="geometry">
+          <mxGeometry x="2720" y="90" width="180" height="120" as="geometry">
             <mxRectangle x="1580" y="40" width="160" height="40" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-189" value="TransformComponent" style="swimlane;rounded=0;strokeColor=#E07A5F;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=18;fontColor=#393C56;labelBackgroundColor=none;fillColor=#F2CC8F;startSize=40;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="3550" y="90" width="230" height="260" as="geometry" />
+          <mxGeometry x="3550" y="80" width="230" height="280" as="geometry" />
         </mxCell>
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-190" value="sf::Vector2f m_Pos" style="whiteSpace=wrap;html=1;rounded=0;strokeColor=#E07A5F;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#393C56;labelBackgroundColor=none;fillColor=#F2CC8F;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-189">
-          <mxGeometry x="40" y="50" width="160" height="30" as="geometry" />
+          <mxGeometry x="40" y="60" width="160" height="30" as="geometry" />
         </mxCell>
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-192" value="sf::Vector2f m_Size" style="whiteSpace=wrap;html=1;rounded=0;strokeColor=#E07A5F;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#393C56;labelBackgroundColor=none;fillColor=#F2CC8F;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-189">
-          <mxGeometry x="40" y="90" width="160" height="30" as="geometry" />
+          <mxGeometry x="40" y="100" width="160" height="30" as="geometry" />
         </mxCell>
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-193" value="sf::Vector2f m_Scale" style="whiteSpace=wrap;html=1;rounded=0;strokeColor=#E07A5F;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#393C56;labelBackgroundColor=none;fillColor=#F2CC8F;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-189">
-          <mxGeometry x="40" y="170" width="160" height="30" as="geometry" />
+          <mxGeometry x="40" y="180" width="160" height="30" as="geometry" />
         </mxCell>
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-195" value="float m_Rotation" style="whiteSpace=wrap;html=1;rounded=0;strokeColor=#E07A5F;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#393C56;labelBackgroundColor=none;fillColor=#F2CC8F;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-189">
-          <mxGeometry x="40" y="220" width="160" height="30" as="geometry" />
+          <mxGeometry x="40" y="230" width="160" height="30" as="geometry" />
         </mxCell>
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-203" value="sf::Vector2f m_Origin" style="whiteSpace=wrap;html=1;rounded=0;strokeColor=#E07A5F;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#393C56;labelBackgroundColor=none;fillColor=#F2CC8F;" vertex="1" parent="XGUxbLaPOQHml9Gsg8VW-189">
-          <mxGeometry x="40" y="130" width="160" height="30" as="geometry" />
+          <mxGeometry x="40" y="140" width="160" height="30" as="geometry" />
         </mxCell>
         <mxCell id="XGUxbLaPOQHml9Gsg8VW-196" value="" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#E07A5F;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#393C56;labelBackgroundColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="XGUxbLaPOQHml9Gsg8VW-185" target="XGUxbLaPOQHml9Gsg8VW-189">
           <mxGeometry relative="1" as="geometry">
@@ -664,6 +664,9 @@
             <mxPoint x="1860" y="80" as="sourcePoint" />
             <mxPoint x="2020" y="80" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="XGUxbLaPOQHml9Gsg8VW-204" value="SkillDataBase" style="swimlane;rounded=0;strokeColor=#6C8EBF;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#393C56;labelBackgroundColor=none;fillColor=#D5E8D4;startSize=40;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="2960" y="1080" width="200" height="200" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

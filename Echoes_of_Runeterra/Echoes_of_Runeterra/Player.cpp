@@ -126,42 +126,46 @@ void Player::updateMovement(Window& _window)
 
 void Player::updateInventoryInteractions(Window& _window)
 {
-	//if (m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
-	//{
-	//	Item* item = m_inventory->getItem();
-	//	if (item != nullptr) // to know if we have choosen an item
-	//	{
-	//		// differentiate items type
-	//		Weapon* tmpWeapon = dynamic_cast<Weapon*>(item);
-	//		Armor* tmpArmor = dynamic_cast<Armor*>(item);
-	//		Consumable* tmpConsumable = dynamic_cast<Consumable*>(item);
+	if (m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
+	{
+		Item* item = m_inventory->getItem();
+		if (item != nullptr) // to know if we have choosen an item
+		{
+			// differentiate items type
+			Weapon* tmpWeapon = dynamic_cast<Weapon*>(item);
+			Armor* tmpArmor = dynamic_cast<Armor*>(item);
+			Consumable* tmpConsumable = dynamic_cast<Consumable*>(item);
 
-	//		if (tmpWeapon != nullptr)
-	//		{
-	//			m_inventory->eraseItem(item);
-	//			if (m_weapon != nullptr) // if we already have a Weapon, return it back to the Inventory
-	//				m_inventory->addItem(m_weapon);
+			if (tmpWeapon != nullptr)
+			{
+				//m_inventory->eraseItem(item); TODO let
+				if (m_weapon != nullptr) // if we already have a Weapon, return it back to the Inventory
+					m_inventory->addItem(m_weapon);
+				
+				int speed = tmpWeapon->getSpeed();
+				tmpWeapon->SETSPEEDTESTTODO(123);
+				speed = tmpWeapon->getSpeed();
 
-	//			m_weapon = tmpWeapon;
-	//		}
-	//		else if (tmpArmor != nullptr)
-	//		{
-	//			m_inventory->eraseItem(item);
-	//			if (m_armor != nullptr) // if we already have an Armor, return it back to the Inventory
-	//				m_inventory->addItem(m_armor);
+				m_weapon = tmpWeapon;
+			}
+			else if (tmpArmor != nullptr)
+			{
+				m_inventory->eraseItem(item);
+				if (m_armor != nullptr) // if we already have an Armor, return it back to the Inventory
+					m_inventory->addItem(m_armor);
 
-	//			m_armor = tmpArmor;
-	//		}
-	//		else if (tmpConsumable != nullptr)
-	//		{
-	//			// gain consumable Stats
-	//			m_maxHp += tmpConsumable->getHpBuff();
-	//			m_hp += tmpConsumable->getHpBuff();
-	//			m_defense += tmpConsumable->getDefenseBuff();
-	//			m_speed += tmpConsumable->getSpeedBuff();
-	//			Character::giveXp(50);
-	//			m_inventory->eraseItem(item);
-	//		}
-	//	}
-	//}
+				m_armor = tmpArmor;
+			}
+			else if (tmpConsumable != nullptr)
+			{
+				// gain consumable Stats
+				m_maxHp += tmpConsumable->getHpBuff();
+				m_hp += tmpConsumable->getHpBuff();
+				m_defense += tmpConsumable->getDefenseBuff();
+				m_speed += tmpConsumable->getSpeedBuff();
+				Character::giveXp(50);
+				m_inventory->eraseItem(item);
+			}
+		}
+	}
 }

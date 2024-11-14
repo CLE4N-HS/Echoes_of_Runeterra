@@ -1,4 +1,6 @@
 #include "Inventory.h"
+#include "Weapon.h"
+#include "Armor.h"
 
 Inventory::Inventory() : /*Entity(sf::Vector2f(100.f, 100.f)), */m_item(), m_isOpen(false)
 {
@@ -69,8 +71,16 @@ Item* Inventory::getItem()
 {
 	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
 	{
-		if ((*it)->isHovered())
+		if ((*it)->isHovered()
+			|| 1) // TODO not
 		{
+			if (Armor* armor = dynamic_cast<Armor*>(*it))
+				return new Armor(*armor);
+			if (Weapon* weapon = dynamic_cast<Weapon*>(*it))
+			{
+				return new Weapon(*weapon);
+			}
+			return (*it);
 			return (*it)->Item::getItem();
 		}
 	}
