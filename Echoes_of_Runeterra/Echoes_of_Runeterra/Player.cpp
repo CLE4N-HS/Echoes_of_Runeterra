@@ -104,64 +104,64 @@ sf::FloatRect Player::getRect()
 
 void Player::updateMovement(Window& _window)
 {
-//	float dt = _window.getDeltaTime();
-//
-//	if (!m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
-//	{
-//		m_targetPos = _window.getMousePos();
-//		m_foward = sf::Vector2f(m_targetPos - m_pos);
-//		vec2fNormalize(m_foward);
-//	}
-//
-//	if (vec2fGetMagnitude(sf::Vector2f(m_targetPos - m_pos)) > 26.f)
-//	{
-//		m_pos += m_foward * m_moveSpeed * dt;
-//		m_animState = "walk";
-//	}
-//	else
-//	{
-//		m_animState = "idle";
-//	}
-//}
-//
-//void Player::updateInventoryInteractions(Window& _window)
-//{
-//	if (m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
-//	{
-//		Item* item = m_inventory->getItem();
-//		if (item != nullptr) // to know if we have choosen an item
-//		{
-//			// differentiate items type
-//			Weapon* tmpWeapon = dynamic_cast<Weapon*>(item);
-//			Armor* tmpArmor = dynamic_cast<Armor*>(item);
-//			Consumable* tmpConsumable = dynamic_cast<Consumable*>(item);
-//
-//			if (tmpWeapon != nullptr)
-//			{
-//				m_inventory->eraseItem(item);
-//				if (m_weapon != nullptr) // if we already have a Weapon, return it back to the Inventory
-//					m_inventory->addItem(m_weapon);
-//
-//				m_weapon = tmpWeapon;
-//			}
-//			else if (tmpArmor != nullptr)
-//			{
-//				m_inventory->eraseItem(item);
-//				if (m_armor != nullptr) // if we already have an Armor, return it back to the Inventory
-//					m_inventory->addItem(m_armor);
-//
-//				m_armor = tmpArmor;
-//			}
-//			else if (tmpConsumable != nullptr)
-//			{
-//				// gain consumable Stats
-//				m_maxHp += tmpConsumable->getHpBuff();
-//				m_hp += tmpConsumable->getHpBuff();
-//				m_defense += tmpConsumable->getDefenseBuff();
-//				m_speed += tmpConsumable->getSpeedBuff();
-//				Character::giveXp(50);
-//				m_inventory->eraseItem(item);
-//			}
-//		}
-//	}
+	//float dt = _window.getDeltaTime();
+
+	//if (!m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
+	//{
+	//	m_targetPos = _window.getMousePos();
+	//	m_foward = sf::Vector2f(m_targetPos - m_pos);
+	//	vec2fNormalize(m_foward);
+	//}
+
+	//if (vec2fGetMagnitude(sf::Vector2f(m_targetPos - m_pos)) > 26.f)
+	//{
+	//	m_pos += m_foward * m_moveSpeed * dt;
+	//	m_animState = "walk";
+	//}
+	//else
+	//{
+	//	m_animState = "idle";
+	//}
+}
+
+void Player::updateInventoryInteractions(Window& _window)
+{
+	//if (m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
+	//{
+	//	Item* item = m_inventory->getItem();
+	//	if (item != nullptr) // to know if we have choosen an item
+	//	{
+	//		// differentiate items type
+	//		Weapon* tmpWeapon = dynamic_cast<Weapon*>(item);
+	//		Armor* tmpArmor = dynamic_cast<Armor*>(item);
+	//		Consumable* tmpConsumable = dynamic_cast<Consumable*>(item);
+
+	//		if (tmpWeapon != nullptr)
+	//		{
+	//			m_inventory->eraseItem(item);
+	//			if (m_weapon != nullptr) // if we already have a Weapon, return it back to the Inventory
+	//				m_inventory->addItem(m_weapon);
+
+	//			m_weapon = tmpWeapon;
+	//		}
+	//		else if (tmpArmor != nullptr)
+	//		{
+	//			m_inventory->eraseItem(item);
+	//			if (m_armor != nullptr) // if we already have an Armor, return it back to the Inventory
+	//				m_inventory->addItem(m_armor);
+
+	//			m_armor = tmpArmor;
+	//		}
+	//		else if (tmpConsumable != nullptr)
+	//		{
+	//			// gain consumable Stats
+	//			m_maxHp += tmpConsumable->getHpBuff();
+	//			m_hp += tmpConsumable->getHpBuff();
+	//			m_defense += tmpConsumable->getDefenseBuff();
+	//			m_speed += tmpConsumable->getSpeedBuff();
+	//			Character::giveXp(50);
+	//			m_inventory->eraseItem(item);
+	//		}
+	//	}
+	//}
 }

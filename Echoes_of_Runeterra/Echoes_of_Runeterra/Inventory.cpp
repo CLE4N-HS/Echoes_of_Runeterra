@@ -1,6 +1,6 @@
 #include "Inventory.h"
 
-Inventory::Inventory() : Entity(sf::Vector2f(100.f, 100.f)), m_item(), m_isOpen(false)
+Inventory::Inventory() : /*Entity(sf::Vector2f(100.f, 100.f)), */m_item(), m_isOpen(false)
 {
 }
 
@@ -104,10 +104,10 @@ bool Inventory::isOpen()
 
 void Inventory::repositionItems()
 {
-	int count(0);
-	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
-	{
-		(*it)->setPos(sf::Vector2f(Inventory::m_pos.x + 100.f + 200.f * (float)count , Inventory::m_pos.y + 500.f));
-		count++;
-	}
+	//int count(0);
+	//for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	//{
+	//	(*it)->setPos(sf::Vector2f(Inventory::m_pos.x + 100.f + 200.f * (float)count , Inventory::m_pos.y + 500.f));
+	//	count++;
+	//}
 }

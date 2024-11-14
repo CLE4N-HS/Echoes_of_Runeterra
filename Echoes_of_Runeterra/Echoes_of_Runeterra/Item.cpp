@@ -5,7 +5,7 @@ Item::Item() : Item("")
 {
 }
 
-Item::Item(std::string _name) : Entity(sf::Vector2f(randomFloat(100.f, 1700.f), randomFloat(100.f, 800.f))), m_name(_name), m_state(Item::State::ON_MAP), m_isHovered(false)
+Item::Item(std::string _name) :/* Entity(sf::Vector2f(randomFloat(100.f, 1700.f), randomFloat(100.f, 800.f))), */m_name(_name), m_state(Item::State::ON_MAP), m_isHovered(false)
 {
 	if (_name != "")
 	{

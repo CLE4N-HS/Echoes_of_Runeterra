@@ -21,7 +21,7 @@ void Armor::update(Window& _window)
 
 void Armor::display(Window& _window)
 {
-	_window.rectangle.setTexture(tex_getTexture("items"));
+	/*_window.rectangle.setTexture(tex_getTexture("items"));
 	_window.rectangle.setTextureRect(tex_getAnimRect("items", m_name.c_str()));
 	_window.rectangle.setPosition(m_pos);
 	_window.rectangle.setSize(m_size);
@@ -48,7 +48,7 @@ void Armor::display(Window& _window)
 			_window.rectangle.setScale(sf::Vector2f(1.f, 1.f));
 			_window.rectangle.setFillColor(sf::Color(255, 255, 255));
 		}
-	}
+	}*/
 }
 
 void Armor::displayStats(Window& _window)

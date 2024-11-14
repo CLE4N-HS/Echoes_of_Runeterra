@@ -33,27 +33,29 @@ void CharacterManager::display(Window& _window)
 
 Character* CharacterManager::getClosestNpc(sf::Vector2f _pos, float _minDistance)
 {
-	float closestDistance(_minDistance);
-	Character* closestNpc(nullptr);
-	for (std::map<std::string, Character*>::iterator it = m_character.begin(); it != m_character.end(); it++)
-	{
-		if (it->first != "Player")
-		{
-			float magnitude = vec2fGetSqrMagnitude(_pos - it->second->getPos());
-			if (magnitude < _minDistance)
-			{
-				closestDistance = magnitude;
-				closestNpc = it->second;
-			}
-		}
-	}
+	//float closestDistance(_minDistance);
+	//Character* closestNpc(nullptr);
+	//for (std::map<std::string, Character*>::iterator it = m_character.begin(); it != m_character.end(); it++)
+	//{
+	//	if (it->first != "Player")
+	//	{
+	//		float magnitude = vec2fGetSqrMagnitude(_pos - it->second->getPos());
+	//		if (magnitude < _minDistance)
+	//		{
+	//			closestDistance = magnitude;
+	//			closestNpc = it->second;
+	//		}
+	//	}
+	//}
 
-	return closestNpc;
+	//return closestNpc;
+	return nullptr;
 }
 
 sf::Vector2f CharacterManager::getCharacterPos(std::string _name)
 {
-	return m_character[_name]->getPos();
+	return sf::Vector2f();
+	//return m_character[_name]->getPos();
 }
 
 void CharacterManager::addCharacterItem(std::string _name, Item* _item)
