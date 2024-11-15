@@ -1,5 +1,29 @@
 #include "tools.h"
 
+sf::Clock Tools::m_clock = sf::Clock();
+sf::Time Tools::m_time = sf::Time();
+float Tools::m_deltaTime = 0.f;
+
+Tools::Tools()
+{
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+}
+
+Tools::~Tools()
+{
+}
+
+void Tools::Update()
+{
+    m_time = m_clock.restart();
+    m_deltaTime = m_time.asSeconds();
+}
+
+/*
+*
+* The following code is left there to not damage any previous C code
+*
+*/
 float vec2fGetMagnitude(sf::Vector2f _vec)
 {
     return sqrtf(_vec.x * _vec.x + _vec.y * _vec.y);
