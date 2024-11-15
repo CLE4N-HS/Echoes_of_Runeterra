@@ -1,6 +1,5 @@
 #pragma once
-#include "Window.h"
-#include "StateManager.h"
+#include "Tools.h"
 
 // Masterclass
 class Master
@@ -12,8 +11,5 @@ public:
 	void loop();
 
 private:
-	Window m_window;
-	StateManager m_stateManager;
-	State* m_newState;
 
 };

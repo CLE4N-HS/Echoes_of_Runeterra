@@ -1,10 +1,10 @@
 #pragma once
-#include "tools.h"
+#include "Tools.h"
 
 class State
 {
 public:
-	virtual ~State();
+	virtual ~State() = default;
 
 	virtual void Update() = 0;
 

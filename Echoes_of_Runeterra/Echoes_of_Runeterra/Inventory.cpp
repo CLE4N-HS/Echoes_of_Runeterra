@@ -12,18 +12,18 @@ Inventory::~Inventory()
 
 void Inventory::update(Window& _window)
 {
-	if (_window.keyboardManager.hasJustPressed(sf::Keyboard::I)) {
-		m_isOpen = !m_isOpen;
-	}
+	//if (_window.keyboardManager.hasJustPressed(sf::Keyboard::I)) {
+	//	m_isOpen = !m_isOpen;
+	//}
 
-	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
-	{
-		(*it)->setHover(false);
-		if (m_isOpen)
-		{
-			(*it)->update(_window);
-		}
-	}
+	//for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	//{
+	//	(*it)->setHover(false);
+	//	if (m_isOpen)
+	//	{
+	//		(*it)->update(_window);
+	//	}
+	//}
 }
 
 void Inventory::display(Window& _window)

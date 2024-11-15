@@ -2,40 +2,40 @@
 #include "Player.h"
 #include "Npc.h"
 
-CharacterManager::CharacterManager() : m_character()
+PawnManager::PawnManager() : m_character()
 {
 	m_character.insert({ "Player", new Player("Player")});
 	m_character.insert({ "Npc", new Npc("Npc", "npcHello")});
 	m_character.insert({ "Npc2", new Npc("Npc", "murloc")});
 }
 
-CharacterManager::~CharacterManager()
+PawnManager::~PawnManager()
 {
 	m_character.clear();
 }
 
-void CharacterManager::update(Window& _window)
+void PawnManager::Update()
 {
-	for (std::map<std::string, Character*>::iterator it = m_character.begin(); it != m_character.end(); it++)
+	for (std::map<std::string, Pawn*>::iterator it = m_character.begin(); it != m_character.end(); it++)
 	{
 		it->second->setHover(false);
-		it->second->update(_window);
+		it->second->Update();
 	}
 }
 
-void CharacterManager::display(Window& _window)
+void PawnManager::Display()
 {
-	for (std::map<std::string, Character*>::iterator it = m_character.begin(); it != m_character.end(); it++)
+	for (std::map<std::string, Pawn*>::iterator it = m_character.begin(); it != m_character.end(); it++)
 	{
-		it->second->display(_window);
+		it->second->Display();
 	}
 }
 
-Character* CharacterManager::getClosestNpc(sf::Vector2f _pos, float _minDistance)
+Pawn* PawnManager::getClosestNpc(sf::Vector2f _pos, float _minDistance)
 {
 	//float closestDistance(_minDistance);
-	//Character* closestNpc(nullptr);
-	//for (std::map<std::string, Character*>::iterator it = m_character.begin(); it != m_character.end(); it++)
+	//Pawn* closestNpc(nullptr);
+	//for (std::map<std::string, Pawn*>::iterator it = m_character.begin(); it != m_character.end(); it++)
 	//{
 	//	if (it->first != "Player")
 	//	{
@@ -52,13 +52,13 @@ Character* CharacterManager::getClosestNpc(sf::Vector2f _pos, float _minDistance
 	return nullptr;
 }
 
-sf::Vector2f CharacterManager::getCharacterPos(std::string _name)
+sf::Vector2f PawnManager::getCharacterPos(std::string _name)
 {
 	return sf::Vector2f();
 	//return m_character[_name]->getPos();
 }
 
-void CharacterManager::addCharacterItem(std::string _name, Item* _item)
+void PawnManager::addCharacterItem(std::string _name, Item* _item)
 {
 	m_character[_name]->addItem(_item);
 }

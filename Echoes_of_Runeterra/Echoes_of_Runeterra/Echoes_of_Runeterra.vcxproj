@@ -209,7 +209,7 @@
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="textureManager.cpp" />
-    <ClCompile Include="tools.cpp" />
+    <ClCompile Include="Tools.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
@@ -272,7 +272,7 @@
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="textureManager.h" />
-    <ClInclude Include="tools.h" />
+    <ClInclude Include="Tools.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

@@ -10,7 +10,7 @@
  */
 
 #pragma once
-#include "Window.h"
+#include "Tools.h"
 
 typedef struct tex_SAnim tex_SAnim;
 struct tex_SAnim {
@@ -42,4 +42,4 @@ void tex_deinit(bool _deinitStateAll);
 sf::Texture* tex_getTexture(const char* _name);
 sf::IntRect tex_getAnimRect(const char* _name, const char* _anim);
 
-sf::IntRect texGetRectAnim(Window& _window, const char* _name, const char* _anim, int* frameX, float* timer);
+sf::IntRect texGetRectAnim(const char* _name, const char* _anim, int* frameX, float* timer);

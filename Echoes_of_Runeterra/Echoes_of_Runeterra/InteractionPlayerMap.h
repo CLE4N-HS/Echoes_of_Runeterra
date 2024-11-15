@@ -9,7 +9,7 @@ public:
 	InteractionPlayerMap();
 	~InteractionPlayerMap();
 
-	void update(Window& _window, CharacterManager* _characterManager, MapManager* _mapManager);
+	void Update(PawnManager* _characterManager, MapManager* _mapManager);
 
 private:
 

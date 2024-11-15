@@ -1,11 +1,11 @@
 #include "Npc.h"
 #include "textureManager.h"
 
-Npc::Npc() : Character("Npc")
+Npc::Npc() : Pawn("Npc")
 {
 }
 
-Npc::Npc(std::string _name, std::string _dialogueKey) : Character(_name, _dialogueKey)
+Npc::Npc(std::string _name, std::string _dialogueKey) : Pawn(_name, _dialogueKey)
 {
 }
 
@@ -13,11 +13,11 @@ Npc::~Npc()
 {
 }
 
-void Npc::update(Window& _window)
+void Npc::Update()
 {
 }
 
-void Npc::display(Window& _window)
+void Npc::Display()
 {
 	//_window.rectangle.setPosition(sf::Vector2f());
 	//_window.rectangle.setTexture(tex_getTexture("viego"));

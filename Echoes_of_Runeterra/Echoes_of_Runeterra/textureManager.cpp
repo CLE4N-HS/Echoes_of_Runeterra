@@ -155,9 +155,9 @@ sf::IntRect tex_getAnimRect(const char* _name, const char* _anim)
 	return tmpAnim->rect;
 }
 
-sf::IntRect texGetRectAnim(Window& _window, const char* _name, const char* _anim, int* frameX, float* timer)
+sf::IntRect texGetRectAnim(const char* _name, const char* _anim, int* frameX, float* timer)
 {
-	float dt = _window.getDeltaTime();
+	float dt = Tools::GetDeltaTime();
 	tex_SData* tmpTexture = tex_BeginTex;
 	while (strcmp(tmpTexture->name, _name) != 0)
 	{

@@ -1,15 +1,16 @@
 #pragma once
 #include "Character.h"
 
-class Npc : public Character
+class Npc : public Pawn
 {
 public:
 	Npc();
 	Npc(std::string _name, std::string _dialogueKey);
 	~Npc();
 
-	virtual void update(Window& _window);
-	virtual void display(Window& _window);
+	virtual void Update() override;
+
+	virtual void Display() override;
 
 	sf::FloatRect getRect();
 

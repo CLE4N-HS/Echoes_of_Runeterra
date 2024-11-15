@@ -13,22 +13,22 @@ void Answer::setup()
 
 void Answer::update(Window& _window)
 {
-	if (m_isVisible)
-	{
-		if (m_rect.contains(_window.getMousePos()))
-		{
-			m_isHovered = true;
+	//if (m_isVisible)
+	//{
+	//	if (m_rect.contains(_window.getMousePos()))
+	//	{
+	//		m_isHovered = true;
 
-			if (_window.mouseManager.hasJustPressed(sf::Mouse::Left))
-			{
-				m_hasChoosen = true;
-			}
-		}
-		else
-		{
-			m_isHovered = false;
-		}
-	}
+	//		if (_window.mouseManager.hasJustPressed(sf::Mouse::Left))
+	//		{
+	//			m_hasChoosen = true;
+	//		}
+	//	}
+	//	else
+	//	{
+	//		m_isHovered = false;
+	//	}
+	//}
 }
 
 void Answer::display(Window& _window)

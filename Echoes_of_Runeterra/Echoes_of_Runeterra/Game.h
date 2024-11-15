@@ -21,7 +21,7 @@ public:
 
 private:
 	ItemDataBase* m_itemDB;
-	CharacterManager m_characterManager;
+	PawnManager m_characterManager;
 	MapManager m_mapManager;
 	DialogueManager m_dialogueManager;
 	InteractionManager m_interactionManager;

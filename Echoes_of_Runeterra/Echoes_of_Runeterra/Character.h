@@ -5,17 +5,18 @@
 #include "Race.h"
 #include "Inventory.h"
 
-class Character : public Entity
+class Pawn : public Entity
 {
 public:
-	Character();
-	Character(std::string _name);
-	Character(std::string _name, std::string _dialogueKey);
-	Character(std::string _name, std::string _dialogueKey, int _level, int _hp, int _attack, int _defense, int _xp, int _stamina, int _speed, Alignement _alignement);
-	~Character();
+	Pawn();
+	Pawn(std::string _name);
+	Pawn(std::string _name, std::string _dialogueKey);
+	Pawn(std::string _name, std::string _dialogueKey, int _level, int _hp, int _attack, int _defense, int _xp, int _stamina, int _speed, Alignement _alignement);
+	~Pawn();
 
-	virtual void update(Window& _window) = 0;
-	virtual void display(Window& _window) = 0;
+	virtual void Update() = 0;
+
+	virtual void Display() = 0;
 
 	void setDialogueKey(std::string _dialogueKey);
 	std::string getDialogueKey();
@@ -23,7 +24,7 @@ public:
 	int getLevel() const;
 	void giveXp(int _xp);
 
-	void attack(Character& _character);
+	void attack(Pawn& _character);
 
 	void inventorySetOpening(bool _shouldBeOpened);
 	bool isInventoryOpen();

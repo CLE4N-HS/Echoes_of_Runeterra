@@ -2,19 +2,19 @@
 #include "MouseManager.h"
 #include "textureManager.h"
 
-Character::Character() : Character("Default Name")
+Pawn::Pawn() : Pawn("Default Name")
 {
 }
 
-Character::Character(std::string _name) : Character(_name, "")
+Pawn::Pawn(std::string _name) : Pawn(_name, "")
 {
 }
 
-Character::Character(std::string _name, std::string _dialogueKey) : Character(_name, _dialogueKey, 1, 0, 100, 2, 1, 1, 1, ALIGNEMENT_NULL)
+Pawn::Pawn(std::string _name, std::string _dialogueKey) : Pawn(_name, _dialogueKey, 1, 0, 100, 2, 1, 1, 1, ALIGNEMENT_NULL)
 {
 }
 
-Character::Character(std::string _name, std::string _dialogueKey, int _level, int _xp, int _hp, int _attack, int _defense, int _stamina, int _speed, Alignement _alignement) :
+Pawn::Pawn(std::string _name, std::string _dialogueKey, int _level, int _xp, int _hp, int _attack, int _defense, int _stamina, int _speed, Alignement _alignement) :
 	/*Entity(),*/ Entity(Transform(sf::Vector2f(100.f, 2.f), sf::Vector2f(50.f, 50.f))),
 	m_name(_name), m_dialogueKey(_dialogueKey), m_level(_level), m_xp(_xp), m_hp(_hp), m_attack(_attack), m_defense(_defense), m_stamina(_stamina), m_speed(_speed), m_alignement(_alignement),
 
@@ -26,32 +26,33 @@ Character::Character(std::string _name, std::string _dialogueKey, int _level, in
 	m_animState("idle"), m_frameX(0), m_animTimer(0.f), m_attackTimer(0.f),
 	m_takingAnItem(false), m_isHovered(false)
 {
-	sf::IntRect animRect = tex_getAnimRect("viego", m_animState.c_str());
+	sf::IntRect animRect = sf::IntRect();
+	//sf::IntRect animRect = tex_getAnimRect("viego", m_animState.c_str());
 	m_size = sf::Vector2f((float)animRect.width, (float)animRect.height);
 	m_origin = m_size * 0.5f;
 	m_scale = sf::Vector2f(2.f, 2.f);
 }
 
-Character::~Character()
+Pawn::~Pawn()
 {
 }
 
-void Character::setDialogueKey(std::string _dialogueKey)
+void Pawn::setDialogueKey(std::string _dialogueKey)
 {
 	m_dialogueKey = _dialogueKey;
 }
 
-std::string Character::getDialogueKey()
+std::string Pawn::getDialogueKey()
 {
 	return m_dialogueKey;
 }
 
-int Character::getLevel() const
+int Pawn::getLevel() const
 {
 	return m_level;
 }
 
-void Character::giveXp(int _xp)
+void Pawn::giveXp(int _xp)
 {
 	m_xp += _xp;
 
@@ -59,7 +60,7 @@ void Character::giveXp(int _xp)
 		gainLevel();
 }
 
-void Character::attack(Character& _character)
+void Pawn::attack(Pawn& _character)
 {
 	if (m_attackTimer > 2.f) {
 		m_attackTimer = 0.f;
@@ -71,33 +72,33 @@ void Character::attack(Character& _character)
 	}
 }
 
-void Character::inventorySetOpening(bool _shouldBeOpened)
+void Pawn::inventorySetOpening(bool _shouldBeOpened)
 {
 	m_inventory->setOpening(_shouldBeOpened);
 }
 
-bool Character::isInventoryOpen()
+bool Pawn::isInventoryOpen()
 {
 	return m_inventory->isOpen();
 }
 
-void Character::displayInventory(Window& _window)
+void Pawn::displayInventory(Window& _window)
 {
 	m_inventory->display(_window);
 }
 
-void Character::addItem(Item* _item)
+void Pawn::addItem(Item* _item)
 {
 	if (_item != nullptr)
 		m_inventory->addItem(_item);
 }
 
-void Character::setHover(bool _isHovered)
+void Pawn::setHover(bool _isHovered)
 {
 	m_isHovered = _isHovered;
 }
 
-void Character::gainLevel()
+void Pawn::gainLevel()
 {
 	m_level++;
 	m_skillPoint++;
@@ -108,7 +109,7 @@ void Character::gainLevel()
 	m_hp = m_maxHp;
 }
 
-void Character::upgradeLevelXp()
+void Pawn::upgradeLevelXp()
 {
 	m_levelXp += (m_levelXp / 5 + 50) / 10 * 10;
 }

@@ -1,20 +1,20 @@
 #pragma once
 #include "Character.h"
 
-class CharacterManager
+class PawnManager
 {
 public:
-	CharacterManager();
-	~CharacterManager();
+	PawnManager();
+	~PawnManager();
 
-	void update(Window& _window);
-	void display(Window& _window);
+	void Update();
+	void Display();
 
-	Character* getClosestNpc(sf::Vector2f _pos, float _minDistance);
+	Pawn* getClosestNpc(sf::Vector2f _pos, float _minDistance);
 	sf::Vector2f getCharacterPos(std::string _name);
 	void addCharacterItem(std::string _name, Item* _item);
 
 private:
-	std::map<std::string, Character*> m_character;
+	std::map<std::string, Pawn*> m_character;
 
 };

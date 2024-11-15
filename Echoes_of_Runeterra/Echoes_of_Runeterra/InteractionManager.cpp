@@ -11,10 +11,10 @@ InteractionManager::~InteractionManager()
 {
 }
 
-void InteractionManager::update(Window& _window, CharacterManager* _characterManager, DialogueManager* _dialogueManager, MapManager* _mapManager)
+void InteractionManager::update(Window& _window, PawnManager* _characterManager, DialogueManager* _dialogueManager, MapManager* _mapManager)
 {
-	m_interactionPlayerNpc->update(_window, _characterManager, _dialogueManager);
-	m_interactionPlayerMap->update(_window, _characterManager, _mapManager);
+	//m_interactionPlayerNpc->update(_window, _characterManager, _dialogueManager);
+	//m_interactionPlayerMap->update(_window, _characterManager, _mapManager);
 	//for (int i = 0; i < m_interaction.size(); i++)
 	//{
 	//	m_interaction[i]->update(_window)

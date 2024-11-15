@@ -9,7 +9,8 @@ Item::Item(std::string _name) :/* Entity(sf::Vector2f(randomFloat(100.f, 1700.f)
 {
 	if (_name != "")
 	{
-		sf::IntRect animRect = tex_getAnimRect("items", m_name.c_str());
+		sf::IntRect animRect = sf::IntRect();
+		//sf::IntRect animRect = tex_getAnimRect("items", m_name.c_str());
 		m_size = sf::Vector2f((float)animRect.width, (float)animRect.height);
 		m_origin = m_size * 0.5f;
 		m_scale = sf::Vector2f(5.f, 5.f);
@@ -22,25 +23,25 @@ Item::~Item()
 
 void Item::update(Window& _window)
 {
-	sf::Vector2f mousePos = _window.getMousePos();
+	//sf::Vector2f mousePos = _window.getMousePos();
 
-	sf::FloatRect itemRect = Item::getRect();
+	//sf::FloatRect itemRect = Item::getRect();
 
-	if (m_state == Item::State::IN_INVENTORY)
-	{
-		if (itemRect.contains(mousePos))
-		{
-			m_isHovered = true;
-		}
-		else
-		{
-			m_isHovered = false;
-		}
-	}
-	else if (m_state == Item::State::ON_MAP)
-	{
-		m_isHovered = false;
-	}
+	//if (m_state == Item::State::IN_INVENTORY)
+	//{
+	//	if (itemRect.contains(mousePos))
+	//	{
+	//		m_isHovered = true;
+	//	}
+	//	else
+	//	{
+	//		m_isHovered = false;
+	//	}
+	//}
+	//else if (m_state == Item::State::ON_MAP)
+	//{
+	//	m_isHovered = false;
+	//}
 }
 
 void Item::setState(Item::State _state)

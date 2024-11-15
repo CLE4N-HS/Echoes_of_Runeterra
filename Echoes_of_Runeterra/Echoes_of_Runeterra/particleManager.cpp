@@ -133,6 +133,7 @@ void prt_UpdateParticles(float const& _dt)
 
 void prt_DisplayParticlesBehind(Window& _window, float const& _dt)
 {
+	/*
 	float dt = _dt;
 	for (auto it = particlesList.begin(); it != particlesList.end(); ++it)
 	{
@@ -189,10 +190,12 @@ void prt_DisplayParticlesBehind(Window& _window, float const& _dt)
 			}
 		}
 	}
+	*/
 }
 
 void prt_DisplayParticlesInFront(Window& _window, float const& _dt)
 {
+	/*
 	float dt = _dt;
 
 	for (auto it = particlesList.begin(); it != particlesList.end(); ++it)
@@ -249,6 +252,7 @@ void prt_DisplayParticlesInFront(Window& _window, float const& _dt)
 			}
 		}
 	}
+	*/
 }
 
 void prt_clear()

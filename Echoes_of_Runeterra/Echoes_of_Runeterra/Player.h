@@ -4,20 +4,22 @@
 #include "Armor.h"
 #include "Profession.h"
 
-class Player : public Character
+class Player : public Pawn
 {
 public:
 	Player();
 	Player(std::string _name);
 	~Player();
 
-	virtual void update(Window& _window);
-	virtual void display(Window& _window);
+	virtual void Update() override;
+
+	virtual void Display() override;
+
 	sf::FloatRect getRect();
 
 private:
-	void updateMovement(Window& _window);
-	void updateInventoryInteractions(Window& _window);
+	void UpdateMovement();
+	void UpdateInventoryInteractions();
 
 	Weapon* m_weapon;
 	Armor* m_armor;

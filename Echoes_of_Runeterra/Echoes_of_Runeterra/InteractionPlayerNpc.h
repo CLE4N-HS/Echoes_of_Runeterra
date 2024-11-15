@@ -10,7 +10,7 @@ public:
 	InteractionPlayerNpc();
 	~InteractionPlayerNpc();
 
-	void update(Window& _window, CharacterManager* _characterManager, DialogueManager* _dialogueManager);
+	void update(Window& _window, PawnManager* _characterManager, DialogueManager* _dialogueManager);
 
 private:
 
