@@ -14,8 +14,10 @@ class Game : public State
 public:
 	Game();
 	virtual ~Game();
-	virtual void update(Window& _window, State*& _state);
-	virtual void display(Window& _window);
+
+	virtual void Update();
+
+	virtual void Display();
 
 private:
 	ItemDataBase* m_itemDB;

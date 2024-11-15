@@ -2,24 +2,28 @@
 #include "ressourcesManager.h"
 #include "Game.h"
 
+State* StateManager::m_state = new Game();
+
+StateManager stateManager;
+
 StateManager::StateManager()
 {
 	res_load(RES_ALL);
-	m_state = new Game;
 }
 
 StateManager::~StateManager()
 {
+	delete m_state;
 }
 
-void StateManager::update(Window& _window, State*& _state)
+void StateManager::Update()
 {
-	m_state->update(_window, _state);
+	m_state->Update();
 }
 
-void StateManager::display(Window& _window)
+void StateManager::Display()
 {
-	m_state->display(_window);
+	m_state->Display();
 }
 
 void StateManager::changeState(State* _state)

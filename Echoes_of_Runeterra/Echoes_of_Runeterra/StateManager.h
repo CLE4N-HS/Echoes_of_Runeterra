@@ -7,12 +7,13 @@ public:
 	StateManager();
 	~StateManager();
 
-	void update(Window& _window, State*& _state);
-	void display(Window& _window);
+	static void Update();
 
-	void changeState(State* _state);
+	static void Display();
+
+	static void changeState(State* _state);
 
 private:
-	State* m_state;
+	static State* m_state;
 
 };

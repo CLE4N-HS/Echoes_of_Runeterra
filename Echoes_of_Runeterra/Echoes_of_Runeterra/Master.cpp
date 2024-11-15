@@ -24,10 +24,9 @@ void Master::loop()
 		Window::Update();
 
 		if (Window::HasFocus())
-			m_stateManager.update(m_window, m_newState);
+			StateManager::Update();
 
-		m_stateManager.display(m_window);
-
+		StateManager::Display();
 		Window::Display();
 	}
 }
