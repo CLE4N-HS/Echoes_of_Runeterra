@@ -4,13 +4,11 @@ sf::Clock Tools::m_clock = sf::Clock();
 sf::Time Tools::m_time = sf::Time();
 float Tools::m_deltaTime = 0.f;
 
+Tools tool = Tools::Tools();
+
 Tools::Tools()
 {
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
-}
-
-Tools::~Tools()
-{
 }
 
 void Tools::Update()

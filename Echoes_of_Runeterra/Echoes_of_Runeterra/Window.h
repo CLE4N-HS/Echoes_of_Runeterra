@@ -1,5 +1,5 @@
 #pragma once
-#include "tools.h"
+#include "Entity.h"
 // could/should be an Input Manager
 #include "MouseManager.h"
 #include "KeyboardManager.h"

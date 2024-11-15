@@ -15,12 +15,13 @@ class Tools
 {
 public:
 	Tools();
-	~Tools();
+	~Tools() = default;
 
 	/// <summary>
 	/// Call this at the start of every frame in order to update correctly the delta time
 	/// </summary>
 	static void Update();
+
 	static inline float GetDeltaTime() { return m_deltaTime; }
 
 private:
