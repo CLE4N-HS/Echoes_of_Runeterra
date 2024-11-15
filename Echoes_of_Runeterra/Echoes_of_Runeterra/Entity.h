@@ -1,5 +1,5 @@
 #pragma once
-#include "tools.h"
+#include "Tools.h"
 #include "Transform.h"
 
 #define COMPONENT_TEMPLATE \

@@ -1,5 +1,5 @@
 #include "Window.h"
-#include "tools.h"
+#include "Tools.h"
 
 sf::RenderWindow Window::m_renderWindow = sf::RenderWindow();
 sf::RenderTexture Window::m_renderTexture = sf::RenderTexture();

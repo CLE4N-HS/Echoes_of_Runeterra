@@ -1,8 +1,5 @@
 #pragma once
-#include "tools.h"
-// could/should be an Input Manager
-#include "MouseManager.h"
-#include "KeyboardManager.h"
+#include "Tools.h"
 
 class Window
 {

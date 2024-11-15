@@ -1,5 +1,5 @@
 #pragma once
-#include "Window.h"
+#include "Tools.h"
 #include "Item.h"
 #include "Entity.h"
 
@@ -9,8 +9,8 @@ public:
 	Inventory();
 	~Inventory();
 
-	void update(Window& _window);
-	void display(Window& _window);
+	void Update();
+	void Display();
 
 	void addItem(Item* _item);
 	Item* getItem();

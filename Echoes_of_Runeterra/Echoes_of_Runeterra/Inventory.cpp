@@ -10,7 +10,7 @@ Inventory::~Inventory()
 {
 }
 
-void Inventory::update(Window& _window)
+void Inventory::Update()
 {
 	//if (_window.keyboardManager.hasJustPressed(sf::Keyboard::I)) {
 	//	m_isOpen = !m_isOpen;
@@ -26,7 +26,7 @@ void Inventory::update(Window& _window)
 	//}
 }
 
-void Inventory::display(Window& _window)
+void Inventory::Display()
 {
 	//if (m_isOpen)
 	//{

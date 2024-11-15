@@ -1,4 +1,4 @@
-#include "tools.h"
+#include "Tools.h"
 
 sf::Clock Tools::m_clock = sf::Clock();
 sf::Time Tools::m_time = sf::Time();

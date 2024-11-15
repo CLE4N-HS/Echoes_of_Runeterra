@@ -28,7 +28,6 @@ public:
 
 	void inventorySetOpening(bool _shouldBeOpened);
 	bool isInventoryOpen();
-	void displayInventory(Window& _window);
 
 	void addItem(Item* _item);
 
@@ -39,7 +38,7 @@ protected:
 	void upgradeLevelXp();
 	void gainLevel();
 
-	Inventory* m_inventory;
+	Inventory m_inventory;
 	Race m_race;
 
 	std::string m_dialogueKey;

@@ -9,7 +9,7 @@
  */
 
 #pragma once
-#include "tools.h"
+#include "Tools.h"
 #include "Window.h"
 
 typedef enum {

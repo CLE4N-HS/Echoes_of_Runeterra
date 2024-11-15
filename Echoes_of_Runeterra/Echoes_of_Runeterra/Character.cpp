@@ -18,7 +18,7 @@ Pawn::Pawn(std::string _name, std::string _dialogueKey, int _level, int _xp, int
 	/*Entity(),*/ Entity(Transform(sf::Vector2f(100.f, 2.f), sf::Vector2f(50.f, 50.f))),
 	m_name(_name), m_dialogueKey(_dialogueKey), m_level(_level), m_xp(_xp), m_hp(_hp), m_attack(_attack), m_defense(_defense), m_stamina(_stamina), m_speed(_speed), m_alignement(_alignement),
 
-	m_inventory(new Inventory),
+	m_inventory(Inventory()),
 	m_race(Race::RACE_IONIAN, "Ionian", 0, 0, 20),
 	m_maxHp(m_hp),
 	m_levelXp(100), m_skillPoint(0),
@@ -74,23 +74,18 @@ void Pawn::attack(Pawn& _character)
 
 void Pawn::inventorySetOpening(bool _shouldBeOpened)
 {
-	m_inventory->setOpening(_shouldBeOpened);
+	m_inventory.setOpening(_shouldBeOpened);
 }
 
 bool Pawn::isInventoryOpen()
 {
-	return m_inventory->isOpen();
-}
-
-void Pawn::displayInventory(Window& _window)
-{
-	m_inventory->display(_window);
+	return m_inventory.isOpen();
 }
 
 void Pawn::addItem(Item* _item)
 {
 	if (_item != nullptr)
-		m_inventory->addItem(_item);
+		m_inventory.addItem(_item);
 }
 
 void Pawn::setHover(bool _isHovered)
