@@ -14,12 +14,12 @@ Weapon::~Weapon()
 {
 }
 
-void Weapon::update(Window& _window)
+void Weapon::Update()
 {
-	Item::update(_window);
+	Item::Update();
 }
 
-void Weapon::display(Window& _window)
+void Weapon::Display()
 {
 	//_window.rectangle.setTexture(tex_getTexture("items"));
 	//_window.rectangle.setTextureRect(tex_getAnimRect("items", m_name.c_str()));

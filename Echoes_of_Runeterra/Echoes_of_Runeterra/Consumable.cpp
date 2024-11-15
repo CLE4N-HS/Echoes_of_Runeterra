@@ -14,12 +14,12 @@ Consumable::~Consumable()
 {
 }
 
-void Consumable::update(Window& _window)
+void Consumable::Update()
 {
-	Item::update(_window);
+	Item::Update();
 }
 
-void Consumable::display(Window& _window)
+void Consumable::Display()
 {
 	//_window.rectangle.setTexture(tex_getTexture("items"));
 	//_window.rectangle.setTextureRect(tex_getAnimRect("items", m_name.c_str()));

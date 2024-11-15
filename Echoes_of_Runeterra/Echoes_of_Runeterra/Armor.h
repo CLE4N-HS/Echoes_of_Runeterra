@@ -9,8 +9,8 @@ public:
 	Armor(std::string _name, int _defense, int _speed, int _durability);
 	~Armor();
 
-	virtual void update(Window& _window);
-	virtual void display(Window& _window);
+	virtual void Update() override;
+	virtual void Display() override;
 	virtual void displayStats(Window& _window);
 
 	int getDefense() const;

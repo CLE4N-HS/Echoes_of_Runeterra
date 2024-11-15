@@ -14,7 +14,7 @@ public:
 
 	void addItem(Item* _item);
 	Item* getItem();
-	void eraseItem(Item* _item);
+	void EraseItem(Item* _item);
 
 	void setOpening(bool _shouldBeOpened);
 	bool isOpen();

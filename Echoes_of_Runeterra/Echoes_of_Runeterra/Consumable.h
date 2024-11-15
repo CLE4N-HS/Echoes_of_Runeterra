@@ -9,8 +9,8 @@ public:
 	Consumable(std::string _name, int _hp, int _defense, int _speed);
 	~Consumable();
 
-	virtual void update(Window& _window);
-	virtual void display(Window& _window);
+	virtual void Update() override;
+	virtual void Display() override;
 	virtual void displayStats(Window& _window);
 
 	int getHpBuff() const;

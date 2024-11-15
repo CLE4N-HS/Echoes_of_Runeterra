@@ -14,8 +14,8 @@ public:
 	Item(std::string _name);
 	~Item();
 
-	virtual void update(Window& _window) = 0;
-	virtual void display(Window& _window) = 0;
+	virtual void Update() = 0;
+	virtual void Display() = 0;
 	virtual void displayStats(Window& _window) = 0;
 	void setState(Item::State _state);
 	Item::State getState();

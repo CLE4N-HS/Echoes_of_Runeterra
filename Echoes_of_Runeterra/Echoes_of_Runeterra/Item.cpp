@@ -21,7 +21,7 @@ Item::~Item()
 {
 }
 
-void Item::update(Window& _window)
+void Item::Update()
 {
 	//sf::Vector2f mousePos = _window.getMousePos();
 

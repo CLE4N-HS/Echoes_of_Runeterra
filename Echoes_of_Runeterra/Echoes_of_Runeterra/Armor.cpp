@@ -14,12 +14,12 @@ Armor::~Armor()
 {
 }
 
-void Armor::update(Window& _window)
+void Armor::Update()
 {
-	Item::update(_window);
+	Item::Update();
 }
 
-void Armor::display(Window& _window)
+void Armor::Display()
 {
 	/*_window.rectangle.setTexture(tex_getTexture("items"));
 	_window.rectangle.setTextureRect(tex_getAnimRect("items", m_name.c_str()));

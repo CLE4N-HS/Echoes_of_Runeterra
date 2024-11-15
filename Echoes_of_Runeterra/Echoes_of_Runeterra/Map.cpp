@@ -12,7 +12,7 @@ void Map::update(Window& _window)
 {
 	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
 	{
-		(*it)->update(_window);
+		(*it)->Update();
 	}
 }
 
@@ -20,7 +20,7 @@ void Map::display(Window& _window)
 {
 	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
 	{
-		(*it)->display(_window);
+		(*it)->Display();
 	}
 }
 
