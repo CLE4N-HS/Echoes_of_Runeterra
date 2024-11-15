@@ -2,32 +2,35 @@
 #include "Player.h"
 #include "Npc.h"
 
-PawnManager::PawnManager() : m_character()
+std::vector<Pawn*> PawnManager::m_pawn;
+
+PawnManager::PawnManager()
 {
-	m_character.insert({ "Player", new Player("Player")});
-	m_character.insert({ "Npc", new Npc("Npc", "npcHello")});
-	m_character.insert({ "Npc2", new Npc("Npc", "murloc")});
+	m_pawn.reserve(sizeof(Pawn*) * 3);
+
+	m_pawn.push_back(new Player("Player"));
+	m_pawn.push_back(new Npc("Npc", "npcHello"));
+	m_pawn.push_back(new Npc("Npc", "murloc"));
 }
 
 PawnManager::~PawnManager()
 {
-	m_character.clear();
 }
 
 void PawnManager::Update()
 {
-	for (std::map<std::string, Pawn*>::iterator it = m_character.begin(); it != m_character.end(); it++)
+	for (size_t i = 0; i < m_pawn.size(); i++)
 	{
-		it->second->setHover(false);
-		it->second->Update();
+		// PREVIOUSLY : setHover(false)
+		m_pawn[i]->Update();
 	}
 }
 
 void PawnManager::Display()
 {
-	for (std::map<std::string, Pawn*>::iterator it = m_character.begin(); it != m_character.end(); it++)
+	for (size_t i = 0; i < m_pawn.size(); i++)
 	{
-		it->second->Display();
+		m_pawn[i]->Display();
 	}
 }
 
@@ -60,5 +63,5 @@ sf::Vector2f PawnManager::getCharacterPos(std::string _name)
 
 void PawnManager::addCharacterItem(std::string _name, Item* _item)
 {
-	m_character[_name]->addItem(_item);
+	//m_character[_name]->addItem(_item);
 }

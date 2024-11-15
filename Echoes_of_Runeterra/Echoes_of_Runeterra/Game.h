@@ -1,7 +1,6 @@
 #pragma once
 #include "State.h"
 #include "ItemDatabase.h"
-#include "CharacterManager.h"
 #include "MapManager.h"
 #include "DialogueManager.h"
 #include "InteractionManager.h"
@@ -21,7 +20,6 @@ public:
 
 private:
 	ItemDataBase* m_itemDB;
-	PawnManager m_characterManager;
 	MapManager m_mapManager;
 	DialogueManager m_dialogueManager;
 	InteractionManager m_interactionManager;

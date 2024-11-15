@@ -1,8 +1,9 @@
 #include "Game.h"
+#include "CharacterManager.h"
 #include "Player.h"
 #include "Npc.h"
 
-Game::Game() : m_itemDB(new ItemDataBase), m_mapManager(), m_characterManager(), m_dialogueManager(), m_interactionManager(), m_craftManager(m_itemDB),
+Game::Game() : m_itemDB(new ItemDataBase), m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager(m_itemDB),
 	m_treeDB(new TreeDataBase),
 	m_skillsSystem(m_treeDB)
 {
@@ -14,7 +15,7 @@ Game::Game() : m_itemDB(new ItemDataBase), m_mapManager(), m_characterManager(),
 	m_mapManager.addItem(m_itemDB->getItem("speedPotion"));
 	m_dialogueManager.setupDialogue("intro");
 
-	m_characterManager.addCharacterItem("Player", m_itemDB->getItem("sword"));
+	//m_characterManager.addCharacterItem("Player", m_itemDB->getItem("sword"));
 }
 
 Game::~Game()
@@ -23,6 +24,7 @@ Game::~Game()
 
 void Game::Update()
 {
+	PawnManager::Update();
 	//m_mapManager.update(_window);
 
 	////if (!m_dialogueManager.isInDialogue())
@@ -41,6 +43,7 @@ void Game::Display()
 	//m_mapManager.display(_window);
 
 	//m_characterManager.display(_window);
+	PawnManager::Display();
 
 	//m_dialogueManager.display(_window);
 

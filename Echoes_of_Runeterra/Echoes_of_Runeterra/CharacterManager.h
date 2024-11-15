@@ -7,14 +7,21 @@ public:
 	PawnManager();
 	~PawnManager();
 
-	void Update();
-	void Display();
+	/// <summary>
+	/// Updates all Pawn
+	/// </summary>
+	static void Update();
 
-	Pawn* getClosestNpc(sf::Vector2f _pos, float _minDistance);
-	sf::Vector2f getCharacterPos(std::string _name);
-	void addCharacterItem(std::string _name, Item* _item);
+	/// <summary>
+	/// Displays all Pawn
+	/// </summary>
+	static void Display();
+
+	static Pawn* getClosestNpc(sf::Vector2f _pos, float _minDistance);
+	static sf::Vector2f getCharacterPos(std::string _name);
+	static void addCharacterItem(std::string _name, Item* _item);
 
 private:
-	std::map<std::string, Pawn*> m_character;
+	static std::vector<Pawn*> m_pawn;
 
 };
