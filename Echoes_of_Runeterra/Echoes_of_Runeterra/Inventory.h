@@ -22,7 +22,7 @@ public:
 private:
 	void repositionItems();
 
-	std::list<Item*> m_item;
+	std::vector<Item*> m_item;
 	bool m_isOpen;
 
 };

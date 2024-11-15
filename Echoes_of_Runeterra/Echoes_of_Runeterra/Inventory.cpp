@@ -69,35 +69,49 @@ void Inventory::addItem(Item* _item)
 
 Item* Inventory::getItem()
 {
-	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	for (size_t i = 0; i < m_item.size(); i++)
 	{
-		if ((*it)->isHovered()
-			|| 1) // TODO not
-		{
-			if (Armor* armor = dynamic_cast<Armor*>(*it))
-				return new Armor(*armor);
-			if (Weapon* weapon = dynamic_cast<Weapon*>(*it))
-			{
-				return new Weapon(*weapon);
-			}
-			return (*it);
-			return (*it)->Item::getItem();
-		}
+		// TODO
 	}
+
+	//for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	//{
+	//	if ((*it)->isHovered()
+	//		|| 1) // TODO not
+	//	{
+	//		if (Armor* armor = dynamic_cast<Armor*>(*it))
+	//			return new Armor(*armor);
+	//		if (Weapon* weapon = dynamic_cast<Weapon*>(*it))
+	//		{
+	//			return new Weapon(*weapon);
+	//		}
+	//		return (*it);
+	//		return (*it)->Item::getItem();
+	//	}
+	//}
 
 	return nullptr;
 }
 
-void Inventory::eraseItem(Item* _item)
+void Inventory::EraseItem(Item* _item)
 {
-	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	for (size_t i = 0; i < m_item.size(); i++)
 	{
-		if ((*it) == _item)
+		if (m_item[i] == _item)
 		{
-			it = m_item.erase(it);
-			break;
+			delete m_item[i];
+			m_item.erase(m_item.begin() + i);
 		}
 	}
+
+	//for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	//{
+	//	if ((*it) == _item)
+	//	{
+	//		it = m_item.erase(it);
+	//		break;
+	//	}
+	//}
 
 	repositionItems();
 }
