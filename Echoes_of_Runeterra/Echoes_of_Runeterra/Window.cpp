@@ -1,28 +1,37 @@
 #include "Window.h"
+#include "tools.h"
 
-Window::Window() : Window("Title", sf::Style::Default)
+sf::RenderWindow Window::m_renderWindow = sf::RenderWindow();
+sf::RenderTexture Window::m_renderTexture = sf::RenderTexture();
+sf::Font Window::m_font = sf::Font();
+sf::VideoMode Window::m_videoMode = sf::VideoMode::getDesktopMode();
+sf::String Window::m_title = sf::String("Echoes of Runterra");
+sf::Uint32 Window::m_style = sf::Style::Default;
+bool Window::m_isFullscreen = false;
+unsigned int Window::m_framerateLimit = 60;
+bool Window::m_isDone = false;
+bool Window::m_hasFocus = false;
+float Window::m_fullscreenTimer = 0.f;
+sf::Event Window::m_event = sf::Event();
+sf::Vector2f Window::m_mousePos = sf::Vector2f();
+sf::Sprite Window::m_sprite = sf::Sprite();
+sf::Texture Window::m_texture = sf::Texture();
+
+Window window;
+
+Window::Window() : Window(m_title, m_style)
 {
-
 }
 
-Window::Window(const sf::String& title, sf::Uint32 style) : m_videoMode(sf::VideoMode::getDesktopMode()), m_title(title), m_style(style),
-	rectangle(), text(), mouseManager(), keyboardManager(), m_renderTexture(), m_font(),
-	m_framerateLimit(60), m_isDone(false), m_fullscreenTimer(0.f),
-	m_event(), m_clock(), m_time(), m_deltaTime(), m_mousePos(), m_sprite(), m_texture()
+Window::Window(const sf::String& title, sf::Uint32 style)
 {
-	srand((unsigned int)time(NULL));
-
-	createWindow();
+	CreateWindow();
 	m_renderTexture.create(m_videoMode.width, m_videoMode.height);
 	m_font.loadFromFile("../Resources/NeoTech.ttf"); // default font for now
 	text.setFont(m_font);
 }
 
-Window::~Window()
-{
-}
-
-void Window::update()
+void Window::Update()
 {
 	while (m_renderWindow.pollEvent(m_event))
 	{
@@ -33,19 +42,14 @@ void Window::update()
 
 	m_hasFocus = m_renderWindow.hasFocus();
 
-	m_time = m_clock.restart();
-	m_deltaTime = m_time.asSeconds();
 	m_mousePos = sf::Vector2f(sf::Mouse::getPosition(m_renderWindow));
 
-	m_fullscreenTimer += ((m_fullscreenTimer > 0.5f) ? 0.f : m_deltaTime);
+	m_fullscreenTimer += ((m_fullscreenTimer > 0.5f) ? 0.f : Tools::GetDeltaTime());
 	if (m_hasFocus && m_fullscreenTimer >= 0.5f && sf::Keyboard::isKeyPressed(sf::Keyboard::F11))
-		toggleFullscreen();
-
-	mouseManager.update();
-	keyboardManager.update();
+		ToggleFullscreen();
 }
 
-void Window::display()
+void Window::Display()
 {
 	m_renderWindow.clear();
 	m_renderTexture.display();
@@ -57,39 +61,19 @@ void Window::display()
 	m_renderWindow.display();
 }
 
-bool Window::isDone() const
-{
-	return m_isDone;
-}
-
-bool Window::hasFocus() const
-{
-	return m_hasFocus;
-}
-
-float Window::getDeltaTime() const
-{
-	return m_deltaTime;
-}
-
-sf::Vector2f Window::getMousePos() const
-{
-	return m_mousePos;
-}
-
-void Window::draw(const sf::Drawable& drawable, const sf::RenderStates& states)
+void Window::Draw(const sf::Drawable& drawable, const sf::RenderStates& states)
 {
 	m_renderTexture.draw(drawable, states);
 }
 
-void Window::toggleFullscreen()
+void Window::ToggleFullscreen()
 {
 	m_fullscreenTimer = 0.f;
 	m_style = (m_style == sf::Style::Fullscreen ? sf::Style::Default : sf::Style::Fullscreen);
-	createWindow();
+	CreateWindow();
 }
 
-void Window::createWindow()
+void Window::CreateWindow()
 {
 	m_renderWindow.create(m_videoMode, m_title, m_style);
 	m_isFullscreen = (m_style == sf::Style::Fullscreen);

@@ -1,5 +1,5 @@
 #pragma once
-#include "Entity.h"
+#include "tools.h"
 // could/should be an Input Manager
 #include "MouseManager.h"
 #include "KeyboardManager.h"
@@ -9,47 +9,48 @@ class Window
 public:
 	Window();
 	Window(const sf::String& title, sf::Uint32 style = sf::Style::Default);
-	~Window();
+	~Window() = default;
 
-	void update();
-	void display();
+	/// <summary>
+	/// Call this at the start of every frame
+	/// </summary>
+	static void Update();
 
-	bool isDone() const;
-	bool hasFocus() const;
-	float getDeltaTime() const;
-	sf::Vector2f getMousePos() const;
-	void draw(const sf::Drawable& drawable, const sf::RenderStates& states = sf::RenderStates::Default);
+	/// <summary>
+	/// Call this at the end of every frame in order to draw everything on the RenderWindow
+	/// </summary>
+	static void Display();
+
+	static inline bool IsDone() { return m_isDone; }
+	static inline bool HasFocus() { return m_hasFocus; }
+	static inline sf::Vector2f GetMousePos() { return m_mousePos; }
+	static void Draw(const sf::Drawable& drawable, const sf::RenderStates& states = sf::RenderStates::Default);
 
 	sf::RectangleShape rectangle;
 	sf::Text text;
-	MouseManager mouseManager;
-	KeyboardManager keyboardManager;
 
 private:
-	sf::RenderWindow m_renderWindow;
-	sf::RenderTexture m_renderTexture;
-	sf::Font m_font;
+	static sf::RenderWindow m_renderWindow;
+	static sf::RenderTexture m_renderTexture;
+	static sf::Font m_font;
 
-	sf::VideoMode m_videoMode;
-	sf::String m_title;
-	sf::Uint32 m_style;
-	bool m_isFullscreen;
-	unsigned int m_framerateLimit;
-	bool m_isDone;
-	bool m_hasFocus;
-	float m_fullscreenTimer;
+	static sf::VideoMode m_videoMode;
+	static sf::String m_title;
+	static sf::Uint32 m_style;
+	static bool m_isFullscreen;
+	static unsigned int m_framerateLimit;
+	static bool m_isDone;
+	static bool m_hasFocus;
+	static float m_fullscreenTimer;
 
-	sf::Event m_event;
-	sf::Clock m_clock;
-	sf::Time m_time;
-	float m_deltaTime;
-	sf::Vector2f m_mousePos;
+	static sf::Event m_event;
+	static sf::Vector2f m_mousePos;
 
-	sf::Sprite m_sprite;
-	sf::Texture m_texture;
+	static sf::Sprite m_sprite;
+	static sf::Texture m_texture;
 
 
-	void toggleFullscreen();
-	void createWindow();
+	static void ToggleFullscreen();
+	static void CreateWindow();
 
 };
