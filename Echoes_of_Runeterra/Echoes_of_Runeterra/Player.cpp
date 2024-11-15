@@ -11,7 +11,6 @@ Player::Player() : Player("Player")
 
 Player::Player(std::string _name) : Pawn(_name), m_weapon(nullptr), m_armor(nullptr), m_profession(new Blacksmith)
 {
-	//Entity::AddComponent<Transform>(sf::Vector2f(960.f, 800.f), sf::Vector2f(52.f, 44.f));
 }
 
 Player::~Player()

@@ -15,7 +15,7 @@ Pawn::Pawn(std::string _name, std::string _dialogueKey) : Pawn(_name, _dialogueK
 }
 
 Pawn::Pawn(std::string _name, std::string _dialogueKey, int _level, int _xp, int _hp, int _attack, int _defense, int _stamina, int _speed, Alignement _alignement) :
-	/*Entity(),*/ Entity(Transform(sf::Vector2f(100.f, 2.f), sf::Vector2f(50.f, 50.f))),
+	Entity(Transform()),
 	m_name(_name), m_dialogueKey(_dialogueKey), m_level(_level), m_xp(_xp), m_hp(_hp), m_attack(_attack), m_defense(_defense), m_stamina(_stamina), m_speed(_speed), m_alignement(_alignement),
 
 	m_inventory(Inventory()),
