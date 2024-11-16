@@ -1,12 +1,14 @@
 #include "Item.h"
 #include "textureManager.h"
+#include "ComponentName.h"
 
 Item::Item() : Item("")
 {
 }
 
-Item::Item(std::string _name) :/* Entity(sf::Vector2f(randomFloat(100.f, 1700.f), randomFloat(100.f, 800.f))), */m_name(_name), m_state(Item::State::ON_MAP), m_isHovered(false)
+Item::Item(std::string _name) : Entity(), m_state(Item::State::ON_MAP), m_isHovered(false)
 {
+	this->AddComponent<ComponentName>(_name);
 	if (_name != "")
 	{
 		sf::IntRect animRect = sf::IntRect();
@@ -57,16 +59,6 @@ Item::State Item::getState()
 bool Item::isHovered()
 {
 	return m_isHovered;
-}
-
-Item* Item::getItem()
-{
-	return this;
-}
-
-std::string Item::getName()
-{
-	return m_name;
 }
 
 sf::FloatRect Item::getRect()

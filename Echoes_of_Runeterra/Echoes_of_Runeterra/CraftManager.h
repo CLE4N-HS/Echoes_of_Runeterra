@@ -7,7 +7,7 @@
 class CraftManager
 {
 public:
-	CraftManager(ItemDataBase* _itemDB);
+	CraftManager();
 	~CraftManager();
 
 	bool isCraftCorrect(std::vector<Item*> _item);
@@ -15,6 +15,6 @@ public:
 	Item* craft(std::vector<std::string> _itemName);
 
 private:
-	CraftDataBase* m_craftDB;
+	//CraftDataBase* m_craftDB;
 
 };

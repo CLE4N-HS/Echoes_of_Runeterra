@@ -3,16 +3,16 @@
 #include "Player.h"
 #include "Npc.h"
 
-Game::Game() : m_itemDB(new ItemDataBase), m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager(m_itemDB),
+Game::Game() : m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager(),
 	m_treeDB(new TreeDataBase),
 	m_skillsSystem(m_treeDB)
 {
-	m_mapManager.addItem(m_itemDB->getItem("sword"));
-	m_mapManager.addItem(m_itemDB->getItem("pickaxe"));
-	m_mapManager.addItem(m_itemDB->getItem("metalArmor"));
-	m_mapManager.addItem(m_itemDB->getItem("shield"));
-	m_mapManager.addItem(m_itemDB->getItem("heart"));
-	m_mapManager.addItem(m_itemDB->getItem("speedPotion"));
+	//m_mapManager.addItem(m_itemDB->getItem("sword"));
+	//m_mapManager.addItem(m_itemDB->getItem("pickaxe"));
+	//m_mapManager.addItem(m_itemDB->getItem("metalArmor"));
+	//m_mapManager.addItem(m_itemDB->getItem("shield"));
+	//m_mapManager.addItem(m_itemDB->getItem("heart"));
+	//m_mapManager.addItem(m_itemDB->getItem("speedPotion"));
 	m_dialogueManager.setupDialogue("intro");
 
 	//m_characterManager.addCharacterItem("Player", m_itemDB->getItem("sword"));

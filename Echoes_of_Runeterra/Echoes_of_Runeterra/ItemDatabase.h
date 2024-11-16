@@ -1,20 +1,22 @@
 #pragma once
-#include "Window.h"
+#include "Tools.h"
 #include "Item.h"
 
-class ItemDataBase
+class ItemDatabase
 {
 public:
-	ItemDataBase();
-	~ItemDataBase();
+	ItemDatabase();
+	~ItemDatabase();
 
-	Item* getItem(std::string _name);
+	static Item* GetItem(std::string _name);
 
 private:
-	void readWeaponDB(std::string _filePath);
-	void readArmorDB(std::string _filePath);
-	void readConsumableDB(std::string _filePath);
+	void ReadWeaponDB(std::string _filePath);
+	void ReadArmorDB(std::string _filePath);
+	void ReadConsumableDB(std::string _filePath);
 
-	std::unordered_map<std::string, Item*> m_item;
+	static std::vector<Item*> m_item;
+
+	//std::unordered_map<std::string, Item*> m_item;
 
 };

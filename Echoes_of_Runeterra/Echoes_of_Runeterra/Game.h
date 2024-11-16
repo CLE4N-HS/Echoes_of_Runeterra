@@ -1,6 +1,5 @@
 #pragma once
 #include "State.h"
-#include "ItemDatabase.h"
 #include "MapManager.h"
 #include "DialogueManager.h"
 #include "InteractionManager.h"
@@ -19,7 +18,6 @@ public:
 	virtual void Display();
 
 private:
-	ItemDataBase* m_itemDB;
 	MapManager m_mapManager;
 	DialogueManager m_dialogueManager;
 	InteractionManager m_interactionManager;

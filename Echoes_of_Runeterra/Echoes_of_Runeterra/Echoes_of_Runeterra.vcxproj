@@ -159,6 +159,7 @@
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="Comment.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="ComponentName.cpp" />
     <ClCompile Include="Consumable.cpp" />
     <ClCompile Include="craftdbtest.cpp" />
     <ClCompile Include="CraftDataBase.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="Comment.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="ComponentName.h" />
     <ClInclude Include="Consumable.h" />
     <ClInclude Include="craftdbtest.h" />
     <ClInclude Include="CraftDataBase.h" />

@@ -2,24 +2,49 @@
 #include "Weapon.h"
 #include "Armor.h"
 #include "Consumable.h"
+#include "ComponentName.h"
 
-ItemDataBase::ItemDataBase() : m_item()
+std::vector<Item*> ItemDatabase::m_item;
+
+ItemDatabase itemDatabase;
+
+ItemDatabase::ItemDatabase()
 {
-	readWeaponDB("../Resources/Saves/weaponDB.txt");
-	readArmorDB("../Resources/Saves/armorDB.txt");
-	readConsumableDB("../Resources/Saves/consumableDB.txt");
+	ReadWeaponDB("../Resources/Saves/weaponDB.txt");
+	ReadArmorDB("../Resources/Saves/armorDB.txt");
+	ReadConsumableDB("../Resources/Saves/consumableDB.txt");
 }
 
-ItemDataBase::~ItemDataBase()
+ItemDatabase::~ItemDatabase()
 {
+	for (size_t i = 0; i < m_item.size();)
+	{
+		delete m_item[i];
+		m_item.erase(m_item.begin());
+	}
 }
 
-Item* ItemDataBase::getItem(std::string _name)
+Item* ItemDatabase::GetItem(std::string _name)
 {
-	return m_item[_name];
+	for (size_t i = 0; i < m_item.size(); i++)
+	{
+		if (m_item[i]->GetComponent<ComponentName>()->GetName() == _name)
+		{
+			if (Weapon* weapon = dynamic_cast<Weapon*>(m_item[i]))
+				return new Weapon(*weapon);
+			else if (Armor* armor = dynamic_cast<Armor*>(m_item[i]))
+				return new Armor(*armor);
+			else if (Consumable* consumable = dynamic_cast<Consumable*>(m_item[i]))
+				return new Consumable(*consumable);
+		}
+	}
+
+	return nullptr;
+
+	//return m_item[_name];
 }
 
-void ItemDataBase::readWeaponDB(std::string _filePath)
+void ItemDatabase::ReadWeaponDB(std::string _filePath)
 {
 	std::ifstream file(_filePath);
 
@@ -37,14 +62,15 @@ void ItemDataBase::readWeaponDB(std::string _filePath)
 			file >> tmpSpeed;
 
 			
-			m_item.insert({ tmpName, new Weapon(tmpName, tmpDamage, tmpCriticalDamage, tmpSpeed) });
+			m_item.push_back(new Weapon(tmpName, tmpDamage, tmpCriticalDamage, tmpSpeed));
+			//m_item.insert({ tmpName, new Weapon(tmpName, tmpDamage, tmpCriticalDamage, tmpSpeed) });
 		}
 	}
 	else
 		std::cerr << "Error while opening a file" << std::endl;
 }
 
-void ItemDataBase::readArmorDB(std::string _filePath)
+void ItemDatabase::ReadArmorDB(std::string _filePath)
 {
 	std::ifstream file(_filePath);
 
@@ -61,14 +87,15 @@ void ItemDataBase::readArmorDB(std::string _filePath)
 			file >> tmpSpeed;
 			file >> tmpDurability;
 
-			m_item.insert({ tmpName, new Armor(tmpName, tmpDefense, tmpSpeed, tmpDurability) });
+			m_item.push_back(new Armor(tmpName, tmpDefense, tmpSpeed, tmpDurability));
+			//m_item.insert({ tmpName, new Armor(tmpName, tmpDefense, tmpSpeed, tmpDurability) });
 		}
 	}
 	else
 		std::cerr << "Error while opening a file" << std::endl;
 }
 
-void ItemDataBase::readConsumableDB(std::string _filePath)
+void ItemDatabase::ReadConsumableDB(std::string _filePath)
 {
 	std::ifstream file(_filePath);
 
@@ -85,7 +112,8 @@ void ItemDataBase::readConsumableDB(std::string _filePath)
 			file >> tmpDefense;
 			file >> tmpSpeed;
 
-			m_item.insert({ tmpName, new Consumable(tmpName, tmpHp, tmpDefense, tmpSpeed) });
+			m_item.push_back(new Consumable(tmpName, tmpHp, tmpDefense, tmpSpeed));
+			//m_item.insert({ tmpName, new Consumable(tmpName, tmpHp, tmpDefense, tmpSpeed) });
 		}
 	}
 	else

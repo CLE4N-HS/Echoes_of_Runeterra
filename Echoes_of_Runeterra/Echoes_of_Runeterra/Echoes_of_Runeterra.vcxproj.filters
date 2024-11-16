@@ -303,6 +303,9 @@
     <ClCompile Include="Transform.cpp">
       <Filter>Fichiers sources\TOOLS\ENTITY\COMPONENT</Filter>
     </ClCompile>
+    <ClCompile Include="ComponentName.cpp">
+      <Filter>Fichiers sources\TOOLS\ENTITY\COMPONENT</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
@@ -486,6 +489,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentName.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

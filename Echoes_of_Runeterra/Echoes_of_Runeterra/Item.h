@@ -20,14 +20,11 @@ public:
 	void setState(Item::State _state);
 	Item::State getState();
 	bool isHovered();
-	Item* getItem();
-	std::string getName();
 	sf::FloatRect getRect();
 	void setHover(bool _isHover);
 
 protected:
 
-	std::string m_name;
 	Item::State m_state;
 	bool m_isHovered;
 
