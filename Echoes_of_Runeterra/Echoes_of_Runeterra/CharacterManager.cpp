@@ -4,8 +4,6 @@
 
 std::vector<Pawn*> PawnManager::m_pawn;
 
-PawnManager pawnManager;
-
 PawnManager::PawnManager()
 {
 	m_pawn.reserve(sizeof(Pawn*) * 3);

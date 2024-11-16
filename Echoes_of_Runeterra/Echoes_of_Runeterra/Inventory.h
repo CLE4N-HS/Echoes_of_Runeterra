@@ -13,6 +13,7 @@ public:
 	void Display();
 
 	void AddItem(const GameItem& _item);
+
 	void addItem(Item* _item);
 	Item* getItem();
 	void EraseItem(Item* _item);

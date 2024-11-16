@@ -6,6 +6,8 @@ DatabaseManager databaseManager;
 
 void DatabaseManager::loadAllDatabase()
 {
-	ItemDatabase itemDatabase;
-	CraftDatabase craftDatabase;
+	new ItemDatabase();
+	new CraftDatabase();
+	//ItemDatabase* itemDatabase = new ItemDatabase();
+	//CraftDatabase* craftDatabase = new CraftDatabase();
 }

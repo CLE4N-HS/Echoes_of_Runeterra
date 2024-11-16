@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "DatabaseManager.h"
 #include "CharacterManager.h"
 #include "Player.h"
 #include "Npc.h"
@@ -7,6 +8,8 @@ Game::Game() : m_mapManager(), m_dialogueManager(), m_interactionManager(), m_cr
 	m_treeDB(new TreeDataBase),
 	m_skillsSystem(m_treeDB)
 {
+	DatabaseManager::loadAllDatabase();
+	PawnManager pawnManager;
 	//m_mapManager.addItem(m_itemDB->getItem("sword"));
 	//m_mapManager.addItem(m_itemDB->getItem("pickaxe"));
 	//m_mapManager.addItem(m_itemDB->getItem("metalArmor"));

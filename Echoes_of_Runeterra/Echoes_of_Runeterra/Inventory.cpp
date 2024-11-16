@@ -1,6 +1,7 @@
 #include "Inventory.h"
 #include "Weapon.h"
 #include "Armor.h"
+#include "CraftManager.h"
 
 Inventory::Inventory() : /*Entity(sf::Vector2f(100.f, 100.f)), */m_item(), m_isOpen(false)
 {
@@ -12,6 +13,8 @@ Inventory::~Inventory()
 
 void Inventory::Update()
 {
+	Item* craftedItem = CraftManager::Craft(m_item);
+
 	//if (_window.keyboardManager.hasJustPressed(sf::Keyboard::I)) {
 	//	m_isOpen = !m_isOpen;
 	//}

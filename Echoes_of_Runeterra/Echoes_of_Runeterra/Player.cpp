@@ -13,7 +13,8 @@ Player::Player() : Player("Player")
 Player::Player(std::string _name) : Pawn(_name), m_weapon(nullptr), m_armor(nullptr), m_profession(new Blacksmith)
 {
 	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("sword")));
-	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("pickaxe")));
+	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("speedPotion"), 2));
+	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("pickaxe"), 2));
 }
 
 Player::~Player()
@@ -22,7 +23,7 @@ Player::~Player()
 
 void Player::Update()
 {
-
+	m_inventory.Update();
 
 	/*float dt = _window.getDeltaTime();
 
