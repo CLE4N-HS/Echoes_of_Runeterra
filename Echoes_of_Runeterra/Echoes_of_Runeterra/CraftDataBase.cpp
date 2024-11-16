@@ -1,15 +1,93 @@
 #include "CraftDataBase.h"
+#include "ItemDatabase.h"
 #include "Weapon.h"
 #include "Armor.h"
 #include "Consumable.h"
+#include "ComponentName.h"
+
+std::list<CraftDatabase::CraftItem> CraftDatabase::m_craftItem;
+
+CraftDatabase craftDatabase;
 
 CraftDatabase::CraftDatabase() // : m_database()
 {
+	this->AddCraftItem(
+		ItemDatabase::GetItem("goldenPickaxe"),
+		std::vector<std::pair<Item*, int>>({
+			{ ItemDatabase::GetItem("sword"), 1 },
+			{ ItemDatabase::GetItem("pickaxe"), 2 }
+		}));
+	// same thing
+	this->AddCraftItem("goldenPickaxe", std::vector<std::pair<std::string, int>>({ { "sword", 1 }, { "pickaxe", 2 } }));
+
+
 	//m_database.push_back({_itemDB->getItem("goldenPickaxe"), std::vector<Item*>({_itemDB->getItem("sword"), _itemDB->getItem("pickaxe")}) });
 }
 
 CraftDatabase::~CraftDatabase()
 {
+	for (auto& craftItem : m_craftItem)
+	{
+		delete craftItem.item;
+		for (size_t i = 0; i < craftItem.requiredItem.size();)
+		{
+			delete craftItem.requiredItem.begin()->first;
+			craftItem.requiredItem.erase(craftItem.requiredItem.begin());
+		}
+		m_craftItem.erase(m_craftItem.begin());
+	}
+}
+
+void CraftDatabase::AddCraftItem(Item* _item, const std::vector<std::pair<Item*, int>>& _requiredItem)
+{
+	CraftItem craftItem{ _item, _requiredItem };
+	m_craftItem.push_back(craftItem);
+}
+
+void CraftDatabase::AddCraftItem(std::string _itemName, const std::vector<std::pair<std::string, int>>& _requiredItem)
+{
+	CraftItem craftItem;
+	craftItem.item = ItemDatabase::GetItem(_itemName);
+	for (size_t i = 0; i < _requiredItem.size(); i++)
+	{
+		craftItem.requiredItem.push_back({ ItemDatabase::GetItem(_requiredItem[i].first), _requiredItem[i].second });
+	}
+	m_craftItem.push_back(craftItem);
+}
+
+Item* CraftDatabase::GetCraftItem(const std::vector<std::pair<Item*, int>>& _requiredItem)
+{
+	Item* craftItem = nullptr;
+	for (std::list<CraftItem>::iterator it = m_craftItem.begin(); it != m_craftItem.end(); it++)
+	{
+		if (_requiredItem.size() < it->requiredItem.size()) // not enough item for sure
+		{
+			continue;
+		}
+
+		size_t correctItemsNumber(0);
+		for (size_t reqItem = 0; reqItem < _requiredItem.size(); reqItem++)
+		{
+			for (size_t item = 0; item < it->requiredItem.size(); item++)
+			{
+				if (_requiredItem[reqItem].first == it->requiredItem[item].first && /* correct name   */
+					_requiredItem[reqItem].second >= it->requiredItem[item].second) /* correct number */
+				{
+					correctItemsNumber++;
+					break;
+				}
+			}
+		}
+
+		if (correctItemsNumber == _requiredItem.size())
+		{
+			craftItem = ItemDatabase::CreateNewItem(it->item);
+			break;
+		}
+
+	}
+
+	return craftItem;
 }
 
 Item* CraftDatabase::getItem(std::string _name)

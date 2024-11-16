@@ -71,3 +71,8 @@ void Item::setHover(bool _isHover)
 {
 	m_isHovered = _isHover;
 }
+
+bool Item::operator==(Item* _item)
+{
+	return (this->GetComponent<ComponentName>()->GetName() == _item->GetComponent<ComponentName>()->GetName());
+}

@@ -23,6 +23,8 @@ public:
 	sf::FloatRect getRect();
 	void setHover(bool _isHover);
 
+	bool operator== (Item* _item);
+
 protected:
 
 	Item::State m_state;

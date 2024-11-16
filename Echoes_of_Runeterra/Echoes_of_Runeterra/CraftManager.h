@@ -1,7 +1,5 @@
 #pragma once
-#include "Window.h"
-#include "ItemDatabase.h"
-#include "CraftDataBase.h"
+#include "Tools.h"
 #include "Item.h"
 
 class CraftManager

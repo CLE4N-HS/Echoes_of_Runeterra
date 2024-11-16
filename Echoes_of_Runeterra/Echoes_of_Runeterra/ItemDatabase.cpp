@@ -4,7 +4,7 @@
 #include "Consumable.h"
 #include "ComponentName.h"
 
-std::vector<Item*> ItemDatabase::m_item;
+std::list<Item*> ItemDatabase::m_item;
 
 ItemDatabase itemDatabase;
 
@@ -17,31 +17,71 @@ ItemDatabase::ItemDatabase()
 
 ItemDatabase::~ItemDatabase()
 {
-	for (size_t i = 0; i < m_item.size();)
+	for (auto& item : m_item)
 	{
-		delete m_item[i];
+		delete item;
 		m_item.erase(m_item.begin());
 	}
+	//for (size_t i = 0; i < m_item.size();)
+	//{
+	//	delete m_item[i];
+	//	m_item.erase(m_item.begin());
+	//}
 }
 
 Item* ItemDatabase::GetItem(std::string _name)
 {
-	for (size_t i = 0; i < m_item.size(); i++)
+	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
 	{
-		if (m_item[i]->GetComponent<ComponentName>()->GetName() == _name)
+		if ((*it)->GetComponent<ComponentName>()->GetName() == _name)
 		{
-			if (Weapon* weapon = dynamic_cast<Weapon*>(m_item[i]))
-				return new Weapon(*weapon);
-			else if (Armor* armor = dynamic_cast<Armor*>(m_item[i]))
-				return new Armor(*armor);
-			else if (Consumable* consumable = dynamic_cast<Consumable*>(m_item[i]))
-				return new Consumable(*consumable);
+			return ItemDatabase::CreateNewItem((*it));
 		}
 	}
+
+	//for (auto& item : m_item)
+	//{
+	//	if (item->GetComponent<ComponentName>()->GetName() == _name)
+	//	{
+	//		return ItemDatabase::CreateNewItem(item);
+
+	//		//if (Weapon* weapon = dynamic_cast<Weapon*>(item))
+	//		//	return new Weapon(*weapon);
+	//		//else if (Armor* armor = dynamic_cast<Armor*>(item))
+	//		//	return new Armor(*armor);
+	//		//else if (Consumable* consumable = dynamic_cast<Consumable*>(item))
+	//		//	return new Consumable(*consumable);
+	//	}
+
+	//}
+	//for (size_t i = 0; i < m_item.size(); i++)
+	//{
+	//	if (m_item[i]->GetComponent<ComponentName>()->GetName() == _name)
+	//	{
+	//		if (Weapon* weapon = dynamic_cast<Weapon*>(m_item[i]))
+	//			return new Weapon(*weapon);
+	//		else if (Armor* armor = dynamic_cast<Armor*>(m_item[i]))
+	//			return new Armor(*armor);
+	//		else if (Consumable* consumable = dynamic_cast<Consumable*>(m_item[i]))
+	//			return new Consumable(*consumable);
+	//	}
+	//}
 
 	return nullptr;
 
 	//return m_item[_name];
+}
+
+Item* ItemDatabase::CreateNewItem(Item* _item)
+{
+	if (Weapon* weapon = dynamic_cast<Weapon*>(_item))
+		return new Weapon(*weapon);
+	else if (Armor* armor = dynamic_cast<Armor*>(_item))
+		return new Armor(*armor);
+	else if (Consumable* consumable = dynamic_cast<Consumable*>(_item))
+		return new Consumable(*consumable);
+
+	return nullptr;
 }
 
 void ItemDatabase::ReadWeaponDB(std::string _filePath)
