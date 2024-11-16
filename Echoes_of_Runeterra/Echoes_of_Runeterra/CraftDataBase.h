@@ -11,6 +11,7 @@ struct CraftItem {
 	std::vector<GameItem> requiredItem;
 
 	inline CraftItem(Item* _item, const std::vector<GameItem>& _requiredItem = {}) : item(_item), requiredItem(_requiredItem) {}
+	CraftItem(const std::string& _itemName, const std::vector<std::pair<std::string, int>>& _requiredItem);
 };
 
 class CraftDatabase

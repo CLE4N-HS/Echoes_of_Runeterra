@@ -193,6 +193,7 @@
     <ClCompile Include="particleManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Profession.cpp" />
+    <ClCompile Include="ProfessionCraftDatabase.cpp" />
     <ClCompile Include="ProfessionSkills.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="Race.cpp" />
@@ -257,6 +258,7 @@
     <ClInclude Include="particleManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Profession.h" />
+    <ClInclude Include="ProfessionCraftDatabase.h" />
     <ClInclude Include="ProfessionSkills.h" />
     <ClInclude Include="Question.h" />
     <ClInclude Include="Race.h" />

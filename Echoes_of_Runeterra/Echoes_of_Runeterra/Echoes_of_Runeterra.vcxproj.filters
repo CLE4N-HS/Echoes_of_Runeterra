@@ -306,6 +306,9 @@
     <ClCompile Include="ComponentName.cpp">
       <Filter>Fichiers sources\TOOLS\ENTITY\COMPONENT</Filter>
     </ClCompile>
+    <ClCompile Include="ProfessionCraftDatabase.cpp">
+      <Filter>Fichiers sources\GAME\PROFESSION</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
@@ -492,6 +495,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="ComponentName.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfessionCraftDatabase.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

@@ -72,8 +72,8 @@ Item* CraftDatabase::GetCraftItem(const std::vector<GameItem>& _requiredItem)
 		{
 			for (size_t item = 0; item < it->requiredItem.size(); item++)
 			{
-				if (_requiredItem[reqItem].item->operator==(it->requiredItem[item].item) &&		/* correct name     */
-					_requiredItem[reqItem].quantity >= it->requiredItem[item].quantity) /* correct quantity */
+				if (_requiredItem[reqItem].item->operator==(it->requiredItem[item].item) &&	/* correct name     */
+					_requiredItem[reqItem].quantity >= it->requiredItem[item].quantity)		/* correct quantity */
 				{
 					correctItemsNumber++;
 					break;
@@ -146,4 +146,12 @@ Item* CraftDatabase::getItem(std::vector<std::string> _names)
 	//}
 
 	return nullptr;
+}
+
+CraftItem::CraftItem(const std::string& _itemName, const std::vector<std::pair<std::string, int>>& _requiredItem) : item(ItemDatabase::GetItem(_itemName))
+{
+	for (size_t i = 0; i < _requiredItem.size(); i++)
+	{
+		requiredItem.push_back(GameItem(ItemDatabase::GetItem(_requiredItem[i].first), _requiredItem[i].second));
+	}
 }
