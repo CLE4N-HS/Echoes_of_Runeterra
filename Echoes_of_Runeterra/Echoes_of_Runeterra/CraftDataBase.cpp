@@ -7,13 +7,11 @@
 
 std::list<CraftDatabase::CraftItem> CraftDatabase::m_craftItem;
 
-CraftDatabase craftDatabase;
-
 CraftDatabase::CraftDatabase() // : m_database()
 {
 	this->AddCraftItem(
 		ItemDatabase::GetItem("goldenPickaxe"),
-		std::vector<std::pair<Item*, int>>({
+		std::vector<GameItem>({
 			{ ItemDatabase::GetItem("sword"), 1 },
 			{ ItemDatabase::GetItem("pickaxe"), 2 }
 		}));
@@ -31,14 +29,14 @@ CraftDatabase::~CraftDatabase()
 		delete craftItem.item;
 		for (size_t i = 0; i < craftItem.requiredItem.size();)
 		{
-			delete craftItem.requiredItem.begin()->first;
+			delete craftItem.requiredItem.begin()->item;
 			craftItem.requiredItem.erase(craftItem.requiredItem.begin());
 		}
 		m_craftItem.erase(m_craftItem.begin());
 	}
 }
 
-void CraftDatabase::AddCraftItem(Item* _item, const std::vector<std::pair<Item*, int>>& _requiredItem)
+void CraftDatabase::AddCraftItem(Item* _item, const std::vector<GameItem>& _requiredItem)
 {
 	CraftItem craftItem{ _item, _requiredItem };
 	m_craftItem.push_back(craftItem);
@@ -55,7 +53,7 @@ void CraftDatabase::AddCraftItem(std::string _itemName, const std::vector<std::p
 	m_craftItem.push_back(craftItem);
 }
 
-Item* CraftDatabase::GetCraftItem(const std::vector<std::pair<Item*, int>>& _requiredItem)
+Item* CraftDatabase::GetCraftItem(const std::vector<GameItem>& _requiredItem)
 {
 	Item* craftItem = nullptr;
 	for (std::list<CraftItem>::iterator it = m_craftItem.begin(); it != m_craftItem.end(); it++)
@@ -70,8 +68,8 @@ Item* CraftDatabase::GetCraftItem(const std::vector<std::pair<Item*, int>>& _req
 		{
 			for (size_t item = 0; item < it->requiredItem.size(); item++)
 			{
-				if (_requiredItem[reqItem].first == it->requiredItem[item].first && /* correct name   */
-					_requiredItem[reqItem].second >= it->requiredItem[item].second) /* correct number */
+				if (_requiredItem[reqItem].item == it->requiredItem[item].item &&		/* correct name     */
+					_requiredItem[reqItem].quantity >= it->requiredItem[item].quantity) /* correct quantity */
 				{
 					correctItemsNumber++;
 					break;

@@ -1,9 +1,11 @@
 #include "DatabaseManager.h"
+#include "ItemDatabase.h"
+#include "CraftDataBase.h"
 
-DatabaseManager::DatabaseManager()
-{
-}
+DatabaseManager databaseManager;
 
-DatabaseManager::~DatabaseManager()
+void DatabaseManager::loadAllDatabase()
 {
+	ItemDatabase itemDatabase;
+	CraftDatabase craftDatabase;
 }

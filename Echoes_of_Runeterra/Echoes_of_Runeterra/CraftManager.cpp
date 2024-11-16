@@ -1,4 +1,5 @@
 #include "CraftManager.h"
+#include "CraftDataBase.h"
 
 CraftManager::CraftManager()
 {
@@ -9,6 +10,11 @@ CraftManager::CraftManager()
 
 CraftManager::~CraftManager()
 {
+}
+
+Item* CraftManager::Craft(std::vector<GameItem>& _item)
+{
+	return CraftDatabase::GetCraftItem(_item);
 }
 
 bool CraftManager::isCraftCorrect(std::vector<Item*> _item)

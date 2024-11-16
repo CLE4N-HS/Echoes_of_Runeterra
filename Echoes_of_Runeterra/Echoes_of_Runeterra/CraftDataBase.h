@@ -10,17 +10,17 @@ public:
 		// The Item obtained by the craft
 		Item* item;
 
-		// The list of required Item and their numbers
-		std::vector<std::pair<Item*, int>> requiredItem;
+		// The list of required Item
+		std::vector<GameItem> requiredItem;
 	};
 
 	CraftDatabase();
 	~CraftDatabase();
 
-	static void AddCraftItem(Item* _item, const std::vector<std::pair<Item*, int>>& _requiredItem);
+	static void AddCraftItem(Item* _item, const std::vector<GameItem>& _requiredItem);
 	static void AddCraftItem(std::string _itemName, const std::vector<std::pair<std::string, int>>& _requiredItem);
 
-	static Item* GetCraftItem(const std::vector<std::pair<Item*, int>>& _requiredItem);
+	static Item* GetCraftItem(const std::vector<GameItem>& _requiredItem);
 
 	Item* getItem(std::string _name);
 	Item* getItem(std::vector<Item*> _item);

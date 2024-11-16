@@ -6,8 +6,6 @@
 
 std::list<Item*> ItemDatabase::m_item;
 
-ItemDatabase itemDatabase;
-
 ItemDatabase::ItemDatabase()
 {
 	ReadWeaponDB("../Resources/Saves/weaponDB.txt");

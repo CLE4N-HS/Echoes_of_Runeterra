@@ -5,10 +5,10 @@
 class Item : public Entity
 {
 public:
-	typedef enum {
+	enum State {
 		IN_INVENTORY,
 		ON_MAP
-	}State;
+	};
 
 	Item();
 	Item(std::string _name);
@@ -36,4 +36,10 @@ protected:
 
 private:
 
+};
+
+struct GameItem {
+	Item* item;
+	int quantity;
+	inline GameItem(Item* _item, int _quantity = 1) : item(_item), quantity(_quantity) {}
 };
