@@ -4,6 +4,7 @@
 #include "Blacksmith.h"
 #include "Alchemist.h"
 #include "Transform.h"
+#include "ItemDatabase.h"
 
 Player::Player() : Player("Player")
 {
@@ -11,6 +12,8 @@ Player::Player() : Player("Player")
 
 Player::Player(std::string _name) : Pawn(_name), m_weapon(nullptr), m_armor(nullptr), m_profession(new Blacksmith)
 {
+	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("sword")));
+	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("pickaxe")));
 }
 
 Player::~Player()
@@ -19,6 +22,8 @@ Player::~Player()
 
 void Player::Update()
 {
+
+
 	/*float dt = _window.getDeltaTime();
 
 	m_attackTimer += dt;

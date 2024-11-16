@@ -2,21 +2,24 @@
 #include "tools.h"
 #include "Item.h"
 
+struct CraftItem {
+
+	// The Item obtained by the craft
+	Item* item;
+
+	// The list of required Item
+	std::vector<GameItem> requiredItem;
+
+	inline CraftItem(Item* _item, const std::vector<GameItem>& _requiredItem = {}) : item(_item), requiredItem(_requiredItem) {}
+};
+
 class CraftDatabase
 {
 public:
-	struct CraftItem {
-
-		// The Item obtained by the craft
-		Item* item;
-
-		// The list of required Item
-		std::vector<GameItem> requiredItem;
-	};
-
 	CraftDatabase();
 	~CraftDatabase();
 
+	static void AddCraftItem(const CraftItem& _craftItem);
 	static void AddCraftItem(Item* _item, const std::vector<GameItem>& _requiredItem);
 	static void AddCraftItem(std::string _itemName, const std::vector<std::pair<std::string, int>>& _requiredItem);
 

@@ -5,7 +5,7 @@
 #include "Consumable.h"
 #include "ComponentName.h"
 
-std::list<CraftDatabase::CraftItem> CraftDatabase::m_craftItem;
+std::list<CraftItem> CraftDatabase::m_craftItem;
 
 CraftDatabase::CraftDatabase() // : m_database()
 {
@@ -36,6 +36,11 @@ CraftDatabase::~CraftDatabase()
 	}
 }
 
+void CraftDatabase::AddCraftItem(const CraftItem& _craftItem)
+{
+	m_craftItem.push_back(_craftItem);
+}
+
 void CraftDatabase::AddCraftItem(Item* _item, const std::vector<GameItem>& _requiredItem)
 {
 	CraftItem craftItem{ _item, _requiredItem };
@@ -44,8 +49,7 @@ void CraftDatabase::AddCraftItem(Item* _item, const std::vector<GameItem>& _requ
 
 void CraftDatabase::AddCraftItem(std::string _itemName, const std::vector<std::pair<std::string, int>>& _requiredItem)
 {
-	CraftItem craftItem;
-	craftItem.item = ItemDatabase::GetItem(_itemName);
+	CraftItem craftItem(ItemDatabase::GetItem(_itemName));
 	for (size_t i = 0; i < _requiredItem.size(); i++)
 	{
 		craftItem.requiredItem.push_back({ ItemDatabase::GetItem(_requiredItem[i].first), _requiredItem[i].second });

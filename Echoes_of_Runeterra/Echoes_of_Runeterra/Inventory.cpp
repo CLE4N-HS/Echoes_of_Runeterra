@@ -58,6 +58,25 @@ void Inventory::Display()
 
 }
 
+void Inventory::AddItem(const GameItem& _item)
+{
+	bool haveAlready(false);
+	for (size_t i = 0; i < m_item.size(); i++)
+	{
+		if (_item.item == m_item[i].item)
+		{
+			m_item[i].quantity += _item.quantity;
+			haveAlready = true;
+			break;
+		}
+	}
+
+	if (!haveAlready)
+	{
+		m_item.push_back(_item);
+	}
+}
+
 void Inventory::addItem(Item* _item)
 {
 	_item->setState(Item::State::IN_INVENTORY);
@@ -97,10 +116,11 @@ void Inventory::EraseItem(Item* _item)
 {
 	for (size_t i = 0; i < m_item.size(); i++)
 	{
-		if (m_item[i] == _item)
+		if (m_item[i].item == _item)
 		{
-			delete m_item[i];
+			delete m_item[i].item;
 			m_item.erase(m_item.begin() + i);
+			break;
 		}
 	}
 

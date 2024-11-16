@@ -12,6 +12,7 @@ public:
 	void Update();
 	void Display();
 
+	void AddItem(const GameItem& _item);
 	void addItem(Item* _item);
 	Item* getItem();
 	void EraseItem(Item* _item);
@@ -22,7 +23,7 @@ public:
 private:
 	void repositionItems();
 
-	std::vector<Item*> m_item;
+	std::vector<GameItem> m_item;
 	bool m_isOpen;
 
 };
