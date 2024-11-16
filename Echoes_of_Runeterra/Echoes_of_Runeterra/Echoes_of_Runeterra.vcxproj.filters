@@ -13,10 +13,480 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers sources\TOOLS">
+      <UniqueIdentifier>{575ec17f-84c4-4d66-87c6-a1b310abb328}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME">
+      <UniqueIdentifier>{df7c30f0-4fb9-4bef-b7be-04a0f19b1d34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\TOOLS">
+      <UniqueIdentifier>{3f68d33a-a487-43c8-adbb-4c370918f316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME">
+      <UniqueIdentifier>{628cab84-7fd4-4b31-b0c8-b77448673e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\CHARACTER">
+      <UniqueIdentifier>{a6c26327-a7d6-4184-982d-38c3c51d0df3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\CHARACTER">
+      <UniqueIdentifier>{53615c7c-a4c5-47c1-840b-1541e35c4892}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\TOOLS\MANAGERS">
+      <UniqueIdentifier>{9faca506-8cdd-4855-b89d-11c22622b497}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\TOOLS\MANAGERS">
+      <UniqueIdentifier>{df99a03b-50fd-4b0a-a63d-fabaf5749db3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\ITEMS">
+      <UniqueIdentifier>{d31aa6bf-8343-482a-8152-d6a048a6f6c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\ITEMS">
+      <UniqueIdentifier>{cfa78e78-5b1a-4704-acec-4caad05eb903}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\INTERACTION">
+      <UniqueIdentifier>{fb8dd6cd-8b83-4466-907f-f45d758d6c49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\INTERACTION">
+      <UniqueIdentifier>{ad597565-e197-4b1e-8062-bb25a75d0591}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\INTERACTION\DIALOGUE">
+      <UniqueIdentifier>{2c1fd528-6737-4cc1-8e58-36f8dedecdc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE">
+      <UniqueIdentifier>{389ca040-04ea-42a5-8404-a7ea12d797ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\MAP">
+      <UniqueIdentifier>{eb7580a8-173e-4596-9dc5-27d9e73ba18c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\MAP">
+      <UniqueIdentifier>{a2abbd95-c17c-42d5-b894-b83dd3dfff08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\CHARACTER\RACE">
+      <UniqueIdentifier>{92c177bd-d792-4819-b6f0-4982f8881b38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\CHARACTER\RACE">
+      <UniqueIdentifier>{000ef110-b158-4dad-bfa7-baa449f8e357}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\CRAFT">
+      <UniqueIdentifier>{e0de660a-b3ce-42e8-9197-8c3b27d55874}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\CRAFT">
+      <UniqueIdentifier>{09cbdcf2-6495-4361-8e45-dd8ce6def96a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\PROFESSION">
+      <UniqueIdentifier>{5b2e0a2d-e1bd-4f0f-aecd-5b61695ae2cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\PROFESSION">
+      <UniqueIdentifier>{d22f975f-ae1d-487b-8c0d-d67828fd4dea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\DATABASE">
+      <UniqueIdentifier>{5298ed57-15e0-4d63-a68d-bc5ef99ab265}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\DATABASE">
+      <UniqueIdentifier>{d1003172-2d87-4a8b-80f6-6d0630880a27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\SKILLS">
+      <UniqueIdentifier>{eb184ec7-dea9-49c1-97a4-aef336c5fc59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\SKILLS\SYSTEM">
+      <UniqueIdentifier>{6d726b54-ef1d-47f9-a804-c6d8d6028d75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\SKILLS\TREE">
+      <UniqueIdentifier>{5c74fc61-2b0b-4247-9eea-37b6b8cae1e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\SKILLS_SYSTEM">
+      <UniqueIdentifier>{ea98b973-30f5-4bfe-8cad-11f0a8af6004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\SKILLS_SYSTEM\TREE">
+      <UniqueIdentifier>{922be105-50f0-47d9-9b86-a10542aca47d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\SKILLS_SYSTEM\SKILLS">
+      <UniqueIdentifier>{5aa16573-ca22-4b48-8307-f0539ae64d2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\SKILLS_SYSTEM\DATABASE">
+      <UniqueIdentifier>{3d467bd6-ae72-42d5-83ee-a7e0ae4f3a43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\TOOLS\ENTITY">
+      <UniqueIdentifier>{b281fcc2-6aaa-4f21-9a48-c21c434f0496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\TOOLS\ENTITY">
+      <UniqueIdentifier>{79151044-d8e0-4fbe-b60d-eff166e3fe67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\TOOLS\ENTITY\COMPONENT">
+      <UniqueIdentifier>{0eed117e-dc35-4d2a-a80f-a09dde3c4ed6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER</Filter>
+    </ClCompile>
+    <ClCompile Include="tools.cpp">
+      <Filter>Fichiers sources\TOOLS</Filter>
+    </ClCompile>
+    <ClCompile Include="Race.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\RACE</Filter>
+    </ClCompile>
+    <ClCompile Include="Master.cpp">
+      <Filter>Fichiers sources\TOOLS</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseManager.cpp">
+      <Filter>Fichiers sources\TOOLS</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Fichiers sources\TOOLS</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Fichiers sources\TOOLS</Filter>
+    </ClCompile>
+    <ClCompile Include="musicManager.cpp">
+      <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
+    </ClCompile>
+    <ClCompile Include="ressourcesManager.cpp">
+      <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
+    </ClCompile>
+    <ClCompile Include="soundManager.cpp">
+      <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
+    </ClCompile>
+    <ClCompile Include="textureManager.cpp">
+      <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Fichiers sources\GAME</Filter>
+    </ClCompile>
+    <ClCompile Include="particleManager.cpp">
+      <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Fichiers sources\GAME\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="Armor.cpp">
+      <Filter>Fichiers sources\GAME\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="Consumable.cpp">
+      <Filter>Fichiers sources\GAME\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemDatabase.cpp">
+      <Filter>Fichiers sources\GAME\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Fichiers sources\GAME\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardManager.cpp">
+      <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Fichiers sources\GAME\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER</Filter>
+    </ClCompile>
+    <ClCompile Include="Npc.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER</Filter>
+    </ClCompile>
+    <ClCompile Include="Interaction.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION</Filter>
+    </ClCompile>
+    <ClCompile Include="Dialogue.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogueDataBase.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClCompile>
+    <ClCompile Include="Question.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClCompile>
+    <ClCompile Include="Answer.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClCompile>
+    <ClCompile Include="Comment.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractionText.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogueManager.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClCompile>
+    <ClCompile Include="EndButton.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterManager.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractionPlayerNpc.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractionManager.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Fichiers sources\GAME\MAP</Filter>
+    </ClCompile>
+    <ClCompile Include="MapManager.cpp">
+      <Filter>Fichiers sources\GAME\MAP</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractionPlayerMap.cpp">
+      <Filter>Fichiers sources\GAME\INTERACTION</Filter>
+    </ClCompile>
+    <ClCompile Include="alignement.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\RACE</Filter>
+    </ClCompile>
+    <ClCompile Include="CraftManager.cpp">
+      <Filter>Fichiers sources\GAME\CRAFT</Filter>
+    </ClCompile>
+    <ClCompile Include="CraftDataBase.cpp">
+      <Filter>Fichiers sources\GAME\CRAFT</Filter>
+    </ClCompile>
+    <ClCompile Include="Profession.cpp">
+      <Filter>Fichiers sources\GAME\PROFESSION</Filter>
+    </ClCompile>
+    <ClCompile Include="Blacksmith.cpp">
+      <Filter>Fichiers sources\GAME\PROFESSION</Filter>
+    </ClCompile>
+    <ClCompile Include="Alchemist.cpp">
+      <Filter>Fichiers sources\GAME\PROFESSION</Filter>
+    </ClCompile>
+    <ClCompile Include="DatabaseManager.cpp">
+      <Filter>Fichiers sources\DATABASE</Filter>
+    </ClCompile>
+    <ClCompile Include="Database.cpp">
+      <Filter>Fichiers sources\DATABASE</Filter>
+    </ClCompile>
+    <ClCompile Include="craftdbtest.cpp">
+      <Filter>Fichiers sources\DATABASE</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillsTree.cpp">
+      <Filter>Fichiers sources\GAME\SKILLS_SYSTEM\TREE</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillsSystem.cpp">
+      <Filter>Fichiers sources\GAME\SKILLS_SYSTEM</Filter>
+    </ClCompile>
+    <ClCompile Include="Skills.cpp">
+      <Filter>Fichiers sources\GAME\SKILLS_SYSTEM\SKILLS</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfessionSkills.cpp">
+      <Filter>Fichiers sources\GAME\SKILLS_SYSTEM\SKILLS</Filter>
+    </ClCompile>
+    <ClCompile Include="SocialSkills.cpp">
+      <Filter>Fichiers sources\GAME\SKILLS_SYSTEM\SKILLS</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplorationSkills.cpp">
+      <Filter>Fichiers sources\GAME\SKILLS_SYSTEM\SKILLS</Filter>
+    </ClCompile>
+    <ClCompile Include="FightingSkills.cpp">
+      <Filter>Fichiers sources\GAME\SKILLS_SYSTEM\SKILLS</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillsBranch.cpp">
+      <Filter>Fichiers sources\GAME\SKILLS_SYSTEM\TREE</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillsLeaf.cpp">
+      <Filter>Fichiers sources\GAME\SKILLS_SYSTEM\TREE</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillsDataBase.cpp">
+      <Filter>Fichiers sources\GAME\SKILLS_SYSTEM\DATABASE</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeDataBase.cpp">
+      <Filter>Fichiers sources\GAME\SKILLS_SYSTEM\DATABASE</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Fichiers sources\TOOLS\ENTITY</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Fichiers sources\TOOLS\ENTITY\COMPONENT</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Fichiers sources\TOOLS\ENTITY\COMPONENT</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tools.h">
+      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
+    </ClInclude>
+    <ClInclude Include="Race.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\RACE</Filter>
+    </ClInclude>
+    <ClInclude Include="Master.h">
+      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseManager.h">
+      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
+    </ClInclude>
+    <ClInclude Include="musicManager.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\MANAGERS</Filter>
+    </ClInclude>
+    <ClInclude Include="ressourcesManager.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\MANAGERS</Filter>
+    </ClInclude>
+    <ClInclude Include="soundManager.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\MANAGERS</Filter>
+    </ClInclude>
+    <ClInclude Include="textureManager.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\MANAGERS</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\MANAGERS</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Fichiers d%27en-tête\GAME</Filter>
+    </ClInclude>
+    <ClInclude Include="particleManager.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\MANAGERS</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="Armor.h">
+      <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="Consumable.h">
+      <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemDatabase.h">
+      <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardManager.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\MANAGERS</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
+    </ClInclude>
+    <ClInclude Include="Npc.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
+    </ClInclude>
+    <ClInclude Include="Interaction.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION</Filter>
+    </ClInclude>
+    <ClInclude Include="Dialogue.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogueDataBase.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClInclude>
+    <ClInclude Include="Answer.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClInclude>
+    <ClInclude Include="Comment.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogueManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractionText.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClInclude>
+    <ClInclude Include="Question.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClInclude>
+    <ClInclude Include="EndButton.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION\DIALOGUE</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractionPlayerNpc.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractionManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Fichiers d%27en-tête\GAME\MAP</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractionPlayerMap.h">
+      <Filter>Fichiers d%27en-tête\GAME\INTERACTION</Filter>
+    </ClInclude>
+    <ClInclude Include="MapManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\MAP</Filter>
+    </ClInclude>
+    <ClInclude Include="alignement.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\RACE</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\CRAFT</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftDataBase.h">
+      <Filter>Fichiers d%27en-tête\GAME\CRAFT</Filter>
+    </ClInclude>
+    <ClInclude Include="Profession.h">
+      <Filter>Fichiers d%27en-tête\GAME\PROFESSION</Filter>
+    </ClInclude>
+    <ClInclude Include="Blacksmith.h">
+      <Filter>Fichiers d%27en-tête\GAME\PROFESSION</Filter>
+    </ClInclude>
+    <ClInclude Include="Alchemist.h">
+      <Filter>Fichiers d%27en-tête\GAME\PROFESSION</Filter>
+    </ClInclude>
+    <ClInclude Include="DatabaseManager.h">
+      <Filter>Fichiers d%27en-tête\DATABASE</Filter>
+    </ClInclude>
+    <ClInclude Include="Database.h">
+      <Filter>Fichiers d%27en-tête\DATABASE</Filter>
+    </ClInclude>
+    <ClInclude Include="craftdbtest.h">
+      <Filter>Fichiers d%27en-tête\DATABASE</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillsSystem.h">
+      <Filter>Fichiers d%27en-tête\GAME\SKILLS\SYSTEM</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillsTree.h">
+      <Filter>Fichiers d%27en-tête\GAME\SKILLS\TREE</Filter>
+    </ClInclude>
+    <ClInclude Include="Skills.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="FightingSkills.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplorationSkills.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfessionSkills.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="SocialSkills.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillsBranch.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillsLeaf.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillsDataBase.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeDataBase.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\ENTITY</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
