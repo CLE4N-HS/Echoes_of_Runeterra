@@ -1,6 +1,7 @@
 #include "Character.h"
 #include "MouseManager.h"
 #include "textureManager.h"
+#include "ComponentName.h"
 
 Pawn::Pawn() : Pawn("Default Name")
 {
@@ -16,9 +17,9 @@ Pawn::Pawn(std::string _name, std::string _dialogueKey) : Pawn(_name, _dialogueK
 
 Pawn::Pawn(std::string _name, std::string _dialogueKey, int _level, int _xp, int _hp, int _attack, int _defense, int _stamina, int _speed, Alignement _alignement) :
 	Entity(Transform()),
-	m_name(_name), m_dialogueKey(_dialogueKey), m_level(_level), m_xp(_xp), m_hp(_hp), m_attack(_attack), m_defense(_defense), m_stamina(_stamina), m_speed(_speed), m_alignement(_alignement),
+	m_inventory(Inventory()), m_weapon(nullptr), m_armor(nullptr), m_profession(nullptr),
+	m_dialogueKey(_dialogueKey), m_level(_level), m_xp(_xp), m_hp(_hp), m_attack(_attack), m_defense(_defense), m_stamina(_stamina), m_speed(_speed), m_alignement(_alignement),
 
-	m_inventory(Inventory()),
 	m_race(Race::RACE_IONIAN, "Ionian", 0, 0, 20),
 	m_maxHp(m_hp),
 	m_levelXp(100), m_skillPoint(0),
@@ -26,15 +27,22 @@ Pawn::Pawn(std::string _name, std::string _dialogueKey, int _level, int _xp, int
 	m_animState("idle"), m_frameX(0), m_animTimer(0.f), m_attackTimer(0.f),
 	m_takingAnItem(false), m_isHovered(false)
 {
-	sf::IntRect animRect = sf::IntRect();
+	AddComponent<ComponentName>(_name);
+	sf::FloatRect animRect = static_cast<sf::FloatRect>(sf::IntRect());
 	//sf::IntRect animRect = tex_getAnimRect("viego", m_animState.c_str());
-	m_size = sf::Vector2f((float)animRect.width, (float)animRect.height);
-	m_origin = m_size * 0.5f;
-	m_scale = sf::Vector2f(2.f, 2.f);
+	transform->setSize(animRect.getSize());
+	transform->setOrigin(transform->getSize() * 0.5f);
+	transform->setScale(sf::Vector2f(2.f, 2.f));
+	//m_size = sf::Vector2f((float)animRect.width, (float)animRect.height);
+	//m_origin = m_size * 0.5f;
+	//m_scale = sf::Vector2f(2.f, 2.f);
 }
 
 Pawn::~Pawn()
 {
+	delete m_weapon;
+	delete m_armor;
+	delete m_profession;
 }
 
 void Pawn::setDialogueKey(std::string _dialogueKey)

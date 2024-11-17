@@ -4,10 +4,10 @@ Alchemist::Alchemist() : Profession()
 {
 }
 
-void Alchemist::update(Window& _window)
+void Alchemist::Update()
 {
 }
 
-void Alchemist::display(Window& _window)
+void Alchemist::Display()
 {
 }

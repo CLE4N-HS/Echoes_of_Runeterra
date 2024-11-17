@@ -1,9 +1,12 @@
 #pragma once
-#include "Window.h"
+#include "Tools.h"
 #include "Entity.h"
 #include "alignement.h"
 #include "Race.h"
 #include "Inventory.h"
+#include "Weapon.h"
+#include "Armor.h"
+#include "Profession.h"
 
 class Pawn : public Entity
 {
@@ -39,11 +42,17 @@ protected:
 	void gainLevel();
 
 	Inventory m_inventory;
+
+	Weapon* m_weapon;
+	Armor* m_armor;
+	
+	Profession* m_profession;
+
+
 	Race m_race;
 
 	std::string m_dialogueKey;
 
-	std::string m_name;
 	int m_level;
 	int m_xp;
 	int m_levelXp;
@@ -70,9 +79,6 @@ protected:
 	bool m_takingAnItem;
 
 	bool m_isHovered;
-	sf::Vector2f m_size;
-	sf::Vector2f m_origin;
-	sf::Vector2f m_scale;
 
 
 };

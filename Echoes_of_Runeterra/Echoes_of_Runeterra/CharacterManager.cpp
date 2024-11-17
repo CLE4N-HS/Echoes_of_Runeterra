@@ -15,6 +15,11 @@ PawnManager::PawnManager()
 
 PawnManager::~PawnManager()
 {
+	for (size_t i = 0; i < m_pawn.size();)
+	{
+		delete m_pawn[i];
+		m_pawn.erase(m_pawn.begin());
+	}
 }
 
 void PawnManager::Update()
