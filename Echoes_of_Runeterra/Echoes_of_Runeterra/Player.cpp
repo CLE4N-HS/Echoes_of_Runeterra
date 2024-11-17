@@ -5,12 +5,13 @@
 #include "Alchemist.h"
 #include "Transform.h"
 #include "ItemDatabase.h"
+#include "TreeDataBase.h"
 
 Player::Player() : Player("Player")
 {
 }
 
-Player::Player(std::string _name) : Pawn(_name)
+Player::Player(std::string _name) : Pawn(_name), m_skillTree(TreeDataBase::CreateNewTree("tree1"))
 {
 	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("sword")));
 	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("speedPotion"), 2));
@@ -24,6 +25,7 @@ Player::~Player()
 void Player::Update()
 {
 	m_inventory.Update();
+	m_skillTree->Update();
 
 	/*float dt = _window.getDeltaTime();
 

@@ -1,14 +1,17 @@
 #pragma once
-#include "Window.h"
+#include "Tools.h"
+#include "Entity.h"
 #include "SkillsBranch.h"
 
-class SkillsTree
+class SkillsTree : public Entity
 {
 public:
-	SkillsTree(const std::vector<SkillsBranch*>& _branches);
+	SkillsTree();
+	SkillsTree(SkillsTree* _skillTree);
+	SkillsTree(const std::string& _name, const std::vector<SkillsBranch*>& _branches);
 	~SkillsTree();
 
-	void update(Window& _window);
+	void Update();
 
 private:
 	std::vector<SkillsBranch*> m_tree;

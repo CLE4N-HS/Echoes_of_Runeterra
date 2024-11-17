@@ -8,6 +8,6 @@ SocialSkills::~SocialSkills()
 {
 }
 
-void SocialSkills::update(Window& _window)
+void SocialSkills::Update()
 {
 }

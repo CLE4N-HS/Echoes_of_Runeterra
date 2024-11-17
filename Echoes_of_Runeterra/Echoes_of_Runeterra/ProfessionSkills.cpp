@@ -8,6 +8,6 @@ ProfessionSkills::~ProfessionSkills()
 {
 }
 
-void ProfessionSkills::update(Window& _window)
+void ProfessionSkills::Update()
 {
 }

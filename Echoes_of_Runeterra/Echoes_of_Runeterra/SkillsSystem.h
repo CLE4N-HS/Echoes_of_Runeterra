@@ -3,6 +3,9 @@
 #include "SkillsTree.h"
 #include "TreeDataBase.h"
 
+/// <summary>
+/// tbh evoqued but not usefull now
+/// </summary>
 class SkillsSystem
 {
 public:

@@ -9,10 +9,10 @@ SkillsLeaf::~SkillsLeaf()
 	delete m_skill;
 }
 
-void SkillsLeaf::update(Window& _window)
+void SkillsLeaf::Update()
 {
 	if (m_isUnlocked)
 	{
-		m_skill->update(_window);
+		m_skill->Update();
 	}
 }

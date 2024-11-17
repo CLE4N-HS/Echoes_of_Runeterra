@@ -1,5 +1,5 @@
 #pragma once
-#include "Window.h"
+#include "Tools.h"
 
 class Skills
 {
@@ -7,7 +7,7 @@ public:
 	Skills();
 	~Skills();
 
-	virtual void update(Window& _window) = 0;
+	virtual void Update() = 0;
 
 private:
 

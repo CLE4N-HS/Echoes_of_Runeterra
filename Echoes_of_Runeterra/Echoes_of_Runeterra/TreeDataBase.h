@@ -8,9 +8,10 @@ public:
 	TreeDataBase();
 	~TreeDataBase();
 
-	inline SkillsTree* getTree(std::string _name) { return m_treeDB[_name]; }
+	static SkillsTree* CreateNewTree(const std::string& _name);
 
 private:
-	std::map<std::string, SkillsTree*> m_treeDB;
+	static std::list<SkillsTree*> m_treeDB;
+	//std::map<std::string, SkillsTree*> m_treeDB;
 
 };

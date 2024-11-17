@@ -1,8 +1,6 @@
 #pragma once
 #include "Character.h"
-#include "Weapon.h"
-#include "Armor.h"
-#include "Profession.h"
+#include "SkillsTree.h"
 
 class Player : public Pawn
 {
@@ -12,7 +10,6 @@ public:
 	~Player();
 
 	virtual void Update() override;
-
 	virtual void Display() override;
 
 	sf::FloatRect getRect();
@@ -20,5 +17,7 @@ public:
 private:
 	void UpdateMovement();
 	void UpdateInventoryInteractions();
+
+	SkillsTree* m_skillTree;
 
 };

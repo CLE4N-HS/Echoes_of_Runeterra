@@ -3,6 +3,8 @@
 #include "CraftDataBase.h"
 #include "ProfessionCraftDatabase.h"
 
+#include "TreeDataBase.h"
+
 DatabaseManager databaseManager;
 
 void DatabaseManager::loadAllDatabase()
@@ -10,6 +12,6 @@ void DatabaseManager::loadAllDatabase()
 	new ItemDatabase();
 	new CraftDatabase();
 	new ProfessionCraftDatabase();
-	//ItemDatabase* itemDatabase = new ItemDatabase();
-	//CraftDatabase* craftDatabase = new CraftDatabase();
+	// TODO Skills
+	new TreeDataBase();
 }

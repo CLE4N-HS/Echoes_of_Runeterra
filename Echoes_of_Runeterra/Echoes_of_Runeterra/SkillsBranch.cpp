@@ -13,10 +13,10 @@ SkillsBranch::~SkillsBranch()
 {
 }
 
-void SkillsBranch::update(Window& _window)
+void SkillsBranch::Update()
 {
 	for (size_t i = 0; i < m_branch.size(); i++)
 	{
-		m_branch[i]->update(_window);
+		m_branch[i]->Update();
 	}
 }

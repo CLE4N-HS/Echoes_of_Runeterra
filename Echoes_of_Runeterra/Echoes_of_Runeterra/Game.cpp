@@ -4,9 +4,7 @@
 #include "Player.h"
 #include "Npc.h"
 
-Game::Game() : m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager(),
-	m_treeDB(new TreeDataBase),
-	m_skillsSystem(m_treeDB)
+Game::Game() : m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager()//, m_skillsSystem(m_treeDB)
 {
 	DatabaseManager::loadAllDatabase();
 	PawnManager pawnManager;

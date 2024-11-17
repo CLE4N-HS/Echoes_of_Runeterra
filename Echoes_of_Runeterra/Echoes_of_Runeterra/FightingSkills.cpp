@@ -8,6 +8,6 @@ FightingSkills::~FightingSkills()
 {
 }
 
-void FightingSkills::update(Window& _window)
+void FightingSkills::Update()
 {
 }

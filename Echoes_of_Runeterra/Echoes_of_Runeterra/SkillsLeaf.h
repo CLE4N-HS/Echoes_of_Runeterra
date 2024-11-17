@@ -11,7 +11,7 @@ public:
 	inline bool isUnlocked() { return m_isUnlocked; }
 	inline void unlock(bool _unlock = true) { m_isUnlocked = _unlock; }
 
-	void update(Window& _window);
+	void Update();
 
 private:
 	Skills* m_skill;
