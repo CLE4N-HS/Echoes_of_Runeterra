@@ -8,8 +8,8 @@ public:
 	CraftManager();
 	~CraftManager();
 
-	static Item* Craft(std::vector<GameItem>& _item);
-	// TODO Craft with Profession
+	static Item* Craft(const std::vector<GameItem>& _item);
+	static Item* Craft(const std::vector<GameItem>& _item, std::string _profession);
 
 	bool isCraftCorrect(std::vector<Item*> _item);
 	Item* craft(std::vector<Item*> _item);

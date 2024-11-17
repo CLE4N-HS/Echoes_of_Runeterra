@@ -20,6 +20,8 @@ public:
 	ProfessionCraftDatabase();
 	~ProfessionCraftDatabase();
 
+	static Item* CreateProfessionCraft(const std::vector<GameItem>& _item, std::string _profession);
+
 private:
 	static std::list<ProfessionCraft*> m_professionCraft;
 

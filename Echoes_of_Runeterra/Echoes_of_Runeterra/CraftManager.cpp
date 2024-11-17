@@ -1,5 +1,6 @@
 #include "CraftManager.h"
 #include "CraftDataBase.h"
+#include "ProfessionCraftDatabase.h"
 
 CraftManager::CraftManager()
 {
@@ -12,9 +13,15 @@ CraftManager::~CraftManager()
 {
 }
 
-Item* CraftManager::Craft(std::vector<GameItem>& _item)
+Item* CraftManager::Craft(const std::vector<GameItem>& _item)
 {
 	return CraftDatabase::CreateCraftItem(_item);
+}
+
+Item* CraftManager::Craft(const std::vector<GameItem>& _item, std::string _profession)
+{
+	// TODO
+	return nullptr;
 }
 
 bool CraftManager::isCraftCorrect(std::vector<Item*> _item)
