@@ -9,9 +9,9 @@ struct ProfessionCraft {
 	std::string profession;
 
 	// The Craft Item
-	CraftItem craftItem;
+	CraftItem* craftItem;
 
-	inline ProfessionCraft(const std::string& _profession, const CraftItem& _craftItem) : profession(_profession), craftItem(_craftItem) {}
+	inline ProfessionCraft(const std::string& _profession, CraftItem* _craftItem) : profession(_profession), craftItem(_craftItem) {}
 };
 
 class ProfessionCraftDatabase
@@ -21,6 +21,6 @@ public:
 	~ProfessionCraftDatabase();
 
 private:
-	static std::list<ProfessionCraft> m_professionCraft;
+	static std::list<ProfessionCraft*> m_professionCraft;
 
 };
