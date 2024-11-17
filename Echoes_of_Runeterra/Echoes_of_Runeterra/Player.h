@@ -21,9 +21,4 @@ private:
 	void UpdateMovement();
 	void UpdateInventoryInteractions();
 
-	Weapon* m_weapon;
-	Armor* m_armor;
-
-	Profession* m_profession;
-
 };
