@@ -8,6 +8,10 @@ public:
 	ItemDatabase();
 	~ItemDatabase();
 
+	/// <summary>
+	/// Gets a pointer to the Item if founded
+	/// Use this only for a Database in order to not change the Item values
+	/// </summary>
 	static Item* GetItem(std::string _name);
 
 	/// <summary>

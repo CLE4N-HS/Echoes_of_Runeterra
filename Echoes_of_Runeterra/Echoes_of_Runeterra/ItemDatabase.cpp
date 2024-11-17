@@ -33,7 +33,7 @@ Item* ItemDatabase::GetItem(std::string _name)
 	{
 		if ((*it)->GetComponent<ComponentName>()->GetName() == _name)
 		{
-			return ItemDatabase::CreateNewItem((*it));
+			return (*it);
 		}
 	}
 

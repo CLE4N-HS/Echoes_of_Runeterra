@@ -14,7 +14,7 @@ CraftManager::~CraftManager()
 
 Item* CraftManager::Craft(std::vector<GameItem>& _item)
 {
-	return CraftDatabase::GetCraftItem(_item);
+	return CraftDatabase::CreateCraftItem(_item);
 }
 
 bool CraftManager::isCraftCorrect(std::vector<Item*> _item)
