@@ -197,6 +197,7 @@
     <ClCompile Include="ProfessionSkills.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="Race.cpp" />
+    <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ressourcesManager.cpp" />
     <ClCompile Include="Skills.cpp" />
     <ClCompile Include="SkillsBranch.cpp" />
@@ -262,6 +263,7 @@
     <ClInclude Include="ProfessionSkills.h" />
     <ClInclude Include="Question.h" />
     <ClInclude Include="Race.h" />
+    <ClInclude Include="Resource.h" />
     <ClInclude Include="ressourcesManager.h" />
     <ClInclude Include="Skills.h" />
     <ClInclude Include="SkillsBranch.h" />

@@ -11,7 +11,6 @@ public:
 
 	virtual void Update() override;
 	virtual void Display() override;
-	virtual void displayStats(Window& _window);
 
 	int getDamage() const;
 	int getSpeed() const;

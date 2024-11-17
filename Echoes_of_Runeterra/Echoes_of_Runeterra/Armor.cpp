@@ -51,8 +51,8 @@ void Armor::Display()
 	}*/
 }
 
-void Armor::displayStats(Window& _window)
-{
+//void Armor::displayStats(Window& _window)
+//{
 	//_window.rectangle.setPosition(Armor::m_pos);
 	//_window.rectangle.setOrigin(sf::Vector2f());
 	//_window.rectangle.setSize(sf::Vector2f(200.f, 200.f));
@@ -85,7 +85,7 @@ void Armor::displayStats(Window& _window)
 	//sprintf(buffer, "Durability : %d", m_durability);
 	//_window.text.setString(buffer);
 	//_window.draw(_window.text);
-}
+//}
 
 int Armor::getDefense() const
 {

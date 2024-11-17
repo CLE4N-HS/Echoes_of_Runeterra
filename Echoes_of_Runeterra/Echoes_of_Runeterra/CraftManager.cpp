@@ -18,10 +18,15 @@ Item* CraftManager::Craft(const std::vector<GameItem>& _item)
 	return CraftDatabase::CreateCraftItem(_item);
 }
 
-Item* CraftManager::Craft(const std::vector<GameItem>& _item, std::string _profession)
+Item* CraftManager::Craft(const std::vector<GameItem>& _item, const std::string& _profession)
 {
-	// TODO
-	return nullptr;
+	Item* item = nullptr;
+	item = ProfessionCraftDatabase::CreateProfessionCraft(_item, _profession);
+
+	if (item == nullptr) // if the craft wasn't link to a profession
+		item = Craft(_item);
+
+	return item;
 }
 
 bool CraftManager::isCraftCorrect(std::vector<Item*> _item)

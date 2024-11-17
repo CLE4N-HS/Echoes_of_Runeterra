@@ -87,11 +87,9 @@ Item* CraftDatabase::CreateCraftItem(const std::vector<GameItem>& _requiredItem)
 
 		if (correctItemsNumber == (*it)->requiredItem.size())
 		{
-			// TODO don't we have this already ??
 			craftItem = ItemDatabase::CreateNewItem((*it)->item);
 			break;
 		}
-
 	}
 
 	return craftItem;

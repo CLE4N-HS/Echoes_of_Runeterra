@@ -1,5 +1,5 @@
 #pragma once
-#include "Window.h"
+#include "Tools.h"
 #include "Entity.h"
 
 class Item : public Entity
@@ -16,7 +16,7 @@ public:
 
 	virtual void Update() = 0;
 	virtual void Display() = 0;
-	virtual void displayStats(Window& _window) = 0;
+
 	void setState(Item::State _state);
 	Item::State getState();
 	bool isHovered();

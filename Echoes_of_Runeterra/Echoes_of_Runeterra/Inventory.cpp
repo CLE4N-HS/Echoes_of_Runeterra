@@ -14,6 +14,8 @@ Inventory::~Inventory()
 void Inventory::Update()
 {
 	Item* craftedItem = CraftManager::Craft(m_item);
+	Item* professionCraft = CraftManager::Craft(m_item, "blacksmith");
+	Item* professionCraft2 = CraftManager::Craft(m_item, "alchemist");
 
 	//if (_window.keyboardManager.hasJustPressed(sf::Keyboard::I)) {
 	//	m_isOpen = !m_isOpen;

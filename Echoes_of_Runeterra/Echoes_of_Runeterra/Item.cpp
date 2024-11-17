@@ -11,6 +11,8 @@ Item::Item(std::string _name) : Entity(), m_state(Item::State::ON_MAP), m_isHove
 	this->AddComponent<ComponentName>(_name);
 	if (_name != "")
 	{
+		// TODO use a transform component instead of that
+
 		sf::IntRect animRect = sf::IntRect();
 		//sf::IntRect animRect = tex_getAnimRect("items", m_name.c_str());
 		m_size = sf::Vector2f((float)animRect.width, (float)animRect.height);

@@ -309,6 +309,9 @@
     <ClCompile Include="ProfessionCraftDatabase.cpp">
       <Filter>Fichiers sources\GAME\PROFESSION</Filter>
     </ClCompile>
+    <ClCompile Include="Resource.cpp">
+      <Filter>Fichiers sources\GAME\ITEMS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
@@ -498,6 +501,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="ProfessionCraftDatabase.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

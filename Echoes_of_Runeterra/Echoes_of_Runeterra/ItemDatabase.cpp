@@ -2,6 +2,7 @@
 #include "Weapon.h"
 #include "Armor.h"
 #include "Consumable.h"
+#include "Resource.h"
 #include "ComponentName.h"
 
 std::list<Item*> ItemDatabase::m_item;
@@ -11,6 +12,9 @@ ItemDatabase::ItemDatabase()
 	ReadWeaponDB("../Resources/Saves/weaponDB.txt");
 	ReadArmorDB("../Resources/Saves/armorDB.txt");
 	ReadConsumableDB("../Resources/Saves/consumableDB.txt");
+
+	// Resource Database
+	m_item.push_back(new Resource("wood"));
 }
 
 ItemDatabase::~ItemDatabase()
@@ -78,6 +82,8 @@ Item* ItemDatabase::CreateNewItem(Item* _item)
 		return new Armor(*armor);
 	else if (Consumable* consumable = dynamic_cast<Consumable*>(_item))
 		return new Consumable(*consumable);
+	else if (Resource* resource = dynamic_cast<Resource*>(_item))
+		return new Resource(*resource);
 
 	return nullptr;
 }
