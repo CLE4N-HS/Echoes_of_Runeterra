@@ -14,10 +14,8 @@ public:
 
 	sf::FloatRect getRect();
 
-private:
+protected:
 	void UpdateMovement();
 	void UpdateInventoryInteractions();
-
-	SkillsTree* m_skillTree;
 
 };
