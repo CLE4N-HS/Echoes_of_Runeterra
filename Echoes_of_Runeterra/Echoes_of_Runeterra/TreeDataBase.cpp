@@ -76,6 +76,10 @@ TreeDataBase::TreeDataBase()
 		{ "fighting1", "fighting2", "fighting3" },
 		{ "fighting1", "fighting2", "fighting3" }
 		}));
+
+	this->AddTree("tree7", std::vector<std::vector<std::string>>({
+		{ "fighting1", "fighting2", "fighting3" }
+		}));
 }
 
 TreeDataBase::~TreeDataBase()

@@ -63,7 +63,8 @@ void SkillsBranch::CorrectPositions(const sf::Vector2f& _pos)
 	for (size_t i = 0; i < m_branch.size(); i++)
 	{
 		sf::Vector2f tmpPos = this->transform->getPos() + sf::Vector2f(0.f, -100.f);
-		tmpPos.y += -100.f * static_cast<float>(i);
+		float sizeY = 500.f;
+		tmpPos.y -= lerp(0.f, sizeY, (m_branch.size() - 1 <= 0 ? 0.f : static_cast<float>(i) / static_cast<float>(m_branch.size() - 1)));
 
 		m_branch[i]->transform->setPos(tmpPos);
 	}

@@ -74,17 +74,12 @@ void SkillsTree::CorrectPositions()
 		if (m_tree.size() % 2 == 0)
 		{
 			halfSizeX = 300.f;
-			tmpPos.x += lerp(-halfSizeX, halfSizeX, static_cast<float>(i) / static_cast<float>(m_tree.size() - 1.f));
-			//tmpPos.x += lerp(-halfSizeX, halfSizeX, 1.f - static_cast<float>(m_tree.size()) / static_cast<float>(i));
-			//tmpPos.x += (i <= m_tree.size() / 2 ? -1.f : 1.f) * halfSizeX / static_cast<float>(m_tree.size()) * 0.5f;
-			//tmpPos.x += halfSizeX - static_cast<float>(m_tree.size()) * (i % 2 == 0 ? -1.f : 1.f) + 150.f;
+			tmpPos.x += lerp(-halfSizeX, halfSizeX, (m_tree.size() - 1 <= 0 ? 0.f : static_cast<float>(i) / static_cast<float>(m_tree.size() - 1.f)));
 		}
-		else
+		else if (m_tree.size() > 1)
 		{
 			halfSizeX = 400.f;
-			tmpPos.x += lerp(-halfSizeX, halfSizeX, static_cast<float>(i) / static_cast<float>(m_tree.size() - 1.f));
-			//tmpPos.x += (i <= m_tree.size() / 2 ? -1.f : 1.f) * halfSizeX / static_cast<float>(m_tree.size()) * 0.5f;
-			//tmpPos.x += 300.f * static_cast<float>(i) * (i % 2 == 0 ? -1.f : 1.f);
+			tmpPos.x += lerp(-halfSizeX, halfSizeX, (m_tree.size() - 1 <= 0 ? 0.f : static_cast<float>(i) / static_cast<float>(m_tree.size() - 1.f)));
 		}
 
 		m_tree[i]->CorrectPositions(tmpPos);

@@ -12,6 +12,7 @@ SkillTreeManager::SkillTreeManager()
 	m_tree.push_back(TreeDataBase::CreateNewTree("tree4"));
 	m_tree.push_back(TreeDataBase::CreateNewTree("tree5"));
 	m_tree.push_back(TreeDataBase::CreateNewTree("tree6"));
+	m_tree.push_back(TreeDataBase::CreateNewTree("tree7"));
 	// debug
 	m_currentTreeIndex = 0;
 }
@@ -27,6 +28,7 @@ SkillTreeManager::~SkillTreeManager()
 
 void SkillTreeManager::Update()
 {
+	// TEST tree
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		m_currentTreeIndex = 0;
@@ -50,6 +52,10 @@ void SkillTreeManager::Update()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
 	{
 		m_currentTreeIndex = 5;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Y))
+	{
+		m_currentTreeIndex = 6;
 	}
 
 	if (m_currentTreeIndex >= 0 && m_currentTreeIndex < m_tree.size())
