@@ -4,7 +4,7 @@
 class ExplorationSkills : public Skills
 {
 public:
-	ExplorationSkills();
+	ExplorationSkills(const std::string& _name);
 	~ExplorationSkills();
 
 	virtual void Update() override;

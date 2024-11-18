@@ -4,7 +4,7 @@
 class ProfessionSkills : public Skills
 {
 public:
-	ProfessionSkills();
+	ProfessionSkills(const std::string& _name);
 	~ProfessionSkills();
 
 	virtual void Update() override;

@@ -1,6 +1,6 @@
 #include "SocialSkills.h"
 
-SocialSkills::SocialSkills(int _socialBonus) : m_socialBonus(_socialBonus)
+SocialSkills::SocialSkills(const std::string& _name) : Skills(_name)
 {
 }
 

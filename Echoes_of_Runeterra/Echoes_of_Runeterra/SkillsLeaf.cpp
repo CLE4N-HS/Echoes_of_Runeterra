@@ -1,6 +1,6 @@
 #include "SkillsLeaf.h"
 
-SkillsLeaf::SkillsLeaf(Skills* _skill) : m_skill(_skill)
+SkillsLeaf::SkillsLeaf(Skills* _skill) : m_skill(_skill), m_state(SkillsLeaf::State::LOCKED)
 {
 }
 
@@ -11,8 +11,5 @@ SkillsLeaf::~SkillsLeaf()
 
 void SkillsLeaf::Update()
 {
-	if (m_isUnlocked)
-	{
-		m_skill->Update();
-	}
+	//m_skill->Update();
 }

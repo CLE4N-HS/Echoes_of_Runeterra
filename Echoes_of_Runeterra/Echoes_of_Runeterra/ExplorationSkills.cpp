@@ -1,6 +1,6 @@
 #include "ExplorationSkills.h"
 
-ExplorationSkills::ExplorationSkills()
+ExplorationSkills::ExplorationSkills(const std::string& _name) : Skills(_name)
 {
 }
 

@@ -5,16 +5,22 @@
 class SkillsLeaf
 {
 public:
+	enum State {
+		LOCKED,
+		OBTAINABLE,
+		ACQUIRED
+	};
+
 	SkillsLeaf(Skills* _skill);
 	~SkillsLeaf();
 
-	inline bool isUnlocked() { return m_isUnlocked; }
-	inline void unlock(bool _unlock = true) { m_isUnlocked = _unlock; }
+	inline SkillsLeaf::State GetState() const { return m_state; }
+	inline void SetState(const SkillsLeaf::State& _state) { m_state = _state; }
 
 	void Update();
 
 private:
 	Skills* m_skill;
-	bool m_isUnlocked;
+	SkillsLeaf::State m_state;
 
 };

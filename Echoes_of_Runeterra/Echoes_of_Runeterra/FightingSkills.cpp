@@ -1,6 +1,6 @@
 #include "FightingSkills.h"
 
-FightingSkills::FightingSkills()
+FightingSkills::FightingSkills(const std::string& _name) : Skills(_name)
 {
 }
 
