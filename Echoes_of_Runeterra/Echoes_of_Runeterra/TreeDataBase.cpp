@@ -44,6 +44,38 @@ TreeDataBase::TreeDataBase()
 		{ "fighting1", "fighting2", "fighting3" },
 		{ "fighting1", "fighting2", "fighting3" }
 		}));
+	
+	this->AddTree("tree3", std::vector<std::vector<std::string>>({
+		{ "fighting1"},
+		{ "fighting1", "fighting2"},
+		{ "fighting1", "fighting2", "fighting3" },
+		{ "fighting1", "fighting2", "fighting3", "fighting1" },
+		{ "fighting1", "fighting2", "fighting3", "fighting1", "fighting1" }
+		}));
+	
+	this->AddTree("tree4", std::vector<std::vector<std::string>>({
+		{ "fighting1", "fighting2", "fighting3", "fighting3" },
+		{ "fighting1", "fighting2", "fighting3", "fighting3" },
+		{ "fighting1", "fighting2", "fighting3", "fighting3" },
+		{ "fighting1", "fighting2", "fighting3", "fighting3" }
+		}));
+	
+	this->AddTree("tree5", std::vector<std::vector<std::string>>({
+		{ "fighting1", "fighting2", "fighting3" },
+		{ "fighting1", "fighting2", "fighting3", "fighting3"  },
+		{ "fighting1", "fighting2", "fighting3", "fighting3"  },
+		{ "fighting1", "fighting2", "fighting3", "fighting3" },
+		{ "fighting1", "fighting2"}
+		}));
+	
+	this->AddTree("tree6", std::vector<std::vector<std::string>>({
+		{ "fighting1", "fighting2", "fighting3" },
+		{ "fighting1", "fighting2", "fighting3" },
+		{ "fighting1", "fighting2", "fighting3" },
+		{ "fighting1", "fighting2", "fighting3" },
+		{ "fighting1", "fighting2", "fighting3" },
+		{ "fighting1", "fighting2", "fighting3" }
+		}));
 }
 
 TreeDataBase::~TreeDataBase()

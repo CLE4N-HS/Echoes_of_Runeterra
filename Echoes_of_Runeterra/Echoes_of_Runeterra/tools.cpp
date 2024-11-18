@@ -63,3 +63,13 @@ float lerp(float v0, float v1, float t)
 {
     return (1.f - t) * v0 + t * v1;
 }
+
+sf::Vector2f lerpVector(sf::Vector2f v0, sf::Vector2f v1, float t)
+{
+    return sf::Vector2f(lerp(v0.x, v1.x, t), lerp(v0.y, v1.y, t));
+}
+
+float getAngleBetweenVectors(sf::Vector2f a, sf::Vector2f b)
+{
+    return atan2f(b.y, b.x) - atan2f(a.y, a.x);
+}
