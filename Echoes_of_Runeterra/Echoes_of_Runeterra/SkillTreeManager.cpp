@@ -23,6 +23,15 @@ SkillTreeManager::~SkillTreeManager()
 
 void SkillTreeManager::Update()
 {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		m_currentTreeIndex = 0;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+	{
+		m_currentTreeIndex = 1;
+	}
+
 	if (m_currentTreeIndex >= 0 && m_currentTreeIndex < m_tree.size())
 	{
 		m_tree[m_currentTreeIndex]->Update();

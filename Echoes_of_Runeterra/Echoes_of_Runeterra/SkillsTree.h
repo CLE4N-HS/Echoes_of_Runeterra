@@ -15,6 +15,7 @@ public:
 	void Display();
 
 private:
+	void CorrectPositions();
 	std::vector<SkillsBranch*> m_tree;
 
 	int m_xp;

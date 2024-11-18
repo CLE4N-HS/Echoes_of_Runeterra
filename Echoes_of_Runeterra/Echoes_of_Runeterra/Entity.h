@@ -43,9 +43,12 @@ public:
 		}
 	}
 
-	inline unsigned char GetId() { return m_id; }
-	inline Entity* GetParent() { return m_instigator; }
-	inline Entity* GetOwner() { return m_owner; }
+	inline unsigned char GetId() const { return m_id; }
+	inline Entity* GetParent() const { return m_instigator; }
+	inline Entity* GetOwner() const { return m_owner; }
+
+	inline void SetInstigator(Entity* _instigator) { m_instigator = _instigator; }
+	inline void SetOwner(Entity* _owner) { m_owner = _owner; }
 
 	Transform* transform;
 

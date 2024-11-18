@@ -1,10 +1,8 @@
 #include "SkillsLeaf.h"
 #include "Window.h"
 
-SkillsLeaf::SkillsLeaf(Skills* _skill) : m_skill(_skill), m_state(SkillsLeaf::State::LOCKED)
+SkillsLeaf::SkillsLeaf(Skills* _skill) : Entity(Transform(sf::Vector2f(), sf::Vector2f(50.f, 50.f))), m_skill(_skill), m_state(SkillsLeaf::State::LOCKED)
 {
-	this->transform->setSize(sf::Vector2f(50.f, 50.f));
-	this->transform->setOrigin(transform->getSize() * 0.5f);
 }
 
 SkillsLeaf::~SkillsLeaf()
@@ -19,10 +17,7 @@ void SkillsLeaf::Update()
 
 void SkillsLeaf::Display()
 {
-	Window::rectangle.setPosition(this->transform->getPos());
-	Window::rectangle.setSize(this->transform->getSize());
-	Window::rectangle.setOrigin(this->transform->getOrigin());
-	Window::rectangle.setScale(this->transform->getScale());
+	this->transform->CorrectWindowRectangle();
 
 	Window::Draw(Window::rectangle);
 }

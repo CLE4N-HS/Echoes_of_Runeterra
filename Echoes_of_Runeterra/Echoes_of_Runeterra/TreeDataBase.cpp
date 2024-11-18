@@ -27,14 +27,20 @@ TreeDataBase::TreeDataBase()
 
 	SkillsBranch* tree1_branch1(new SkillsBranch(std::vector<SkillsLeaf*>{tree1_branch1_leaf1, tree1_branch1_leaf2, tree1_branch1_leaf3}));
 	SkillsBranch* tree1_branch2(new SkillsBranch(std::vector<SkillsLeaf*>{tree1_branch2_leaf1, tree1_branch2_leaf2, tree1_branch2_leaf3}));
-	SkillsBranch* tree1_branch3(new SkillsBranch(std::vector<SkillsLeaf*>{tree1_branch3_leaf2, tree1_branch3_leaf2, tree1_branch3_leaf3}));
+	SkillsBranch* tree1_branch3(new SkillsBranch(std::vector<SkillsLeaf*>{tree1_branch3_leaf1, tree1_branch3_leaf2, tree1_branch3_leaf3}));
 
 	SkillsTree* tree1(new SkillsTree("tree1", std::vector<SkillsBranch*>{tree1_branch1, tree1_branch2, tree1_branch3}));
-	m_treeDB.push_back(tree1);
+	//m_treeDB.push_back(tree1);
 
 	// same thing
 	this->AddTree("tree2", std::vector<std::vector<std::string>>({
 		{ "fighting1", "fighting2", "fighting3" },
+		{ "fighting1", "fighting2", "fighting3" },
+		{ "fighting1", "fighting2", "fighting3" }
+		}));
+
+	
+	this->AddTree("tree1", std::vector<std::vector<std::string>>({
 		{ "fighting1", "fighting2", "fighting3" },
 		{ "fighting1", "fighting2", "fighting3" }
 		}));

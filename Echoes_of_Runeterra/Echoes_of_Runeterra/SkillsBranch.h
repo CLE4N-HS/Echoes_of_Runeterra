@@ -12,6 +12,8 @@ public:
 	void Update();
 	void Display();
 
+	void CorrectPositions(const sf::Vector2f& _pos);
+
 private:
 	std::vector<SkillsLeaf*> m_branch;
 
