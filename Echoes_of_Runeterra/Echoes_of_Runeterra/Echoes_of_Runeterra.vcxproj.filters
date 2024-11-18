@@ -312,6 +312,9 @@
     <ClCompile Include="Resource.cpp">
       <Filter>Fichiers sources\GAME\ITEMS</Filter>
     </ClCompile>
+    <ClCompile Include="SkillTreeManager.cpp">
+      <Filter>Fichiers sources\GAME\SKILLS_SYSTEM\TREE</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
@@ -504,6 +507,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillTreeManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

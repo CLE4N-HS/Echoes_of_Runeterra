@@ -205,6 +205,7 @@
     <ClCompile Include="SkillsLeaf.cpp" />
     <ClCompile Include="SkillsSystem.cpp" />
     <ClCompile Include="SkillsTree.cpp" />
+    <ClCompile Include="SkillTreeManager.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TreeDataBase.cpp" />
     <ClCompile Include="SocialSkills.cpp" />
@@ -271,6 +272,7 @@
     <ClInclude Include="SkillsLeaf.h" />
     <ClInclude Include="SkillsSystem.h" />
     <ClInclude Include="SkillsTree.h" />
+    <ClInclude Include="SkillTreeManager.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TreeDataBase.h" />
     <ClInclude Include="SocialSkills.h" />

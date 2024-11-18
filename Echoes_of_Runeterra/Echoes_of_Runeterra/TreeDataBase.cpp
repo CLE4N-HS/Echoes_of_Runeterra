@@ -13,12 +13,6 @@ std::list<SkillsTree*> TreeDataBase::m_treeDB;
 
 TreeDataBase::TreeDataBase()
 {
-	//////////////////////////////////////////////////////////////
-	/// 
-	/// A tree is made up of branches, which are made up of leaves
-	///
-	//////////////////////////////////////////////////////////////
-
 	SkillsLeaf* tree1_branch1_leaf1(new SkillsLeaf(SkillsDataBase::GetSkills("fighting1")));
 	SkillsLeaf* tree1_branch1_leaf2(new SkillsLeaf(SkillsDataBase::GetSkills("fighting2")));
 	SkillsLeaf* tree1_branch1_leaf3(new SkillsLeaf(SkillsDataBase::GetSkills("fighting3")));
@@ -39,7 +33,7 @@ TreeDataBase::TreeDataBase()
 	m_treeDB.push_back(tree1);
 
 	// same thing
-	this->AddTree("tree1", std::vector<std::vector<std::string>>({
+	this->AddTree("tree2", std::vector<std::vector<std::string>>({
 		{ "fighting1", "fighting2", "fighting3" },
 		{ "fighting1", "fighting2", "fighting3" },
 		{ "fighting1", "fighting2", "fighting3" }

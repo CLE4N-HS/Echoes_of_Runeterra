@@ -20,3 +20,11 @@ void SkillsBranch::Update()
 		m_branch[i]->Update();
 	}
 }
+
+void SkillsBranch::Display()
+{
+	for (size_t i = 0; i < m_branch.size(); i++)
+	{
+		m_branch[i]->Display();
+	}
+}

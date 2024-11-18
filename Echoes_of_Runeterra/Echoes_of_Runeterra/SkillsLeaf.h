@@ -1,8 +1,9 @@
 #pragma once
-#include "Window.h"
+#include "Tools.h"
+#include "Entity.h"
 #include "Skills.h"
 
-class SkillsLeaf
+class SkillsLeaf : public Entity
 {
 public:
 	enum State {
@@ -18,6 +19,7 @@ public:
 	inline void SetState(const SkillsLeaf::State& _state) { m_state = _state; }
 
 	void Update();
+	void Display();
 
 private:
 	Skills* m_skill;

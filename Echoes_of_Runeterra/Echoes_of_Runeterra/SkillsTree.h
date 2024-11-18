@@ -12,6 +12,7 @@ public:
 	~SkillsTree();
 
 	void Update();
+	void Display();
 
 private:
 	std::vector<SkillsBranch*> m_tree;

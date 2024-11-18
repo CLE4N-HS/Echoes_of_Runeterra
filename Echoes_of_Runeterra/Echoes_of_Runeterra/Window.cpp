@@ -1,6 +1,9 @@
 #include "Window.h"
 #include "Tools.h"
 
+sf::RectangleShape Window::rectangle = sf::RectangleShape();
+sf::Text Window::text = sf::Text();
+
 sf::RenderWindow Window::m_renderWindow = sf::RenderWindow();
 sf::RenderTexture Window::m_renderTexture = sf::RenderTexture();
 sf::Font Window::m_font = sf::Font();

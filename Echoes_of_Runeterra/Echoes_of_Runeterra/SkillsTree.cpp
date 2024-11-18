@@ -33,3 +33,11 @@ void SkillsTree::Update()
 		m_tree[i]->Update();
 	}
 }
+
+void SkillsTree::Display()
+{
+	for (size_t i = 0; i < m_tree.size(); i++)
+	{
+		m_tree[i]->Display();
+	}
+}
