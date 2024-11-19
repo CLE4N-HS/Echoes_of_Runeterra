@@ -118,6 +118,12 @@
     <Filter Include="Fichiers sources\GAME\CHARACTER\FIGHTER">
       <UniqueIdentifier>{615f28d9-531d-45ed-a165-f5c2eca84fc7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER">
+      <UniqueIdentifier>{1d8d1fbd-86bb-4fc8-9145-20cc670272d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\TOOLS\ENTITY\COMPONENT">
+      <UniqueIdentifier>{50f08a5d-145f-46f0-bcb4-ec3ecf1c705e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -509,15 +515,6 @@
     <ClInclude Include="Entity.h">
       <Filter>Fichiers d%27en-tête\TOOLS\ENTITY</Filter>
     </ClInclude>
-    <ClInclude Include="Component.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="ComponentName.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="ProfessionCraftDatabase.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -538,6 +535,15 @@
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\ENTITY\COMPONENT</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentName.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\ENTITY\COMPONENT</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\ENTITY\COMPONENT</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

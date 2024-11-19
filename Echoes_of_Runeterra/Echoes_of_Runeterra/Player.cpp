@@ -32,8 +32,7 @@ void Player::Update()
 		this->UpdateMovement();
 	}
 
-	/*float dt = _window.getDeltaTime();
-
+	/*
 	m_attackTimer += dt;
 
 	this->updateMovement(_window);
@@ -43,7 +42,6 @@ void Player::Update()
 	m_inventory->update(_window);
 
 	this->updateInventoryInteractions(_window);*/
-	
 }
 
 void Player::Display()
