@@ -2,19 +2,21 @@
 #include "DatabaseManager.h"
 #include "CharacterManager.h"
 #include "SkillTreeManager.h"
+#include "DialogueManager.h"
 
 Game::Game() : m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager()//, m_skillsSystem(m_treeDB)
 {
 	DatabaseManager::loadAllDatabase();
 	new PawnManager();
 	new SkillTreeManager();
+	new DialogueManager();
+	DialogueManager::SetupDialogue("intro");
 	//m_mapManager.addItem(m_itemDB->getItem("sword"));
 	//m_mapManager.addItem(m_itemDB->getItem("pickaxe"));
 	//m_mapManager.addItem(m_itemDB->getItem("metalArmor"));
 	//m_mapManager.addItem(m_itemDB->getItem("shield"));
 	//m_mapManager.addItem(m_itemDB->getItem("heart"));
 	//m_mapManager.addItem(m_itemDB->getItem("speedPotion"));
-	m_dialogueManager.setupDialogue("intro");
 
 	//m_characterManager.addCharacterItem("Player", m_itemDB->getItem("sword"));
 }
@@ -27,6 +29,7 @@ void Game::Update()
 {
 	PawnManager::Update();
 	SkillTreeManager::Update();
+	DialogueManager::Update();
 	//m_mapManager.update(_window);
 
 	////if (!m_dialogueManager.isInDialogue())
@@ -42,12 +45,13 @@ void Game::Update()
 
 void Game::Display()
 {
-	//m_mapManager.display(_window);
 
-	//m_characterManager.display(_window);
 	PawnManager::Display();
 	SkillTreeManager::Display();
+	DialogueManager::Display();
 
+	//m_mapManager.display(_window);
+	//m_characterManager.display(_window);
 	//m_dialogueManager.display(_window);
 
 

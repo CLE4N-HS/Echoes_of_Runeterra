@@ -5,7 +5,9 @@
 #include "Comment.h"
 #include "EndButton.h"
 
-DialogueDataBase::DialogueDataBase() : m_interactionTextDB()
+std::map<std::string, InteractionText*> DialogueDataBase::m_interactionTextDB;
+
+DialogueDataBase::DialogueDataBase()
 {
 	// TODO maybe add alignement of the anwser in the Answer constructor
 
@@ -59,14 +61,16 @@ void DialogueDataBase::createText(std::map<std::string, InteractionText*>& _text
 
 	// Answers
 	int answerIndex(0);
-	while (m_interactionTextDB[_name + " A" + std::to_string(++answerIndex)])
+	//while (m_interactionTextDB[_name + " A" + std::to_string(++answerIndex)])
+	while (m_interactionTextDB.find(_name + " A" + std::to_string(++answerIndex)) != m_interactionTextDB.end())
 	{
 		_text.insert({ "A" + std::to_string(answerIndex), m_interactionTextDB[_name + " A" + std::to_string(answerIndex)]});
 	}
 
 	// Comments
 	int commentIndex(0);
-	while (m_interactionTextDB[_name + " C" + std::to_string(++commentIndex)])
+	//while (m_interactionTextDB[_name + " C" + std::to_string(++commentIndex)])
+	while (m_interactionTextDB.find(_name + " C" + std::to_string(++commentIndex)) != m_interactionTextDB.end())
 	{
 		_text.insert({ "C" + std::to_string(commentIndex), m_interactionTextDB[_name + " C" + std::to_string(commentIndex)]});
 	}

@@ -11,11 +11,11 @@ void Comment::setup()
 	m_isVisible = false;
 }
 
-void Comment::update(Window& _window)
+void Comment::Update()
 {
 }
 
-void Comment::display(Window& _window)
+void Comment::Display()
 {
 	if (m_isVisible)
 	{

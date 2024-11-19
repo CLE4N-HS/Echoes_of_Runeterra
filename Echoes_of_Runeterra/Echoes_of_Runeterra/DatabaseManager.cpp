@@ -4,6 +4,7 @@
 #include "ProfessionCraftDatabase.h"
 #include "SkillsDataBase.h"
 #include "TreeDataBase.h"
+#include "DialogueDataBase.h"
 
 DatabaseManager databaseManager;
 
@@ -14,4 +15,5 @@ void DatabaseManager::loadAllDatabase()
 	new ProfessionCraftDatabase();
 	new SkillsDataBase();
 	new TreeDataBase();
+	new DialogueDataBase();
 }

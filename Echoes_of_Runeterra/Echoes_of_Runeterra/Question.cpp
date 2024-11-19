@@ -11,11 +11,11 @@ void Question::setup()
 	m_isVisible = true;
 }
 
-void Question::update(Window& _window)
+void Question::Update()
 {
 }
 
-void Question::display(Window& _window)
+void Question::Display()
 {
 	if (m_isVisible)
 	{

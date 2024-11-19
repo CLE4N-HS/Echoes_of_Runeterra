@@ -162,7 +162,6 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentName.cpp" />
     <ClCompile Include="Consumable.cpp" />
-    <ClCompile Include="craftdbtest.cpp" />
     <ClCompile Include="CraftDataBase.cpp" />
     <ClCompile Include="CraftManager.cpp" />
     <ClCompile Include="Database.cpp" />
@@ -234,7 +233,6 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentName.h" />
     <ClInclude Include="Consumable.h" />
-    <ClInclude Include="craftdbtest.h" />
     <ClInclude Include="CraftDataBase.h" />
     <ClInclude Include="CraftManager.h" />
     <ClInclude Include="Database.h" />

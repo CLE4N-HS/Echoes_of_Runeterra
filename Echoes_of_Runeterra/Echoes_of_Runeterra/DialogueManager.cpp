@@ -1,6 +1,9 @@
 #include "DialogueManager.h"
+#include "DialogueDataBase.h"
 
-DialogueManager::DialogueManager() : m_dialogueDB(new DialogueDataBase), m_dialogue()
+Dialogue DialogueManager::m_dialogue;
+
+DialogueManager::DialogueManager()
 {
 }
 
@@ -8,24 +11,24 @@ DialogueManager::~DialogueManager()
 {
 }
 
-void DialogueManager::setupDialogue(std::string _name)
+void DialogueManager::SetupDialogue(const std::string& _name)
 {
 	std::map<std::string, InteractionText*> tmpText;
-	m_dialogueDB->createText(tmpText, _name);
+	DialogueDataBase::createText(tmpText, _name);
 	m_dialogue.setup(tmpText);
 }
 
-bool DialogueManager::isInDialogue()
+bool DialogueManager::IsInDialogue()
 {
 	return m_dialogue.isInDialogue();
 }
 
-void DialogueManager::update(Window& _window)
+void DialogueManager::Update()
 {
-	m_dialogue.update(_window);
+	m_dialogue.Update();
 }
 
-void DialogueManager::display(Window& _window)
+void DialogueManager::Display()
 {
-	m_dialogue.display(_window);
+	m_dialogue.Display();
 }

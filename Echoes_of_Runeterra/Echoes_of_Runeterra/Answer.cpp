@@ -11,7 +11,7 @@ void Answer::setup()
 	m_isVisible = true;
 }
 
-void Answer::update(Window& _window)
+void Answer::Update()
 {
 	//if (m_isVisible)
 	//{
@@ -31,7 +31,7 @@ void Answer::update(Window& _window)
 	//}
 }
 
-void Answer::display(Window& _window)
+void Answer::Display()
 {
 	if (m_isVisible)
 	{

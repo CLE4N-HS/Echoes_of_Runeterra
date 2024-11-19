@@ -25,7 +25,7 @@ bool Dialogue::isInDialogue()
 	return (m_text.size() > 0);
 }
 
-void Dialogue::update(Window& _window)
+void Dialogue::Update()
 {
 	if (m_text.size() > 0) // if not then there's no dialogue
 	{
@@ -33,7 +33,7 @@ void Dialogue::update(Window& _window)
 		for (std::map<std::string, InteractionText*>::iterator it = m_text.begin(); it != m_text.end(); it++)
 		{
 			answerIndex++;
-			it->second->update(_window);
+			it->second->Update();
 			if (it->second->hasChoosen())
 			{
 				it->second->resetChoice();
@@ -63,7 +63,7 @@ void Dialogue::update(Window& _window)
 	}
 }
 
-void Dialogue::display(Window& _window)
+void Dialogue::Display()
 {
 	//if (m_text.size() > 0) // if not then there's no dialogue
 	//{

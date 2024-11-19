@@ -11,7 +11,7 @@ void EndButton::setup()
 	m_isVisible = false;
 }
 
-void EndButton::update(Window& _window)
+void EndButton::Update()
 {
 	//if (m_isVisible)
 	//{
@@ -31,7 +31,7 @@ void EndButton::update(Window& _window)
 	//}
 }
 
-void EndButton::display(Window& _window)
+void EndButton::Display()
 {
 	if (m_isVisible)
 	{

@@ -8,8 +8,8 @@ public:
 
 	virtual void setup();
 
-	virtual void update(Window& _window);
-	virtual void display(Window& _window);
+	virtual void Update();
+	virtual void Display();
 
 private:
 
