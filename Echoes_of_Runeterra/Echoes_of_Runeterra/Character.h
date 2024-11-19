@@ -53,12 +53,12 @@ protected:
 
 	Race m_race;
 
+	// npc
 	std::string m_dialogueKey;
 
 	int m_level;
 	int m_xp;
 	int m_levelXp;
-	int m_skillPoint;
 
 	int m_hp, m_maxHp;
 	int m_attack;
@@ -67,17 +67,12 @@ protected:
 	int m_speed;
 	Alignement m_alignement;
 
-	sf::Vector2f m_targetPos;
-	sf::Vector2f m_foward;
-	float m_moveSpeed;
-
 	int m_frameX;
 	float m_animTimer;
 	std::string m_animState;
 
 	float m_attackTimer;
 
-	// player
 	bool m_takingAnItem;
 
 	bool m_isHovered;

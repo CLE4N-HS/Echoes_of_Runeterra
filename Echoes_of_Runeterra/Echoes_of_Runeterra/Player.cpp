@@ -110,7 +110,7 @@ sf::FloatRect Player::getRect()
 
 void Player::UpdateMovement()
 {
-	//float dt = _window.getDeltaTime();
+	float dt = Tools::GetDeltaTime();
 
 	//if (!m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
 	//{

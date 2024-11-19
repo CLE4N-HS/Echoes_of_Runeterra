@@ -17,6 +17,15 @@ public:
 protected:
 	Inventory m_inventory;
 
+
+	int m_skillPoint = 0;
+	float m_moveSpeed = 500.f;
+
+	sf::Vector2f m_targetPos = sf::Vector2f();
+	sf::Vector2f m_forward = sf::Vector2f();
+
+
+
 	void UpdateMovement();
 	void UpdateInventoryInteractions();
 
