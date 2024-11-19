@@ -115,6 +115,9 @@
     <Filter Include="Fichiers sources\TOOLS\ENTITY\COMPONENT">
       <UniqueIdentifier>{0eed117e-dc35-4d2a-a80f-a09dde3c4ed6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\GAME\CHARACTER\FIGHTER">
+      <UniqueIdentifier>{615f28d9-531d-45ed-a165-f5c2eca84fc7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -315,6 +318,18 @@
     <ClCompile Include="SkillTreeManager.cpp">
       <Filter>Fichiers sources\GAME\SKILLS_SYSTEM\TREE</Filter>
     </ClCompile>
+    <ClCompile Include="Specialization.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER</Filter>
+    </ClCompile>
+    <ClCompile Include="Fighter.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER</Filter>
+    </ClCompile>
+    <ClCompile Include="Companion.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tools.h">
@@ -510,6 +525,18 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="SkillTreeManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Specialization.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Fighter.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Companion.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

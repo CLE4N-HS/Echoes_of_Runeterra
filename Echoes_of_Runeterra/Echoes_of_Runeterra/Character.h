@@ -3,10 +3,11 @@
 #include "Entity.h"
 #include "alignement.h"
 #include "Race.h"
-#include "Inventory.h"
 #include "Weapon.h"
 #include "Armor.h"
 #include "Profession.h"
+#include "Specialization.h"
+#include "Skills.h"
 
 class Pawn : public Entity
 {
@@ -29,24 +30,25 @@ public:
 
 	void attack(Pawn& _character);
 
-	void inventorySetOpening(bool _shouldBeOpened);
-	bool isInventoryOpen();
-
-	void addItem(Item* _item);
-
 	void setHover(bool _isHovered);
 	virtual sf::FloatRect getRect() = 0;
 
 protected:
+	Weapon* m_weapon = nullptr;
+	Armor* m_armor = nullptr;
+	
+	Profession* m_profession = nullptr;
+
+	Specialization m_specialization;
+
+	std::vector<Skills*> m_skill = {};
+
+
+
+
 	void upgradeLevelXp();
 	void gainLevel();
 
-	Inventory m_inventory;
-
-	Weapon* m_weapon;
-	Armor* m_armor;
-	
-	Profession* m_profession;
 
 
 	Race m_race;

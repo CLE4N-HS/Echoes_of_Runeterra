@@ -17,7 +17,6 @@ Pawn::Pawn(std::string _name, std::string _dialogueKey) : Pawn(_name, _dialogueK
 
 Pawn::Pawn(std::string _name, std::string _dialogueKey, int _level, int _xp, int _hp, int _attack, int _defense, int _stamina, int _speed, Alignement _alignement) :
 	Entity(Transform()),
-	m_inventory(Inventory()), m_weapon(nullptr), m_armor(nullptr), m_profession(nullptr),
 	m_dialogueKey(_dialogueKey), m_level(_level), m_xp(_xp), m_hp(_hp), m_attack(_attack), m_defense(_defense), m_stamina(_stamina), m_speed(_speed), m_alignement(_alignement),
 
 	m_race(Race::RACE_IONIAN, "Ionian", 0, 0, 20),
@@ -33,9 +32,6 @@ Pawn::Pawn(std::string _name, std::string _dialogueKey, int _level, int _xp, int
 	transform->setSize(animRect.getSize());
 	transform->setOrigin(transform->getSize() * 0.5f);
 	transform->setScale(sf::Vector2f(2.f, 2.f));
-	//m_size = sf::Vector2f((float)animRect.width, (float)animRect.height);
-	//m_origin = m_size * 0.5f;
-	//m_scale = sf::Vector2f(2.f, 2.f);
 }
 
 Pawn::~Pawn()
@@ -78,22 +74,6 @@ void Pawn::attack(Pawn& _character)
 		m_race.displayStats();
 		std::cout << std::endl << std::endl;
 	}
-}
-
-void Pawn::inventorySetOpening(bool _shouldBeOpened)
-{
-	m_inventory.setOpening(_shouldBeOpened);
-}
-
-bool Pawn::isInventoryOpen()
-{
-	return m_inventory.isOpen();
-}
-
-void Pawn::addItem(Item* _item)
-{
-	if (_item != nullptr)
-		m_inventory.addItem(_item);
 }
 
 void Pawn::setHover(bool _isHovered)

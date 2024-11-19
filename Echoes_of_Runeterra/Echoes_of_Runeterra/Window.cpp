@@ -1,5 +1,4 @@
 #include "Window.h"
-#include "Tools.h"
 
 sf::RectangleShape Window::rectangle = sf::RectangleShape();
 sf::Text Window::text = sf::Text();

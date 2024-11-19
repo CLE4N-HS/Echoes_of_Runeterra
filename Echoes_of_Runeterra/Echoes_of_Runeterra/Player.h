@@ -1,6 +1,6 @@
 #pragma once
 #include "Character.h"
-#include "SkillsTree.h"
+#include "Inventory.h"
 
 class Player : public Pawn
 {
@@ -15,6 +15,8 @@ public:
 	sf::FloatRect getRect();
 
 protected:
+	Inventory m_inventory;
+
 	void UpdateMovement();
 	void UpdateInventoryInteractions();
 
