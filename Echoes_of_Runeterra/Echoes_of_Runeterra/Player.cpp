@@ -1,11 +1,7 @@
 #include "Player.h"
-#include "textureManager.h"
-#include "Consumable.h"
-#include "Blacksmith.h"
-#include "Alchemist.h"
-#include "Transform.h"
 #include "ItemDatabase.h"
-#include "TreeDataBase.h"
+#include "MouseManager.h"
+#include "Window.h"
 
 Player::Player() : Player("Player")
 {
@@ -13,6 +9,11 @@ Player::Player() : Player("Player")
 
 Player::Player(std::string _name) : Pawn(_name)
 {
+	this->transform->setSize(sf::Vector2f(50.f, 50.f));
+	this->transform->setOrigin(this->transform->getSize() * 0.5f);
+	this->transform->setPos(sf::Vector2f(960.f, 540.f));
+	m_targetPos = this->transform->getPos();
+
 	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("sword")));
 	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("speedPotion"), 2));
 	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("pickaxe"), 2));
@@ -25,6 +26,11 @@ Player::~Player()
 void Player::Update()
 {
 	m_inventory.Update();
+
+	if (!m_inventory.isOpen())
+	{
+		this->UpdateMovement();
+	}
 
 	/*float dt = _window.getDeltaTime();
 
@@ -42,6 +48,12 @@ void Player::Update()
 
 void Player::Display()
 {
+	this->transform->CorrectWindowRectangle();
+
+	Window::Draw();
+
+
+
 	//_window.rectangle.setPosition(m_pos);
 	//_window.rectangle.setTexture(tex_getTexture("viego"));
 	//_window.rectangle.setSize(m_size);
@@ -102,15 +114,22 @@ void Player::Display()
 
 }
 
-sf::FloatRect Player::getRect()
-{
-	return sf::FloatRect();
-	//return sf::FloatRect(m_pos - vec2fMultiply(m_origin, m_scale), vec2fMultiply(m_size, m_scale));
-}
-
 void Player::UpdateMovement()
 {
 	float dt = Tools::GetDeltaTime();
+
+	if (MouseManager::OneTimePressed())
+	{
+		m_targetPos = Window::GetMousePos();
+	}
+
+	sf::Vector2f forwardVec = sf::Vector2f(m_targetPos - this->transform->getPos());
+	if (Tools::Magnitude(forwardVec) > 100.f)
+	{
+		m_forward = Tools::Normalize(forwardVec);
+
+		this->transform->Move(m_forward * m_moveSpeed * dt);
+	}
 
 	//if (!m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
 	//{

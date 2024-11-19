@@ -16,6 +16,7 @@ public:
 
 	inline sf::Vector2f getPos() const { return m_pos; }
 	inline void setPos(const sf::Vector2f& _pos) { m_pos = _pos; }
+	inline void Move(const sf::Vector2f& _v) { m_pos += _v; }
 
 	inline sf::Vector2f getSize() const { return m_size; }
 	inline void setSize(const sf::Vector2f& _size) { m_size = _size; }
@@ -25,6 +26,8 @@ public:
 
 	inline sf::Vector2f getScale() const { return m_scale; }
 	inline void setScale(const sf::Vector2f& _scale) { m_scale = _scale; }
+
+	inline sf::FloatRect GetRect() const { return sf::FloatRect(m_pos - m_origin, Tools::Multiply(m_size, m_scale)); }
 
 	void CorrectWindowRectangle() const;
 

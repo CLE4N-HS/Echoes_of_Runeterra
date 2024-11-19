@@ -21,7 +21,7 @@ public:
 	static inline bool IsDone() { return m_isDone; }
 	static inline bool HasFocus() { return m_hasFocus; }
 	static inline sf::Vector2f GetMousePos() { return m_mousePos; }
-	static void Draw(const sf::Drawable& drawable, const sf::RenderStates& states = sf::RenderStates::Default);
+	static void Draw(const sf::Drawable& drawable = rectangle, const sf::RenderStates& states = sf::RenderStates::Default);
 
 	static sf::RectangleShape rectangle;
 	static sf::Text text;

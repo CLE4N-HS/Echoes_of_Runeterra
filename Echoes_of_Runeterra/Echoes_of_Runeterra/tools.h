@@ -8,9 +8,9 @@
 #include <list>
 #include <unordered_map>
 
-#define EPSILON ((float)1e-6)
-#define DEG2RAD ((float)0.01745329f)
-#define RAD2DEG ((float)57.295779f)
+#define EPSILON (static_cast<float>(1e-6))
+#define DEG2RAD (static_cast<float>(0.01745329f))
+#define RAD2DEG (static_cast<float>(57.295779f))
 
 class Tools
 {
@@ -24,6 +24,11 @@ public:
 	static void Update();
 
 	static inline float GetDeltaTime() { return m_deltaTime; }
+
+	static float Magnitude(const sf::Vector2f& _v);
+	static float Magnitude(const sf::Vector2f& _v1, const sf::Vector2f& _v2);
+	static sf::Vector2f Multiply(const sf::Vector2f& _v1, const sf::Vector2f& _v2);
+	static sf::Vector2f Normalize(const sf::Vector2f& _v);
 
 private:
 	static sf::Clock m_clock;

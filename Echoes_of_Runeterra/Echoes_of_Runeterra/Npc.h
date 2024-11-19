@@ -12,8 +12,6 @@ public:
 
 	virtual void Display() override;
 
-	sf::FloatRect getRect();
-
 protected:
 
 };

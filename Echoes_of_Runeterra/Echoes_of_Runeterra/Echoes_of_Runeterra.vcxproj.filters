@@ -135,9 +135,6 @@
     <ClCompile Include="Master.cpp">
       <Filter>Fichiers sources\TOOLS</Filter>
     </ClCompile>
-    <ClCompile Include="MouseManager.cpp">
-      <Filter>Fichiers sources\TOOLS</Filter>
-    </ClCompile>
     <ClCompile Include="State.cpp">
       <Filter>Fichiers sources\TOOLS</Filter>
     </ClCompile>
@@ -329,6 +326,9 @@
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseManager.cpp">
+      <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

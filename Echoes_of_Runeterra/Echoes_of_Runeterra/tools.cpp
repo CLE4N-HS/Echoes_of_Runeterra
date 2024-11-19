@@ -17,6 +17,30 @@ void Tools::Update()
     m_deltaTime = m_time.asSeconds();
 }
 
+float Tools::Magnitude(const sf::Vector2f& _v)
+{
+    return std::sqrtf(_v.x * _v.x + _v.y * _v.y);
+}
+
+float Tools::Magnitude(const sf::Vector2f& _v1, const sf::Vector2f& _v2)
+{
+    return Tools::Magnitude(sf::Vector2f(_v1 - _v2));
+}
+
+sf::Vector2f Tools::Multiply(const sf::Vector2f& _v1, const sf::Vector2f& _v2)
+{
+    return sf::Vector2f(_v1.x * _v2.x, _v1.y * _v2.y);
+}
+
+sf::Vector2f Tools::Normalize(const sf::Vector2f& _v)
+{
+    float magnitude = vec2fGetMagnitude(_v);
+    if (magnitude >= EPSILON)
+        return _v / magnitude;
+
+    return sf::Vector2f();
+}
+
 /*
 *
 * The following code is left there to not damage any previous C code

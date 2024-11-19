@@ -31,7 +31,6 @@ public:
 	void attack(Pawn& _character);
 
 	void setHover(bool _isHovered);
-	virtual sf::FloatRect getRect() = 0;
 
 protected:
 	Weapon* m_weapon = nullptr;

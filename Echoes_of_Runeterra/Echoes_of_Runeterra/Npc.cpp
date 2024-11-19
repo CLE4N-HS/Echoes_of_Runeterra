@@ -60,9 +60,3 @@ void Npc::Display()
 	//_window.rectangle.setFillColor(sf::Color(255, 255, 255));
 	//_window.rectangle.setScale(sf::Vector2f(1.f, 1.f));
 }
-
-sf::FloatRect Npc::getRect()
-{
-	return sf::FloatRect();
-	//return sf::FloatRect(m_pos - vec2fMultiply(m_origin, m_scale), vec2fMultiply(m_size, m_scale));
-}

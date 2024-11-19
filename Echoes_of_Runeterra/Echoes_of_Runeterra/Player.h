@@ -12,8 +12,6 @@ public:
 	virtual void Update() override;
 	virtual void Display() override;
 
-	sf::FloatRect getRect();
-
 protected:
 	Inventory m_inventory;
 

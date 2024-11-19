@@ -1,26 +1,29 @@
 #pragma once
-#include "tools.h"
+#include "Tools.h"
 
 class MouseManager
 {
 public:
-	typedef enum {
+	enum ButtonState{
 		RELEASED,
 		JUST_BEEN_RELEASED,
 		JUST_BEEN_PRESSED,
+		ALREADY_PRESSED,
 		PRESSED,
 
 		COUNT // <- keep last
-	}ButtonState;
+	};
 
 	MouseManager();
 	~MouseManager();
 
-	void update();
-	bool hasJustPressed(sf::Mouse::Button _button);
-	bool hasJustReleased(sf::Mouse::Button _button);
+	static void Update();
+	static bool HasJustPressed(const sf::Mouse::Button& _button);
+	static bool HasJustReleased(const sf::Mouse::Button& _button);
+
+	static bool OneTimePressed(const sf::Mouse::Button& _button = sf::Mouse::Button::Left);
 
 private:
-	ButtonState m_buttonState[(int)sf::Mouse::ButtonCount];
+	static ButtonState m_buttonState[static_cast<int>(sf::Mouse::ButtonCount)];
 
 };
