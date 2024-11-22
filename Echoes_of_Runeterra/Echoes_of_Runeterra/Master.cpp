@@ -1,5 +1,6 @@
 #include "Master.h"
 #include "Window.h"
+#include "MouseManager.h"
 #include "StateManager.h"
 
 Master::Master()
@@ -15,6 +16,7 @@ void Master::loop()
 	while (!Window::IsDone())
 	{
 		Tools::Update();
+		MouseManager::Update();
 		Window::Update();
 
 		if (Window::HasFocus())

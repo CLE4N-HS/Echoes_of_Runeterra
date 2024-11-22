@@ -27,7 +27,7 @@ public:
 	inline sf::Vector2f getScale() const { return m_scale; }
 	inline void setScale(const sf::Vector2f& _scale) { m_scale = _scale; }
 
-	inline sf::FloatRect GetRect() const { return sf::FloatRect(m_pos - m_origin, Tools::Multiply(m_size, m_scale)); }
+	inline sf::FloatRect GetRect() const { return sf::FloatRect(m_pos - Tools::Multiply(m_origin, m_scale), Tools::Multiply(m_size, m_scale)); }
 
 	void CorrectWindowRectangle() const;
 

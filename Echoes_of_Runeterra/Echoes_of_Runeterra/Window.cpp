@@ -1,5 +1,4 @@
 #include "Window.h"
-#include "MouseManager.h"
 
 sf::RectangleShape Window::rectangle = sf::RectangleShape();
 sf::Text Window::text = sf::Text();
@@ -50,8 +49,6 @@ void Window::Update()
 	m_fullscreenTimer += ((m_fullscreenTimer > 0.5f) ? 0.f : Tools::GetDeltaTime());
 	if (m_hasFocus && m_fullscreenTimer >= 0.5f && sf::Keyboard::isKeyPressed(sf::Keyboard::F11))
 		ToggleFullscreen();
-
-	MouseManager::Update();
 }
 
 void Window::Display()

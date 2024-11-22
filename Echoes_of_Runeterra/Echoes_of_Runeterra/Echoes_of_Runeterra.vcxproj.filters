@@ -127,6 +127,12 @@
     <Filter Include="Fichiers sources\GAME\DATABASE">
       <UniqueIdentifier>{d1003172-2d87-4a8b-80f6-6d0630880a27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\TOOLS\UTILITY">
+      <UniqueIdentifier>{363bc1c7-ab95-4ddb-ae92-97bc145587f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\TOOLS\UTILITY">
+      <UniqueIdentifier>{53f09346-fed2-4387-9f2b-e115736ea393}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -135,20 +141,8 @@
     <ClCompile Include="Character.cpp">
       <Filter>Fichiers sources\GAME\CHARACTER</Filter>
     </ClCompile>
-    <ClCompile Include="tools.cpp">
-      <Filter>Fichiers sources\TOOLS</Filter>
-    </ClCompile>
     <ClCompile Include="Race.cpp">
       <Filter>Fichiers sources\GAME\CHARACTER\RACE</Filter>
-    </ClCompile>
-    <ClCompile Include="Master.cpp">
-      <Filter>Fichiers sources\TOOLS</Filter>
-    </ClCompile>
-    <ClCompile Include="State.cpp">
-      <Filter>Fichiers sources\TOOLS</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Fichiers sources\TOOLS</Filter>
     </ClCompile>
     <ClCompile Include="musicManager.cpp">
       <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
@@ -336,25 +330,25 @@
     <ClCompile Include="MouseManager.cpp">
       <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
     </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Fichiers sources\TOOLS\UTILITY</Filter>
+    </ClCompile>
+    <ClCompile Include="Master.cpp">
+      <Filter>Fichiers sources\TOOLS\UTILITY</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Fichiers sources\TOOLS\UTILITY</Filter>
+    </ClCompile>
+    <ClCompile Include="Tools.cpp">
+      <Filter>Fichiers sources\TOOLS\UTILITY</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="tools.h">
-      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
-    </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
     </ClInclude>
     <ClInclude Include="Race.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER\RACE</Filter>
-    </ClInclude>
-    <ClInclude Include="Master.h">
-      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
-    </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Fichiers d%27en-tête\TOOLS</Filter>
     </ClInclude>
     <ClInclude Include="musicManager.h">
       <Filter>Fichiers d%27en-tête\TOOLS\MANAGERS</Filter>
@@ -541,6 +535,18 @@
     </ClInclude>
     <ClInclude Include="MouseManager.h">
       <Filter>Fichiers d%27en-tête\TOOLS\MANAGERS</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\UTILITY</Filter>
+    </ClInclude>
+    <ClInclude Include="Master.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\UTILITY</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\UTILITY</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\UTILITY</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
