@@ -41,6 +41,12 @@ sf::Vector2f Tools::Normalize(const sf::Vector2f& _v)
     return sf::Vector2f();
 }
 
+void Tools::CenterTextOrigin(sf::Text& _text)
+{
+    sf::FloatRect tmpRect = _text.getGlobalBounds();
+    _text.setOrigin(sf::Vector2f(tmpRect.getSize().x * 0.5f, tmpRect.getSize().y));
+}
+
 /*
 *
 * The following code is left there to not damage any previous C code

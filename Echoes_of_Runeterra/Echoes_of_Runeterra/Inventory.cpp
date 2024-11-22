@@ -2,8 +2,10 @@
 #include "Weapon.h"
 #include "Armor.h"
 #include "CraftManager.h"
+#include "Window.h"
+#include "KeyboardManager.h"
 
-Inventory::Inventory() : /*Entity(sf::Vector2f(100.f, 100.f)), */m_item(), m_isOpen(false)
+Inventory::Inventory() : Entity(Transform(sf::Vector2f(100.f, 100.f), sf::Vector2f(1720.f, 880.f), Transform::Origin::TOP_LEFT)), m_item(), m_isOpen(false)
 {
 }
 
@@ -13,9 +15,23 @@ Inventory::~Inventory()
 
 void Inventory::Update()
 {
-	Item* craftedItem = CraftManager::Craft(m_item);
-	Item* professionCraft = CraftManager::Craft(m_item, "blacksmith");
-	Item* professionCraft2 = CraftManager::Craft(m_item, "alchemist");
+	if (KeyboardManager::OneTimePressed(sf::Keyboard::I))
+	{
+		m_isOpen = !m_isOpen;
+	}
+
+	for (std::vector<GameItem>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	{
+		it->item->setHover(false);
+		if (m_isOpen)
+		{
+			it->item->Update();
+		}
+	}
+
+	//Item* craftedItem = CraftManager::Craft(m_item);
+	//Item* professionCraft = CraftManager::Craft(m_item, "blacksmith");
+	//Item* professionCraft2 = CraftManager::Craft(m_item, "alchemist");
 
 	//if (_window.keyboardManager.hasJustPressed(sf::Keyboard::I)) {
 	//	m_isOpen = !m_isOpen;
@@ -33,6 +49,71 @@ void Inventory::Update()
 
 void Inventory::Display()
 {
+	if (m_isOpen)
+	{
+		transform->CorrectWindowRectangle();
+		Window::rectangle.setFillColor(sf::Color(123, 63, 0, 200));
+		Window::Draw();
+
+		Window::rectangle.setFillColor(sf::Color(255, 255, 255));
+	}
+
+	Window::text.setFillColor(sf::Color::White);
+	Window::text.setCharacterSize(30);
+	Window::text.setString((m_isOpen ? "I -> to close the Inventory" : "I -> to open the Inventory"));
+	Window::text.setPosition(sf::Vector2f(10.f, 5.f));
+	Window::Draw(Window::text);
+
+	if (m_isOpen)
+	{
+		for (std::vector<GameItem>::iterator it = m_item.begin(); it != m_item.end(); it++)
+		{
+			it->item->Display();
+		}
+
+		// TODO store all of this
+		sf::Vector2f tmpSize(200.f, 100.f);
+		for (int i = 0; i < 2; i++)
+		{
+			sf::FloatRect tmpRect(transform->getPos().x + 20.f + static_cast<float>(i) * tmpSize.x * 1.2f, transform->getPos().y + 20.f, tmpSize.x, tmpSize.y);
+
+			sf::String tmpString;
+			switch (i)
+			{
+			case 0:
+				tmpString = "Craft"; break;
+			case 1:
+				tmpString = "\nCraft\n"; break;
+			default:
+				break;
+			}
+
+			Window::rectangle.setFillColor(sf::Color::White);
+			Window::rectangle.setPosition(tmpRect.getPosition());
+			Window::rectangle.setSize(tmpRect.getSize());
+			Window::rectangle.setOrigin(sf::Vector2f());
+			Window::rectangle.setScale(sf::Vector2f(1.f, 1.f));
+			Window::Draw();
+
+			Window::text.setFillColor(sf::Color(123, 63, 0, 200));
+			Window::text.setString(tmpString);
+			Window::text.setPosition(tmpRect.getPosition() + tmpRect.getSize() * 0.5f);
+			Window::text.setCharacterSize(30);
+			Tools::CenterTextOrigin(Window::text);
+			Window::Draw(Window::text);
+
+			if (i == 1)
+			{
+				Window::text.setString("\nDatabase");
+				Tools::CenterTextOrigin(Window::text);
+				Window::Draw(Window::text);
+			}
+			
+			Window::text.setFillColor(sf::Color(255, 255, 255));
+		}
+
+	}
+	 
 	//if (m_isOpen)
 	//{
 	//	_window.rectangle.setPosition(Inventory::m_pos);

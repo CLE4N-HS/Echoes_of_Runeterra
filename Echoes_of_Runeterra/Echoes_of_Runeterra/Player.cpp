@@ -50,6 +50,8 @@ void Player::Display()
 
 	Window::Draw();
 
+	m_inventory.Display();
+
 
 
 	//_window.rectangle.setPosition(m_pos);
