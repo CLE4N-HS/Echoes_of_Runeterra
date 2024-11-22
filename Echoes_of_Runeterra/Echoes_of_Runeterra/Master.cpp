@@ -5,6 +5,7 @@
 
 Master::Master()
 {
+	new StateManager();
 }
 
 Master::~Master()

@@ -1,4 +1,5 @@
 #include "Comment.h"
+#include "Window.h"
 
 Comment::Comment(std::string _comment, sf::Vector2f _pos) : InteractionText(_comment, _pos)
 {
@@ -19,6 +20,13 @@ void Comment::Display()
 {
 	if (m_isVisible)
 	{
+		Window::text.setStyle(sf::Text::Style::Italic);
+		Window::text.setPosition(transform->getPos());
+		Window::text.setString(m_text);
+		Window::Draw(Window::text);
+
+		Window::text.setStyle(sf::Text::Style::Regular);
+
 		//_window.text.setStyle(sf::Text::Style::Italic);
 		//_window.text.setPosition(m_pos);
 		//_window.text.setString(m_text);

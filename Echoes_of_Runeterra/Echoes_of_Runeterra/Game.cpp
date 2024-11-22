@@ -27,9 +27,15 @@ Game::~Game()
 
 void Game::Update()
 {
-	PawnManager::Update();
-	SkillTreeManager::Update();
-	DialogueManager::Update();
+	if (DialogueManager::IsInDialogue())
+	{
+		DialogueManager::Update();
+	}
+	else
+	{
+		PawnManager::Update();
+		SkillTreeManager::Update();
+	}
 	//m_mapManager.update(_window);
 
 	////if (!m_dialogueManager.isInDialogue())

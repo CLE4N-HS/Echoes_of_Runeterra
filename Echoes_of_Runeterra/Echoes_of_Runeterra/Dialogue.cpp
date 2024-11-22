@@ -1,6 +1,7 @@
 #include "Dialogue.h"
+#include "Window.h"
 
-Dialogue::Dialogue() : m_text(),/* Entity(sf::Vector2f(50.f, 600.f)), */m_state(Dialogue::State::QUESTION_ANSWER)
+Dialogue::Dialogue() : Entity(Transform(sf::Vector2f(50.f, 600.f), sf::Vector2f(1820.f, 400.f), Transform::Origin::TOP_LEFT)), m_text(), m_state(Dialogue::State::QUESTION_ANSWER)
 {
 }
 
@@ -65,27 +66,32 @@ void Dialogue::Update()
 
 void Dialogue::Display()
 {
-	//if (m_text.size() > 0) // if not then there's no dialogue
-	//{
-	//	_window.rectangle.setFillColor(sf::Color(0, 200, 0, 200));
-	//	_window.rectangle.setOrigin(sf::Vector2f());
-	//	_window.rectangle.setPosition(m_pos);
-	//	_window.rectangle.setSize(sf::Vector2f(1820.f, 400.f));
-	//	_window.rectangle.setTexture(nullptr);
+	if (m_text.size() > 0) // if not then there's no dialogue
+	{
+		Window::rectangle.setFillColor(sf::Color(0, 200, 0, 200));
+		transform->CorrectWindowRectangle();
+		Window::Draw();
+		
+		//_window.rectangle.setOrigin(sf::Vector2f());
+		//_window.rectangle.setPosition(m_pos);
+		//_window.rectangle.setSize(sf::Vector2f(1820.f, 400.f));
+		//_window.rectangle.setTexture(nullptr);
+		//_window.draw(_window.rectangle);
 
-	//	_window.draw(_window.rectangle);
+		// text
+		//_window.text.setFillColor(sf::Color::White);
+		//_window.text.setCharacterSize(30);
+		//_window.text.setOrigin(sf::Vector2f());
+		Window::text.setFillColor(sf::Color::White);
+		Window::text.setCharacterSize(30);
+		Window::text.setOrigin(sf::Vector2f());
+		Window::rectangle.setFillColor(sf::Color(255, 255, 255, 100));
 
-	//	// text
-	//	_window.text.setFillColor(sf::Color::White);
-	//	_window.text.setCharacterSize(30);
-	//	_window.text.setOrigin(sf::Vector2f());
+		for (std::map<std::string, InteractionText*>::iterator it = m_text.begin(); it != m_text.end(); it++)
+		{
+			it->second->Display();
+		}
 
-	//	_window.rectangle.setFillColor(sf::Color(255, 255, 255, 100));
-	//	for (std::map<std::string, InteractionText*>::iterator it = m_text.begin(); it != m_text.end(); it++)
-	//	{
-	//		it->second->display(_window);
-	//	}
-
-	//	_window.rectangle.setFillColor(sf::Color(255, 255, 255));
-	//}
+		Window::rectangle.setFillColor(sf::Color(255, 255, 255));
+	}
 }
