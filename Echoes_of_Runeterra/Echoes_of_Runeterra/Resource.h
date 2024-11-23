@@ -6,6 +6,7 @@ class Resource : public Item
 public:
 	Resource();
 	Resource(const std::string& _name);
+	Resource(const Resource& _resource);
 	~Resource();
 
 	virtual void Update() override;

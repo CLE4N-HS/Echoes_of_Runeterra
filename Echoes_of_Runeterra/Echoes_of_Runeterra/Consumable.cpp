@@ -10,6 +10,10 @@ Consumable::Consumable(std::string _name, int _hp, int _defense, int _speed) : I
 {
 }
 
+Consumable::Consumable(const Consumable& _consumable) : Consumable(_consumable.m_name, _consumable.m_hp, _consumable.m_defense, _consumable.m_speed)
+{
+}
+
 Consumable::~Consumable()
 {
 }

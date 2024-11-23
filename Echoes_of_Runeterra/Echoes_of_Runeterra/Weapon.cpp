@@ -10,6 +10,10 @@ Weapon::Weapon(std::string _name, int _damage, int _criticalDamage, int _speed) 
 {
 }
 
+Weapon::Weapon(const Weapon& _weapon) : Weapon(_weapon.m_name, _weapon.m_damage, _weapon.m_critcalDamage, _weapon.m_speed)
+{
+}
+
 Weapon::~Weapon()
 {
 }

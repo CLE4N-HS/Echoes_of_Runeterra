@@ -76,18 +76,6 @@ void Item::setHover(bool _isHover)
 
 bool Item::operator==(Item* _item)
 {
-	if (!this)
-		return false;
-
-	if (!this->transform)
-		return false;
-
-	if (!_item)
-		return false;
-
-	if (!_item->transform)
-		return false;
-
 	if (this->GetComponent<ComponentName>() && _item->GetComponent<ComponentName>())
 		return (this->GetComponent<ComponentName>()->GetName() == _item->GetComponent<ComponentName>()->GetName());
 

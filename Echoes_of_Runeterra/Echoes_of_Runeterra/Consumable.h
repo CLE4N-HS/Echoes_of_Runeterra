@@ -7,6 +7,7 @@ class Consumable : public Item
 public:
 	Consumable();
 	Consumable(std::string _name, int _hp, int _defense, int _speed);
+	Consumable(const Consumable& _consumable);
 	~Consumable();
 
 	virtual void Update() override;

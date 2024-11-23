@@ -10,6 +10,10 @@ Armor::Armor(std::string _name, int _defense, int _speed, int _durability) : Ite
 {
 }
 
+Armor::Armor(const Armor& _armor) : Armor(_armor.m_name, _armor.m_defense, _armor.m_speed, _armor.m_durability)
+{
+}
+
 Armor::~Armor()
 {
 }

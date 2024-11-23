@@ -163,7 +163,7 @@ void Inventory::AddItem(const GameItem& _item)
 	bool haveAlready(false);
 	for (size_t i = 0; i < m_item.size(); i++)
 	{
-		if (_item.item == m_item[i].gameItem.item)
+		if (_item.item->operator==(m_item[i].gameItem.item))
 		{
 			m_item[i].gameItem.quantity += _item.quantity;
 			haveAlready = true;
@@ -314,6 +314,7 @@ void Inventory::UpdateButton()
 							m_item[i].gameItem.quantity = selectedItem[j].quantity;
 							if (m_item[i].gameItem.quantity <= 0)
 							{
+								// TODO CRASH
 								EraseItem(m_item[i].gameItem.item);
 							}
 						}
