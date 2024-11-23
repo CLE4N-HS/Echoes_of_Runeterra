@@ -47,6 +47,12 @@ void Tools::CenterTextOrigin(sf::Text& _text)
     _text.setOrigin(sf::Vector2f(tmpRect.getSize().x * 0.5f, tmpRect.getSize().y));
 }
 
+void Tools::CenterTextOriginString(sf::Text& _text)
+{
+    sf::FloatRect tmpRect = _text.getGlobalBounds();
+    _text.setOrigin(sf::Vector2f(tmpRect.getSize().x * 0.5f, 0.f));
+}
+
 /*
 *
 * The following code is left there to not damage any previous C code

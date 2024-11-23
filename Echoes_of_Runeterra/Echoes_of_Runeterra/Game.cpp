@@ -53,7 +53,8 @@ void Game::Display()
 {
 
 	PawnManager::Display();
-	SkillTreeManager::Display();
+	if (0)
+		SkillTreeManager::Display();
 	DialogueManager::Display();
 
 	//m_mapManager.display(_window);

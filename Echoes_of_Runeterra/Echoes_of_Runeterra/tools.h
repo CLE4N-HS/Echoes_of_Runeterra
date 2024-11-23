@@ -31,6 +31,7 @@ public:
 	static sf::Vector2f Normalize(const sf::Vector2f& _v);
 
 	static void CenterTextOrigin(sf::Text& _text);
+	static void CenterTextOriginString(sf::Text& _text);
 
 private:
 	static sf::Clock m_clock;

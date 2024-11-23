@@ -13,9 +13,13 @@ CraftManager::~CraftManager()
 {
 }
 
-Item* CraftManager::Craft(const std::vector<GameItem>& _item)
+Item* CraftManager::Craft(std::vector<GameItem>& _item)
 {
-	return CraftDatabase::CreateCraftItem(_item);
+	if (CraftItem* craftItem = CraftDatabase::IsCraftCorrect(_item))
+		return CraftDatabase::CreateCraftItem(_item, craftItem);
+
+	return nullptr;
+	//return CraftDatabase::CreateCraftItem(_item);
 }
 
 Item* CraftManager::Craft(const std::vector<GameItem>& _item, const std::string& _profession)
@@ -23,8 +27,8 @@ Item* CraftManager::Craft(const std::vector<GameItem>& _item, const std::string&
 	Item* item = nullptr;
 	item = ProfessionCraftDatabase::CreateProfessionCraft(_item, _profession);
 
-	if (item == nullptr) // if the craft wasn't link to a profession
-		item = Craft(_item);
+	//if (item == nullptr) // if the craft wasn't link to a profession
+	//	item = Craft(_item);
 
 	return item;
 }

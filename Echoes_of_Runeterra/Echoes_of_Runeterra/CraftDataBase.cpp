@@ -61,9 +61,8 @@ void CraftDatabase::AddCraftItem(std::string _itemName, const std::vector<std::p
 	m_craftItem.push_back(new CraftItem(craftItem));
 }
 
-Item* CraftDatabase::CreateCraftItem(const std::vector<GameItem>& _requiredItem)
+CraftItem* CraftDatabase::IsCraftCorrect(const std::vector<GameItem>& _requiredItem)
 {
-	Item* craftItem = nullptr;
 	for (std::list<CraftItem*>::iterator it = m_craftItem.begin(); it != m_craftItem.end(); it++)
 	{
 		if (_requiredItem.size() < (*it)->requiredItem.size()) // not enough item for sure
@@ -87,12 +86,58 @@ Item* CraftDatabase::CreateCraftItem(const std::vector<GameItem>& _requiredItem)
 
 		if (correctItemsNumber == (*it)->requiredItem.size())
 		{
-			craftItem = ItemDatabase::CreateNewItem((*it)->item);
-			break;
+			return *it;
 		}
 	}
 
-	return craftItem;
+	return nullptr;
+}
+
+Item* CraftDatabase::CreateCraftItem(std::vector<GameItem>& _requiredItem, CraftItem*& _craftItem)
+{
+	for (size_t reqItem = 0; reqItem < _craftItem->requiredItem.size(); reqItem++)
+	{
+		if (_requiredItem[reqItem].item->operator==(_craftItem->requiredItem[reqItem]->item))
+		{
+			_requiredItem[reqItem].quantity -= _craftItem->requiredItem[reqItem]->quantity;
+		}
+	}
+	//for (size_t i = 0; i < _craftItem->requiredItem.size(); i++)
+	//{
+	//	_requiredItem[i].quantity -= _craftItem->requiredItem[i]->quantity;
+	//}
+
+	return ItemDatabase::CreateNewItem(_craftItem->item);
+
+	//Item* craftItem = nullptr;
+	//for (std::list<CraftItem*>::iterator it = m_craftItem.begin(); it != m_craftItem.end(); it++)
+	//{
+	//	if (_requiredItem.size() < (*it)->requiredItem.size()) // not enough item for sure
+	//	{
+	//		continue;
+	//	}
+
+	//	size_t correctItemsNumber(0);
+	//	for (size_t reqItem = 0; reqItem < _requiredItem.size(); reqItem++)
+	//	{
+	//		for (size_t item = 0; item < (*it)->requiredItem.size(); item++)
+	//		{
+	//			if (_requiredItem[reqItem].item->operator==((*it)->requiredItem[item]->item) &&	/* correct name     */
+	//				_requiredItem[reqItem].quantity >= (*it)->requiredItem[item]->quantity)		/* correct quantity */
+	//			{
+
+	//			}
+	//		}
+	//	}
+
+	//	if (correctItemsNumber == (*it)->requiredItem.size())
+	//	{
+	//		craftItem = ItemDatabase::CreateNewItem((*it)->item);
+	//		break;
+	//	}
+	//}
+
+	//return craftItem;
 }
 
 Item* CraftDatabase::getItem(std::string _name)

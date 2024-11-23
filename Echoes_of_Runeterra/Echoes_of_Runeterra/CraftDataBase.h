@@ -24,7 +24,8 @@ public:
 	static void AddCraftItem(Item* _item, const std::vector<GameItem*>& _requiredItem);
 	static void AddCraftItem(std::string _itemName, const std::vector<std::pair<std::string, int>>& _requiredItem);
 
-	static Item* CreateCraftItem(const std::vector<GameItem>& _requiredItem);
+	static CraftItem* IsCraftCorrect(const std::vector<GameItem>& _requiredItem);
+	static Item* CreateCraftItem(std::vector<GameItem>& _requiredItem, CraftItem*& _craftItem);
 
 	Item* getItem(std::string _name);
 	Item* getItem(std::vector<Item*> _item);
