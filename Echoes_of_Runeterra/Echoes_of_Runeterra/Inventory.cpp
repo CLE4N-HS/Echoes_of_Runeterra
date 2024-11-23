@@ -7,6 +7,8 @@
 #include "MouseManager.h"
 #include "CraftDataBase.h"
 #include "ComponentName.h"
+#include "CharacterManager.h"
+#include "Player.h"
 
 Inventory::Inventory() : Entity(Transform(sf::Vector2f(100.f, 100.f), sf::Vector2f(1720.f, 880.f), Transform::Origin::TOP_LEFT)), m_item(), m_isOpen(false)
 {
@@ -34,16 +36,12 @@ void Inventory::Update()
 
 	sf::Vector2f mousePos = Window::GetMousePos();
 
-	m_selectedItem = 0;
 	for (std::vector<InventoryItem>::iterator it = m_item.begin(); it != m_item.end(); it++)
 	{
 		if (it->gameItem.item->transform->GetRect().contains(mousePos) && MouseManager::OneTimePressed())
 		{
 			it->isSelected = !it->isSelected;
 		}
-
-		if (it->isSelected)
-			m_selectedItem++;
 
 		//it->gameItem.item->setHover(false);
 		//if (m_isOpen)
@@ -109,7 +107,7 @@ void Inventory::Display()
 		Tools::CenterTextOrigin(Window::text);
 		Window::Draw(Window::text);
 
-		Window::text.setPosition(it->gameItem.item->transform->getPos() + it->gameItem.item->transform->getSize() * 0.5f + sf::Vector2f(0.f, 30.f));
+		Window::text.setPosition(it->gameItem.item->transform->getPos() + it->gameItem.item->transform->getSize() * 0.5f + sf::Vector2f(0.f, 70.f));
 		Window::text.setString(std::to_string(it->gameItem.quantity));
 		Tools::CenterTextOrigin(Window::text);
 		Window::Draw(Window::text);
@@ -204,11 +202,28 @@ Item* Inventory::getItem()
 	return nullptr;
 }
 
+void Inventory::RemoveItem(Item* _item, int _quantity)
+{
+	for (size_t i = 0; i < m_item.size(); i++)
+	{
+		if (m_item[i].gameItem.item->operator==(_item))
+		{
+			m_item[i].gameItem.quantity -= _quantity;
+			if (m_item[i].gameItem.quantity <= 0)
+			{
+				//delete m_item[i].gameItem.item; crashes on the database
+				m_item.erase(m_item.begin() + i);
+			}
+			break;
+		}
+	}
+}
+
 void Inventory::EraseItem(Item* _item)
 {
 	for (size_t i = 0; i < m_item.size(); i++)
 	{
-		if (m_item[i].gameItem.item == _item)
+		if (m_item[i].gameItem.item->operator==(_item))
 		{
 			//delete m_item[i].gameItem.item; crashes on the database
 			m_item.erase(m_item.begin() + i);
@@ -275,10 +290,10 @@ void Inventory::UpdateButton()
 
 	sf::Vector2f mousePos = Window::GetMousePos();
 
+	// Craft
 	if (CraftDatabase::IsCraftCorrect(selectedItem))
 	{
 		m_button[0].isClickable = true;
-
 
 		if (m_button[0].transform.GetRect().contains(mousePos) && MouseManager::OneTimePressed())
 		{
@@ -305,6 +320,53 @@ void Inventory::UpdateButton()
 	else
 	{
 		m_button[0].isClickable = false;
+	}
+
+	// Craft Database TODO
+
+	// Equip
+	if (selectedItem.size() == 1)
+	{
+		Weapon* weapon = dynamic_cast<Weapon*>(selectedItem[0].item);
+		Armor* armor = dynamic_cast<Armor*>(selectedItem[0].item);
+
+		if (weapon || armor)
+			m_button[2].isClickable = true;
+		else
+			m_button[2].isClickable = false;
+
+		if (m_button[2].isClickable && m_button[2].transform.GetRect().contains(mousePos) && MouseManager::OneTimePressed())
+		{
+			if (Player* player = reinterpret_cast<Player*>(this->GetParent()))
+			{
+				if (weapon)
+				{
+					if (Weapon* playerWeapon = player->GetWeapon())
+					{
+						AddItem(playerWeapon);
+					}
+					player->SetWeapon(weapon);
+					RemoveItem(selectedItem[0].item);
+					RepositionItems();
+					UnselectItems();
+				}
+				else if (armor)
+				{
+					if (Armor* playerArmor = player->GetArmor())
+					{
+						AddItem(playerArmor);
+					}
+					player->SetArmor(armor);
+					RemoveItem(selectedItem[0].item);
+					RepositionItems();
+					UnselectItems();
+				}
+			}
+		}
+	}
+	else
+	{
+		m_button[2].isClickable = false;
 	}
 }
 

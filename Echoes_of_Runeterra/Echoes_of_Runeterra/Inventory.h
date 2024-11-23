@@ -28,6 +28,7 @@ public:
 	void AddItem(const GameItem& _item);
 
 	Item* getItem();
+	void RemoveItem(Item* _item, int _quantity = 1);
 	void EraseItem(Item* _item);
 
 	void setOpening(bool _shouldBeOpened);
@@ -43,6 +44,5 @@ private:
 	std::vector<InventoryItem> m_item;
 	std::vector<InventoryButton> m_button;
 	bool m_isOpen;
-	int m_selectedItem = 0;
 
 };

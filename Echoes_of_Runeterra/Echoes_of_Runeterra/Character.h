@@ -22,6 +22,12 @@ public:
 
 	virtual void Display() = 0;
 
+	inline Weapon* GetWeapon() const { return m_weapon; }
+	inline Armor* GetArmor() const { return m_armor; }
+
+	inline void SetWeapon(Weapon* _weapon) { m_weapon = _weapon; }
+	inline void SetArmor(Armor* _armor) { m_armor = _armor; }
+
 	void setDialogueKey(std::string _dialogueKey);
 	std::string getDialogueKey();
 

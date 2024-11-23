@@ -17,6 +17,8 @@ public:
 	/// </summary>
 	static void Display();
 
+	static Pawn* GetPawn(const std::string& _name);
+
 	static Pawn* getClosestNpc(sf::Vector2f _pos, float _minDistance);
 	static sf::Vector2f getCharacterPos(std::string _name);
 	static void addCharacterItem(std::string _name, Item* _item);

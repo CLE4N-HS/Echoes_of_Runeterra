@@ -14,6 +14,7 @@ Player::Player(std::string _name) : Pawn(_name)
 	this->transform->setPos(sf::Vector2f(960.f, 540.f));
 	m_targetPos = this->transform->getPos();
 
+	m_inventory.SetInstigator(this);
 	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("sword")));
 	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("speedPotion"), 2));
 	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("pickaxe"), 2));

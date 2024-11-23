@@ -1,6 +1,7 @@
 #include "CharacterManager.h"
 #include "Player.h"
 #include "Npc.h"
+#include "ComponentName.h"
 
 std::vector<Pawn*> PawnManager::m_pawn;
 
@@ -37,6 +38,19 @@ void PawnManager::Display()
 	{
 		m_pawn[i]->Display();
 	}
+}
+
+Pawn* PawnManager::GetPawn(const std::string& _name)
+{
+	for (size_t i = 0; i < m_pawn.size(); i++)
+	{
+		if (m_pawn[i]->GetComponent<ComponentName>()->GetName() == _name)
+		{
+			return m_pawn[i];
+		}
+	}
+
+	return nullptr;
 }
 
 Pawn* PawnManager::getClosestNpc(sf::Vector2f _pos, float _minDistance)
