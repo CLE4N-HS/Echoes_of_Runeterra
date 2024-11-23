@@ -88,6 +88,11 @@ Item* ItemDatabase::CreateNewItem(Item* _item)
 	return nullptr;
 }
 
+Item* ItemDatabase::CreateNewItem(const std::string& _name)
+{
+	return ItemDatabase::CreateNewItem(ItemDatabase::GetItem(_name));
+}
+
 void ItemDatabase::ReadWeaponDB(std::string _filePath)
 {
 	std::ifstream file(_filePath);

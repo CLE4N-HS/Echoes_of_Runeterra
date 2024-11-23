@@ -15,9 +15,11 @@ Player::Player(std::string _name) : Pawn(_name)
 	m_targetPos = this->transform->getPos();
 
 	m_inventory.SetInstigator(this);
-	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("sword")));
-	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("speedPotion"), 2));
-	m_inventory.AddItem(GameItem(ItemDatabase::GetItem("pickaxe"), 2));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("sword")));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("speedPotion"), 2));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("pickaxe"), 54));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("shield"), 2));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("metalArmor")));
 }
 
 Player::~Player()

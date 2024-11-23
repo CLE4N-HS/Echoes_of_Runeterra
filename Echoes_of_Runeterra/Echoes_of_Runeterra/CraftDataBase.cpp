@@ -97,9 +97,12 @@ Item* CraftDatabase::CreateCraftItem(std::vector<GameItem>& _requiredItem, Craft
 {
 	for (size_t reqItem = 0; reqItem < _craftItem->requiredItem.size(); reqItem++)
 	{
-		if (_requiredItem[reqItem].item->operator==(_craftItem->requiredItem[reqItem]->item))
+		for (size_t item = 0; item < _requiredItem.size(); item++)
 		{
-			_requiredItem[reqItem].quantity -= _craftItem->requiredItem[reqItem]->quantity;
+			if (_requiredItem[reqItem].item->operator==(_craftItem->requiredItem[item]->item))
+			{
+				_requiredItem[reqItem].quantity -= _craftItem->requiredItem[item]->quantity;
+			}
 		}
 	}
 	//for (size_t i = 0; i < _craftItem->requiredItem.size(); i++)

@@ -18,6 +18,7 @@ public:
 	/// Creates a new Item without relation with the database
 	/// </summary>
 	static Item* CreateNewItem(Item* _item);
+	static Item* CreateNewItem(const std::string& _name);
 
 private:
 	void ReadWeaponDB(std::string _filePath);

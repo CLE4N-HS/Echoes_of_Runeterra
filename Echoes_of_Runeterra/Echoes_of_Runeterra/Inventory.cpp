@@ -9,6 +9,7 @@
 #include "ComponentName.h"
 #include "CharacterManager.h"
 #include "Player.h"
+#include "ItemDatabase.h"
 
 Inventory::Inventory() : Entity(Transform(sf::Vector2f(100.f, 100.f), sf::Vector2f(1720.f, 880.f), Transform::Origin::TOP_LEFT)), m_item(), m_isOpen(false)
 {
@@ -29,6 +30,7 @@ void Inventory::Update()
 	if (KeyboardManager::OneTimePressed(sf::Keyboard::I))
 	{
 		m_isOpen = !m_isOpen;
+		UnselectItems();
 	}
 
 	if (!m_isOpen)
@@ -202,7 +204,7 @@ Item* Inventory::getItem()
 	return nullptr;
 }
 
-void Inventory::RemoveItem(Item* _item, int _quantity)
+void Inventory::RemoveItem(Item* _item, int _quantity, bool _delete)
 {
 	for (size_t i = 0; i < m_item.size(); i++)
 	{
@@ -211,7 +213,9 @@ void Inventory::RemoveItem(Item* _item, int _quantity)
 			m_item[i].gameItem.quantity -= _quantity;
 			if (m_item[i].gameItem.quantity <= 0)
 			{
-				//delete m_item[i].gameItem.item; crashes on the database
+				if (_delete)
+					delete m_item[i].gameItem.item;
+
 				m_item.erase(m_item.begin() + i);
 			}
 			break;
@@ -225,7 +229,7 @@ void Inventory::EraseItem(Item* _item)
 	{
 		if (m_item[i].gameItem.item->operator==(_item))
 		{
-			//delete m_item[i].gameItem.item; crashes on the database
+			delete m_item[i].gameItem.item;
 			m_item.erase(m_item.begin() + i);
 			break;
 		}
@@ -286,6 +290,7 @@ void Inventory::UpdateButton()
 	{
 		if (m_item[i].isSelected)
 			selectedItem.push_back(m_item[i].gameItem);
+			//selectedItem.push_back(GameItem(ItemDatabase::CreateNewItem(m_item[i].gameItem.item), m_item[i].gameItem.quantity));
 	}
 
 	sf::Vector2f mousePos = Window::GetMousePos();
@@ -302,17 +307,28 @@ void Inventory::UpdateButton()
 				size_t selectedCount(0);
 				for (size_t i = 0; i < m_item.size(); i++)
 				{
-					if (m_item[i].isSelected)
+					for (size_t j = 0; j < selectedItem.size(); j++)
 					{
-						m_item[i].gameItem.quantity = selectedItem[selectedCount].quantity;
-						if (m_item[i].gameItem.quantity <= 0)
+						if (m_item[i].gameItem.item->operator==(selectedItem[j].item))
 						{
-							EraseItem(m_item[i].gameItem.item);
+							m_item[i].gameItem.quantity = selectedItem[j].quantity;
+							if (m_item[i].gameItem.quantity <= 0)
+							{
+								EraseItem(m_item[i].gameItem.item);
+							}
 						}
+					}
+					{
+						//m_item[i].gameItem.quantity = selectedItem[selectedCount].quantity;
+						//if (m_item[i].gameItem.quantity <= 0)
+						//{
+						//	EraseItem(m_item[i].gameItem.item);
+						//}
 					}
 				}
 
 				AddItem(GameItem(item));
+				RepositionItems();
 				UnselectItems();
 			}
 		}
@@ -337,7 +353,8 @@ void Inventory::UpdateButton()
 
 		if (m_button[2].isClickable && m_button[2].transform.GetRect().contains(mousePos) && MouseManager::OneTimePressed())
 		{
-			if (Player* player = reinterpret_cast<Player*>(this->GetParent()))
+			//if (Player* player = reinterpret_cast<Player*>(this->GetParent())) // this line is scary..
+			if (Player* player = dynamic_cast<Player*>(PawnManager::GetPawn("Player")))
 			{
 				if (weapon)
 				{
@@ -345,7 +362,7 @@ void Inventory::UpdateButton()
 					{
 						AddItem(playerWeapon);
 					}
-					player->SetWeapon(weapon);
+					player->SetWeapon( weapon);
 					RemoveItem(selectedItem[0].item);
 					RepositionItems();
 					UnselectItems();
@@ -367,6 +384,14 @@ void Inventory::UpdateButton()
 	else
 	{
 		m_button[2].isClickable = false;
+	}
+
+
+	return;
+	while (selectedItem.size() > 0)
+	{
+		delete selectedItem[0].item;
+		selectedItem.erase(selectedItem.begin());
 	}
 }
 
