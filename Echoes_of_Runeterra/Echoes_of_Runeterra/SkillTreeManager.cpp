@@ -28,7 +28,7 @@ SkillTreeManager::~SkillTreeManager()
 
 void SkillTreeManager::Update()
 {
-	// TEST tree
+	// TEST tree TODO not
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		m_currentTreeIndex = 0;

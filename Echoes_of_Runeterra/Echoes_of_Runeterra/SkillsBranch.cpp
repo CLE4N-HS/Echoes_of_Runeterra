@@ -21,6 +21,11 @@ void SkillsBranch::Update()
 	{
 		m_branch[i]->Update();
 	}
+
+	for (size_t i = 0; i < m_branch.size(); i++)
+	{
+		//if (m_branch[i]->GetState() == )
+	}
 }
 
 void SkillsBranch::Display()
