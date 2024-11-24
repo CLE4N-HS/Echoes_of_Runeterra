@@ -15,6 +15,9 @@ ItemDatabase::ItemDatabase()
 
 	// Resource Database
 	m_item.push_back(new Resource("wood"));
+	m_item.push_back(new Resource("chicken"));
+	m_item.push_back(new Resource("rice"));
+	m_item.push_back(new Resource("masterDish"));
 }
 
 ItemDatabase::~ItemDatabase()

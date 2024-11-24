@@ -20,6 +20,11 @@ Player::Player(std::string _name) : Pawn(_name)
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("pickaxe"), 54));
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("shield"), 2));
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("metalArmor")));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("chicken"), 5));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("rice"), 70));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("metalArmor")));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("wood")));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("heart")));
 
 
 }

@@ -31,6 +31,8 @@ public:
 	Item* getItem(std::vector<Item*> _item);
 	Item* getItem(std::vector<std::string> _names);
 
+	static inline const std::list<CraftItem*>& GetDatabase() { return m_craftItem; }
+
 private:
 	static std::list<CraftItem*> m_craftItem;
 

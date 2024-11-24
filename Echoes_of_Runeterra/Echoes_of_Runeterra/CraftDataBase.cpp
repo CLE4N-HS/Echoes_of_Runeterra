@@ -12,13 +12,13 @@ CraftDatabase::CraftDatabase() // : m_database()
 	this->AddCraftItem(
 		ItemDatabase::GetItem("goldenPickaxe"),
 		std::vector<GameItem*>({
-			//{ new GameItem(ItemDatabase::GetItem("sword"), 1) },
-			//{ new GameItem(ItemDatabase::GetItem("pickaxe"), 2) }
-			{ new GameItem(ItemDatabase::CreateNewItem("sword"), 1) },
-			{ new GameItem(ItemDatabase::CreateNewItem("pickaxe"), 2) }
+			{ new GameItem(ItemDatabase::GetItem("sword"), 1) },
+			{ new GameItem(ItemDatabase::GetItem("pickaxe"), 2) }
 		}));
 	// same thing
 	//this->AddCraftItem("goldenPickaxe", std::vector<std::pair<std::string, int>>({ { "sword", 1 }, { "pickaxe", 2 } }));
+
+	this->AddCraftItem("masterDish", std::vector<std::pair<std::string, int>>({ {"chicken", 1}, {"rice", 20} }));
 
 
 	//m_database.push_back({_itemDB->getItem("goldenPickaxe"), std::vector<Item*>({_itemDB->getItem("sword"), _itemDB->getItem("pickaxe")}) });

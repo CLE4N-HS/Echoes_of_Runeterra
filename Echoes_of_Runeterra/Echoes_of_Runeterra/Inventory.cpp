@@ -91,43 +91,99 @@ void Inventory::Display()
 
 	Window::rectangle.setFillColor(sf::Color(255, 255, 255));
 
-
-	// item
-	Window::text.setFillColor(sf::Color(255, 255, 255));
-	Window::text.setCharacterSize(30);
-	for (std::vector<InventoryItem>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	if (m_isInDatabase)
 	{
-		it->gameItem.item->Display();
-		// ^ equals ^
-		Window::rectangle.setFillColor(sf::Color(255, 0, 0, 100));
-		it->gameItem.item->transform->CorrectWindowRectangle();
-		Window::Draw();
+		std::list<CraftItem*> craftDB = CraftDatabase::GetDatabase();
 
-
-		Window::text.setPosition(it->gameItem.item->transform->getPos() + it->gameItem.item->transform->getSize() * 0.5f);
-		Window::text.setString(it->gameItem.item->GetComponent<ComponentName>()->GetName());
-		Tools::CenterTextOrigin(Window::text);
-		Window::Draw(Window::text);
-
-		Window::text.setPosition(it->gameItem.item->transform->getPos() + it->gameItem.item->transform->getSize() * 0.5f + sf::Vector2f(0.f, 70.f));
-		Window::text.setString(std::to_string(it->gameItem.quantity));
-		Tools::CenterTextOrigin(Window::text);
-		Window::Draw(Window::text);
-	}
-	DisplayButton();
-
-	// item hover
-	Window::rectangle.setFillColor(sf::Color(255, 255, 255, 100));
-	for (std::vector<InventoryItem>::iterator it = m_item.begin(); it != m_item.end(); it++)
-	{
-		if (it->isSelected)
+		sf::Vector2f startPos(this->transform->getPos() + sf::Vector2f(20.f, 160.f));
+		sf::Vector2f itemPos(startPos + sf::Vector2f(200.f, 0.f));
+		
+		std::vector<GameItem> selectedItem;
+		for (size_t i = 0; i < m_item.size(); i++)
 		{
-			it->gameItem.item->transform->CorrectWindowRectangle();
-			Window::Draw();
+			if (m_item[i].isSelected)
+				selectedItem.push_back(m_item[i].gameItem);
+		}
+
+		Window::text.setOrigin(sf::Vector2f());
+		for (std::list<CraftItem*>::iterator it = craftDB.begin(); it != craftDB.end(); it++)
+		{
+			Window::text.setPosition(startPos);
+			Window::text.setStyle(sf::Text::Style::Underlined);
+			Window::text.setString((*it)->item->GetComponent<ComponentName>()->GetName() + " :");
+			Window::text.setFillColor(sf::Color::White);
+			Window::Draw(Window::text);
+
+			Window::text.setStyle(sf::Text::Style::Regular);
+			itemPos.x = Window::text.getPosition().x + Window::text.getLocalBounds().width + 20.f;
+			for (size_t reqItem = 0; reqItem < (*it)->requiredItem.size(); reqItem++)
+			{
+				Window::text.setPosition(itemPos);
+				Window::text.setString((*it)->requiredItem[reqItem]->item->GetComponent<ComponentName>()->GetName()
+					+ " [" + std::to_string((*it)->requiredItem[reqItem]->quantity) + "] " + (reqItem + 1 >= (*it)->requiredItem.size() ? "" : ","));
+
+				Window::text.setFillColor(sf::Color(255, 255, 255));
+				for (size_t i = 0; i < selectedItem.size(); i++)
+				{
+					if (selectedItem[i].item->operator==((*it)->requiredItem[reqItem]->item))
+					{
+						if (selectedItem[i].quantity >= (*it)->requiredItem[reqItem]->quantity)
+							Window::text.setFillColor(sf::Color(255, 0, 0));
+						else
+							Window::text.setFillColor(sf::Color(255, 127, 127));
+
+						break;
+					}
+				}
+
+				Window::Draw(Window::text);
+
+				itemPos.x = Window::text.getPosition().x + Window::text.getLocalBounds().width + 20.f;
+			}
+
+			itemPos.y = startPos.y = Window::text.getPosition().y + Window::text.getLocalBounds().height + 20.f;
 		}
 	}
-	Window::rectangle.setFillColor(sf::Color(255, 255, 255));
-	 
+	else
+	{
+		// item
+		Window::text.setFillColor(sf::Color(255, 255, 255));
+		Window::text.setCharacterSize(30);
+		for (std::vector<InventoryItem>::iterator it = m_item.begin(); it != m_item.end(); it++)
+		{
+			it->gameItem.item->Display();
+			// ^ equals ^
+			Window::rectangle.setFillColor(sf::Color(255, 0, 0, 100));
+			it->gameItem.item->transform->CorrectWindowRectangle();
+			Window::Draw();
+
+
+			Window::text.setPosition(it->gameItem.item->transform->getPos() + it->gameItem.item->transform->getSize() * 0.5f);
+			Window::text.setString(it->gameItem.item->GetComponent<ComponentName>()->GetName());
+			Tools::CenterTextOrigin(Window::text);
+			Window::Draw(Window::text);
+
+			Window::text.setPosition(it->gameItem.item->transform->getPos() + it->gameItem.item->transform->getSize() * 0.5f + sf::Vector2f(0.f, 70.f));
+			Window::text.setString(std::to_string(it->gameItem.quantity));
+			Tools::CenterTextOrigin(Window::text);
+			Window::Draw(Window::text);
+		}
+
+		// item hover
+		Window::rectangle.setFillColor(sf::Color(255, 255, 255, 100));
+		for (std::vector<InventoryItem>::iterator it = m_item.begin(); it != m_item.end(); it++)
+		{
+			if (it->isSelected)
+			{
+				it->gameItem.item->transform->CorrectWindowRectangle();
+				Window::Draw();
+			}
+		}
+		Window::rectangle.setFillColor(sf::Color(255, 255, 255));
+	}
+
+	DisplayButton();
+
 	//if (m_isOpen)
 	//{
 	//	_window.rectangle.setPosition(Inventory::m_pos);
@@ -259,12 +315,18 @@ bool Inventory::isOpen()
 
 void Inventory::RepositionItems()
 {
-	int count(0);
+	sf::Vector2f startPos(this->transform->getPos() + sf::Vector2f(100.f, 180.f));
+	sf::Vector2f offset(0.f, 0.f);
 	for (std::vector<InventoryItem>::iterator it = m_item.begin(); it != m_item.end(); it++)
 	{
 		it->gameItem.item->transform->setSize(sf::Vector2f(100.f, 100.f));
-		it->gameItem.item->transform->setPos(sf::Vector2f(this->transform->getPos().x + 100.f + 200.f * static_cast<float>(count), this->transform->getPos().y + 200.f));
-		count++;
+		it->gameItem.item->transform->setPos(startPos + offset);
+		offset.x += 200.f;
+		if (startPos.x + offset.x > 1700.f)
+		{
+			offset.x = 0.f;
+			offset.y += 180.f;
+		}
 	}
 	 
 	//int count(0);
@@ -285,6 +347,21 @@ void Inventory::UnselectItems()
 
 void Inventory::UpdateButton()
 {
+	sf::Vector2f mousePos = Window::GetMousePos();
+
+	// Craft Database
+	if (m_button[1].transform.GetRect().contains(mousePos) && MouseManager::OneTimePressed())
+	{
+		m_button[1].isClickable = m_isInDatabase = !m_isInDatabase;
+	}
+
+	if (m_isInDatabase)
+	{
+		m_button[0].isClickable = false;
+		m_button[2].isClickable = false;
+		return;
+	}
+
 	std::vector<GameItem> selectedItem;
 	for (size_t i = 0; i < m_item.size(); i++)
 	{
@@ -292,8 +369,6 @@ void Inventory::UpdateButton()
 			selectedItem.push_back(m_item[i].gameItem);
 			//selectedItem.push_back(GameItem(ItemDatabase::CreateNewItem(m_item[i].gameItem.item), m_item[i].gameItem.quantity));
 	}
-
-	sf::Vector2f mousePos = Window::GetMousePos();
 
 	// Craft
 	if (CraftDatabase::IsCraftCorrect(selectedItem))
@@ -338,8 +413,6 @@ void Inventory::UpdateButton()
 	{
 		m_button[0].isClickable = false;
 	}
-
-	// Craft Database TODO
 
 	// Equip
 	if (selectedItem.size() == 1)

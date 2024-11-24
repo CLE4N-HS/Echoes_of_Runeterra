@@ -44,5 +44,6 @@ private:
 	std::vector<InventoryItem> m_item;
 	std::vector<InventoryButton> m_button;
 	bool m_isOpen;
+	bool m_isInDatabase = false;
 
 };
