@@ -3,13 +3,15 @@
 #include "CharacterManager.h"
 #include "SkillTreeManager.h"
 #include "DialogueManager.h"
+#include "MapManager.h"
 
-Game::Game() : m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager()//, m_skillsSystem(m_treeDB)
+Game::Game() //: m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager()//, m_skillsSystem(m_treeDB)
 {
 	DatabaseManager::loadAllDatabase();
 	new PawnManager();
 	new SkillTreeManager();
 	new DialogueManager();
+	MapManager::MapManager();
 	//DialogueManager::SetupDialogue("intro");
 	//m_mapManager.addItem(m_itemDB->getItem("sword"));
 	//m_mapManager.addItem(m_itemDB->getItem("pickaxe"));
@@ -33,6 +35,7 @@ void Game::Update()
 	}
 	else
 	{
+		MapManager::Update();
 		PawnManager::Update();
 		SkillTreeManager::Update();
 	}
@@ -51,7 +54,7 @@ void Game::Update()
 
 void Game::Display()
 {
-
+	MapManager::Display();
 	PawnManager::Display();
 	if (0)
 		SkillTreeManager::Display();

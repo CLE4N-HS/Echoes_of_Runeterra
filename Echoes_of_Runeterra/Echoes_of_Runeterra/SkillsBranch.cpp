@@ -24,6 +24,7 @@ void SkillsBranch::Update()
 
 	for (size_t i = 0; i < m_branch.size(); i++)
 	{
+		// TODO
 		//if (m_branch[i]->GetState() == )
 	}
 }

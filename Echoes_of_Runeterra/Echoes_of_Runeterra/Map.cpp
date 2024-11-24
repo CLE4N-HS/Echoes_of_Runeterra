@@ -1,4 +1,10 @@
 #include "Map.h"
+#include "Window.h"
+#include "MouseManager.h"
+#include "CharacterManager.h"
+#include "Player.h"
+#include "ItemDatabase.h"
+#include "ComponentName.h"
 
 Map::Map() : m_item()
 {
@@ -8,46 +14,86 @@ Map::~Map()
 {
 }
 
-void Map::update(Window& _window)
+void Map::Update()
 {
-	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	const sf::Vector2f mousePos = Window::GetMousePos();
+
+	for (std::list<MapItem*>::iterator it = m_item.begin(); it != m_item.end();)
 	{
-		(*it)->Update();
+		if ((*it)->gameItem->item->transform->GetRect().contains(mousePos) && MouseManager::OneTimePressed())
+		{
+			if (Player* player = dynamic_cast<Player*>(PawnManager::GetPawn("Player")))
+			{
+				player->AddItem(GameItem(ItemDatabase::CreateNewItem((*it)->gameItem->item), (*it)->gameItem->quantity));
+
+				delete (*it)->gameItem->item;
+				it = m_item.erase(it);
+				continue;
+			}
+		}
+
+		it++;
 	}
+
+	//for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	//{
+	//	(*it)->Update();
+	//}
 }
 
-void Map::display(Window& _window)
+void Map::Display()
 {
-	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	Window::text.setCharacterSize(20);
+	Window::text.setFillColor(sf::Color(255, 255, 255));
+	for (std::list<MapItem*>::iterator it = m_item.begin(); it != m_item.end(); it++)
 	{
-		(*it)->Display();
+		// item
+		Window::rectangle.setFillColor(sf::Color(255, 255, 255));
+		(*it)->gameItem->item->transform->CorrectWindowRectangle();
+		Window::Draw();
+
+		Window::text.setPosition((*it)->gameItem->item->transform->getPos() + (*it)->gameItem->item->transform->getSize() * 0.5f + sf::Vector2f(0.f, -50.f));
+		Window::text.setString((*it)->gameItem->item->GetComponent<ComponentName>()->GetName());
+		Tools::CenterTextOrigin(Window::text);
+		Window::Draw(Window::text);
+
+		Window::text.setPosition((*it)->gameItem->item->transform->getPos() + (*it)->gameItem->item->transform->getSize() * 0.5f + sf::Vector2f(0.f, 50.f));
+		Window::text.setString(std::to_string((*it)->gameItem->quantity));
+		Tools::CenterTextOrigin(Window::text);
+		Window::Draw(Window::text);
 	}
+
+	//for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	//{
+	//	(*it)->Display();
+	//}
 }
 
-void Map::addItem(Item* _item)
+void Map::AddItem(MapItem* _mapItem, Transform _transform)
 {
-	_item->setState(Item::State::ON_MAP);
-	m_item.push_back(_item);
+	m_item.push_back(_mapItem);
+	*_mapItem->gameItem->item->transform = _transform;
 }
 
 void Map::removeItem(Item* _item)
 {
-	m_item.remove(_item);
+	//m_item.remove(_item);
 }
 
 Item* Map::getClosestItem(sf::Vector2f _pos, float _minDistance)
 {
-	float closestDistance(_minDistance);
-	Item* closestItem(nullptr);
-	for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
-	{
-		//float magnitude = vec2fGetSqrMagnitude(_pos - (*it)->getPos());
-		//if (magnitude < _minDistance)
-		//{
-		//	closestDistance = magnitude;
-		//	closestItem = (*it);
-		//}
-	}
+	//float closestDistance(_minDistance);
+	//Item* closestItem(nullptr);
+	//for (std::list<Item*>::iterator it = m_item.begin(); it != m_item.end(); it++)
+	//{
+	//	//float magnitude = vec2fGetSqrMagnitude(_pos - (*it)->getPos());
+	//	//if (magnitude < _minDistance)
+	//	//{
+	//	//	closestDistance = magnitude;
+	//	//	closestItem = (*it);
+	//	//}
+	//}
 
-	return closestItem;
+	//return closestItem;
+	return nullptr;
 }

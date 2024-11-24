@@ -12,6 +12,8 @@ public:
 	virtual void Update() override;
 	virtual void Display() override;
 
+	inline void AddItem(const GameItem& _gameItem) { m_inventory.AddItem(_gameItem); }
+
 protected:
 	Inventory m_inventory;
 
