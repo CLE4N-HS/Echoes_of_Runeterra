@@ -22,6 +22,8 @@ public:
 
 	static Item* CreateProfessionCraft(const std::vector<GameItem>& _item, const std::string& _profession);
 
+	static inline const std::list<ProfessionCraft*> GetDatabase() { return m_professionCraft; }
+
 private:
 	static std::list<ProfessionCraft*> m_professionCraft;
 

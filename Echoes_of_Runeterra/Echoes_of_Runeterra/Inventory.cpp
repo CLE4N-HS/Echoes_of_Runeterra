@@ -10,6 +10,7 @@
 #include "CharacterManager.h"
 #include "Player.h"
 #include "ItemDatabase.h"
+#include "ProfessionCraftDatabase.h"
 
 Inventory::Inventory() : Entity(Transform(sf::Vector2f(100.f, 100.f), sf::Vector2f(1720.f, 880.f), Transform::Origin::TOP_LEFT)), m_item(), m_isOpen(false)
 {
@@ -143,6 +144,53 @@ void Inventory::Display()
 
 			itemPos.y = startPos.y = Window::text.getPosition().y + Window::text.getLocalBounds().height + 20.f;
 		}
+
+		startPos.y += 20.f;
+		Window::text.setPosition(startPos);
+		Window::text.setStyle(sf::Text::Style::Bold);
+		Window::text.setString("Profession Craft :");
+		Window::text.setFillColor(sf::Color::White);
+		Window::Draw(Window::text);
+		itemPos.y = startPos.y = Window::text.getPosition().y + Window::text.getLocalBounds().height + 40.f;
+
+		std::list<ProfessionCraft*> professionDB = ProfessionCraftDatabase::GetDatabase();
+		for (std::list<ProfessionCraft*>::iterator it = professionDB.begin(); it != professionDB.end(); it++)
+		{
+			Window::text.setPosition(startPos);
+			Window::text.setStyle(sf::Text::Style::Underlined);
+			Window::text.setString((*it)->craftItem->item->GetComponent<ComponentName>()->GetName() + " :");
+			Window::text.setFillColor(sf::Color::White);
+			Window::Draw(Window::text);
+
+			Window::text.setStyle(sf::Text::Style::Regular);
+			itemPos.x = Window::text.getPosition().x + Window::text.getLocalBounds().width + 20.f;
+			for (size_t reqItem = 0; reqItem < (*it)->craftItem->requiredItem.size(); reqItem++)
+			{
+				Window::text.setPosition(itemPos);
+				Window::text.setString((*it)->craftItem->requiredItem[reqItem]->item->GetComponent<ComponentName>()->GetName()
+					+ " [" + std::to_string((*it)->craftItem->requiredItem[reqItem]->quantity) + "] " + (reqItem + 1 >= (*it)->craftItem->requiredItem.size() ? "" : ","));
+
+				Window::text.setFillColor(sf::Color(255, 255, 255));
+				for (size_t i = 0; i < selectedItem.size(); i++)
+				{
+					if (selectedItem[i].item->operator==((*it)->craftItem->requiredItem[reqItem]->item))
+					{
+						if (selectedItem[i].quantity >= (*it)->craftItem->requiredItem[reqItem]->quantity)
+							Window::text.setFillColor(sf::Color(255, 0, 0));
+						else
+							Window::text.setFillColor(sf::Color(255, 127, 127));
+
+						break;
+					}
+				}
+
+				Window::Draw(Window::text);
+
+				itemPos.x = Window::text.getPosition().x + Window::text.getLocalBounds().width + 20.f;
+			}
+
+			itemPos.y = startPos.y = Window::text.getPosition().y + Window::text.getLocalBounds().height + 20.f;
+		}
 	}
 	else
 	{
@@ -151,7 +199,7 @@ void Inventory::Display()
 		Window::text.setCharacterSize(30);
 		for (std::vector<InventoryItem>::iterator it = m_item.begin(); it != m_item.end(); it++)
 		{
-			it->gameItem.item->Display();
+			//it->gameItem.item->Display();
 			// ^ equals ^
 			Window::rectangle.setFillColor(sf::Color(255, 0, 0, 100));
 			it->gameItem.item->transform->CorrectWindowRectangle();

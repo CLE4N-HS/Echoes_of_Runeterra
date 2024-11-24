@@ -97,9 +97,12 @@ CraftItem* CraftDatabase::IsCraftCorrect(const std::vector<GameItem>& _requiredI
 
 Item* CraftDatabase::CreateCraftItem(std::vector<GameItem>& _requiredItem, CraftItem*& _craftItem)
 {
-	for (size_t reqItem = 0; reqItem < _craftItem->requiredItem.size(); reqItem++)
+	//for (size_t reqItem = 0; reqItem < _craftItem->requiredItem.size(); reqItem++)
+	//{
+	//	for (size_t item = 0; item < _requiredItem.size(); item++)
+	for (size_t reqItem = 0; reqItem < _requiredItem.size(); reqItem++)
 	{
-		for (size_t item = 0; item < _requiredItem.size(); item++)
+		for (size_t item = 0; item < _craftItem->requiredItem.size(); item++)
 		{
 			if (_requiredItem[reqItem].item->operator==(_craftItem->requiredItem[item]->item))
 			{
