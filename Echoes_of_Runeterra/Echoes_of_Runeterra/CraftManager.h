@@ -9,9 +9,11 @@ public:
 	~CraftManager();
 
 	static Item* Craft(std::vector<GameItem>& _item);
-	static Item* Craft(const std::vector<GameItem>& _item, const std::string& _profession);
+	static Item* Craft(std::vector<GameItem>& _item, const std::string& _profession);
 
-	bool isCraftCorrect(std::vector<Item*> _item);
+	static bool IsCraftCorrect(const std::vector<GameItem>& _item);
+	static bool IsCraftCorrect(const std::vector<GameItem>& _item, const std::string& _profession);
+
 	Item* craft(std::vector<Item*> _item);
 	Item* craft(std::vector<std::string> _itemName);
 

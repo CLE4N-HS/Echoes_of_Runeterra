@@ -151,11 +151,22 @@ void Inventory::Display()
 		Window::text.setString("Profession Craft :");
 		Window::text.setFillColor(sf::Color::White);
 		Window::Draw(Window::text);
+		Window::text.setStyle(sf::Text::Style::Regular);
+
 		itemPos.y = startPos.y = Window::text.getPosition().y + Window::text.getLocalBounds().height + 40.f;
 
 		std::list<ProfessionCraft*> professionDB = ProfessionCraftDatabase::GetDatabase();
+
+		Player* player = dynamic_cast<Player*>(PawnManager::GetPawn("Player"));
+		Profession* profession = player->GetProfession();
+
+		std::string playerProfession = (profession ? profession->ToString() : "");
+
 		for (std::list<ProfessionCraft*>::iterator it = professionDB.begin(); it != professionDB.end(); it++)
 		{
+			if (playerProfession != (*it)->profession)
+				continue;
+
 			Window::text.setPosition(startPos);
 			Window::text.setStyle(sf::Text::Style::Underlined);
 			Window::text.setString((*it)->craftItem->item->GetComponent<ComponentName>()->GetName() + " :");
@@ -415,17 +426,19 @@ void Inventory::UpdateButton()
 	{
 		if (m_item[i].isSelected)
 			selectedItem.push_back(m_item[i].gameItem);
-			//selectedItem.push_back(GameItem(ItemDatabase::CreateNewItem(m_item[i].gameItem.item), m_item[i].gameItem.quantity));
 	}
 
 	// Craft
-	if (CraftDatabase::IsCraftCorrect(selectedItem))
+	Player* player = dynamic_cast<Player*>(PawnManager::GetPawn("Player"));
+	Profession* profession = player->GetProfession();
+
+	if ((profession ? CraftManager::IsCraftCorrect(selectedItem, profession->ToString()) : CraftManager::IsCraftCorrect(selectedItem)))
 	{
 		m_button[0].isClickable = true;
 
 		if (m_button[0].transform.GetRect().contains(mousePos) && MouseManager::OneTimePressed())
 		{
-			if (Item* item = CraftManager::Craft(selectedItem))
+			if (Item* item = (profession ? CraftManager::Craft(selectedItem, profession->ToString()) : CraftManager::Craft(selectedItem)))
 			{
 				size_t selectedCount(0);
 				for (size_t i = 0; i < m_item.size(); i++)
@@ -437,7 +450,6 @@ void Inventory::UpdateButton()
 							m_item[i].gameItem.quantity = selectedItem[j].quantity;
 							if (m_item[i].gameItem.quantity <= 0)
 							{
-								// TODO CRASH
 								EraseItem(m_item[i].gameItem.item);
 							}
 						}
@@ -506,14 +518,6 @@ void Inventory::UpdateButton()
 	else
 	{
 		m_button[2].isClickable = false;
-	}
-
-
-	return;
-	while (selectedItem.size() > 0)
-	{
-		delete selectedItem[0].item;
-		selectedItem.erase(selectedItem.begin());
 	}
 }
 

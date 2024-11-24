@@ -10,6 +10,8 @@ public:
 	virtual void Update() override;
 	virtual void Display() override;
 
+	virtual inline std::string ToString() const override { return "alchemist"; }
+
 private:
 
 };

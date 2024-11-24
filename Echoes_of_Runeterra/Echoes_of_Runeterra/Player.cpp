@@ -2,6 +2,7 @@
 #include "ItemDatabase.h"
 #include "MouseManager.h"
 #include "Window.h"
+#include "Alchemist.h"
 
 Player::Player() : Player("Player")
 {
@@ -26,6 +27,7 @@ Player::Player(std::string _name) : Pawn(_name)
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("wood")));
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("heart")));
 
+	this->SetProfession(new Alchemist());
 
 }
 

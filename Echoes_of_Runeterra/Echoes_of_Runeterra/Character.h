@@ -38,6 +38,9 @@ public:
 
 	void setHover(bool _isHovered);
 
+	inline Profession* GetProfession() { return m_profession; }
+	inline void SetProfession(Profession* _profession) { m_profession = _profession; }
+
 protected:
 	Weapon* m_weapon = nullptr;
 	Armor* m_armor = nullptr;
