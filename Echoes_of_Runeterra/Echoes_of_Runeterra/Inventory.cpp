@@ -440,7 +440,6 @@ void Inventory::UpdateButton()
 		{
 			if (Item* item = (profession ? CraftManager::Craft(selectedItem, profession->ToString()) : CraftManager::Craft(selectedItem)))
 			{
-				size_t selectedCount(0);
 				for (size_t i = 0; i < m_item.size(); i++)
 				{
 					for (size_t j = 0; j < selectedItem.size(); j++)
@@ -453,13 +452,6 @@ void Inventory::UpdateButton()
 								EraseItem(m_item[i].gameItem.item);
 							}
 						}
-					}
-					{
-						//m_item[i].gameItem.quantity = selectedItem[selectedCount].quantity;
-						//if (m_item[i].gameItem.quantity <= 0)
-						//{
-						//	EraseItem(m_item[i].gameItem.item);
-						//}
 					}
 				}
 
