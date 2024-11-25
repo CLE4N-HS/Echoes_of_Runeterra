@@ -5,7 +5,7 @@ class Talker : public Npc
 {
 public:
 	Talker();
-	Talker(const std::string& _name, const std::string& _dialogueKey);
+	Talker(const std::string& _name, const std::string& _dialogueKey = "");
 	~Talker();
 
 	virtual void Update() override;

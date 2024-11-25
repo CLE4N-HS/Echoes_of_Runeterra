@@ -133,6 +133,9 @@
     <Filter Include="Fichiers d%27en-tête\GAME\CHARACTER\PROFESSION">
       <UniqueIdentifier>{5b2e0a2d-e1bd-4f0f-aecd-5b61695ae2cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\GAME\FIGHT">
+      <UniqueIdentifier>{a9162cd1-495f-49b9-9a05-96733d6509f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -345,6 +348,12 @@
     <ClCompile Include="Talker.cpp">
       <Filter>Fichiers sources\GAME\CHARACTER</Filter>
     </ClCompile>
+    <ClCompile Include="FightManager.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
+    <ClCompile Include="Fight.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -553,6 +562,12 @@
     </ClInclude>
     <ClInclude Include="Talker.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
+    </ClInclude>
+    <ClInclude Include="FightManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Fight.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

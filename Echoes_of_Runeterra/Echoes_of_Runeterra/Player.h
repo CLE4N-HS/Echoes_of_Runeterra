@@ -1,6 +1,7 @@
 #pragma once
 #include "Character.h"
 #include "Inventory.h"
+#include "Companion.h"
 
 class Player : public Pawn
 {
@@ -14,8 +15,12 @@ public:
 
 	inline void AddItem(const GameItem& _gameItem) { m_inventory.AddItem(_gameItem); }
 
+	void AddCompanion(Companion* _companion);
+
 protected:
 	Inventory m_inventory;
+
+	std::vector<Companion*> m_companion;
 
 
 	int m_skillPoint = 0;

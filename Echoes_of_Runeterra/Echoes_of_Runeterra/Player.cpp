@@ -33,6 +33,10 @@ Player::Player(std::string _name) : Pawn(_name)
 
 Player::~Player()
 {
+	while (m_companion.size() > 0)
+	{
+		m_companion.erase(m_companion.begin());
+	}
 }
 
 void Player::Update()
@@ -42,6 +46,11 @@ void Player::Update()
 	if (!m_inventory.isOpen())
 	{
 		this->UpdateMovement();
+	}
+
+	for (size_t i = 0; m_companion.size(); i++)
+	{
+		m_companion[i]->Update();
 	}
 
 	/*
@@ -125,6 +134,18 @@ void Player::Display()
 
 	//m_profession->display(_window);
 
+}
+
+void Player::AddCompanion(Companion* _companion)
+{
+	if (m_companion.size() >= 2)
+	{
+		// TODO idk QG or stmh
+	}
+	else
+	{
+		m_companion.push_back(_companion);
+	}
 }
 
 void Player::UpdateMovement()
