@@ -11,7 +11,7 @@ Game::Game() //: m_mapManager(), m_dialogueManager(), m_interactionManager(), m_
 	new PawnManager();
 	new SkillTreeManager();
 	new DialogueManager();
-	MapManager::MapManager();
+	new MapManager();
 	//DialogueManager::SetupDialogue("intro");
 	//m_mapManager.addItem(m_itemDB->getItem("sword"));
 	//m_mapManager.addItem(m_itemDB->getItem("pickaxe"));

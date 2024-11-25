@@ -338,14 +338,16 @@ void Inventory::RemoveItem(Item* _item, int _quantity, bool _delete)
 	}
 }
 
-void Inventory::EraseItem(Item* _item)
+bool Inventory::EraseItem(Item* _item)
 {
+	bool isOk(false);
 	for (size_t i = 0; i < m_item.size(); i++)
 	{
 		if (m_item[i].gameItem.item->operator==(_item))
 		{
 			delete m_item[i].gameItem.item;
 			m_item.erase(m_item.begin() + i);
+			isOk = true;
 			break;
 		}
 	}
@@ -360,6 +362,7 @@ void Inventory::EraseItem(Item* _item)
 	//}
 
 	RepositionItems();
+	return isOk;
 }
 
 void Inventory::setOpening(bool _shouldBeOpened)
@@ -449,7 +452,11 @@ void Inventory::UpdateButton()
 							m_item[i].gameItem.quantity = selectedItem[j].quantity;
 							if (m_item[i].gameItem.quantity <= 0)
 							{
-								EraseItem(m_item[i].gameItem.item);
+								if (EraseItem(m_item[i].gameItem.item))
+								{
+									i--;
+									break;
+								}
 							}
 						}
 					}

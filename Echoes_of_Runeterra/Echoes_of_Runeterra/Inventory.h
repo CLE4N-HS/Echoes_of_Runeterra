@@ -29,7 +29,7 @@ public:
 
 	Item* getItem();
 	void RemoveItem(Item* _item, int _quantity = 1, bool _delete = false);
-	void EraseItem(Item* _item);
+	bool EraseItem(Item* _item);
 
 	void setOpening(bool _shouldBeOpened);
 	bool isOpen();

@@ -7,6 +7,7 @@ ProfessionCraftDatabase::ProfessionCraftDatabase()
 {
 	m_professionCraft.push_back(new ProfessionCraft("blacksmith", new CraftItem("goldenPickaxe", std::vector<std::pair<std::string, int>>({ {"sword", 2}, {"pickaxe", 1} }))));
 	m_professionCraft.push_back(new ProfessionCraft("alchemist", new CraftItem("chicken", std::vector<std::pair<std::string, int>>({ {"wood", 1}, {"metalArmor", 2} }))));
+	m_professionCraft.push_back(new ProfessionCraft("alchemist", new CraftItem("wood", std::vector<std::pair<std::string, int>>({ {"pickaxe", 1}, {"chicken", 2} }))));
 }
 
 ProfessionCraftDatabase::~ProfessionCraftDatabase()
