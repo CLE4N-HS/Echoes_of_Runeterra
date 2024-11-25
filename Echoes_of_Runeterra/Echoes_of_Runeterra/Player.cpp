@@ -58,6 +58,7 @@ void Player::Update()
 
 void Player::Display()
 {
+	Window::rectangle.setFillColor(sf::Color(0, 0, 255));
 	this->transform->CorrectWindowRectangle();
 
 	Window::Draw();

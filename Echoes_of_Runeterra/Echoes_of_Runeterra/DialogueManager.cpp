@@ -13,6 +13,9 @@ DialogueManager::~DialogueManager()
 
 void DialogueManager::SetupDialogue(const std::string& _name)
 {
+	if (_name == "")
+		return;
+
 	std::map<std::string, InteractionText*> tmpText;
 	DialogueDataBase::createText(tmpText, _name);
 	m_dialogue.setup(tmpText);

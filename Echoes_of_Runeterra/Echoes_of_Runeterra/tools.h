@@ -27,6 +27,8 @@ public:
 
 	static float Magnitude(const sf::Vector2f& _v);
 	static float Magnitude(const sf::Vector2f& _v1, const sf::Vector2f& _v2);
+	static float SqrMagnitude(const sf::Vector2f& _v);
+	static float SqrMagnitude(const sf::Vector2f& _v1, const sf::Vector2f& _v2);
 	static sf::Vector2f Multiply(const sf::Vector2f& _v1, const sf::Vector2f& _v2);
 	static sf::Vector2f Normalize(const sf::Vector2f& _v);
 

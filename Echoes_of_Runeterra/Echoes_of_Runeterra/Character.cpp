@@ -30,7 +30,7 @@ Pawn::Pawn(std::string _name, std::string _dialogueKey, int _level, int _xp, int
 	//sf::IntRect animRect = tex_getAnimRect("viego", m_animState.c_str());
 	transform->setSize(animRect.getSize());
 	transform->setOrigin(transform->getSize() * 0.5f);
-	transform->setScale(sf::Vector2f(2.f, 2.f));
+	//transform->setScale(sf::Vector2f(2.f, 2.f));
 }
 
 Pawn::~Pawn()

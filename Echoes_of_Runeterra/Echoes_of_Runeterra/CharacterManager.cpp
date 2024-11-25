@@ -8,10 +8,15 @@ std::vector<Pawn*> PawnManager::m_pawn;
 PawnManager::PawnManager()
 {
 	m_pawn.reserve(sizeof(Pawn*) * 3);
+	size_t i(0);
 
-	m_pawn.push_back(new Player("Player"));
-	m_pawn.push_back(new Npc("Npc", "npcHello"));
-	m_pawn.push_back(new Npc("Npc", "murloc"));
+	m_pawn.push_back(new Npc("Npc1", "npcHello"));
+	m_pawn[i]->transform->setPos(sf::Vector2f(960.f, 200.f));
+
+	m_pawn.push_back(new Npc("Npc2", "murloc")); i++;
+	m_pawn[i]->transform->setPos(sf::Vector2f(1460.f, 400.f));
+
+	m_pawn.push_back(new Player("Player")); i++;
 }
 
 PawnManager::~PawnManager()

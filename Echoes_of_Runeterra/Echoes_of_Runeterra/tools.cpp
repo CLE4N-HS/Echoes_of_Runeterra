@@ -27,6 +27,16 @@ float Tools::Magnitude(const sf::Vector2f& _v1, const sf::Vector2f& _v2)
     return Tools::Magnitude(sf::Vector2f(_v1 - _v2));
 }
 
+float Tools::SqrMagnitude(const sf::Vector2f& _v)
+{
+    return (_v.x * _v.x + _v.y * _v.y);
+}
+
+float Tools::SqrMagnitude(const sf::Vector2f& _v1, const sf::Vector2f& _v2)
+{
+    return Tools::SqrMagnitude(sf::Vector2f(_v1 - _v2));
+}
+
 sf::Vector2f Tools::Multiply(const sf::Vector2f& _v1, const sf::Vector2f& _v2)
 {
     return sf::Vector2f(_v1.x * _v2.x, _v1.y * _v2.y);
