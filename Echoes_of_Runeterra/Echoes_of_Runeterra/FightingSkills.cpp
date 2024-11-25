@@ -1,6 +1,6 @@
 #include "FightingSkills.h"
 
-FightingSkills::FightingSkills()
+FightingSkills::FightingSkills(const std::string& _name) : Skills(_name)
 {
 }
 
@@ -8,6 +8,6 @@ FightingSkills::~FightingSkills()
 {
 }
 
-void FightingSkills::update(Window& _window)
+void FightingSkills::Update()
 {
 }

@@ -10,6 +10,10 @@ Armor::Armor(std::string _name, int _defense, int _speed, int _durability) : Ite
 {
 }
 
+Armor::Armor(const Armor& _armor) : Armor(_armor.m_name, _armor.m_defense, _armor.m_speed, _armor.m_durability)
+{
+}
+
 Armor::~Armor()
 {
 }
@@ -51,8 +55,8 @@ void Armor::Display()
 	}*/
 }
 
-void Armor::displayStats(Window& _window)
-{
+//void Armor::displayStats(Window& _window)
+//{
 	//_window.rectangle.setPosition(Armor::m_pos);
 	//_window.rectangle.setOrigin(sf::Vector2f());
 	//_window.rectangle.setSize(sf::Vector2f(200.f, 200.f));
@@ -85,7 +89,7 @@ void Armor::displayStats(Window& _window)
 	//sprintf(buffer, "Durability : %d", m_durability);
 	//_window.text.setString(buffer);
 	//_window.draw(_window.text);
-}
+//}
 
 int Armor::getDefense() const
 {

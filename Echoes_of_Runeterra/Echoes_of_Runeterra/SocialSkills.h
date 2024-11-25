@@ -4,12 +4,12 @@
 class SocialSkills : public Skills
 {
 public:
-	SocialSkills(int _socialBonus);
+	SocialSkills(const std::string& _name);
 	~SocialSkills();
 
-	virtual void update(Window& _window) override;
+	virtual void Update() override;
 
 private:
-	int m_socialBonus;
+	//int m_socialBonus;
 
 };

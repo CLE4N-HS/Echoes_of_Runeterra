@@ -1,5 +1,4 @@
 #pragma once
-#include "DialogueDataBase.h"
 #include "Dialogue.h"
 
 class DialogueManager
@@ -8,15 +7,14 @@ public:
 	DialogueManager();
 	~DialogueManager();
 
-	void setupDialogue(std::string _name);
-	bool isInDialogue();
+	static void SetupDialogue(const std::string& _name);
+	static bool IsInDialogue();
 
-	void update(Window& _window);
-	void display(Window& _window);
+	static void Update();
+	static void Display();
 
 private:
-	DialogueDataBase* m_dialogueDB;
-	Dialogue m_dialogue;
+	static Dialogue m_dialogue;
 
 };
 

@@ -1,16 +1,34 @@
 #include "Player.h"
-#include "textureManager.h"
-#include "Consumable.h"
-#include "Blacksmith.h"
+#include "ItemDatabase.h"
+#include "MouseManager.h"
+#include "Window.h"
 #include "Alchemist.h"
-#include "Transform.h"
 
 Player::Player() : Player("Player")
 {
 }
 
-Player::Player(std::string _name) : Pawn(_name), m_weapon(nullptr), m_armor(nullptr), m_profession(new Blacksmith)
+Player::Player(std::string _name) : Pawn(_name)
 {
+	this->transform->setSize(sf::Vector2f(50.f, 50.f));
+	this->transform->setOrigin(this->transform->getSize() * 0.5f);
+	this->transform->setPos(sf::Vector2f(960.f, 540.f));
+	m_targetPos = this->transform->getPos();
+
+	m_inventory.SetInstigator(this);
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("sword")));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("speedPotion"), 2));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("pickaxe"), 54));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("shield"), 2));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("metalArmor")));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("chicken"), 5));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("rice"), 70));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("metalArmor")));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("wood")));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("heart")));
+
+	this->SetProfession(new Alchemist());
+
 }
 
 Player::~Player()
@@ -19,8 +37,14 @@ Player::~Player()
 
 void Player::Update()
 {
-	/*float dt = _window.getDeltaTime();
+	m_inventory.Update();
 
+	if (!m_inventory.isOpen())
+	{
+		this->UpdateMovement();
+	}
+
+	/*
 	m_attackTimer += dt;
 
 	this->updateMovement(_window);
@@ -30,11 +54,19 @@ void Player::Update()
 	m_inventory->update(_window);
 
 	this->updateInventoryInteractions(_window);*/
-	
 }
 
 void Player::Display()
 {
+	Window::rectangle.setFillColor(sf::Color(0, 0, 255));
+	this->transform->CorrectWindowRectangle();
+
+	Window::Draw();
+
+	m_inventory.Display();
+
+
+
 	//_window.rectangle.setPosition(m_pos);
 	//_window.rectangle.setTexture(tex_getTexture("viego"));
 	//_window.rectangle.setSize(m_size);
@@ -95,15 +127,22 @@ void Player::Display()
 
 }
 
-sf::FloatRect Player::getRect()
-{
-	return sf::FloatRect();
-	//return sf::FloatRect(m_pos - vec2fMultiply(m_origin, m_scale), vec2fMultiply(m_size, m_scale));
-}
-
 void Player::UpdateMovement()
 {
-	//float dt = _window.getDeltaTime();
+	float dt = Tools::GetDeltaTime();
+
+	if (MouseManager::OneTimePressed())
+	{
+		m_targetPos = Window::GetMousePos();
+	}
+
+	sf::Vector2f forwardVec = sf::Vector2f(m_targetPos - this->transform->getPos());
+	if (Tools::Magnitude(forwardVec) > 100.f)
+	{
+		m_forward = Tools::Normalize(forwardVec);
+
+		this->transform->Move(m_forward * m_moveSpeed * dt);
+	}
 
 	//if (!m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
 	//{

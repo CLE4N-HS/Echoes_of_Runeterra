@@ -1,15 +1,17 @@
 #pragma once
-#include "Window.h"
+#include "Tools.h"
 #include "Database.h"
 
 class DatabaseManager
 {
 public:
-	DatabaseManager();
-	~DatabaseManager();
+	DatabaseManager() = default;
+	~DatabaseManager() = default;
 
-	//template<typename T>
-	//T* getValue(std::string _name);
+	/// <summary>
+	/// Loads all static Database in the right order
+	/// </summary>
+	static void loadAllDatabase();
 
 private:
 

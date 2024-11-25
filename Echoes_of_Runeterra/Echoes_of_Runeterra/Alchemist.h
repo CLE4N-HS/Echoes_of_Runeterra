@@ -7,8 +7,10 @@ public:
 	Alchemist();
 	~Alchemist() = default;
 
-	virtual void update(Window& _window) override;
-	virtual void display(Window& _window) override;
+	virtual void Update() override;
+	virtual void Display() override;
+
+	virtual inline std::string ToString() const override { return "alchemist"; }
 
 private:
 

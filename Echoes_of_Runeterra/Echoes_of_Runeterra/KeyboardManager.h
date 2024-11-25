@@ -1,27 +1,30 @@
 #pragma once
-#include "tools.h"
+#include "Tools.h"
 
 class KeyboardManager
 {
 public:
-	typedef enum {
+	enum KeyState {
 		RELEASED,
 		JUST_BEEN_RELEASED,
 		JUST_BEEN_PRESSED,
+		ALREADY_PRESSED,
 		PRESSED,
 
 		COUNT // <- keep last
-	}KeyState;
+	};
 
 	KeyboardManager();
 	~KeyboardManager();
 
-	void update();
-	bool hasJustPressed(sf::Keyboard::Key _key);
-	bool hasJustReleased(sf::Keyboard::Key _key);
+	static void Update();
+	static bool HasJustPressed(const sf::Keyboard::Key& _key);
+	static bool HasJustReleased(const sf::Keyboard::Key& _key);
+
+	static bool OneTimePressed(const sf::Keyboard::Key& _key);
 
 private:
-	KeyState m_keyState[(int)sf::Keyboard::KeyCount];
+	static KeyState m_keyState[static_cast<int>(sf::Keyboard::KeyCount)];
 
 };
 

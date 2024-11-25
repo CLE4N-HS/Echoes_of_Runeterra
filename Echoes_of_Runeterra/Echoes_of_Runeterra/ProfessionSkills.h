@@ -4,10 +4,10 @@
 class ProfessionSkills : public Skills
 {
 public:
-	ProfessionSkills();
+	ProfessionSkills(const std::string& _name);
 	~ProfessionSkills();
 
-	virtual void update(Window& _window) override;
+	virtual void Update() override;
 
 private:
 

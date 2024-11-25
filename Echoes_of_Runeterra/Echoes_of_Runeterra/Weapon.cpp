@@ -10,6 +10,10 @@ Weapon::Weapon(std::string _name, int _damage, int _criticalDamage, int _speed) 
 {
 }
 
+Weapon::Weapon(const Weapon& _weapon) : Weapon(_weapon.m_name, _weapon.m_damage, _weapon.m_critcalDamage, _weapon.m_speed)
+{
+}
+
 Weapon::~Weapon()
 {
 }
@@ -52,8 +56,8 @@ void Weapon::Display()
 
 }
 
-void Weapon::displayStats(Window& _window)
-{
+//void Weapon::displayStats(Window& _window)
+//{
 	//_window.rectangle.setPosition(Weapon::m_pos);
 	//_window.rectangle.setOrigin(sf::Vector2f());
 	//_window.rectangle.setSize(sf::Vector2f(200.f, 200.f));
@@ -86,7 +90,7 @@ void Weapon::displayStats(Window& _window)
 	//sprintf(buffer, "Speed : %d", m_speed);
 	//_window.text.setString(buffer);
 	//_window.draw(_window.text);
-}
+//}
 
 int Weapon::getDamage() const
 {

@@ -9,8 +9,6 @@
 
 State* StateManager::m_state = nullptr;
 
-StateManager stateManager;
-
 StateManager::StateManager()
 {
 	res_load(RES_ALL);

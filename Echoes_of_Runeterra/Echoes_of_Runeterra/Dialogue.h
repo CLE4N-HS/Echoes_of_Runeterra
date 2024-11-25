@@ -17,8 +17,8 @@ public:
 	void setup(std::map<std::string, InteractionText*>& _text);
 	bool isInDialogue();
 
-	void update(Window& _window);
-	void display(Window& _window);
+	void Update();
+	void Display();
 
 private:
 	std::map<std::string, InteractionText*> m_text;

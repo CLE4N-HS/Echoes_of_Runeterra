@@ -1,20 +1,28 @@
 #pragma once
-#include "Window.h"
+#include "Tools.h"
+#include "Entity.h"
 #include "Skills.h"
 
-class SkillsLeaf
+class SkillsLeaf : public Entity
 {
 public:
+	enum State {
+		LOCKED,
+		OBTAINABLE,
+		ACQUIRED
+	};
+
 	SkillsLeaf(Skills* _skill);
 	~SkillsLeaf();
 
-	inline bool isUnlocked() { return m_isUnlocked; }
-	inline void unlock(bool _unlock = true) { m_isUnlocked = _unlock; }
+	inline SkillsLeaf::State GetState() const { return m_state; }
+	inline void SetState(const SkillsLeaf::State& _state) { m_state = _state; }
 
-	void update(Window& _window);
+	void Update();
+	void Display();
 
 private:
 	Skills* m_skill;
-	bool m_isUnlocked;
+	SkillsLeaf::State m_state;
 
 };

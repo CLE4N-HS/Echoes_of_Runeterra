@@ -4,10 +4,10 @@
 class FightingSkills : public Skills
 {
 public:
-	FightingSkills();
+	FightingSkills(const std::string& _name);
 	~FightingSkills();
 
-	virtual void update(Window& _window) override;
+	virtual void Update() override;
 
 private:
 

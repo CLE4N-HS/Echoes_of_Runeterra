@@ -8,9 +8,9 @@ public:
 	DialogueDataBase();
 	~DialogueDataBase();
 
-	void createText(std::map<std::string, InteractionText*>& _text, std::string _name);
+	static void createText(std::map<std::string, InteractionText*>& _text, std::string _name);
 
 private:
-	std::map<std::string, InteractionText*> m_interactionTextDB;
+	static std::map<std::string, InteractionText*> m_interactionTextDB;
 
 };

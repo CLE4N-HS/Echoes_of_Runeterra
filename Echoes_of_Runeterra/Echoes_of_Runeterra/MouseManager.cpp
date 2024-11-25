@@ -1,5 +1,9 @@
 #include "MouseManager.h"
 
+MouseManager::ButtonState MouseManager::m_buttonState[];
+
+MouseManager mouseManager;
+
 MouseManager::MouseManager()
 {
 	for (int button = 0; button < sf::Mouse::ButtonCount; button++)
@@ -12,7 +16,7 @@ MouseManager::~MouseManager()
 {
 }
 
-void MouseManager::update()
+void MouseManager::Update()
 {
 	for (int button = 0; button < sf::Mouse::ButtonCount; button++)
 	{
@@ -25,12 +29,23 @@ void MouseManager::update()
 	}
 }
 
-bool MouseManager::hasJustPressed(sf::Mouse::Button _button)
+bool MouseManager::HasJustPressed(const sf::Mouse::Button& _button)
 {
-	return (m_buttonState[(int)_button] == MouseManager::JUST_BEEN_PRESSED);
+	return (m_buttonState[static_cast<int>(_button)] == MouseManager::JUST_BEEN_PRESSED);
 }
 
-bool MouseManager::hasJustReleased(sf::Mouse::Button _button)
+bool MouseManager::HasJustReleased(const sf::Mouse::Button& _button)
 {
-	return (m_buttonState[(int)_button] == MouseManager::JUST_BEEN_RELEASED);
+	return (m_buttonState[static_cast<int>(_button)] == MouseManager::JUST_BEEN_RELEASED);
+}
+
+bool MouseManager::OneTimePressed(const sf::Mouse::Button& _button)
+{
+	if (m_buttonState[static_cast<int>(_button)] == MouseManager::JUST_BEEN_PRESSED)
+	{
+		m_buttonState[static_cast<int>(_button)] = MouseManager::ALREADY_PRESSED;
+		return true;
+	}
+
+	return false;
 }

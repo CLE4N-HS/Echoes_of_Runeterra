@@ -1,14 +1,18 @@
 #include "Item.h"
 #include "textureManager.h"
+#include "ComponentName.h"
 
 Item::Item() : Item("")
 {
 }
 
-Item::Item(std::string _name) :/* Entity(sf::Vector2f(randomFloat(100.f, 1700.f), randomFloat(100.f, 800.f))), */m_name(_name), m_state(Item::State::ON_MAP), m_isHovered(false)
+Item::Item(std::string _name) : Entity(), m_state(Item::State::ON_MAP), m_isHovered(false)
 {
+	this->AddComponent<ComponentName>(_name);
 	if (_name != "")
 	{
+		// TODO use a transform component instead of that
+
 		sf::IntRect animRect = sf::IntRect();
 		//sf::IntRect animRect = tex_getAnimRect("items", m_name.c_str());
 		m_size = sf::Vector2f((float)animRect.width, (float)animRect.height);
@@ -59,16 +63,6 @@ bool Item::isHovered()
 	return m_isHovered;
 }
 
-Item* Item::getItem()
-{
-	return this;
-}
-
-std::string Item::getName()
-{
-	return m_name;
-}
-
 sf::FloatRect Item::getRect()
 {
 	return sf::FloatRect();
@@ -78,4 +72,12 @@ sf::FloatRect Item::getRect()
 void Item::setHover(bool _isHover)
 {
 	m_isHovered = _isHover;
+}
+
+bool Item::operator==(Item* _item)
+{
+	if (this->GetComponent<ComponentName>() && _item->GetComponent<ComponentName>())
+		return (this->GetComponent<ComponentName>()->GetName() == _item->GetComponent<ComponentName>()->GetName());
+
+	return false;
 }

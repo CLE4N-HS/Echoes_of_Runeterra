@@ -17,6 +17,52 @@ void Tools::Update()
     m_deltaTime = m_time.asSeconds();
 }
 
+float Tools::Magnitude(const sf::Vector2f& _v)
+{
+    return std::sqrtf(_v.x * _v.x + _v.y * _v.y);
+}
+
+float Tools::Magnitude(const sf::Vector2f& _v1, const sf::Vector2f& _v2)
+{
+    return Tools::Magnitude(sf::Vector2f(_v1 - _v2));
+}
+
+float Tools::SqrMagnitude(const sf::Vector2f& _v)
+{
+    return (_v.x * _v.x + _v.y * _v.y);
+}
+
+float Tools::SqrMagnitude(const sf::Vector2f& _v1, const sf::Vector2f& _v2)
+{
+    return Tools::SqrMagnitude(sf::Vector2f(_v1 - _v2));
+}
+
+sf::Vector2f Tools::Multiply(const sf::Vector2f& _v1, const sf::Vector2f& _v2)
+{
+    return sf::Vector2f(_v1.x * _v2.x, _v1.y * _v2.y);
+}
+
+sf::Vector2f Tools::Normalize(const sf::Vector2f& _v)
+{
+    float magnitude = vec2fGetMagnitude(_v);
+    if (magnitude >= EPSILON)
+        return _v / magnitude;
+
+    return sf::Vector2f();
+}
+
+void Tools::CenterTextOrigin(sf::Text& _text)
+{
+    sf::FloatRect tmpRect = _text.getGlobalBounds();
+    _text.setOrigin(sf::Vector2f(tmpRect.getSize().x * 0.5f, tmpRect.getSize().y));
+}
+
+void Tools::CenterTextOriginString(sf::Text& _text)
+{
+    sf::FloatRect tmpRect = _text.getGlobalBounds();
+    _text.setOrigin(sf::Vector2f(tmpRect.getSize().x * 0.5f, 0.f));
+}
+
 /*
 *
 * The following code is left there to not damage any previous C code
@@ -62,4 +108,14 @@ float randomFloat(float min, float max)
 float lerp(float v0, float v1, float t)
 {
     return (1.f - t) * v0 + t * v1;
+}
+
+sf::Vector2f lerpVector(sf::Vector2f v0, sf::Vector2f v1, float t)
+{
+    return sf::Vector2f(lerp(v0.x, v1.x, t), lerp(v0.y, v1.y, t));
+}
+
+float getAngleBetweenVectors(sf::Vector2f a, sf::Vector2f b)
+{
+    return atan2f(b.y, b.x) - atan2f(a.y, a.x);
 }

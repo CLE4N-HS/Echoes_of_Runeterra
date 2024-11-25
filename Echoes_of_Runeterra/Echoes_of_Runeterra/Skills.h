@@ -1,13 +1,17 @@
 #pragma once
-#include "Window.h"
+#include "Tools.h"
+#include "Entity.h"
 
-class Skills
+class Skills : public Entity
 {
 public:
 	Skills();
+	Skills(const std::string& _name);
 	~Skills();
 
-	virtual void update(Window& _window) = 0;
+	bool operator==(Skills* _skills);
+
+	virtual void Update() = 0;
 
 private:
 

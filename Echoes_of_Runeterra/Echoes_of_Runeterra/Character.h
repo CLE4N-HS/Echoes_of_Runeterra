@@ -1,9 +1,13 @@
 #pragma once
-#include "Window.h"
+#include "Tools.h"
 #include "Entity.h"
 #include "alignement.h"
 #include "Race.h"
-#include "Inventory.h"
+#include "Weapon.h"
+#include "Armor.h"
+#include "Profession.h"
+#include "Specialization.h"
+#include "Skills.h"
 
 class Pawn : public Entity
 {
@@ -18,6 +22,12 @@ public:
 
 	virtual void Display() = 0;
 
+	inline Weapon* GetWeapon() const { return m_weapon; }
+	inline Armor* GetArmor() const { return m_armor; }
+
+	inline void SetWeapon(Weapon* _weapon) { m_weapon = _weapon; }
+	inline void SetArmor(Armor* _armor) { m_armor = _armor; }
+
 	void setDialogueKey(std::string _dialogueKey);
 	std::string getDialogueKey();
 
@@ -26,28 +36,37 @@ public:
 
 	void attack(Pawn& _character);
 
-	void inventorySetOpening(bool _shouldBeOpened);
-	bool isInventoryOpen();
-
-	void addItem(Item* _item);
-
 	void setHover(bool _isHovered);
-	virtual sf::FloatRect getRect() = 0;
+
+	inline Profession* GetProfession() { return m_profession; }
+	inline void SetProfession(Profession* _profession) { m_profession = _profession; }
 
 protected:
+	Weapon* m_weapon = nullptr;
+	Armor* m_armor = nullptr;
+	
+	Profession* m_profession = nullptr;
+
+	Specialization m_specialization;
+
+	std::vector<Skills*> m_skill = {};
+
+
+
+
 	void upgradeLevelXp();
 	void gainLevel();
 
-	Inventory m_inventory;
+
+
 	Race m_race;
 
+	// npc
 	std::string m_dialogueKey;
 
-	std::string m_name;
 	int m_level;
 	int m_xp;
 	int m_levelXp;
-	int m_skillPoint;
 
 	int m_hp, m_maxHp;
 	int m_attack;
@@ -56,23 +75,15 @@ protected:
 	int m_speed;
 	Alignement m_alignement;
 
-	sf::Vector2f m_targetPos;
-	sf::Vector2f m_foward;
-	float m_moveSpeed;
-
 	int m_frameX;
 	float m_animTimer;
 	std::string m_animState;
 
 	float m_attackTimer;
 
-	// player
 	bool m_takingAnItem;
 
 	bool m_isHovered;
-	sf::Vector2f m_size;
-	sf::Vector2f m_origin;
-	sf::Vector2f m_scale;
 
 
 };

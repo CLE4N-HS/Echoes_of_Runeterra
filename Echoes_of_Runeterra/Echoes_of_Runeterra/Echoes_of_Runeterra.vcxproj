@@ -158,9 +158,10 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CharacterManager.cpp" />
     <ClCompile Include="Comment.cpp" />
+    <ClCompile Include="Companion.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="ComponentName.cpp" />
     <ClCompile Include="Consumable.cpp" />
-    <ClCompile Include="craftdbtest.cpp" />
     <ClCompile Include="CraftDataBase.cpp" />
     <ClCompile Include="CraftManager.cpp" />
     <ClCompile Include="Database.cpp" />
@@ -169,8 +170,10 @@
     <ClCompile Include="DialogueDataBase.cpp" />
     <ClCompile Include="DialogueManager.cpp" />
     <ClCompile Include="EndButton.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="ExplorationSkills.cpp" />
+    <ClCompile Include="Fighter.cpp" />
     <ClCompile Include="FightingSkills.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Interaction.cpp" />
@@ -192,9 +195,11 @@
     <ClCompile Include="particleManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Profession.cpp" />
+    <ClCompile Include="ProfessionCraftDatabase.cpp" />
     <ClCompile Include="ProfessionSkills.cpp" />
     <ClCompile Include="Question.cpp" />
     <ClCompile Include="Race.cpp" />
+    <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ressourcesManager.cpp" />
     <ClCompile Include="Skills.cpp" />
     <ClCompile Include="SkillsBranch.cpp" />
@@ -202,6 +207,8 @@
     <ClCompile Include="SkillsLeaf.cpp" />
     <ClCompile Include="SkillsSystem.cpp" />
     <ClCompile Include="SkillsTree.cpp" />
+    <ClCompile Include="SkillTreeManager.cpp" />
+    <ClCompile Include="Specialization.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TreeDataBase.cpp" />
     <ClCompile Include="SocialSkills.cpp" />
@@ -222,9 +229,10 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="CharacterManager.h" />
     <ClInclude Include="Comment.h" />
+    <ClInclude Include="Companion.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="ComponentName.h" />
     <ClInclude Include="Consumable.h" />
-    <ClInclude Include="craftdbtest.h" />
     <ClInclude Include="CraftDataBase.h" />
     <ClInclude Include="CraftManager.h" />
     <ClInclude Include="Database.h" />
@@ -233,8 +241,10 @@
     <ClInclude Include="DialogueDataBase.h" />
     <ClInclude Include="DialogueManager.h" />
     <ClInclude Include="EndButton.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="ExplorationSkills.h" />
+    <ClInclude Include="Fighter.h" />
     <ClInclude Include="FightingSkills.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Interaction.h" />
@@ -255,9 +265,11 @@
     <ClInclude Include="particleManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Profession.h" />
+    <ClInclude Include="ProfessionCraftDatabase.h" />
     <ClInclude Include="ProfessionSkills.h" />
     <ClInclude Include="Question.h" />
     <ClInclude Include="Race.h" />
+    <ClInclude Include="Resource.h" />
     <ClInclude Include="ressourcesManager.h" />
     <ClInclude Include="Skills.h" />
     <ClInclude Include="SkillsBranch.h" />
@@ -265,6 +277,8 @@
     <ClInclude Include="SkillsLeaf.h" />
     <ClInclude Include="SkillsSystem.h" />
     <ClInclude Include="SkillsTree.h" />
+    <ClInclude Include="SkillTreeManager.h" />
+    <ClInclude Include="Specialization.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TreeDataBase.h" />
     <ClInclude Include="SocialSkills.h" />

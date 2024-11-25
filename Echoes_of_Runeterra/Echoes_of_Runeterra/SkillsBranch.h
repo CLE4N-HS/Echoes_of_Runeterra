@@ -1,14 +1,18 @@
 #pragma once
-#include "Window.h"
+#include "Tools.h"
+#include "Entity.h"
 #include "SkillsLeaf.h"
 
-class SkillsBranch
+class SkillsBranch : public Entity
 {
 public:
 	SkillsBranch(const std::vector<SkillsLeaf*>& _leaves);
 	~SkillsBranch();
 
-	void update(Window& _window);
+	void Update();
+	void Display();
+
+	void CorrectPositions(const sf::Vector2f& _pos);
 
 private:
 	std::vector<SkillsLeaf*> m_branch;

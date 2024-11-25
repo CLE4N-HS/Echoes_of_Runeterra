@@ -1,6 +1,6 @@
 #include "ProfessionSkills.h"
 
-ProfessionSkills::ProfessionSkills()
+ProfessionSkills::ProfessionSkills(const std::string& _name) : Skills(_name)
 {
 }
 
@@ -8,6 +8,6 @@ ProfessionSkills::~ProfessionSkills()
 {
 }
 
-void ProfessionSkills::update(Window& _window)
+void ProfessionSkills::Update()
 {
 }

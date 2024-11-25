@@ -4,10 +4,10 @@
 class ExplorationSkills : public Skills
 {
 public:
-	ExplorationSkills();
+	ExplorationSkills(const std::string& _name);
 	~ExplorationSkills();
 
-	virtual void update(Window& _window) override;
+	virtual void Update() override;
 
 private:
 

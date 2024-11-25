@@ -1,5 +1,5 @@
 #pragma once
-#include "Window.h"
+#include "Tools.h"
 #include "Entity.h"
 
 class InteractionText : public Entity
@@ -15,8 +15,8 @@ public:
 	void setVisibility(bool _isVisible);
 	void resetChoice();
 
-	virtual void update(Window& _window) = 0;
-	virtual void display(Window& _window) = 0;
+	virtual void Update() = 0;
+	virtual void Display() = 0;
 
 protected:
 	sf::FloatRect m_rect;

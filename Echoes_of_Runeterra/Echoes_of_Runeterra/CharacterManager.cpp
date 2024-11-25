@@ -1,20 +1,31 @@
 #include "CharacterManager.h"
 #include "Player.h"
 #include "Npc.h"
+#include "ComponentName.h"
 
 std::vector<Pawn*> PawnManager::m_pawn;
 
 PawnManager::PawnManager()
 {
 	m_pawn.reserve(sizeof(Pawn*) * 3);
+	size_t i(0);
 
-	m_pawn.push_back(new Player("Player"));
-	m_pawn.push_back(new Npc("Npc", "npcHello"));
-	m_pawn.push_back(new Npc("Npc", "murloc"));
+	m_pawn.push_back(new Npc("Npc1", "npcHello"));
+	m_pawn[i]->transform->setPos(sf::Vector2f(960.f, 200.f));
+
+	m_pawn.push_back(new Npc("Npc2", "murloc")); i++;
+	m_pawn[i]->transform->setPos(sf::Vector2f(1460.f, 400.f));
+
+	m_pawn.push_back(new Player("Player")); i++;
 }
 
 PawnManager::~PawnManager()
 {
+	for (size_t i = 0; i < m_pawn.size();)
+	{
+		delete m_pawn[i];
+		m_pawn.erase(m_pawn.begin());
+	}
 }
 
 void PawnManager::Update()
@@ -32,6 +43,19 @@ void PawnManager::Display()
 	{
 		m_pawn[i]->Display();
 	}
+}
+
+Pawn* PawnManager::GetPawn(const std::string& _name)
+{
+	for (size_t i = 0; i < m_pawn.size(); i++)
+	{
+		if (m_pawn[i]->GetComponent<ComponentName>()->GetName() == _name)
+		{
+			return m_pawn[i];
+		}
+	}
+
+	return nullptr;
 }
 
 Pawn* PawnManager::getClosestNpc(sf::Vector2f _pos, float _minDistance)

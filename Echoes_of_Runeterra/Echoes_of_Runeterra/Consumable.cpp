@@ -10,6 +10,10 @@ Consumable::Consumable(std::string _name, int _hp, int _defense, int _speed) : I
 {
 }
 
+Consumable::Consumable(const Consumable& _consumable) : Consumable(_consumable.m_name, _consumable.m_hp, _consumable.m_defense, _consumable.m_speed)
+{
+}
+
 Consumable::~Consumable()
 {
 }
@@ -51,8 +55,8 @@ void Consumable::Display()
 	//}
 }
 
-void Consumable::displayStats(Window& _window)
-{
+//void Consumable::displayStats(Window& _window)
+//{
 	//_window.rectangle.setPosition(Consumable::m_pos);
 	//_window.rectangle.setOrigin(sf::Vector2f());
 	//_window.rectangle.setSize(sf::Vector2f(200.f, 200.f));
@@ -85,7 +89,7 @@ void Consumable::displayStats(Window& _window)
 	//sprintf(buffer, "Speed : %d", m_speed);
 	//_window.text.setString(buffer);
 	//_window.draw(_window.text);
-}
+//}
 
 int Consumable::getHpBuff() const
 {

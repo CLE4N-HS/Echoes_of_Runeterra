@@ -7,11 +7,11 @@ class Consumable : public Item
 public:
 	Consumable();
 	Consumable(std::string _name, int _hp, int _defense, int _speed);
+	Consumable(const Consumable& _consumable);
 	~Consumable();
 
 	virtual void Update() override;
 	virtual void Display() override;
-	virtual void displayStats(Window& _window);
 
 	int getHpBuff() const;
 	int getDefenseBuff() const;

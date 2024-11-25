@@ -1,14 +1,14 @@
 #pragma once
-#include "Window.h"
+#include "Tools.h"
 #include "Entity.h"
 
 class Item : public Entity
 {
 public:
-	typedef enum {
+	enum State {
 		IN_INVENTORY,
 		ON_MAP
-	}State;
+	};
 
 	Item();
 	Item(std::string _name);
@@ -16,18 +16,17 @@ public:
 
 	virtual void Update() = 0;
 	virtual void Display() = 0;
-	virtual void displayStats(Window& _window) = 0;
+
 	void setState(Item::State _state);
 	Item::State getState();
 	bool isHovered();
-	Item* getItem();
-	std::string getName();
 	sf::FloatRect getRect();
 	void setHover(bool _isHover);
 
+	bool operator== (Item* _item);
+
 protected:
 
-	std::string m_name;
 	Item::State m_state;
 	bool m_isHovered;
 
@@ -37,4 +36,10 @@ protected:
 
 private:
 
+};
+
+struct GameItem {
+	Item* item;
+	int quantity;
+	inline GameItem(Item* _item, int _quantity = 1) : item(_item), quantity(_quantity) {}
 };

@@ -2,15 +2,24 @@
 #include "Window.h"
 #include "SkillsTree.h"
 
+//////////////////////////////////////////////////////////////
+/// 
+/// A tree is made up of branches, which are made up of leaves
+///
+//////////////////////////////////////////////////////////////
 class TreeDataBase
 {
 public:
 	TreeDataBase();
 	~TreeDataBase();
 
-	inline SkillsTree* getTree(std::string _name) { return m_treeDB[_name]; }
+	static SkillsTree* CreateNewTree(const std::string& _name);
 
 private:
-	std::map<std::string, SkillsTree*> m_treeDB;
+	//static void AddTree(const std::string& _name, std::vector<std::vector<std::string>> _tree);
+	static void AddTree(const std::string& _name, const std::vector<std::vector<std::string>>& _tree);
+
+	static std::list<SkillsTree*> m_treeDB;
+	//std::map<std::string, SkillsTree*> m_treeDB;
 
 };

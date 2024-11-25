@@ -1,19 +1,24 @@
 #include "Game.h"
+#include "DatabaseManager.h"
 #include "CharacterManager.h"
-#include "Player.h"
-#include "Npc.h"
+#include "SkillTreeManager.h"
+#include "DialogueManager.h"
+#include "MapManager.h"
 
-Game::Game() : m_itemDB(new ItemDataBase), m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager(m_itemDB),
-	m_treeDB(new TreeDataBase),
-	m_skillsSystem(m_treeDB)
+Game::Game() //: m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager()//, m_skillsSystem(m_treeDB)
 {
-	m_mapManager.addItem(m_itemDB->getItem("sword"));
-	m_mapManager.addItem(m_itemDB->getItem("pickaxe"));
-	m_mapManager.addItem(m_itemDB->getItem("metalArmor"));
-	m_mapManager.addItem(m_itemDB->getItem("shield"));
-	m_mapManager.addItem(m_itemDB->getItem("heart"));
-	m_mapManager.addItem(m_itemDB->getItem("speedPotion"));
-	m_dialogueManager.setupDialogue("intro");
+	DatabaseManager::loadAllDatabase();
+	new PawnManager();
+	new SkillTreeManager();
+	new DialogueManager();
+	new MapManager();
+	//DialogueManager::SetupDialogue("intro");
+	//m_mapManager.addItem(m_itemDB->getItem("sword"));
+	//m_mapManager.addItem(m_itemDB->getItem("pickaxe"));
+	//m_mapManager.addItem(m_itemDB->getItem("metalArmor"));
+	//m_mapManager.addItem(m_itemDB->getItem("shield"));
+	//m_mapManager.addItem(m_itemDB->getItem("heart"));
+	//m_mapManager.addItem(m_itemDB->getItem("speedPotion"));
 
 	//m_characterManager.addCharacterItem("Player", m_itemDB->getItem("sword"));
 }
@@ -24,7 +29,16 @@ Game::~Game()
 
 void Game::Update()
 {
-	PawnManager::Update();
+	if (DialogueManager::IsInDialogue())
+	{
+		DialogueManager::Update();
+	}
+	else
+	{
+		MapManager::Update();
+		PawnManager::Update();
+		SkillTreeManager::Update();
+	}
 	//m_mapManager.update(_window);
 
 	////if (!m_dialogueManager.isInDialogue())
@@ -40,11 +54,14 @@ void Game::Update()
 
 void Game::Display()
 {
-	//m_mapManager.display(_window);
-
-	//m_characterManager.display(_window);
+	MapManager::Display();
 	PawnManager::Display();
+	if (0)
+		SkillTreeManager::Display();
+	DialogueManager::Display();
 
+	//m_mapManager.display(_window);
+	//m_characterManager.display(_window);
 	//m_dialogueManager.display(_window);
 
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "Window.h"
+#include "Tools.h"
 
 class Profession
 {
@@ -7,8 +7,10 @@ public:
 	Profession();
 	~Profession() = default;
 
-	virtual void update(Window& _window) = 0;
-	virtual void display(Window& _window) = 0;
+	virtual void Update() = 0;
+	virtual void Display() = 0;
+
+	virtual inline std::string ToString() const = 0;
 
 	void addXp(int _xp);
 

@@ -8,8 +8,9 @@
 #include <list>
 #include <unordered_map>
 
-#define EPSILON ((float)1e-6)
-#define DEG2RAD ((float)0.01745329f)
+#define EPSILON (static_cast<float>(1e-6))
+#define DEG2RAD (static_cast<float>(0.01745329f))
+#define RAD2DEG (static_cast<float>(57.295779f))
 
 class Tools
 {
@@ -23,6 +24,16 @@ public:
 	static void Update();
 
 	static inline float GetDeltaTime() { return m_deltaTime; }
+
+	static float Magnitude(const sf::Vector2f& _v);
+	static float Magnitude(const sf::Vector2f& _v1, const sf::Vector2f& _v2);
+	static float SqrMagnitude(const sf::Vector2f& _v);
+	static float SqrMagnitude(const sf::Vector2f& _v1, const sf::Vector2f& _v2);
+	static sf::Vector2f Multiply(const sf::Vector2f& _v1, const sf::Vector2f& _v2);
+	static sf::Vector2f Normalize(const sf::Vector2f& _v);
+
+	static void CenterTextOrigin(sf::Text& _text);
+	static void CenterTextOriginString(sf::Text& _text);
 
 private:
 	static sf::Clock m_clock;
@@ -44,3 +55,5 @@ sf::Vector2f polarCoord(sf::Vector2f const& _a, float const& _r, float const& _t
 int randomInt(int min, int max);
 float randomFloat(float min, float max);
 float lerp(float v0, float v1, float t);
+sf::Vector2f lerpVector(sf::Vector2f v0, sf::Vector2f v1, float t);
+float getAngleBetweenVectors(sf::Vector2f a, sf::Vector2f b);
