@@ -342,6 +342,9 @@
     <ClCompile Include="Tools.cpp">
       <Filter>Fichiers sources\TOOLS\UTILITY</Filter>
     </ClCompile>
+    <ClCompile Include="Talker.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -547,6 +550,9 @@
     </ClInclude>
     <ClInclude Include="Tools.h">
       <Filter>Fichiers d%27en-tête\TOOLS\UTILITY</Filter>
+    </ClInclude>
+    <ClInclude Include="Talker.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

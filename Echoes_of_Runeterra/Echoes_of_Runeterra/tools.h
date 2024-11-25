@@ -1,4 +1,8 @@
 #pragma once
+
+#pragma warning(push)
+#pragma warning(disable:26495)
+
 #include <iostream>
 #include <string>
 #include "SFML/Graphics.hpp"
@@ -7,6 +11,8 @@
 #include <map>
 #include <list>
 #include <unordered_map>
+
+#pragma warning(pop)
 
 #define EPSILON (static_cast<float>(1e-6))
 #define DEG2RAD (static_cast<float>(0.01745329f))
