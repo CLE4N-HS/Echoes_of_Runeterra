@@ -189,6 +189,10 @@
     <ClCompile Include="KeyboardManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapFighter.cpp" />
+    <ClCompile Include="MapFighterManager.cpp" />
+    <ClCompile Include="MapItem.cpp" />
+    <ClCompile Include="MapItemManager.cpp" />
     <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="Master.cpp" />
     <ClCompile Include="MouseManager.cpp" />
@@ -262,6 +266,10 @@
     <ClInclude Include="ItemDatabase.h" />
     <ClInclude Include="KeyboardManager.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MapFighter.h" />
+    <ClInclude Include="MapFighterManager.h" />
+    <ClInclude Include="MapItem.h" />
+    <ClInclude Include="MapItemManager.h" />
     <ClInclude Include="MapManager.h" />
     <ClInclude Include="Master.h" />
     <ClInclude Include="MouseManager.h" />

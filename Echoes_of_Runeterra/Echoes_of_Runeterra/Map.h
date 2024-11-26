@@ -1,15 +1,12 @@
 #pragma once
 #include "Tools.h"
 #include "Item.h"
+#include "Fighter.h"
+#include "MapItem.h"
 
 class Map
 {
 public:
-	struct MapItem {
-		GameItem* gameItem;
-		inline MapItem(GameItem* _gameItem) : gameItem(_gameItem) {}
-	};
-
 	Map();
 	~Map();
 
@@ -21,6 +18,5 @@ public:
 	Item* getClosestItem(sf::Vector2f _pos, float _minDistance);
 
 private:
-	std::list<MapItem*> m_item;
 
 };

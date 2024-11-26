@@ -49,10 +49,10 @@ protected:
 
 
 
+	// no
 
 	void upgradeLevelXp();
 	void gainLevel();
-
 
 
 	Race m_race;

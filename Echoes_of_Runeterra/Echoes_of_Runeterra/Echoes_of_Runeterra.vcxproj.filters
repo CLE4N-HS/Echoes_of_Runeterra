@@ -136,6 +136,18 @@
     <Filter Include="Fichiers sources\GAME\FIGHT">
       <UniqueIdentifier>{a9162cd1-495f-49b9-9a05-96733d6509f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\GAME\MAP\MAP_ITEM">
+      <UniqueIdentifier>{128fa9e9-c5d1-482e-9039-9a417be69289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\MAP\MAP_FIGHTER">
+      <UniqueIdentifier>{d5277b93-3b62-45a4-8e40-98064a2aecd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\MAP\MAP_ITEM">
+      <UniqueIdentifier>{49ac4b31-d1b6-4f7b-b2de-91456e671f99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\MAP\MAP_FIGHTER">
+      <UniqueIdentifier>{3597c0d7-85e6-41c6-afdb-35910bb132a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -354,6 +366,18 @@
     <ClCompile Include="Fight.cpp">
       <Filter>Fichiers sources\GAME\FIGHT</Filter>
     </ClCompile>
+    <ClCompile Include="MapItem.cpp">
+      <Filter>Fichiers sources\GAME\MAP\MAP_ITEM</Filter>
+    </ClCompile>
+    <ClCompile Include="MapItemManager.cpp">
+      <Filter>Fichiers sources\GAME\MAP\MAP_ITEM</Filter>
+    </ClCompile>
+    <ClCompile Include="MapFighter.cpp">
+      <Filter>Fichiers sources\GAME\MAP\MAP_FIGHTER</Filter>
+    </ClCompile>
+    <ClCompile Include="MapFighterManager.cpp">
+      <Filter>Fichiers sources\GAME\MAP\MAP_FIGHTER</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -568,6 +592,18 @@
     </ClInclude>
     <ClInclude Include="Fight.h">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="MapItemManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\MAP\MAP_ITEM</Filter>
+    </ClInclude>
+    <ClInclude Include="MapItem.h">
+      <Filter>Fichiers d%27en-tête\GAME\MAP\MAP_ITEM</Filter>
+    </ClInclude>
+    <ClInclude Include="MapFighterManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\MAP\MAP_FIGHTER</Filter>
+    </ClInclude>
+    <ClInclude Include="MapFighter.h">
+      <Filter>Fichiers d%27en-tête\GAME\MAP\MAP_FIGHTER</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
