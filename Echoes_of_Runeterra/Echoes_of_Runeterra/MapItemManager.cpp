@@ -48,12 +48,12 @@ void MapItemManager::Display()
 		(*it)->gameItem->item->transform->CorrectWindowRectangle();
 		Window::Draw();
 
-		Window::text.setPosition((*it)->gameItem->item->transform->getPos() + (*it)->gameItem->item->transform->getSize() * 0.5f + sf::Vector2f(0.f, -50.f));
+		Window::text.setPosition((*it)->gameItem->item->transform->getPos() + sf::Vector2f(0.f, -50.f));
 		Window::text.setString((*it)->gameItem->item->GetComponent<ComponentName>()->GetName());
 		Tools::CenterTextOrigin(Window::text);
 		Window::Draw(Window::text);
 
-		Window::text.setPosition((*it)->gameItem->item->transform->getPos() + (*it)->gameItem->item->transform->getSize() * 0.5f + sf::Vector2f(0.f, 50.f));
+		Window::text.setPosition((*it)->gameItem->item->transform->getPos() + sf::Vector2f(0.f, 50.f));
 		Window::text.setString(std::to_string((*it)->gameItem->quantity));
 		Tools::CenterTextOrigin(Window::text);
 		Window::Draw(Window::text);
@@ -65,6 +65,6 @@ void MapItemManager::AddItem(MapItem* _item, Transform _transform)
 	if (_item)
 	{
 		m_mapItem.push_back(_item);
-		*m_mapItem.front()->gameItem->item->transform = _transform;
+		*m_mapItem.back()->gameItem->item->transform = _transform;
 	}
 }

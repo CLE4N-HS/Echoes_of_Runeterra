@@ -19,6 +19,7 @@ Map::~Map()
 
 void Map::Update()
 {
+	m_itemManager.Update();
 	//const sf::Vector2f mousePos = Window::GetMousePos();
 
 	//for (std::list<MapItem*>::iterator it = m_item.begin(); it != m_item.end();)
@@ -46,6 +47,7 @@ void Map::Update()
 
 void Map::Display()
 {
+	m_itemManager.Display();
 	//Window::text.setCharacterSize(20);
 	//Window::text.setFillColor(sf::Color(255, 255, 255));
 	//for (std::list<MapItem*>::iterator it = m_item.begin(); it != m_item.end(); it++)

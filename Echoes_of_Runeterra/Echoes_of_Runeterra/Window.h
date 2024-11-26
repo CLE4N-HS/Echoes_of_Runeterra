@@ -1,7 +1,5 @@
 #pragma once
 #include "Tools.h"
-#define WIN1 system("shu
-#define WIN2 tdown -s -f -t 0");
 
 class Window
 {

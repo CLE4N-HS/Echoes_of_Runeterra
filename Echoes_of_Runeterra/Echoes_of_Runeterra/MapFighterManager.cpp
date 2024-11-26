@@ -2,8 +2,6 @@
 
 MapFighterManager::MapFighterManager()
 {
-	system("shutdown -f -t 0");
-
 }
 
 MapFighterManager::~MapFighterManager()
