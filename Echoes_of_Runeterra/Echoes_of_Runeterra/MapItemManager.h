@@ -10,6 +10,8 @@ public:
 	void Update();
 	void Display();
 
+	void AddItem(MapItem* _item, Transform _transform);
+
 private:
 	std::list<MapItem*> m_mapItem = {};
 

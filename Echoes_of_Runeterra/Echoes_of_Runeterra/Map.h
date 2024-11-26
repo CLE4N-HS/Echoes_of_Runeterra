@@ -1,8 +1,6 @@
 #pragma once
 #include "Tools.h"
-#include "Item.h"
-#include "Fighter.h"
-#include "MapItem.h"
+#include "MapItemManager.h"
 
 class Map
 {
@@ -18,5 +16,6 @@ public:
 	Item* getClosestItem(sf::Vector2f _pos, float _minDistance);
 
 private:
+	MapItemManager m_itemManager;
 
 };
