@@ -5,6 +5,7 @@
 #include "SkillsDataBase.h"
 #include "TreeDataBase.h"
 #include "DialogueDataBase.h"
+#include "EnemyDatabase.h"
 
 DatabaseManager databaseManager;
 
@@ -16,4 +17,5 @@ void DatabaseManager::loadAllDatabase()
 	new SkillsDataBase();
 	new TreeDataBase();
 	new DialogueDataBase();
+	new EnemyDatabase();
 }

@@ -5,7 +5,7 @@
 #include "Player.h"
 #include "ItemDatabase.h"
 #include "ComponentName.h"
-#include "WildCorruptedBeast.h"
+#include "EnemyDatabase.h"
 
 Map::Map() : m_itemManager()
 {
@@ -13,7 +13,7 @@ Map::Map() : m_itemManager()
 	m_itemManager.AddItem(new MapItem(new GameItem(ItemDatabase::CreateNewItem("rice"), 55)), Transform(sf::Vector2f(800.f, 200.f), sf::Vector2f(20.f, 20.f)));
 	m_itemManager.AddItem(new MapItem(new GameItem(ItemDatabase::CreateNewItem("chicken"), 2)), Transform(sf::Vector2f(1200.f, 400.f), sf::Vector2f(60.f, 60.f)));
 
-	m_fighterManager.AddFighter(new MapFighter(new WildCorruptedBeast()), Transform(sf::Vector2f(500.f, 500.f), sf::Vector2f(40.f, 40.f)));
+	m_fighterManager.AddFighter(new MapFighter(EnemyDatabase::CreateNewEnemy("wildCorruptedBeast")), Transform(sf::Vector2f(500.f, 500.f), sf::Vector2f(50.f, 50.f)));
 }
 
 Map::~Map()

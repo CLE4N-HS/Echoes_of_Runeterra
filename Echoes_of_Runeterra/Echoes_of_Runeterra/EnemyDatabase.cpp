@@ -2,9 +2,11 @@
 #include "ComponentName.h"
 #include "WildCorruptedBeast.h"
 
+std::list<Enemy*> EnemyDatabase::m_enemy;
+
 EnemyDatabase::EnemyDatabase()
 {
-	this->AddEnemy("WildCorruptedBeast", new WildCorruptedBeast());
+	this->AddEnemy("wildCorruptedBeast", new WildCorruptedBeast());
 }
 
 EnemyDatabase::~EnemyDatabase()
@@ -44,5 +46,5 @@ Enemy* EnemyDatabase::CreateNewEnemy(const std::string& _name)
 void EnemyDatabase::AddEnemy(const std::string& _name, Enemy* _enemy)
 {
 	m_enemy.push_back(_enemy);
-	m_enemy.back()->AddComponent<ComponentName>(_name);
+	m_enemy.back()->GetComponent<ComponentName>()->SetName(_name);
 }
