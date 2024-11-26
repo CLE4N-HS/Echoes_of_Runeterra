@@ -151,6 +151,21 @@
     <Filter Include="Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY">
       <UniqueIdentifier>{8c2fcdd9-1271-4343-b16a-32d31a19246f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\GAME\CHARACTER\FIGHTER\ENEMY">
+      <UniqueIdentifier>{e1046ad4-e470-40b9-8cf3-452b9149a238}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\CHARACTER\FIGHTER\COMPANION">
+      <UniqueIdentifier>{ceddbeae-0085-4366-abbf-d228270e3114}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\COMPANION">
+      <UniqueIdentifier>{a0a0a9d9-d4d0-4b1d-bfc5-af92dc43b644}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\TOOLS\BUTTON">
+      <UniqueIdentifier>{e8652007-8585-416c-93b9-856669b81307}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\TOOLS\BUTTON">
+      <UniqueIdentifier>{4851197b-7152-4933-a202-501662932337}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -339,12 +354,6 @@
     <ClCompile Include="Fighter.cpp">
       <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER</Filter>
     </ClCompile>
-    <ClCompile Include="Companion.cpp">
-      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER</Filter>
-    </ClCompile>
     <ClCompile Include="MouseManager.cpp">
       <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
     </ClCompile>
@@ -381,11 +390,26 @@
     <ClCompile Include="MapFighterManager.cpp">
       <Filter>Fichiers sources\GAME\MAP\MAP_FIGHTER</Filter>
     </ClCompile>
-    <ClCompile Include="WildCorruptedBeast.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
     </ClCompile>
     <ClCompile Include="EnemyDatabase.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClCompile>
+    <ClCompile Include="WildCorruptedBeast.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClCompile>
+    <ClCompile Include="Companion.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER\COMPANION</Filter>
+    </ClCompile>
+    <ClCompile Include="FightState.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
+    <ClCompile Include="FightStatePlayerChoice.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Fichiers sources\TOOLS\BUTTON</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -527,9 +551,6 @@
     <ClInclude Include="Component.h">
       <Filter>Fichiers d%27en-tête\TOOLS\ENTITY\COMPONENT</Filter>
     </ClInclude>
-    <ClInclude Include="Companion.h">
-      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER</Filter>
-    </ClInclude>
     <ClInclude Include="Fighter.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER</Filter>
     </ClInclude>
@@ -619,6 +640,18 @@
     </ClInclude>
     <ClInclude Include="EnemyDatabase.h">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Companion.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\COMPANION</Filter>
+    </ClInclude>
+    <ClInclude Include="FightState.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="FightStatePlayerChoice.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\BUTTON</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

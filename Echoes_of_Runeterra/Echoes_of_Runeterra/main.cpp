@@ -1,5 +1,4 @@
 #include "Master.h"
-#include <Windows.h>
 
 int main()
 {
