@@ -5,7 +5,10 @@ class Fighter: public Npc
 {
 public:
 	Fighter();
-	~Fighter() = default;
+	~Fighter();
+
+	virtual void Update() = 0;
+	virtual void Display() = 0;
 
 private:
 

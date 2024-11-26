@@ -171,6 +171,7 @@
     <ClCompile Include="DialogueManager.cpp" />
     <ClCompile Include="EndButton.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyDatabase.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="ExplorationSkills.cpp" />
     <ClCompile Include="Fight.cpp" />
@@ -225,6 +226,7 @@
     <ClCompile Include="textureManager.cpp" />
     <ClCompile Include="Tools.cpp" />
     <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="WildCorruptedBeast.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -249,6 +251,7 @@
     <ClInclude Include="DialogueManager.h" />
     <ClInclude Include="EndButton.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyDatabase.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="ExplorationSkills.h" />
     <ClInclude Include="Fight.h" />
@@ -302,6 +305,7 @@
     <ClInclude Include="textureManager.h" />
     <ClInclude Include="Tools.h" />
     <ClInclude Include="Weapon.h" />
+    <ClInclude Include="WildCorruptedBeast.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,5 +1,9 @@
 #include "Enemy.h"
 
-Enemy::Enemy()
+Enemy::Enemy() : Fighter()
+{
+}
+
+Enemy::~Enemy()
 {
 }

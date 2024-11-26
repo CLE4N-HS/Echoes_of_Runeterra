@@ -148,6 +148,9 @@
     <Filter Include="Fichiers sources\GAME\DATABASE">
       <UniqueIdentifier>{d1003172-2d87-4a8b-80f6-6d0630880a27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY">
+      <UniqueIdentifier>{8c2fcdd9-1271-4343-b16a-32d31a19246f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -378,6 +381,12 @@
     <ClCompile Include="MapFighterManager.cpp">
       <Filter>Fichiers sources\GAME\MAP\MAP_FIGHTER</Filter>
     </ClCompile>
+    <ClCompile Include="WildCorruptedBeast.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyDatabase.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -524,9 +533,6 @@
     <ClInclude Include="Fighter.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER</Filter>
-    </ClInclude>
     <ClInclude Include="SkillsDataBase.h">
       <Filter>Fichiers d%27en-tête\GAME\SKILLS_SYSTEM\DATABASE</Filter>
     </ClInclude>
@@ -604,6 +610,15 @@
     </ClInclude>
     <ClInclude Include="MapFighter.h">
       <Filter>Fichiers d%27en-tête\GAME\MAP\MAP_FIGHTER</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="WildCorruptedBeast.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyDatabase.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
