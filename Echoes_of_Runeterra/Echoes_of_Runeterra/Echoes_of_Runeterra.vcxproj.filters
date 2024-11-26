@@ -112,9 +112,6 @@
     <Filter Include="Fichiers d%27en-tête\GAME\DATABASE">
       <UniqueIdentifier>{5298ed57-15e0-4d63-a68d-bc5ef99ab265}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\GAME\DATABASE">
-      <UniqueIdentifier>{d1003172-2d87-4a8b-80f6-6d0630880a27}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fichiers d%27en-tête\TOOLS\UTILITY">
       <UniqueIdentifier>{363bc1c7-ab95-4ddb-ae92-97bc145587f3}</UniqueIdentifier>
     </Filter>
@@ -147,6 +144,9 @@
     </Filter>
     <Filter Include="Fichiers d%27en-tête\GAME\MAP\MAP_FIGHTER">
       <UniqueIdentifier>{3597c0d7-85e6-41c6-afdb-35910bb132a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\DATABASE">
+      <UniqueIdentifier>{d1003172-2d87-4a8b-80f6-6d0630880a27}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

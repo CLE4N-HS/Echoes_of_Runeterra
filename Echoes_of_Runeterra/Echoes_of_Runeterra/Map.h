@@ -1,6 +1,7 @@
 #pragma once
 #include "Tools.h"
 #include "MapItemManager.h"
+#include "MapFIghterManager.h"
 
 class Map
 {
@@ -17,5 +18,6 @@ public:
 
 private:
 	MapItemManager m_itemManager;
+	MapFighterManager m_fighterManager;
 
 };

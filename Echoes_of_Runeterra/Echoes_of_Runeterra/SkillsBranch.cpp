@@ -3,7 +3,7 @@
 
 SkillsBranch::SkillsBranch(const std::vector<SkillsLeaf*>& _leaves) : Entity(Transform(sf::Vector2f(), sf::Vector2f(60.f, 60.f)))
 {
-	m_branch.reserve(sizeof(SkillsLeaf*) * _leaves.size());
+	m_branch.reserve(_leaves.size());
 	for (size_t i = 0; i < _leaves.size(); i++)
 	{
 		m_branch.push_back(_leaves[i]);

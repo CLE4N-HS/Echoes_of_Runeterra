@@ -16,7 +16,7 @@ SkillsTree::SkillsTree(const std::string& _name, const std::vector<SkillsBranch*
 {
 	this->AddComponent<ComponentName>(_name);
 
-	m_tree.reserve(sizeof(SkillsBranch*) * _branches.size());
+	m_tree.reserve(_branches.size());
 	for (size_t i = 0; i < _branches.size(); i++)
 	{
 		m_tree.push_back(_branches[i]);

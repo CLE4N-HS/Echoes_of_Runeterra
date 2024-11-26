@@ -14,7 +14,7 @@
 
 Inventory::Inventory() : Entity(Transform(sf::Vector2f(100.f, 100.f), sf::Vector2f(1720.f, 880.f), Transform::Origin::TOP_LEFT)), m_item(), m_isOpen(false)
 {
-	m_button.reserve(sizeof(InventoryButton) * 3);
+	m_button.reserve(3);
 	sf::Vector2f tmpSize(200.f, 100.f);
 	sf::Vector2f tmpPos(transform->getPos());
 	m_button.push_back(InventoryButton(Transform(sf::Vector2f(tmpPos.x + 20.f + 0.f * tmpSize.x * 1.2f, tmpPos.y + 20.f), tmpSize, Transform::Origin::TOP_LEFT), "Craft"));

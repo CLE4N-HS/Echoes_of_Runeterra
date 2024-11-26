@@ -7,7 +7,7 @@ std::vector<Pawn*> PawnManager::m_pawn;
 
 PawnManager::PawnManager()
 {
-	m_pawn.reserve(sizeof(Pawn*) * 3);
+	m_pawn.reserve(3);
 	size_t i(0);
 
 	m_pawn.push_back(new Talker("Npc1", "npcHello"));
