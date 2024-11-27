@@ -65,12 +65,18 @@ void Game::Display()
 	{
 		FightManager::Display();
 	}
+	else
+	{
+		MapManager::Display();
+		PawnManager::Display();
+		if (0)
+			SkillTreeManager::Display();
+	}
 
-	MapManager::Display();
-	PawnManager::Display();
-	if (0)
-		SkillTreeManager::Display();
-	DialogueManager::Display();
+	if (DialogueManager::IsInDialogue())
+	{
+		DialogueManager::Display();
+	}
 
 	//m_mapManager.display(_window);
 	//m_characterManager.display(_window);

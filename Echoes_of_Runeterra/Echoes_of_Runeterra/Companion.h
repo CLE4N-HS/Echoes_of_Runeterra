@@ -7,6 +7,9 @@ public:
 	Companion();
 	~Companion() = default;
 
+	virtual void Update() override;
+	virtual void Display() override;
+
 private:
 
 };

@@ -24,4 +24,7 @@ private:
 	Player* m_player = nullptr;
 	std::vector<Enemy*> m_enemy = {};
 
+	void DisplayPlayer();
+	void DisplayStats(const sf::Vector2f& _pos, const sf::Vector2f& _size, const FightStats& _fightStats);
+
 };

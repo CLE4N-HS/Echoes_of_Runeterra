@@ -7,10 +7,10 @@
 FightStatePlayerChoice::FightStatePlayerChoice()
 {
 	m_button.reserve(3);
-	const sf::Vector2f buttonSize(300.f, 80.f);
-	m_button.push_back(new Button("Skills",    Entity(Transform(sf::Vector2f(480.f , 800.f), buttonSize))));
-	m_button.push_back(new Button("Attack",    Entity(Transform(sf::Vector2f(960.f , 800.f), buttonSize))));
-	m_button.push_back(new Button("Inventory", Entity(Transform(sf::Vector2f(1440.f, 800.f), buttonSize))));
+	const sf::Vector2f buttonSize(300.f, 200.f);
+	m_button.push_back(new Button("Skills",    Entity(Transform(sf::Vector2f(480.f , 540.f), buttonSize))));
+	m_button.push_back(new Button("Attack",    Entity(Transform(sf::Vector2f(960.f , 540.f), buttonSize))));
+	m_button.push_back(new Button("Inventory", Entity(Transform(sf::Vector2f(1440.f, 540.f), buttonSize))));
 }
 
 FightStatePlayerChoice::~FightStatePlayerChoice()
@@ -41,6 +41,7 @@ void FightStatePlayerChoice::Display()
 {
 	// this color was found (randomly) by Bryan (c)
 	Window::rectangle.setFillColor(sf::Color(170, 70, 230));
+	Window::text.setCharacterSize(40);
 	for (size_t i = 0; i < m_button.size(); i++)
 	{
 		m_button[i]->Display();

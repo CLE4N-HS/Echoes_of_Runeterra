@@ -1,5 +1,13 @@
 #include "Companion.h"
 
-Companion::Companion()
+Companion::Companion() : Fighter()
+{
+}
+
+void Companion::Update()
+{
+}
+
+void Companion::Display()
 {
 }

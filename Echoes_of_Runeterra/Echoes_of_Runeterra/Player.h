@@ -21,6 +21,8 @@ public:
 
 	inline Inventory& GetInventory() { return m_inventory; }
 
+	inline std::vector<Companion*>& GetCompanion() { return m_companion; }
+
 	void Consume(Consumable* _consumable);
 
 	inline FightStats& GetFightStats() { return m_fightStats; }

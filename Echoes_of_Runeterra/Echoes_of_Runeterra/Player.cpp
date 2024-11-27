@@ -30,6 +30,8 @@ Player::Player(std::string _name) : Pawn(_name)
 	this->SetProfession(new Alchemist());
 
 	this->m_fightStats = FightStats(10, 10, 10);
+	this->AddCompanion(new Companion());
+	this->AddCompanion(new Companion());
 }
 
 Player::~Player()
@@ -49,7 +51,7 @@ void Player::Update()
 		this->UpdateMovement();
 	}
 
-	for (size_t i = 0; m_companion.size(); i++)
+	for (size_t i = 0; i < m_companion.size(); i++)
 	{
 		m_companion[i]->Update();
 	}
