@@ -414,6 +414,9 @@
     <ClCompile Include="FightStateInventory.cpp">
       <Filter>Fichiers sources\GAME\FIGHT</Filter>
     </ClCompile>
+    <ClCompile Include="FightStats.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -657,6 +660,9 @@
       <Filter>Fichiers d%27en-tête\TOOLS\BUTTON</Filter>
     </ClInclude>
     <ClInclude Include="FightStateInventory.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="FightStats.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

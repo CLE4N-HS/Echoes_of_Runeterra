@@ -2,6 +2,8 @@
 #include "Character.h"
 #include "Inventory.h"
 #include "Companion.h"
+#include "Consumable.h"
+#include "FightStats.h"
 
 class Player : public Pawn
 {
@@ -19,11 +21,16 @@ public:
 
 	inline Inventory& GetInventory() { return m_inventory; }
 
+	void Consume(Consumable* _consumable);
+
+	inline FightStats& GetFightStats() { return m_fightStats; }
+
 protected:
 	Inventory m_inventory;
 
 	std::vector<Companion*> m_companion;
 
+	FightStats m_fightStats;
 
 	int m_skillPoint = 0;
 	float m_moveSpeed = 500.f;

@@ -25,10 +25,11 @@ Player::Player(std::string _name) : Pawn(_name)
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("rice"), 70));
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("metalArmor")));
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("wood")));
-	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("heart")));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("heart"), 10));
 
 	this->SetProfession(new Alchemist());
 
+	this->m_fightStats = FightStats(10, 10, 10);
 }
 
 Player::~Player()
@@ -140,11 +141,21 @@ void Player::AddCompanion(Companion* _companion)
 {
 	if (m_companion.size() >= 2)
 	{
-		// TODO idk QG or stmh
+		// TODO idk QG or smth
 	}
 	else
 	{
 		m_companion.push_back(_companion);
+	}
+}
+
+void Player::Consume(Consumable* _consumable)
+{
+	if (_consumable)
+	{
+		m_fightStats.hp += _consumable->getHpBuff();
+		m_fightStats.attack += _consumable->GetAttackBuff();
+		m_fightStats.defense += _consumable->getDefenseBuff();
 	}
 }
 

@@ -182,6 +182,7 @@
     <ClCompile Include="FightState.cpp" />
     <ClCompile Include="FightStateInventory.cpp" />
     <ClCompile Include="FightStatePlayerChoice.cpp" />
+    <ClCompile Include="FightStats.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Interaction.cpp" />
     <ClCompile Include="InteractionManager.cpp" />
@@ -266,6 +267,7 @@
     <ClInclude Include="FightState.h" />
     <ClInclude Include="FightStateInventory.h" />
     <ClInclude Include="FightStatePlayerChoice.h" />
+    <ClInclude Include="FightStats.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Interaction.h" />
     <ClInclude Include="InteractionManager.h" />
