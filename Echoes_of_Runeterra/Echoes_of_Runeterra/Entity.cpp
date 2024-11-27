@@ -10,6 +10,10 @@ Entity::Entity(const Transform& _transform, unsigned char _id, Entity* _instigat
 	this->transform = AddComponent<Transform>(_transform);
 }
 
+Entity::Entity(const Entity& _entity) : Entity(*_entity.transform, _entity.m_id, _entity.m_instigator, _entity.m_owner)
+{
+}
+
 Entity::~Entity()
 {
 	this->RemoveAllComponent();

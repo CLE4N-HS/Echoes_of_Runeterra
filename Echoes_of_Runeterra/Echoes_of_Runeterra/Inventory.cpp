@@ -14,12 +14,14 @@
 
 Inventory::Inventory() : Entity(Transform(sf::Vector2f(100.f, 100.f), sf::Vector2f(1720.f, 880.f), Transform::Origin::TOP_LEFT)), m_item(), m_isOpen(false)
 {
-	m_button.reserve(3);
+	m_button.reserve(4);
 	sf::Vector2f tmpSize(200.f, 100.f);
 	sf::Vector2f tmpPos(transform->getPos());
 	m_button.push_back(InventoryButton(Transform(sf::Vector2f(tmpPos.x + 20.f + 0.f * tmpSize.x * 1.2f, tmpPos.y + 20.f), tmpSize, Transform::Origin::TOP_LEFT), "Craft"));
 	m_button.push_back(InventoryButton(Transform(sf::Vector2f(tmpPos.x + 20.f + 1.f * tmpSize.x * 1.2f, tmpPos.y + 20.f), tmpSize, Transform::Origin::TOP_LEFT), "\nCraft\n"));
 	m_button.push_back(InventoryButton(Transform(sf::Vector2f(tmpPos.x + 20.f + 2.f * tmpSize.x * 1.2f, tmpPos.y + 20.f), tmpSize, Transform::Origin::TOP_LEFT), "Equip"));
+
+	m_button.push_back(InventoryButton(Transform(sf::Vector2f(transform->getPos().x + transform->getSize().x - 120.f, tmpPos.y + 20.f), sf::Vector2f(100.f, 100.f), Transform::Origin::TOP_LEFT), "Close"));
 }
 
 Inventory::~Inventory()
@@ -410,6 +412,14 @@ void Inventory::UnselectItems()
 void Inventory::UpdateButton()
 {
 	sf::Vector2f mousePos = Window::GetMousePos();
+
+	// Close
+	m_button[3].isClickable = true;
+	if (m_button[3].transform.GetRect().contains(mousePos) && MouseManager::OneTimePressed())
+	{
+		m_button[1].isClickable = m_isInDatabase = false;
+		this->setOpening(false);
+	}
 
 	// Craft Database
 	if (m_button[1].transform.GetRect().contains(mousePos) && MouseManager::OneTimePressed())

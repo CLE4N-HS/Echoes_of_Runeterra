@@ -411,6 +411,9 @@
     <ClCompile Include="Button.cpp">
       <Filter>Fichiers sources\TOOLS\BUTTON</Filter>
     </ClCompile>
+    <ClCompile Include="FightStateInventory.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -652,6 +655,9 @@
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Fichiers d%27en-tête\TOOLS\BUTTON</Filter>
+    </ClInclude>
+    <ClInclude Include="FightStateInventory.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

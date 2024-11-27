@@ -12,6 +12,7 @@ public:
 	static void Display();
 
 	static void SetupFight(Fight* _fight);
+	static void ChangeFightState(FightState* _state);
 
 	static inline void SetInInFight(bool _isInFight) { m_isInFight = _isInFight; }
 	static inline bool IsInFight() { return m_isInFight; }

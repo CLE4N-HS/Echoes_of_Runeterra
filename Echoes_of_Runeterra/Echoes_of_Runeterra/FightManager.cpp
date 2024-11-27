@@ -32,3 +32,9 @@ void FightManager::SetupFight(Fight* _fight)
 		SetInInFight(true);
 	}
 }
+
+void FightManager::ChangeFightState(FightState* _state)
+{
+	if (m_fight && _state)
+		m_fight->ChangeState(_state);
+}

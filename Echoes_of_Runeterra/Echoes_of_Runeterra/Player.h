@@ -17,6 +17,8 @@ public:
 
 	void AddCompanion(Companion* _companion);
 
+	inline Inventory& GetInventory() { return m_inventory; }
+
 protected:
 	Inventory m_inventory;
 

@@ -9,6 +9,7 @@ public:
 	~FightStatePlayerChoice();
 
 	virtual void Update() override;
+	virtual void Display() override;
 
 private:
 	std::vector<Button*> m_button;
