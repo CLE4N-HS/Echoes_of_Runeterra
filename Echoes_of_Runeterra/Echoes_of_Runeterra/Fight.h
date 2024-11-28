@@ -26,5 +26,8 @@ private:
 
 	void DisplayPlayer();
 	void DisplayStats(const sf::Vector2f& _pos, const sf::Vector2f& _size, const FightStats& _fightStats);
+	void DisplayEnemies();
+
+	void RepositionEnemies();
 
 };

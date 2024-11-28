@@ -3,6 +3,7 @@
 #include "MouseManager.h"
 #include "Window.h"
 #include "Alchemist.h"
+#include "ComponentName.h"
 
 Player::Player() : Player("Player")
 {
@@ -10,6 +11,8 @@ Player::Player() : Player("Player")
 
 Player::Player(std::string _name) : Pawn(_name)
 {
+	this->AddComponent<ComponentName>(_name);
+
 	this->transform->setSize(sf::Vector2f(50.f, 50.f));
 	this->transform->setOrigin(this->transform->getSize() * 0.5f);
 	this->transform->setPos(sf::Vector2f(960.f, 540.f));

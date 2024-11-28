@@ -12,6 +12,7 @@ Talker::Talker() : Talker("Default Talker", "")
 
 Talker::Talker(const std::string& _name, const std::string& _dialogueKey) : Npc(_name), m_dialogueKey(_dialogueKey)
 {
+	this->AddComponent<ComponentName>(_name);
 }
 
 Talker::~Talker()

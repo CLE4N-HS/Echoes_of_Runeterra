@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "FightManager.h"
 #include "ComponentName.h"
+#include "EnemyDatabase.h"
 
 MapFighterManager::MapFighterManager()
 {
@@ -24,7 +25,10 @@ void MapFighterManager::Update()
 	{
 		if (player && player->transform->GetRect().intersects((*it)->m_fighter->transform->GetRect()))
 		{
-			FightManager::SetupFight(new Fight(player, std::vector<Enemy*>{dynamic_cast<Enemy*>((*it)->m_fighter)}));
+			FightManager::SetupFight(new Fight(player, std::vector<Enemy*>{EnemyDatabase::CreateNewEnemy(dynamic_cast<Enemy*>((*it)->m_fighter)),
+				EnemyDatabase::CreateNewEnemy(dynamic_cast<Enemy*>((*it)->m_fighter)),
+				EnemyDatabase::CreateNewEnemy(dynamic_cast<Enemy*>((*it)->m_fighter))}));
+			delete (*it)->m_fighter;
 			it = m_mapFighter.erase(it);
 			continue;
 		}

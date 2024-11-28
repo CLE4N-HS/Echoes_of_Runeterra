@@ -33,7 +33,7 @@ Enemy* EnemyDatabase::GetEnemy(const std::string& _name)
 Enemy* EnemyDatabase::CreateNewEnemy(Enemy* _enemy)
 {
 	if (WildCorruptedBeast* e = dynamic_cast<WildCorruptedBeast*>(_enemy))
-		return e;
+		return new WildCorruptedBeast(*e);
 
 	return nullptr;
 }

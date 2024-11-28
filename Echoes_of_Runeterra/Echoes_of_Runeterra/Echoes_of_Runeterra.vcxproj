@@ -180,6 +180,7 @@
     <ClCompile Include="FightingSkills.cpp" />
     <ClCompile Include="FightManager.cpp" />
     <ClCompile Include="FightState.cpp" />
+    <ClCompile Include="FightStateAttack.cpp" />
     <ClCompile Include="FightStateInventory.cpp" />
     <ClCompile Include="FightStatePlayerChoice.cpp" />
     <ClCompile Include="FightStats.cpp" />
@@ -265,6 +266,7 @@
     <ClInclude Include="FightingSkills.h" />
     <ClInclude Include="FightManager.h" />
     <ClInclude Include="FightState.h" />
+    <ClInclude Include="FightStateAttack.h" />
     <ClInclude Include="FightStateInventory.h" />
     <ClInclude Include="FightStatePlayerChoice.h" />
     <ClInclude Include="FightStats.h" />

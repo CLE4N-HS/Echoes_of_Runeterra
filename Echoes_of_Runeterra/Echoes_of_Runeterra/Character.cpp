@@ -21,7 +21,7 @@ Pawn::Pawn(std::string _name, int _level, int _xp, int _hp, int _attack, int _de
 	m_animState("idle"), m_frameX(0), m_animTimer(0.f), m_attackTimer(0.f),
 	m_takingAnItem(false), m_isHovered(false)
 {
-	AddComponent<ComponentName>(_name);
+	//AddComponent<ComponentName>(_name);
 	sf::FloatRect animRect = static_cast<sf::FloatRect>(sf::IntRect());
 	//sf::IntRect animRect = tex_getAnimRect("viego", m_animState.c_str());
 	transform->setSize(animRect.getSize());

@@ -2,6 +2,7 @@
 #include "CharacterManager.h"
 #include "Player.h"
 #include "FightManager.h"
+#include "FightStatePlayerChoice.h"
 
 FightStateInventory::FightStateInventory()
 {
@@ -22,7 +23,7 @@ void FightStateInventory::Update()
 		player->GetInventory().Update();
 		if (!player->GetInventory().isOpen())
 		{
-			// TODO FightManager::ChangeFightState();
+			FightManager::ChangeFightState(new FightStatePlayerChoice());
 		}
 	}
 }
