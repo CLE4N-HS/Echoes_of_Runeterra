@@ -1,12 +1,12 @@
 #pragma once
 #include "Enemy.h"
 
-class SpiritWolf : public Enemy
+class RiverSerpent : public Enemy
 {
 public:
-	SpiritWolf();
-	SpiritWolf(const SpiritWolf& _spiritWolf);
-	~SpiritWolf();
+	RiverSerpent();
+	RiverSerpent(const RiverSerpent& _riverSerpent);
+	~RiverSerpent();
 
 	virtual void Update() override;
 	virtual void Display() override;

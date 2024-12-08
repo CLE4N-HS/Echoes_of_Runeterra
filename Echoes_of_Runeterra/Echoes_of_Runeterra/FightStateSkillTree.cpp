@@ -28,7 +28,7 @@ void FightStateSkillTree::Display()
 {
 	SkillTreeManager::Display();
 
-	Window::text.setPosition(100.f, 200.f);
+	Window::text.setPosition(100.f, 300.f);
 	Window::text.setCharacterSize(30);
 	Window::text.setString("Press S to return");
 	Window::text.setFillColor(sf::Color(255, 255, 255));

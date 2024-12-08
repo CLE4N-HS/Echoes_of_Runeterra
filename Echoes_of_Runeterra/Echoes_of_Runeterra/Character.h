@@ -37,6 +37,8 @@ public:
 	inline Profession* GetProfession() { return m_profession; }
 	inline void SetProfession(Profession* _profession) { m_profession = _profession; }
 
+	void AddSkill(Skills* _skill);
+
 protected:
 	Weapon* m_weapon = nullptr;
 	Armor* m_armor = nullptr;

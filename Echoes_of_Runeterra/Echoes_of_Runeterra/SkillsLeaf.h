@@ -21,6 +21,8 @@ public:
 	void Update();
 	void Display();
 
+	inline Skills* GetSkill() { return m_skill; }
+
 private:
 	Skills* m_skill;
 	SkillsLeaf::State m_state;

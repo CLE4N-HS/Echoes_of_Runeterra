@@ -13,8 +13,9 @@ Map::Map() : m_itemManager()
 	m_itemManager.AddItem(new MapItem(new GameItem(ItemDatabase::CreateNewItem("rice"), 55)), Transform(sf::Vector2f(800.f, 200.f), sf::Vector2f(20.f, 20.f)));
 	m_itemManager.AddItem(new MapItem(new GameItem(ItemDatabase::CreateNewItem("chicken"), 2)), Transform(sf::Vector2f(1200.f, 400.f), sf::Vector2f(60.f, 60.f)));
 
-	m_fighterManager.AddFighter(new MapFighter(EnemyDatabase::CreateNewEnemy("spiritWolf")), Transform(sf::Vector2f(500.f, 500.f), sf::Vector2f(30.f, 30.f)));
-	m_fighterManager.AddFighter(new MapFighter(EnemyDatabase::CreateNewEnemy("wildCorruptedBeast")), Transform(sf::Vector2f(1500.f, 800.f), sf::Vector2f(50.f, 50.f)));
+	m_fighterManager.AddFighter(new MapFighter(EnemyDatabase::CreateNewEnemy("spiritWolf")), Transform(sf::Vector2f(200.f, 500.f), sf::Vector2f(30.f, 30.f)));
+	m_fighterManager.AddFighter(new MapFighter(EnemyDatabase::CreateNewEnemy("wildCorruptedBeast")), Transform(sf::Vector2f(1700.f, 800.f), sf::Vector2f(50.f, 50.f)));
+	m_fighterManager.AddFighter(new MapFighter(EnemyDatabase::CreateNewEnemy("riverSerpent")), Transform(sf::Vector2f(600.f, 700.f), sf::Vector2f(20.f, 20.f)));
 }
 
 Map::~Map()

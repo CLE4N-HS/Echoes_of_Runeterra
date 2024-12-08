@@ -17,6 +17,7 @@ public:
 private:
 	void CorrectPositions();
 	std::vector<SkillsBranch*> m_tree;
+	bool m_isComplete = false;
 
 	int m_xp;
 	int m_levelXp;

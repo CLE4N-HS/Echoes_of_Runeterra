@@ -66,6 +66,11 @@ void Pawn::setHover(bool _isHovered)
 	//m_isHovered = _isHovered;
 }
 
+void Pawn::AddSkill(Skills* _skill)
+{
+	m_skill.push_back(_skill);
+}
+
 void Pawn::gainLevel()
 {
 	m_level++;

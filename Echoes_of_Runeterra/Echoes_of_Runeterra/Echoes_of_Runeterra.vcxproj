@@ -216,6 +216,7 @@
     <ClCompile Include="Race.cpp" />
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="ressourcesManager.cpp" />
+    <ClCompile Include="RiverSerpent.cpp" />
     <ClCompile Include="Skills.cpp" />
     <ClCompile Include="SkillsBranch.cpp" />
     <ClCompile Include="SkillsDataBase.cpp" />
@@ -304,6 +305,7 @@
     <ClInclude Include="Race.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ressourcesManager.h" />
+    <ClInclude Include="RiverSerpent.h" />
     <ClInclude Include="Skills.h" />
     <ClInclude Include="SkillsBranch.h" />
     <ClInclude Include="SkillsDataBase.h" />

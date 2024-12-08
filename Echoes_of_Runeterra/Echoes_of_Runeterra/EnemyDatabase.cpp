@@ -2,6 +2,7 @@
 #include "ComponentName.h"
 #include "WildCorruptedBeast.h"
 #include "SpiritWolf.h"
+#include "RiverSerpent.h"
 
 std::list<Enemy*> EnemyDatabase::m_enemy;
 
@@ -9,6 +10,7 @@ EnemyDatabase::EnemyDatabase()
 {
 	this->AddEnemy("wildCorruptedBeast", new WildCorruptedBeast());
 	this->AddEnemy("spiritWolf", new SpiritWolf());
+	this->AddEnemy("riverSerpent", new RiverSerpent());
 }
 
 EnemyDatabase::~EnemyDatabase()
@@ -38,6 +40,8 @@ Enemy* EnemyDatabase::CreateNewEnemy(Enemy* _enemy)
 		return new WildCorruptedBeast(*e);
 	if (SpiritWolf* e = dynamic_cast<SpiritWolf*>(_enemy))
 		return new SpiritWolf(*e);
+	if (RiverSerpent* e = dynamic_cast<RiverSerpent*>(_enemy))
+		return new RiverSerpent(*e);
 
 	return nullptr;
 }

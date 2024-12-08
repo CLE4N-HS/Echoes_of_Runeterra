@@ -78,9 +78,10 @@ void SkillTreeManager::Display()
 		m_tree[m_currentTreeIndex]->Display();
 	}
 
-	Window::text.setPosition(100.f, 100.f);
+	Window::text.setPosition(20.f, 150.f);
 	Window::text.setCharacterSize(30);
-	Window::text.setString("Different Trees on A Z E R T Y\nbut no interaction");
+	Window::text.setOrigin(sf::Vector2f());
+	Window::text.setString("Different Trees on [ A Z E R T Y ]\nbut no Skills related gameplay");
 	Window::text.setFillColor(sf::Color(255, 255, 255));
 	Window::Draw(Window::text);
 }

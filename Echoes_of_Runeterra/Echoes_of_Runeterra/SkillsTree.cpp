@@ -36,11 +36,27 @@ void SkillsTree::Update()
 	{
 		m_tree[i]->Update();
 	}
+
+	bool hasAllLeaf(true);
+	for (size_t i = 0; i < m_tree.size(); i++)
+	{
+		if (!m_tree[i]->IsComplete())
+		{
+			hasAllLeaf = false;
+			break;
+		}
+	}
+	if (hasAllLeaf)
+	{
+		m_isComplete = true;
+	}
 }
 
 void SkillsTree::Display()
 {
 	this->transform->CorrectWindowRectangle();
+
+	Window::rectangle.setFillColor((m_isComplete ? sf::Color(0, 255, 0) : sf::Color(255, 255, 255)));
 
 	Window::Draw(Window::rectangle);
 
@@ -58,6 +74,7 @@ void SkillsTree::Display()
 		Window::rectangle.setOrigin(size * 0.5f);
 		Window::rectangle.setScale(sf::Vector2f(1.f, 1.f));
 		Window::rectangle.setRotation(angle * RAD2DEG);
+		Window::rectangle.setFillColor((m_tree[i]->IsComplete() ? sf::Color(0, 255, 0) : sf::Color(255, 255, 255)));
 
 		Window::Draw(Window::rectangle);
 

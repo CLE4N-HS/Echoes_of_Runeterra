@@ -432,6 +432,9 @@
     <ClCompile Include="FightStateSkillTree.cpp">
       <Filter>Fichiers sources\GAME\FIGHT</Filter>
     </ClCompile>
+    <ClCompile Include="RiverSerpent.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -691,6 +694,9 @@
     </ClInclude>
     <ClInclude Include="FightStateSkillTree.h">
       <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="RiverSerpent.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
