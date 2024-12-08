@@ -55,28 +55,28 @@ protected:
 	void gainLevel();
 
 
-	Race m_race;
+	//Race m_race;
 
 	int m_level;
 	int m_xp;
 	int m_levelXp;
 
-	int m_hp, m_maxHp;
-	int m_attack;
-	int m_defense;
-	int m_stamina;
-	int m_speed;
-	Alignement m_alignement;
+	//int m_hp, m_maxHp;
+	//int m_attack;
+	//int m_defense;
+	//int m_stamina;
+	//int m_speed;
+	//Alignement m_alignement;
 
-	int m_frameX;
-	float m_animTimer;
-	std::string m_animState;
+	//int m_frameX;
+	//float m_animTimer;
+	//std::string m_animState;
 
-	float m_attackTimer;
+	//float m_attackTimer;
 
-	bool m_takingAnItem;
+	//bool m_takingAnItem;
 
-	bool m_isHovered;
+	//bool m_isHovered;
 
 
 };

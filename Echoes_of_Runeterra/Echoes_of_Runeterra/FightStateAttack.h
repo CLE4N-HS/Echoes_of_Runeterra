@@ -11,5 +11,6 @@ public:
 	virtual void Display() override;
 
 private:
+	float m_timer = 0.f;
 
 };

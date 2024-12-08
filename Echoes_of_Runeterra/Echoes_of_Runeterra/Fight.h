@@ -18,6 +18,9 @@ public:
 	inline void SetPlayer(Player* _player) { m_player = _player; }
 	inline void SetEnemy(const std::vector<Enemy*>& _enemy) { m_enemy = _enemy; }
 
+	inline Player* GetPlayer() { return m_player; }
+	inline std::vector<Enemy*>& GetEnemies() { return m_enemy; }
+
 private:
 	FightState* m_state = nullptr;
 

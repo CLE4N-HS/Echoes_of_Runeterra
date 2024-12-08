@@ -17,6 +17,8 @@ public:
 	static inline void SetInInFight(bool _isInFight) { m_isInFight = _isInFight; }
 	static inline bool IsInFight() { return m_isInFight; }
 
+	static Fight* GetFight() { return m_fight; }
+
 private:
 	static Fight* m_fight;
 	static bool m_isInFight;
