@@ -1,2 +1,2 @@
-heart 1 2 3
-speedPotion 4 5 6
+heart 10 2 1
+lifePotion 1 0 0

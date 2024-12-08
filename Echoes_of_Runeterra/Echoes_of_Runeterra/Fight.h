@@ -21,6 +21,8 @@ public:
 	inline Player* GetPlayer() { return m_player; }
 	inline std::vector<Enemy*>& GetEnemies() { return m_enemy; }
 
+	void UpdatePawns();
+
 private:
 	FightState* m_state = nullptr;
 

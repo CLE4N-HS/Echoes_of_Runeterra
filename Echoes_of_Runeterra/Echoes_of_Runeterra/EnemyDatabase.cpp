@@ -1,19 +1,21 @@
 #include "EnemyDatabase.h"
 #include "ComponentName.h"
 #include "WildCorruptedBeast.h"
+#include "SpiritWolf.h"
 
 std::list<Enemy*> EnemyDatabase::m_enemy;
 
 EnemyDatabase::EnemyDatabase()
 {
 	this->AddEnemy("wildCorruptedBeast", new WildCorruptedBeast());
+	this->AddEnemy("spiritWolf", new SpiritWolf());
 }
 
 EnemyDatabase::~EnemyDatabase()
 {
 	while (m_enemy.size() > 0)
 	{
-		m_enemy.erase(m_enemy.end());
+		m_enemy.erase(m_enemy.begin());
 	}
 }
 
@@ -34,6 +36,8 @@ Enemy* EnemyDatabase::CreateNewEnemy(Enemy* _enemy)
 {
 	if (WildCorruptedBeast* e = dynamic_cast<WildCorruptedBeast*>(_enemy))
 		return new WildCorruptedBeast(*e);
+	if (SpiritWolf* e = dynamic_cast<SpiritWolf*>(_enemy))
+		return new SpiritWolf(*e);
 
 	return nullptr;
 }

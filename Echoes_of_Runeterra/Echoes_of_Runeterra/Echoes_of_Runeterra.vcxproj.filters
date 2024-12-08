@@ -166,6 +166,9 @@
     <Filter Include="Fichiers d%27en-tête\TOOLS\BUTTON">
       <UniqueIdentifier>{4851197b-7152-4933-a202-501662932337}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\FIGHT">
+      <UniqueIdentifier>{7ead4f38-536c-4ab5-b42a-a5d846518d15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -420,6 +423,15 @@
     <ClCompile Include="FightStateAttack.cpp">
       <Filter>Fichiers sources\GAME\FIGHT</Filter>
     </ClCompile>
+    <ClCompile Include="FightStateCounterAttack.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
+    <ClCompile Include="SpiritWolf.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClCompile>
+    <ClCompile Include="FightStateSkillTree.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -623,12 +635,6 @@
     <ClInclude Include="Talker.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
     </ClInclude>
-    <ClInclude Include="FightManager.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Fight.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="MapItemManager.h">
       <Filter>Fichiers d%27en-tête\GAME\MAP\MAP_ITEM</Filter>
     </ClInclude>
@@ -647,29 +653,44 @@
     <ClInclude Include="WildCorruptedBeast.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyDatabase.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Companion.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\COMPANION</Filter>
-    </ClInclude>
-    <ClInclude Include="FightState.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="FightStatePlayerChoice.h">
-      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Fichiers d%27en-tête\TOOLS\BUTTON</Filter>
     </ClInclude>
-    <ClInclude Include="FightStateInventory.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="EnemyDatabase.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
     </ClInclude>
-    <ClInclude Include="FightStats.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="Fight.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="FightManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="FightState.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
     </ClInclude>
     <ClInclude Include="FightStateAttack.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="FightStateCounterAttack.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="FightStateInventory.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="FightStatePlayerChoice.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="FightStats.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="SpiritWolf.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="FightStateSkillTree.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,10 +4,9 @@
 
 WildCorruptedBeast::WildCorruptedBeast() : Enemy()
 {
-	// TODO claw
 	this->SetWeapon(dynamic_cast<Weapon*>(ItemDatabase::CreateNewItem("sword")));
 	this->AddComponent<ComponentName>("WildCorruptedBeast");
-	this->m_fightStats = FightStats(10, 5, 2);
+	this->m_fightStats = FightStats(50, 24, 5);
 }
 
 WildCorruptedBeast::WildCorruptedBeast(const WildCorruptedBeast& _wildCorruptedBeast) : WildCorruptedBeast()

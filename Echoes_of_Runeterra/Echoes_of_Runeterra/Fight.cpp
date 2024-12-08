@@ -2,6 +2,7 @@
 #include "FightStatePlayerChoice.h"
 #include "Window.h"
 #include "ComponentName.h"
+#include "FightManager.h"
 
 Fight::Fight(Player* _player, const std::vector<Enemy*>& _enemy) : m_player(_player), m_enemy(_enemy)
 {
@@ -39,6 +40,31 @@ void Fight::ChangeState(FightState* _state)
 {
 	delete m_state;
 	m_state = _state;
+	this->UpdatePawns();
+}
+
+void Fight::UpdatePawns()
+{
+	for (std::vector<Enemy*>::const_iterator it = m_enemy.begin(); it != m_enemy.end();)
+	{
+		if ((*it)->GetFightStats().hp <= 0)
+		{
+			it = m_enemy.erase(it);
+			this->RepositionEnemies();
+		}
+		else
+		{
+			it++;
+		}
+	}
+	if (m_player->GetFightStats().hp <= 0)
+	{
+		FightManager::SetInInFight(false);
+	}
+	else if (m_enemy.size() <= 0)
+	{
+		FightManager::SetInInFight(false);
+	}
 }
 
 void Fight::DisplayPlayer()
@@ -61,7 +87,12 @@ void Fight::DisplayPlayer()
 	Window::Draw(Window::text);
 
 	Window::text.setCharacterSize(20);
-	DisplayStats(Window::rectangle.getPosition(), Window::rectangle.getSize(), m_player->GetFightStats());
+	FightStats playerFightStats = m_player->GetFightStats();
+	if (Weapon* playerWeapon = m_player->GetWeapon())
+		playerFightStats.attack += playerWeapon->getDamage();
+	if (Armor* playerArmor = m_player->GetArmor())
+		playerFightStats.defense += playerArmor->getDefense();
+	DisplayStats(Window::rectangle.getPosition(), Window::rectangle.getSize(), playerFightStats);
 
 
 
@@ -121,7 +152,12 @@ void Fight::DisplayEnemies()
 		Tools::CenterTextOrigin(Window::text);
 		Window::Draw(Window::text);
 
-		DisplayStats(m_enemy[i]->transform->getPos(), m_enemy[i]->transform->getSize(), m_enemy[i]->GetFightStats());
+		FightStats enemyFightStats = m_enemy[i]->GetFightStats();
+		if (Weapon* enemyWeapon = m_enemy[i]->GetWeapon())
+			enemyFightStats.attack += enemyWeapon->getDamage();
+		if (Armor* enemyArmor = m_enemy[i]->GetArmor())
+			enemyFightStats.defense += enemyArmor->getDefense();
+		DisplayStats(m_enemy[i]->transform->getPos(), m_enemy[i]->transform->getSize(), enemyFightStats);
 	}
 }
 

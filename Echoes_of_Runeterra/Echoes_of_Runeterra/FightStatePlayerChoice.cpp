@@ -3,6 +3,8 @@
 #include "MouseManager.h"
 #include "FightManager.h"
 #include "FightStateInventory.h"
+#include "FightStateAttack.h"
+#include "FightStateSkillTree.h"
 
 FightStatePlayerChoice::FightStatePlayerChoice()
 {
@@ -26,6 +28,12 @@ void FightStatePlayerChoice::Update()
 		{
 			switch (i)
 			{
+			// SkillTree
+			case 0:
+				FightManager::ChangeFightState(new FightStateSkillTree()); break;
+			// Attack
+			case 1:
+				FightManager::ChangeFightState(new FigthStateAttack()); break;
 			// Inventory
 			case 2:
 				FightManager::ChangeFightState(new FightStateInventory()); break;
@@ -46,4 +54,6 @@ void FightStatePlayerChoice::Display()
 	{
 		m_button[i]->Display();
 	}
+
+	Window::text.setStyle(sf::Text::Style::Regular);
 }

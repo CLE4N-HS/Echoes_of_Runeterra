@@ -19,8 +19,8 @@ Player::Player(std::string _name) : Pawn(_name)
 	m_targetPos = this->transform->getPos();
 
 	m_inventory.SetInstigator(this);
-	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("sword")));
-	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("speedPotion"), 2));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("sword"), 2));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("lifePotion"), 2));
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("pickaxe"), 54));
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("shield"), 2));
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("metalArmor")));
@@ -32,7 +32,7 @@ Player::Player(std::string _name) : Pawn(_name)
 
 	this->SetProfession(new Alchemist());
 
-	this->m_fightStats = FightStats(10, 10, 10);
+	this->m_fightStats = FightStats(500, 10, 10);
 	this->AddCompanion(new Companion());
 	this->AddCompanion(new Companion());
 }

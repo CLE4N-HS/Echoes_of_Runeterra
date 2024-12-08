@@ -43,8 +43,9 @@ void Game::Update()
 	{
 		MapManager::Update();
 		PawnManager::Update();
-		SkillTreeManager::Update();
 	}
+	//SkillTreeManager::Update();
+
 	//m_mapManager.update(_window);
 
 	////if (!m_dialogueManager.isInDialogue())
@@ -69,14 +70,17 @@ void Game::Display()
 	{
 		MapManager::Display();
 		PawnManager::Display();
-		if (0)
-			SkillTreeManager::Display();
 	}
 
 	if (DialogueManager::IsInDialogue())
 	{
 		DialogueManager::Display();
 	}
+
+	//if (SkillTreeManager::IsInSkillTree())
+	//{
+	//	SkillTreeManager::Display();
+	//}
 
 	//m_mapManager.display(_window);
 	//m_characterManager.display(_window);
