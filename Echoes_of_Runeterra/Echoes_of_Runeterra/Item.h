@@ -42,4 +42,5 @@ struct GameItem {
 	Item* item;
 	int quantity;
 	inline GameItem(Item* _item, int _quantity = 1) : item(_item), quantity(_quantity) {}
+	inline GameItem(GameItem* _gameItem) : GameItem(_gameItem->item, _gameItem->quantity) {}
 };

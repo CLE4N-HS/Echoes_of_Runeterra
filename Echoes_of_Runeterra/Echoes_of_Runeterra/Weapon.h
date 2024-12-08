@@ -16,8 +16,6 @@ public:
 	int getDamage() const;
 	int getSpeed() const;
 
-	inline void SETSPEEDTESTTODO(int _a) { m_speed += _a; }
-
 
 private:
 	bool isAttackCritical() const;

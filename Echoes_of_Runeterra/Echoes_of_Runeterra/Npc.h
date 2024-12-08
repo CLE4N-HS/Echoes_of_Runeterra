@@ -5,12 +5,12 @@ class Npc : public Pawn
 {
 public:
 	Npc();
-	Npc(std::string _name, std::string _dialogueKey);
+	Npc(std::string _name);
 	~Npc();
 
-	virtual void Update() override;
+	virtual void Update() = 0;
 
-	virtual void Display() override;
+	virtual void Display() = 0;
 
 protected:
 

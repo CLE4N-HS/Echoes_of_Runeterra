@@ -11,15 +11,19 @@
 #include "Player.h"
 #include "ItemDatabase.h"
 #include "ProfessionCraftDatabase.h"
+#include "Consumable.h"
 
 Inventory::Inventory() : Entity(Transform(sf::Vector2f(100.f, 100.f), sf::Vector2f(1720.f, 880.f), Transform::Origin::TOP_LEFT)), m_item(), m_isOpen(false)
 {
-	m_button.reserve(sizeof(InventoryButton) * 3);
+	m_button.reserve(5);
 	sf::Vector2f tmpSize(200.f, 100.f);
 	sf::Vector2f tmpPos(transform->getPos());
 	m_button.push_back(InventoryButton(Transform(sf::Vector2f(tmpPos.x + 20.f + 0.f * tmpSize.x * 1.2f, tmpPos.y + 20.f), tmpSize, Transform::Origin::TOP_LEFT), "Craft"));
 	m_button.push_back(InventoryButton(Transform(sf::Vector2f(tmpPos.x + 20.f + 1.f * tmpSize.x * 1.2f, tmpPos.y + 20.f), tmpSize, Transform::Origin::TOP_LEFT), "\nCraft\n"));
 	m_button.push_back(InventoryButton(Transform(sf::Vector2f(tmpPos.x + 20.f + 2.f * tmpSize.x * 1.2f, tmpPos.y + 20.f), tmpSize, Transform::Origin::TOP_LEFT), "Equip"));
+	m_button.push_back(InventoryButton(Transform(sf::Vector2f(tmpPos.x + 20.f + 3.f * tmpSize.x * 1.2f, tmpPos.y + 20.f), tmpSize, Transform::Origin::TOP_LEFT), "Consume"));
+
+	m_button.push_back(InventoryButton(Transform(sf::Vector2f(transform->getPos().x + transform->getSize().x - 120.f, tmpPos.y + 20.f), sf::Vector2f(100.f, 100.f), Transform::Origin::TOP_LEFT), "Close"));
 }
 
 Inventory::~Inventory()
@@ -30,6 +34,7 @@ void Inventory::Update()
 {
 	if (KeyboardManager::OneTimePressed(sf::Keyboard::I))
 	{
+		// todo above
 		m_isOpen = !m_isOpen;
 		UnselectItems();
 	}
@@ -368,6 +373,11 @@ bool Inventory::EraseItem(Item* _item)
 void Inventory::setOpening(bool _shouldBeOpened)
 {
 	m_isOpen = _shouldBeOpened;
+	
+	if (m_isOpen)
+	{
+		this->UnselectItems();
+	}
 }
 
 bool Inventory::isOpen()
@@ -411,6 +421,14 @@ void Inventory::UpdateButton()
 {
 	sf::Vector2f mousePos = Window::GetMousePos();
 
+	// Close
+	m_button[4].isClickable = true;
+	if (m_button[4].transform.GetRect().contains(mousePos) && MouseManager::OneTimePressed())
+	{
+		m_button[1].isClickable = m_isInDatabase = false;
+		this->setOpening(false);
+	}
+
 	// Craft Database
 	if (m_button[1].transform.GetRect().contains(mousePos) && MouseManager::OneTimePressed())
 	{
@@ -421,6 +439,7 @@ void Inventory::UpdateButton()
 	{
 		m_button[0].isClickable = false;
 		m_button[2].isClickable = false;
+		m_button[3].isClickable = false;
 		return;
 	}
 
@@ -517,6 +536,35 @@ void Inventory::UpdateButton()
 	else
 	{
 		m_button[2].isClickable = false;
+	}
+
+	// Consume
+	if (selectedItem.size() == 1)
+	{
+		Consumable* consumable = dynamic_cast<Consumable*>(selectedItem[0].item);
+
+		if (consumable)
+			m_button[3].isClickable = true;
+		else
+			m_button[3].isClickable = false;
+
+		if (m_button[3].isClickable && m_button[3].transform.GetRect().contains(mousePos) && MouseManager::OneTimePressed())
+		{
+			if (Player* player = dynamic_cast<Player*>(PawnManager::GetPawn("Player")))
+			{
+				if (consumable)
+				{
+					player->Consume(consumable);
+					RemoveItem(selectedItem[0].item);
+					RepositionItems();
+					UnselectItems();
+				}
+			}
+		}
+	}
+	else
+	{
+		m_button[3].isClickable = false;
 	}
 }
 

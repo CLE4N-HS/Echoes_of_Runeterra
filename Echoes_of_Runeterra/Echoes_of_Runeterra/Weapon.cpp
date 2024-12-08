@@ -94,8 +94,8 @@ void Weapon::Display()
 
 int Weapon::getDamage() const
 {
-	if (isAttackCritical())
-		return (m_damage + m_critcalDamage);
+	//if (isAttackCritical())
+	//	return (m_damage + m_critcalDamage);
 
 	return m_damage;
 }

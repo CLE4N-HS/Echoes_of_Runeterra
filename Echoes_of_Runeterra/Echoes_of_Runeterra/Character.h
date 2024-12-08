@@ -14,8 +14,7 @@ class Pawn : public Entity
 public:
 	Pawn();
 	Pawn(std::string _name);
-	Pawn(std::string _name, std::string _dialogueKey);
-	Pawn(std::string _name, std::string _dialogueKey, int _level, int _hp, int _attack, int _defense, int _xp, int _stamina, int _speed, Alignement _alignement);
+	Pawn(std::string _name, int _level, int _hp, int _attack, int _defense, int _xp, int _stamina, int _speed, Alignement _alignement);
 	~Pawn();
 
 	virtual void Update() = 0;
@@ -28,9 +27,6 @@ public:
 	inline void SetWeapon(Weapon* _weapon) { m_weapon = _weapon; }
 	inline void SetArmor(Armor* _armor) { m_armor = _armor; }
 
-	void setDialogueKey(std::string _dialogueKey);
-	std::string getDialogueKey();
-
 	int getLevel() const;
 	void giveXp(int _xp);
 
@@ -40,6 +36,8 @@ public:
 
 	inline Profession* GetProfession() { return m_profession; }
 	inline void SetProfession(Profession* _profession) { m_profession = _profession; }
+
+	void AddSkill(Skills* _skill);
 
 protected:
 	Weapon* m_weapon = nullptr;
@@ -53,37 +51,34 @@ protected:
 
 
 
+	// no
 
 	void upgradeLevelXp();
 	void gainLevel();
 
 
-
-	Race m_race;
-
-	// npc
-	std::string m_dialogueKey;
+	//Race m_race;
 
 	int m_level;
 	int m_xp;
 	int m_levelXp;
 
-	int m_hp, m_maxHp;
-	int m_attack;
-	int m_defense;
-	int m_stamina;
-	int m_speed;
-	Alignement m_alignement;
+	//int m_hp, m_maxHp;
+	//int m_attack;
+	//int m_defense;
+	//int m_stamina;
+	//int m_speed;
+	//Alignement m_alignement;
 
-	int m_frameX;
-	float m_animTimer;
-	std::string m_animState;
+	//int m_frameX;
+	//float m_animTimer;
+	//std::string m_animState;
 
-	float m_attackTimer;
+	//float m_attackTimer;
 
-	bool m_takingAnItem;
+	//bool m_takingAnItem;
 
-	bool m_isHovered;
+	//bool m_isHovered;
 
 
 };

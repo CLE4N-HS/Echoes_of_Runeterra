@@ -1,4 +1,8 @@
 #pragma once
+
+#pragma warning(push)
+#pragma warning(disable:26495)
+
 #include <iostream>
 #include <string>
 #include "SFML/Graphics.hpp"
@@ -7,6 +11,8 @@
 #include <map>
 #include <list>
 #include <unordered_map>
+
+#pragma warning(pop)
 
 #define EPSILON (static_cast<float>(1e-6))
 #define DEG2RAD (static_cast<float>(0.01745329f))
@@ -31,6 +37,8 @@ public:
 	static float SqrMagnitude(const sf::Vector2f& _v1, const sf::Vector2f& _v2);
 	static sf::Vector2f Multiply(const sf::Vector2f& _v1, const sf::Vector2f& _v2);
 	static sf::Vector2f Normalize(const sf::Vector2f& _v);
+	static float Lerp(const float& _a, const float& _b, const float& _t);
+	static sf::Vector2f Lerp(const sf::Vector2f& _v1, const sf::Vector2f& _v2, const float& _t);
 
 	static void CenterTextOrigin(sf::Text& _text);
 	static void CenterTextOriginString(sf::Text& _text);

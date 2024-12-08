@@ -10,6 +10,7 @@ class Entity
 public:
 	Entity();
 	Entity(const Transform& _transform, unsigned char _id = '\0', Entity* _instigator = nullptr, Entity* _owner = nullptr);
+	Entity(const Entity& _entity);
 	~Entity();
 
 	COMPONENT_TEMPLATE

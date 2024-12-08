@@ -5,12 +5,12 @@ Consumable::Consumable() : Consumable("", 0, 0, 0)
 {
 }
 
-Consumable::Consumable(std::string _name, int _hp, int _defense, int _speed) : Item(_name),
-	m_name(_name), m_hp(_hp), m_defense(_defense), m_speed(_speed)
+Consumable::Consumable(std::string _name, int _hp, int _attack, int _defense) : Item(_name),
+	m_name(_name), m_hp(_hp), m_attack(_attack), m_defense(_defense)
 {
 }
 
-Consumable::Consumable(const Consumable& _consumable) : Consumable(_consumable.m_name, _consumable.m_hp, _consumable.m_defense, _consumable.m_speed)
+Consumable::Consumable(const Consumable& _consumable) : Consumable(_consumable.m_name, _consumable.m_hp, _consumable.m_attack, _consumable.m_defense)
 {
 }
 
@@ -99,9 +99,4 @@ int Consumable::getHpBuff() const
 int Consumable::getDefenseBuff() const
 {
 	return m_defense;
-}
-
-int Consumable::getSpeedBuff() const
-{
-	return m_speed;
 }

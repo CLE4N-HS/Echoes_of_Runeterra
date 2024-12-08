@@ -3,6 +3,7 @@
 #include "MouseManager.h"
 #include "Window.h"
 #include "Alchemist.h"
+#include "ComponentName.h"
 
 Player::Player() : Player("Player")
 {
@@ -10,14 +11,16 @@ Player::Player() : Player("Player")
 
 Player::Player(std::string _name) : Pawn(_name)
 {
+	this->AddComponent<ComponentName>(_name);
+
 	this->transform->setSize(sf::Vector2f(50.f, 50.f));
 	this->transform->setOrigin(this->transform->getSize() * 0.5f);
 	this->transform->setPos(sf::Vector2f(960.f, 540.f));
 	m_targetPos = this->transform->getPos();
 
 	m_inventory.SetInstigator(this);
-	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("sword")));
-	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("speedPotion"), 2));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("sword"), 2));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("lifePotion"), 2));
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("pickaxe"), 54));
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("shield"), 2));
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("metalArmor")));
@@ -25,14 +28,21 @@ Player::Player(std::string _name) : Pawn(_name)
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("rice"), 70));
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("metalArmor")));
 	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("wood")));
-	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("heart")));
+	m_inventory.AddItem(GameItem(ItemDatabase::CreateNewItem("heart"), 10));
 
 	this->SetProfession(new Alchemist());
 
+	this->m_fightStats = FightStats(500, 10, 10);
+	this->AddCompanion(new Companion());
+	this->AddCompanion(new Companion());
 }
 
 Player::~Player()
 {
+	while (m_companion.size() > 0)
+	{
+		m_companion.erase(m_companion.begin());
+	}
 }
 
 void Player::Update()
@@ -42,6 +52,11 @@ void Player::Update()
 	if (!m_inventory.isOpen())
 	{
 		this->UpdateMovement();
+	}
+
+	for (size_t i = 0; i < m_companion.size(); i++)
+	{
+		m_companion[i]->Update();
 	}
 
 	/*
@@ -125,6 +140,28 @@ void Player::Display()
 
 	//m_profession->display(_window);
 
+}
+
+void Player::AddCompanion(Companion* _companion)
+{
+	if (m_companion.size() >= 2)
+	{
+		// TODO idk QG or smth
+	}
+	else
+	{
+		m_companion.push_back(_companion);
+	}
+}
+
+void Player::Consume(Consumable* _consumable)
+{
+	if (_consumable)
+	{
+		m_fightStats.hp += _consumable->getHpBuff();
+		m_fightStats.attack += _consumable->GetAttackBuff();
+		m_fightStats.defense += _consumable->getDefenseBuff();
+	}
 }
 
 void Player::UpdateMovement()

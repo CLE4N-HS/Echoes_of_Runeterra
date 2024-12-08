@@ -112,9 +112,6 @@
     <Filter Include="Fichiers d%27en-tête\GAME\DATABASE">
       <UniqueIdentifier>{5298ed57-15e0-4d63-a68d-bc5ef99ab265}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\GAME\DATABASE">
-      <UniqueIdentifier>{d1003172-2d87-4a8b-80f6-6d0630880a27}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fichiers d%27en-tête\TOOLS\UTILITY">
       <UniqueIdentifier>{363bc1c7-ab95-4ddb-ae92-97bc145587f3}</UniqueIdentifier>
     </Filter>
@@ -132,6 +129,45 @@
     </Filter>
     <Filter Include="Fichiers d%27en-tête\GAME\CHARACTER\PROFESSION">
       <UniqueIdentifier>{5b2e0a2d-e1bd-4f0f-aecd-5b61695ae2cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\FIGHT">
+      <UniqueIdentifier>{a9162cd1-495f-49b9-9a05-96733d6509f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\MAP\MAP_ITEM">
+      <UniqueIdentifier>{128fa9e9-c5d1-482e-9039-9a417be69289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\MAP\MAP_FIGHTER">
+      <UniqueIdentifier>{d5277b93-3b62-45a4-8e40-98064a2aecd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\MAP\MAP_ITEM">
+      <UniqueIdentifier>{49ac4b31-d1b6-4f7b-b2de-91456e671f99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\MAP\MAP_FIGHTER">
+      <UniqueIdentifier>{3597c0d7-85e6-41c6-afdb-35910bb132a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\DATABASE">
+      <UniqueIdentifier>{d1003172-2d87-4a8b-80f6-6d0630880a27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY">
+      <UniqueIdentifier>{8c2fcdd9-1271-4343-b16a-32d31a19246f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\CHARACTER\FIGHTER\ENEMY">
+      <UniqueIdentifier>{e1046ad4-e470-40b9-8cf3-452b9149a238}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GAME\CHARACTER\FIGHTER\COMPANION">
+      <UniqueIdentifier>{ceddbeae-0085-4366-abbf-d228270e3114}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\COMPANION">
+      <UniqueIdentifier>{a0a0a9d9-d4d0-4b1d-bfc5-af92dc43b644}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\TOOLS\BUTTON">
+      <UniqueIdentifier>{e8652007-8585-416c-93b9-856669b81307}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\TOOLS\BUTTON">
+      <UniqueIdentifier>{4851197b-7152-4933-a202-501662932337}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME\FIGHT">
+      <UniqueIdentifier>{7ead4f38-536c-4ab5-b42a-a5d846518d15}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -321,12 +357,6 @@
     <ClCompile Include="Fighter.cpp">
       <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER</Filter>
     </ClCompile>
-    <ClCompile Include="Companion.cpp">
-      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER</Filter>
-    </ClCompile>
     <ClCompile Include="MouseManager.cpp">
       <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
     </ClCompile>
@@ -341,6 +371,69 @@
     </ClCompile>
     <ClCompile Include="Tools.cpp">
       <Filter>Fichiers sources\TOOLS\UTILITY</Filter>
+    </ClCompile>
+    <ClCompile Include="Talker.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER</Filter>
+    </ClCompile>
+    <ClCompile Include="FightManager.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
+    <ClCompile Include="Fight.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
+    <ClCompile Include="MapItem.cpp">
+      <Filter>Fichiers sources\GAME\MAP\MAP_ITEM</Filter>
+    </ClCompile>
+    <ClCompile Include="MapItemManager.cpp">
+      <Filter>Fichiers sources\GAME\MAP\MAP_ITEM</Filter>
+    </ClCompile>
+    <ClCompile Include="MapFighter.cpp">
+      <Filter>Fichiers sources\GAME\MAP\MAP_FIGHTER</Filter>
+    </ClCompile>
+    <ClCompile Include="MapFighterManager.cpp">
+      <Filter>Fichiers sources\GAME\MAP\MAP_FIGHTER</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyDatabase.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClCompile>
+    <ClCompile Include="WildCorruptedBeast.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClCompile>
+    <ClCompile Include="Companion.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER\COMPANION</Filter>
+    </ClCompile>
+    <ClCompile Include="FightState.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
+    <ClCompile Include="FightStatePlayerChoice.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Fichiers sources\TOOLS\BUTTON</Filter>
+    </ClCompile>
+    <ClCompile Include="FightStateInventory.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
+    <ClCompile Include="FightStats.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
+    <ClCompile Include="FightStateAttack.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
+    <ClCompile Include="FightStateCounterAttack.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
+    <ClCompile Include="SpiritWolf.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClCompile>
+    <ClCompile Include="FightStateSkillTree.cpp">
+      <Filter>Fichiers sources\GAME\FIGHT</Filter>
+    </ClCompile>
+    <ClCompile Include="RiverSerpent.cpp">
+      <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -482,13 +575,7 @@
     <ClInclude Include="Component.h">
       <Filter>Fichiers d%27en-tête\TOOLS\ENTITY\COMPONENT</Filter>
     </ClInclude>
-    <ClInclude Include="Companion.h">
-      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER</Filter>
-    </ClInclude>
     <ClInclude Include="Fighter.h">
-      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER</Filter>
     </ClInclude>
     <ClInclude Include="SkillsDataBase.h">
@@ -547,6 +634,69 @@
     </ClInclude>
     <ClInclude Include="Tools.h">
       <Filter>Fichiers d%27en-tête\TOOLS\UTILITY</Filter>
+    </ClInclude>
+    <ClInclude Include="Talker.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
+    </ClInclude>
+    <ClInclude Include="MapItemManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\MAP\MAP_ITEM</Filter>
+    </ClInclude>
+    <ClInclude Include="MapItem.h">
+      <Filter>Fichiers d%27en-tête\GAME\MAP\MAP_ITEM</Filter>
+    </ClInclude>
+    <ClInclude Include="MapFighterManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\MAP\MAP_FIGHTER</Filter>
+    </ClInclude>
+    <ClInclude Include="MapFighter.h">
+      <Filter>Fichiers d%27en-tête\GAME\MAP\MAP_FIGHTER</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="WildCorruptedBeast.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="Companion.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\COMPANION</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\BUTTON</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyDatabase.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="Fight.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="FightManager.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="FightState.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="FightStateAttack.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="FightStateCounterAttack.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="FightStateInventory.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="FightStatePlayerChoice.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="FightStats.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="SpiritWolf.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="FightStateSkillTree.h">
+      <Filter>Fichiers d%27en-tête\GAME\FIGHT</Filter>
+    </ClInclude>
+    <ClInclude Include="RiverSerpent.h">
+      <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

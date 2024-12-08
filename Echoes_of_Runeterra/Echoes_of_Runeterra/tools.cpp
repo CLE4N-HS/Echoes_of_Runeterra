@@ -51,6 +51,16 @@ sf::Vector2f Tools::Normalize(const sf::Vector2f& _v)
     return sf::Vector2f();
 }
 
+float Tools::Lerp(const float& _a, const float& _b, const float& _t)
+{
+    return ((_b - _a) * _t + _a);
+}
+
+sf::Vector2f Tools::Lerp(const sf::Vector2f& _v1, const sf::Vector2f& _v2, const float& _t)
+{
+    return sf::Vector2f(Tools::Lerp(_v1.x, _v2.x, _t), Tools::Lerp(_v1.y, _v2.y, _t));
+}
+
 void Tools::CenterTextOrigin(sf::Text& _text)
 {
     sf::FloatRect tmpRect = _text.getGlobalBounds();

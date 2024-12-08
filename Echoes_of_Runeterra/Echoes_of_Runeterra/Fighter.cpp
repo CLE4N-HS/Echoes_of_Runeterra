@@ -1,5 +1,9 @@
 #include "Fighter.h"
 
-Fighter::Fighter()
+Fighter::Fighter() : Npc()
+{
+}
+
+Fighter::~Fighter()
 {
 }

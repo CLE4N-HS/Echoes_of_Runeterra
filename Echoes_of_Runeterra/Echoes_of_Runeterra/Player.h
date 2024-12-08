@@ -1,6 +1,9 @@
 #pragma once
 #include "Character.h"
 #include "Inventory.h"
+#include "Companion.h"
+#include "Consumable.h"
+#include "FightStats.h"
 
 class Player : public Pawn
 {
@@ -14,9 +17,22 @@ public:
 
 	inline void AddItem(const GameItem& _gameItem) { m_inventory.AddItem(_gameItem); }
 
+	void AddCompanion(Companion* _companion);
+
+	inline Inventory& GetInventory() { return m_inventory; }
+
+	inline std::vector<Companion*>& GetCompanion() { return m_companion; }
+
+	void Consume(Consumable* _consumable);
+
+	inline FightStats& GetFightStats() { return m_fightStats; }
+
 protected:
 	Inventory m_inventory;
 
+	std::vector<Companion*> m_companion;
+
+	FightStats m_fightStats;
 
 	int m_skillPoint = 0;
 	float m_moveSpeed = 500.f;

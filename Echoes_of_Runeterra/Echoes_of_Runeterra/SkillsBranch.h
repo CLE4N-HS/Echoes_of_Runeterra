@@ -14,7 +14,10 @@ public:
 
 	void CorrectPositions(const sf::Vector2f& _pos);
 
+	inline bool IsComplete() const { return m_isComplete; }
+
 private:
 	std::vector<SkillsLeaf*> m_branch;
+	bool m_isComplete = false;
 
 };
