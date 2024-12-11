@@ -170,6 +170,7 @@
     <ClCompile Include="Dialogue.cpp" />
     <ClCompile Include="DialogueDataBase.cpp" />
     <ClCompile Include="DialogueManager.cpp" />
+    <ClCompile Include="Editor.cpp" />
     <ClCompile Include="EndButton.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyDatabase.cpp" />
@@ -260,6 +261,7 @@
     <ClInclude Include="Dialogue.h" />
     <ClInclude Include="DialogueDataBase.h" />
     <ClInclude Include="DialogueManager.h" />
+    <ClInclude Include="Editor.h" />
     <ClInclude Include="EndButton.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyDatabase.h" />

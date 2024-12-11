@@ -169,6 +169,18 @@
     <Filter Include="Fichiers d%27en-tête\GAME\FIGHT">
       <UniqueIdentifier>{7ead4f38-536c-4ab5-b42a-a5d846518d15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\EDITOR">
+      <UniqueIdentifier>{e789775a-b21b-463f-8d36-7b28e542f5e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\EDITOR">
+      <UniqueIdentifier>{3c71dd57-d003-4321-b9c7-455e6bb1848d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\EDITOR\MAP">
+      <UniqueIdentifier>{ad292d12-36cf-41c8-a902-5ac5b7183584}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\EDITOR\MAP">
+      <UniqueIdentifier>{607f1037-f2d2-4486-9164-121ad2d61dcd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -435,6 +447,9 @@
     <ClCompile Include="RiverSerpent.cpp">
       <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
     </ClCompile>
+    <ClCompile Include="Editor.cpp">
+      <Filter>Fichiers sources\EDITOR</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -697,6 +712,9 @@
     </ClInclude>
     <ClInclude Include="RiverSerpent.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor.h">
+      <Filter>Fichiers d%27en-tête\EDITOR</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
