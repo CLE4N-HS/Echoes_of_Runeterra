@@ -181,6 +181,12 @@
     <Filter Include="Fichiers d%27en-tête\EDITOR\MAP">
       <UniqueIdentifier>{607f1037-f2d2-4486-9164-121ad2d61dcd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\EDITOR\MAP\TILE">
+      <UniqueIdentifier>{96dc5b1a-da4b-47d6-a81f-e3d5e0863571}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\EDITOR\MAP\TILE">
+      <UniqueIdentifier>{05824f66-2603-48bd-9ea0-855a15f45429}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -275,12 +281,6 @@
     </ClCompile>
     <ClCompile Include="InteractionManager.cpp">
       <Filter>Fichiers sources\GAME\INTERACTION</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Fichiers sources\GAME\MAP</Filter>
-    </ClCompile>
-    <ClCompile Include="MapManager.cpp">
-      <Filter>Fichiers sources\GAME\MAP</Filter>
     </ClCompile>
     <ClCompile Include="InteractionPlayerMap.cpp">
       <Filter>Fichiers sources\GAME\INTERACTION</Filter>
@@ -450,6 +450,18 @@
     <ClCompile Include="Editor.cpp">
       <Filter>Fichiers sources\EDITOR</Filter>
     </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Fichiers sources\EDITOR\MAP</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Fichiers sources\EDITOR\MAP\TILE</Filter>
+    </ClCompile>
+    <ClCompile Include="TileAuto.cpp">
+      <Filter>Fichiers sources\EDITOR\MAP\TILE</Filter>
+    </ClCompile>
+    <ClCompile Include="TileAutoDatabase.cpp">
+      <Filter>Fichiers sources\EDITOR\MAP\TILE</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -542,14 +554,8 @@
     <ClInclude Include="CharacterManager.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Fichiers d%27en-tête\GAME\MAP</Filter>
-    </ClInclude>
     <ClInclude Include="InteractionPlayerMap.h">
       <Filter>Fichiers d%27en-tête\GAME\INTERACTION</Filter>
-    </ClInclude>
-    <ClInclude Include="MapManager.h">
-      <Filter>Fichiers d%27en-tête\GAME\MAP</Filter>
     </ClInclude>
     <ClInclude Include="alignement.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER\RACE</Filter>
@@ -715,6 +721,18 @@
     </ClInclude>
     <ClInclude Include="Editor.h">
       <Filter>Fichiers d%27en-tête\EDITOR</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Fichiers d%27en-tête\EDITOR\MAP</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Fichiers d%27en-tête\EDITOR\MAP\TILE</Filter>
+    </ClInclude>
+    <ClInclude Include="TileAuto.h">
+      <Filter>Fichiers d%27en-tête\EDITOR\MAP\TILE</Filter>
+    </ClInclude>
+    <ClInclude Include="TileAutoDatabase.h">
+      <Filter>Fichiers d%27en-tête\EDITOR\MAP\TILE</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

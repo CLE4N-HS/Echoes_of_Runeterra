@@ -11,7 +11,7 @@ InteractionManager::~InteractionManager()
 {
 }
 
-void InteractionManager::update(Window& _window, PawnManager* _characterManager, DialogueManager* _dialogueManager, MapManager* _mapManager)
+void InteractionManager::update(Window& _window, PawnManager* _characterManager, DialogueManager* _dialogueManager/*, MapManager* _mapManager*/)
 {
 	//m_interactionPlayerNpc->update(_window, _characterManager, _dialogueManager);
 	//m_interactionPlayerMap->update(_window, _characterManager, _mapManager);

@@ -3,7 +3,7 @@
 #include "CharacterManager.h"
 #include "SkillTreeManager.h"
 #include "DialogueManager.h"
-#include "MapManager.h"
+//#include "MapManager.h"
 #include "FightManager.h"
 
 Game::Game() //: m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager()//, m_skillsSystem(m_treeDB)
@@ -12,7 +12,7 @@ Game::Game() //: m_mapManager(), m_dialogueManager(), m_interactionManager(), m_
 	new PawnManager();
 	new SkillTreeManager();
 	new DialogueManager();
-	new MapManager();
+	//new MapManager();
 	new FightManager();
 	//DialogueManager::SetupDialogue("intro");
 	//m_mapManager.addItem(m_itemDB->getItem("sword"));
@@ -41,7 +41,7 @@ void Game::Update()
 	}
 	else
 	{
-		MapManager::Update();
+		//MapManager::Update();
 		PawnManager::Update();
 	}
 	//SkillTreeManager::Update();
@@ -68,7 +68,7 @@ void Game::Display()
 	}
 	else
 	{
-		MapManager::Display();
+		//MapManager::Display();
 		PawnManager::Display();
 	}
 

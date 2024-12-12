@@ -1,5 +1,6 @@
 #pragma once
 #include "State.h"
+#include "Map.h"
 
 class Editor : public State
 {
@@ -11,5 +12,6 @@ public:
 	virtual void Display() override;
 
 private:
+	Map m_Map;
 
 };

@@ -203,7 +203,6 @@
     <ClCompile Include="MapFighterManager.cpp" />
     <ClCompile Include="MapItem.cpp" />
     <ClCompile Include="MapItemManager.cpp" />
-    <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="Master.cpp" />
     <ClCompile Include="MouseManager.cpp" />
     <ClCompile Include="musicManager.cpp" />
@@ -228,6 +227,9 @@
     <ClCompile Include="Specialization.cpp" />
     <ClCompile Include="SpiritWolf.cpp" />
     <ClCompile Include="Talker.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileAuto.cpp" />
+    <ClCompile Include="TileAutoDatabase.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TreeDataBase.cpp" />
     <ClCompile Include="SocialSkills.cpp" />
@@ -293,7 +295,6 @@
     <ClInclude Include="MapFighterManager.h" />
     <ClInclude Include="MapItem.h" />
     <ClInclude Include="MapItemManager.h" />
-    <ClInclude Include="MapManager.h" />
     <ClInclude Include="Master.h" />
     <ClInclude Include="MouseManager.h" />
     <ClInclude Include="musicManager.h" />
@@ -318,6 +319,9 @@
     <ClInclude Include="Specialization.h" />
     <ClInclude Include="SpiritWolf.h" />
     <ClInclude Include="Talker.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileAuto.h" />
+    <ClInclude Include="TileAutoDatabase.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TreeDataBase.h" />
     <ClInclude Include="SocialSkills.h" />
