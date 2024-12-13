@@ -8,9 +8,9 @@ public:
 	~TileAutoDatabase();
 
 private:
-	const uint16_t& GetId(const TileAuto* const& _tileAuto) const;
-	void AddTileAuto(TileAuto* _tileAuto);
+	static uint32_t GetId(const TileAuto* const& _tileAuto);
+	static void AddTileAuto(TileAuto* _tileAuto);
 
-	std::map<uint16_t, TileAuto*> m_TileAuto{};
+	static std::map<uint32_t, TileAuto*> m_TileAuto;
 
 };

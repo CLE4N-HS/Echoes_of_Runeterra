@@ -7,7 +7,8 @@ public:
 	enum Type : uint8_t
 	{
 		VOID = 0,
-		GRASS
+		GRASS,
+		DIRT
 	};
 	//enum Direction : uint8_t
 	//{
@@ -27,6 +28,8 @@ public:
 	Tile() = default;
 	Tile(sf::IntRect _rect, sf::Vector2f _pos, Tile::Type _type);
 	~Tile() = default;
+
+	inline uint8_t GetType() const { return static_cast<uint8_t>(m_Type); }
 
 protected:
 	sf::IntRect m_Rect = sf::IntRect();

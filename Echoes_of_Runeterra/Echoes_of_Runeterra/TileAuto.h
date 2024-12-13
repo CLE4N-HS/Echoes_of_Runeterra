@@ -20,14 +20,14 @@ public:
 	};
 
 	TileAuto() = default;
-	TileAuto(Tile _tile, uint8_t _insideDirection = 0, uint8_t _outsideDirection = 0);
+	TileAuto(Tile _tile, uint8_t _insideDirection = 0, Tile::Type _outsideType = Tile::Type::VOID);
 	~TileAuto() = default;
 
-	inline const uint8_t& GetInside()  const { return m_Inside; }
-	inline const uint8_t& GetOutside() const { return m_Outisde; }
+	inline uint8_t GetInside()  const { return m_Inside; }
+	inline uint8_t GetOutside() const { return static_cast<uint8_t>(m_Outisde); }
 
 private:
 	uint8_t m_Inside  = 0;
-	uint8_t m_Outisde = 0;
+	Tile::Type m_Outisde = Tile::Type::VOID;
 
 };
