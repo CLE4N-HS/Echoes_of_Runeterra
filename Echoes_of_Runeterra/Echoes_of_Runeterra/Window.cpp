@@ -33,7 +33,7 @@ Window::Window(const sf::String& title, sf::Uint32 style)
 	text.setFont(m_font);
 
 #ifdef USING_IMGUI
-	//ImGui::SFML::Init(m_renderWindow);
+	ImGui::SFML::Init(m_renderWindow);
 #endif // USING_IMGUI
 }
 
@@ -46,7 +46,7 @@ void Window::Update()
 			m_isDone = true;
 
 #ifdef USING_IMGUI
-		//ImGui::SFML::ProcessEvent(m_renderWindow, m_event);
+		ImGui::SFML::ProcessEvent(m_renderWindow, m_event);
 #endif // USING_IMGUI
 	}
 
@@ -59,14 +59,14 @@ void Window::Update()
 		ToggleFullscreen();
 
 #ifdef USING_IMGUI
-	//ImGui::SFML::Update(m_renderWindow, Tools::GetSfTime());
+	ImGui::SFML::Update(m_renderWindow, Tools::GetSfTime());
 #endif // USING_IMGUI
 }
 
 void Window::Display()
 {
 #ifdef USING_IMGUI
-	//ImGui::SFML::Render(m_renderTexture);
+	ImGui::SFML::Render(m_renderTexture);
 #endif // USING_IMGUI
 
 	m_renderWindow.clear();

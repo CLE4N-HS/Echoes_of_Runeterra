@@ -19,18 +19,18 @@ void music_load(int _state)
 
 	while (fgets(tmpLine, 180, file) != NULL)
 	{
-		sscanf(tmpLine, "%s ", tmpWord);
+		//sscanf(tmpLine, "%s ", tmpWord);
 
 		strcpy(tmpWord, "");
 		strcpy(tmpMusicName, "");
 		strcpy(filePath, "");
-		sscanf(tmpLine, "%s %s", tmpMusicName, tmpMusicPath);
+		//sscanf(tmpLine, "%s %s", tmpMusicName, tmpMusicPath);
 		sprintf(tmpMusicFullPath, "%s%s", PATH_RESOURCES_MUSIC, tmpMusicPath);
 		music_SData* tmpMusic = (music_SData*)calloc(1, sizeof(music_SData));
-		tmpMusic->name = (char*)malloc(sizeof(char) * 30);
-		strcpy(tmpMusic->name, tmpMusicName);
-		tmpMusic->music.openFromFile(tmpMusicFullPath);
-		tmpMusic->state = _state;
+		//tmpMusic->name = (char*)malloc(sizeof(char) * 30);
+		//strcpy(tmpMusic->name, tmpMusicName);
+		//tmpMusic->music.openFromFile(tmpMusicFullPath);
+		//tmpMusic->state = _state;
 
 		music_add(tmpMusic);
 
