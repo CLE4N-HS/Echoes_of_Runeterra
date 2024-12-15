@@ -11,6 +11,7 @@
 
 #pragma once
 #include "tools.h"
+#include "SFML/Audio.hpp"
 
 typedef struct sound_SData sound_SData;
 struct sound_SData {

@@ -7,7 +7,7 @@ sf::RenderWindow Window::m_renderWindow = sf::RenderWindow();
 sf::RenderTexture Window::m_renderTexture = sf::RenderTexture();
 sf::Font Window::m_font = sf::Font();
 sf::VideoMode Window::m_videoMode = sf::VideoMode::getDesktopMode();
-sf::String Window::m_title = sf::String("Echoes of Runterra");
+sf::String Window::m_title = sf::String("Echoes of Runeterra");
 sf::Uint32 Window::m_style = sf::Style::Default;
 bool Window::m_isFullscreen = false;
 unsigned int Window::m_framerateLimit = 60;
@@ -31,6 +31,10 @@ Window::Window(const sf::String& title, sf::Uint32 style)
 	m_renderTexture.create(m_videoMode.width, m_videoMode.height);
 	m_font.loadFromFile("../Resources/NeoTech.ttf"); // default font for now
 	text.setFont(m_font);
+
+#ifdef USING_IMGUI
+	//ImGui::SFML::Init(m_renderWindow);
+#endif // USING_IMGUI
 }
 
 void Window::Update()
@@ -40,6 +44,10 @@ void Window::Update()
 		if (m_event.type == sf::Event::Closed
 			|| sf::Mouse::isButtonPressed(sf::Mouse::Middle)) // TODO remove this
 			m_isDone = true;
+
+#ifdef USING_IMGUI
+		//ImGui::SFML::ProcessEvent(m_renderWindow, m_event);
+#endif // USING_IMGUI
 	}
 
 	m_hasFocus = m_renderWindow.hasFocus();
@@ -49,10 +57,18 @@ void Window::Update()
 	m_fullscreenTimer += ((m_fullscreenTimer > 0.5f) ? 0.f : Tools::GetDeltaTime());
 	if (m_hasFocus && m_fullscreenTimer >= 0.5f && sf::Keyboard::isKeyPressed(sf::Keyboard::F11))
 		ToggleFullscreen();
+
+#ifdef USING_IMGUI
+	//ImGui::SFML::Update(m_renderWindow, Tools::GetSfTime());
+#endif // USING_IMGUI
 }
 
 void Window::Display()
 {
+#ifdef USING_IMGUI
+	//ImGui::SFML::Render(m_renderTexture);
+#endif // USING_IMGUI
+
 	m_renderWindow.clear();
 	m_renderTexture.display();
 

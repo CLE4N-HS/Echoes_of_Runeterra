@@ -1,18 +1,22 @@
 #pragma once
-
 #pragma warning(push)
 #pragma warning(disable:26495)
-
 #include <iostream>
 #include <string>
+
 #include "SFML/Graphics.hpp"
-#include "SFML/Audio.hpp"
+#pragma warning(pop)
+
 #include <fstream>
 #include <map>
 #include <list>
 #include <unordered_map>
 
-#pragma warning(pop)
+#ifdef USING_IMGUI
+//#include "imgui.h"
+//#include "imgui-SFML.h"
+#endif // USING_IMGUI
+
 
 #define EPSILON (static_cast<float>(1e-6))
 #define DEG2RAD (static_cast<float>(0.01745329f))
@@ -30,6 +34,7 @@ public:
 	static void Update();
 
 	static inline float GetDeltaTime() { return m_deltaTime; }
+	static inline sf::Time GetSfTime() { return m_time; }
 
 	static float Magnitude(const sf::Vector2f& _v);
 	static float Magnitude(const sf::Vector2f& _v1, const sf::Vector2f& _v2);
