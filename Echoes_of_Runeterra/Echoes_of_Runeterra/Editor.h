@@ -1,5 +1,6 @@
 #pragma once
 #include "State.h"
+#include "TileAutoDatabase.h"
 #include "Map.h"
 
 class Editor : public State
@@ -12,6 +13,7 @@ public:
 	virtual void Display() override;
 
 private:
+	TileAutoDatabase m_tileAutoDatabase;
 	Map m_Map;
 
 };

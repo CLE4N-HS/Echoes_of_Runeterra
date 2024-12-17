@@ -1,10 +1,6 @@
 #include "TileAutoDatabase.h"
 #include "TileAuto.h"
 
-std::map<uint32_t, TileAuto*> TileAutoDatabase::m_TileAuto{};
-
-TileAutoDatabase TODO_NOT_HERE;
-
 TileAutoDatabase::TileAutoDatabase()
 {
 	AddTileAuto(new TileAuto(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), TileAuto::Direction::VOID));
