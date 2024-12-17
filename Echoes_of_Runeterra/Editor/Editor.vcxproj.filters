@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Fichiers sources\TOOLS">
+      <UniqueIdentifier>{6ccd2c55-ea71-4b3c-8c8d-2cc4e9114baf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\TOOLS">
+      <UniqueIdentifier>{59e5fd25-be75-40e1-a11b-9cbdd47e9e8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\TOOLS\UTILITY">
+      <UniqueIdentifier>{5b5be683-ff41-4c52-8d20-952779ef6644}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\TOOLS\UTILITY">
+      <UniqueIdentifier>{d2170822-8d7a-4193-ad0f-ff0f2f48cb76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\EDITOR">
+      <UniqueIdentifier>{9732e186-d872-4d63-8f69-f7579a0e6d6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\EDITOR">
+      <UniqueIdentifier>{79fb148a-e47f-43cd-b440-b75207377bba}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="imgui.cpp">
+      <Filter>Fichiers de ressources</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_draw.cpp">
+      <Filter>Fichiers de ressources</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_tables.cpp">
+      <Filter>Fichiers de ressources</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_widgets.cpp">
+      <Filter>Fichiers de ressources</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui-SFML.cpp">
+      <Filter>Fichiers de ressources</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Fichiers sources\EDITOR</Filter>
+    </ClCompile>
+    <ClCompile Include="Master.cpp">
+      <Filter>Fichiers sources\TOOLS\UTILITY</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Fichiers sources\TOOLS\UTILITY</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseManager.cpp">
+      <Filter>Fichiers sources\TOOLS\UTILITY</Filter>
+    </ClCompile>
+    <ClCompile Include="StateManager.cpp">
+      <Filter>Fichiers sources\TOOLS\UTILITY</Filter>
+    </ClCompile>
+    <ClCompile Include="Tools.cpp">
+      <Filter>Fichiers sources\TOOLS\UTILITY</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Fichiers sources\TOOLS\UTILITY</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Fichiers sources\EDITOR</Filter>
+    </ClCompile>
+    <ClCompile Include="TileAuto.cpp">
+      <Filter>Fichiers sources\EDITOR</Filter>
+    </ClCompile>
+    <ClCompile Include="TileAutoDatabase.cpp">
+      <Filter>Fichiers sources\EDITOR</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor.cpp">
+      <Filter>Fichiers sources\EDITOR</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Map.h">
+      <Filter>Fichiers d%27en-tête\EDITOR</Filter>
+    </ClInclude>
+    <ClInclude Include="Master.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\UTILITY</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\UTILITY</Filter>
+    </ClInclude>
+    <ClInclude Include="StateManager.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\UTILITY</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\UTILITY</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\UTILITY</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseManager.h">
+      <Filter>Fichiers d%27en-tête\TOOLS\UTILITY</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Fichiers d%27en-tête\EDITOR</Filter>
+    </ClInclude>
+    <ClInclude Include="TileAuto.h">
+      <Filter>Fichiers d%27en-tête\EDITOR</Filter>
+    </ClInclude>
+    <ClInclude Include="TileAutoDatabase.h">
+      <Filter>Fichiers d%27en-tête\EDITOR</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor.h">
+      <Filter>Fichiers d%27en-tête\EDITOR</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
