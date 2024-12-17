@@ -10,20 +10,20 @@ public:
 	/// <summary>
 	/// Updates all Pawn
 	/// </summary>
-	static void Update();
+	void Update();
 
 	/// <summary>
 	/// Displays all Pawn
 	/// </summary>
-	static void Display();
+	void Display();
 
-	static Pawn* GetPawn(const std::string& _name);
+	Pawn* GetPawn(const std::string& _name);
 
-	static Pawn* getClosestNpc(sf::Vector2f _pos, float _minDistance);
-	static sf::Vector2f getCharacterPos(std::string _name);
-	static void addCharacterItem(std::string _name, Item* _item);
+	//static Pawn* getClosestNpc(sf::Vector2f _pos, float _minDistance);
+	//static sf::Vector2f getCharacterPos(std::string _name);
+	//static void addCharacterItem(std::string _name, Item* _item);
 
 private:
-	static std::vector<Pawn*> m_pawn;
+	std::vector<Pawn*> m_pawn;
 
 };

@@ -1,11 +1,12 @@
 #pragma once
 #include "Window.h"
 #include "Map.h"
+#include "Player.h"
 
 class MapManager
 {
 public:
-	MapManager();
+	MapManager(Player* _player);
 	~MapManager();
 
 	static void Update();

@@ -3,7 +3,7 @@
 #include "Talker.h"
 #include "ComponentName.h"
 
-std::vector<Pawn*> PawnManager::m_pawn;
+//std::vector<Pawn*> PawnManager::m_pawn;
 
 PawnManager::PawnManager()
 {
@@ -58,34 +58,34 @@ Pawn* PawnManager::GetPawn(const std::string& _name)
 	return nullptr;
 }
 
-Pawn* PawnManager::getClosestNpc(sf::Vector2f _pos, float _minDistance)
-{
-	//float closestDistance(_minDistance);
-	//Pawn* closestNpc(nullptr);
-	//for (std::map<std::string, Pawn*>::iterator it = m_character.begin(); it != m_character.end(); it++)
-	//{
-	//	if (it->first != "Player")
-	//	{
-	//		float magnitude = vec2fGetSqrMagnitude(_pos - it->second->getPos());
-	//		if (magnitude < _minDistance)
-	//		{
-	//			closestDistance = magnitude;
-	//			closestNpc = it->second;
-	//		}
-	//	}
-	//}
-
-	//return closestNpc;
-	return nullptr;
-}
-
-sf::Vector2f PawnManager::getCharacterPos(std::string _name)
-{
-	return sf::Vector2f();
-	//return m_character[_name]->getPos();
-}
-
-void PawnManager::addCharacterItem(std::string _name, Item* _item)
-{
-	//m_character[_name]->addItem(_item);
-}
+//Pawn* PawnManager::getClosestNpc(sf::Vector2f _pos, float _minDistance)
+//{
+//	//float closestDistance(_minDistance);
+//	//Pawn* closestNpc(nullptr);
+//	//for (std::map<std::string, Pawn*>::iterator it = m_character.begin(); it != m_character.end(); it++)
+//	//{
+//	//	if (it->first != "Player")
+//	//	{
+//	//		float magnitude = vec2fGetSqrMagnitude(_pos - it->second->getPos());
+//	//		if (magnitude < _minDistance)
+//	//		{
+//	//			closestDistance = magnitude;
+//	//			closestNpc = it->second;
+//	//		}
+//	//	}
+//	//}
+//
+//	//return closestNpc;
+//	return nullptr;
+//}
+//
+//sf::Vector2f PawnManager::getCharacterPos(std::string _name)
+//{
+//	return sf::Vector2f();
+//	//return m_character[_name]->getPos();
+//}
+//
+//void PawnManager::addCharacterItem(std::string _name, Item* _item)
+//{
+//	//m_character[_name]->addItem(_item);
+//}

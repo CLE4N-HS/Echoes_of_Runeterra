@@ -7,7 +7,7 @@
 #include "ComponentName.h"
 #include "EnemyDatabase.h"
 
-Map::Map() : m_itemManager()
+Map::Map(Player* _player) : m_itemManager(), m_fighterManager(_player)
 {
 	m_itemManager.AddItem(new MapItem(new GameItem(ItemDatabase::CreateNewItem("wood"), 20)), Transform(sf::Vector2f(500.f, 100.f), sf::Vector2f(50.f, 50.f)));
 	m_itemManager.AddItem(new MapItem(new GameItem(ItemDatabase::CreateNewItem("rice"), 55)), Transform(sf::Vector2f(800.f, 200.f), sf::Vector2f(20.f, 20.f)));

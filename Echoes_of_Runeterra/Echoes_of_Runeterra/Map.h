@@ -6,7 +6,7 @@
 class Map
 {
 public:
-	Map();
+	Map(Player* _player);
 	~Map();
 
 	void Update();

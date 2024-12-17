@@ -6,26 +6,27 @@
 #include "ComponentName.h"
 #include "EnemyDatabase.h"
 
-MapFighterManager::MapFighterManager()
+MapFighterManager::MapFighterManager(Player* _player) : m_player(_player)
 {
 }
 
 MapFighterManager::~MapFighterManager()
 {
 	// TODO clear
+	//
 }
 
 void MapFighterManager::Update()
 {
 	const sf::Vector2f mousePos = Window::GetMousePos();
 
-	Player* player = dynamic_cast<Player*>(PawnManager::GetPawn("Player"));
+	//Player* player = dynamic_cast<Player*>(PawnManager::GetPawn("Player"));
 
 	for (std::list<MapFighter*>::iterator it = m_mapFighter.begin(); it != m_mapFighter.end();)
 	{
-		if (player && player->transform->GetRect().intersects((*it)->m_fighter->transform->GetRect()))
+		if (m_player->transform->GetRect().intersects((*it)->m_fighter->transform->GetRect()))
 		{
-			FightManager::SetupFight(new Fight(player, std::vector<Enemy*>{EnemyDatabase::CreateNewEnemy(dynamic_cast<Enemy*>((*it)->m_fighter)),
+			FightManager::SetupFight(new Fight(m_player, std::vector<Enemy*>{EnemyDatabase::CreateNewEnemy(dynamic_cast<Enemy*>((*it)->m_fighter)),
 				EnemyDatabase::CreateNewEnemy(dynamic_cast<Enemy*>((*it)->m_fighter)),
 				EnemyDatabase::CreateNewEnemy(dynamic_cast<Enemy*>((*it)->m_fighter))}));
 			delete (*it)->m_fighter;

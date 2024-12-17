@@ -4,7 +4,7 @@
 class MapFighterManager
 {
 public:
-	MapFighterManager();
+	MapFighterManager(Player* _player);
 	~MapFighterManager();
 
 	void Update();
@@ -14,6 +14,7 @@ public:
 
 private:
 	std::list<MapFighter*> m_mapFighter = {};
+	Player* m_player = nullptr;
 
 };
 
