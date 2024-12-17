@@ -1,14 +1,13 @@
 #include "StateManager.h"
 #include "ressourcesManager.h"
 #include "Game.h"
-#include "Editor.h"
 
 State* StateManager::m_state = nullptr;
 
 StateManager::StateManager()
 {
 	res_load(RES_ALL);
-	m_state = new Editor();
+	m_state = new Game();
 }
 
 StateManager::~StateManager()

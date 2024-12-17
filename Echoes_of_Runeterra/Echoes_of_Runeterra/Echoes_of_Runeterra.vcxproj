@@ -117,7 +117,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS;USING_IMGUI</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>..\SFML-2.6.1\include;..\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -170,7 +170,6 @@
     <ClCompile Include="Dialogue.cpp" />
     <ClCompile Include="DialogueDataBase.cpp" />
     <ClCompile Include="DialogueManager.cpp" />
-    <ClCompile Include="Editor.cpp" />
     <ClCompile Include="EndButton.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyDatabase.cpp" />
@@ -188,11 +187,6 @@
     <ClCompile Include="FightStateSkillTree.cpp" />
     <ClCompile Include="FightStats.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="imgui-SFML.cpp" />
-    <ClCompile Include="imgui.cpp" />
-    <ClCompile Include="imgui_draw.cpp" />
-    <ClCompile Include="imgui_tables.cpp" />
-    <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="Interaction.cpp" />
     <ClCompile Include="InteractionManager.cpp" />
     <ClCompile Include="InteractionPlayerMap.cpp" />
@@ -203,7 +197,6 @@
     <ClCompile Include="ItemDatabase.cpp" />
     <ClCompile Include="KeyboardManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapFighter.cpp" />
     <ClCompile Include="MapFighterManager.cpp" />
     <ClCompile Include="MapItem.cpp" />
@@ -232,9 +225,6 @@
     <ClCompile Include="Specialization.cpp" />
     <ClCompile Include="SpiritWolf.cpp" />
     <ClCompile Include="Talker.cpp" />
-    <ClCompile Include="Tile.cpp" />
-    <ClCompile Include="TileAuto.cpp" />
-    <ClCompile Include="TileAutoDatabase.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TreeDataBase.cpp" />
     <ClCompile Include="SocialSkills.cpp" />
@@ -268,7 +258,6 @@
     <ClInclude Include="Dialogue.h" />
     <ClInclude Include="DialogueDataBase.h" />
     <ClInclude Include="DialogueManager.h" />
-    <ClInclude Include="Editor.h" />
     <ClInclude Include="EndButton.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyDatabase.h" />
@@ -295,7 +284,6 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemDatabase.h" />
     <ClInclude Include="KeyboardManager.h" />
-    <ClInclude Include="Map.h" />
     <ClInclude Include="MapFighter.h" />
     <ClInclude Include="MapFighterManager.h" />
     <ClInclude Include="MapItem.h" />
@@ -324,9 +312,6 @@
     <ClInclude Include="Specialization.h" />
     <ClInclude Include="SpiritWolf.h" />
     <ClInclude Include="Talker.h" />
-    <ClInclude Include="Tile.h" />
-    <ClInclude Include="TileAuto.h" />
-    <ClInclude Include="TileAutoDatabase.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TreeDataBase.h" />
     <ClInclude Include="SocialSkills.h" />

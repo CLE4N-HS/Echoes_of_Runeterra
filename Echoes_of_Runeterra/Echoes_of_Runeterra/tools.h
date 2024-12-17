@@ -10,10 +10,6 @@
 #include <map>
 #include <list>
 #include <unordered_map>
-#ifdef USING_IMGUI
-#include "imgui.h"
-#include "imgui-SFML.h"
-#endif // USING_IMGUI
 #pragma warning(pop)
 
 
