@@ -1,6 +1,6 @@
 #include "Editor.h"
 
-Editor::Editor() : m_tileAutoDatabase(), m_Map()
+Editor::Editor() : m_AutoTileDatabase(), m_Map()
 {
 }
 

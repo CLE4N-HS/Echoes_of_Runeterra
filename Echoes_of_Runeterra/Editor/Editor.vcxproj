@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AutoTile.cpp" />
+    <ClCompile Include="AutoTileDatabase.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="imgui-SFML.cpp" />
     <ClCompile Include="imgui.cpp" />
@@ -32,12 +34,12 @@
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Tile.cpp" />
-    <ClCompile Include="TileAuto.cpp" />
-    <ClCompile Include="TileAutoDatabase.cpp" />
     <ClCompile Include="Tools.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AutoTile.h" />
+    <ClInclude Include="AutoTileDatabase.h" />
     <ClInclude Include="Editor.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Master.h" />
@@ -45,8 +47,6 @@
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="Tile.h" />
-    <ClInclude Include="TileAuto.h" />
-    <ClInclude Include="TileAutoDatabase.h" />
     <ClInclude Include="Tools.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

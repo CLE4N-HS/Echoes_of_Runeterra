@@ -75,13 +75,13 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Fichiers sources\EDITOR</Filter>
     </ClCompile>
-    <ClCompile Include="TileAuto.cpp">
-      <Filter>Fichiers sources\EDITOR</Filter>
-    </ClCompile>
-    <ClCompile Include="TileAutoDatabase.cpp">
-      <Filter>Fichiers sources\EDITOR</Filter>
-    </ClCompile>
     <ClCompile Include="Editor.cpp">
+      <Filter>Fichiers sources\EDITOR</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoTile.cpp">
+      <Filter>Fichiers sources\EDITOR</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoTileDatabase.cpp">
       <Filter>Fichiers sources\EDITOR</Filter>
     </ClCompile>
   </ItemGroup>
@@ -110,13 +110,13 @@
     <ClInclude Include="Tile.h">
       <Filter>Fichiers d%27en-tête\EDITOR</Filter>
     </ClInclude>
-    <ClInclude Include="TileAuto.h">
-      <Filter>Fichiers d%27en-tête\EDITOR</Filter>
-    </ClInclude>
-    <ClInclude Include="TileAutoDatabase.h">
-      <Filter>Fichiers d%27en-tête\EDITOR</Filter>
-    </ClInclude>
     <ClInclude Include="Editor.h">
+      <Filter>Fichiers d%27en-tête\EDITOR</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoTile.h">
+      <Filter>Fichiers d%27en-tête\EDITOR</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoTileDatabase.h">
       <Filter>Fichiers d%27en-tête\EDITOR</Filter>
     </ClInclude>
   </ItemGroup>
