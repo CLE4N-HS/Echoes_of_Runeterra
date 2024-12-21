@@ -31,6 +31,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Master.cpp" />
     <ClCompile Include="MouseManager.cpp" />
+    <ClCompile Include="SimpleTile.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -44,6 +45,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="Master.h" />
     <ClInclude Include="MouseManager.h" />
+    <ClInclude Include="SimpleTile.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="Tile.h" />

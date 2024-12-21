@@ -15,5 +15,6 @@ public:
 private:
 	AutoTileDatabase m_AutoTileDatabase;
 	Map m_Map;
+	sf::Texture m_MapTexture;
 
 };

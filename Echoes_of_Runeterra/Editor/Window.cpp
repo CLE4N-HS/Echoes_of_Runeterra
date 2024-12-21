@@ -1,4 +1,6 @@
 #include "Window.h"
+#include "imgui.h"
+#include "imgui-SFML.h"
 
 sf::RectangleShape Window::rectangle = sf::RectangleShape();
 sf::Text Window::text = sf::Text();

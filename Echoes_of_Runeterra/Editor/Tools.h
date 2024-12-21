@@ -10,8 +10,6 @@
 #include <map>
 #include <list>
 #include <unordered_map>
-#include "imgui.h"
-#include "imgui-SFML.h"
 #pragma warning(pop)
 
 

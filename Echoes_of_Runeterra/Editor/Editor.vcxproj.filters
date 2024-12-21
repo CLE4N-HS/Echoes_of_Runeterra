@@ -84,6 +84,9 @@
     <ClCompile Include="AutoTileDatabase.cpp">
       <Filter>Fichiers sources\EDITOR</Filter>
     </ClCompile>
+    <ClCompile Include="SimpleTile.cpp">
+      <Filter>Fichiers sources\EDITOR</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Map.h">
@@ -117,6 +120,9 @@
       <Filter>Fichiers d%27en-tête\EDITOR</Filter>
     </ClInclude>
     <ClInclude Include="AutoTileDatabase.h">
+      <Filter>Fichiers d%27en-tête\EDITOR</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleTile.h">
       <Filter>Fichiers d%27en-tête\EDITOR</Filter>
     </ClInclude>
   </ItemGroup>
