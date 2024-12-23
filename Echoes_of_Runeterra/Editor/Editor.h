@@ -2,6 +2,7 @@
 #include "State.h"
 #include "AutoTileDatabase.h"
 #include "Map.h"
+#include "MapEdit.h"
 
 class Editor : public State
 {
@@ -15,6 +16,6 @@ public:
 private:
 	AutoTileDatabase m_AutoTileDatabase;
 	Map m_Map;
-	sf::Texture m_MapTexture;
+	MapEdit m_MapEdit;
 
 };
