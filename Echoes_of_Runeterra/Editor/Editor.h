@@ -18,4 +18,7 @@ private:
 	Map m_Map;
 	MapEdit m_MapEdit;
 
+	sf::Texture* m_CurrentTexture = nullptr;
+	sf::IntRect m_CurrentRect = sf::IntRect();
+
 };

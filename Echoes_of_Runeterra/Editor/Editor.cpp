@@ -2,6 +2,7 @@
 #include "imgui.h"
 #include "imgui-SFML.h"
 #include "TextureManager.h"
+#include "Window.h"
 
 constexpr int TILE_SIZE = 32;
 
@@ -20,14 +21,22 @@ void Editor::Update()
 {
 	namespace ig = ImGui;
 
-	bool* igUseless = nullptr;
-	if (ig::Begin("Editor", igUseless, ImGuiWindowFlags_HorizontalScrollbar))
+	bool* igUselessBool = nullptr;
+	if (ig::Begin("Editor", igUselessBool, ImGuiWindowFlags_HorizontalScrollbar))
 	{
 		if (ig::TreeNode("Map"))
 		{
-			static sf::Texture* currentTexture = nullptr;
+			if (m_CurrentRect.width != 0)
+			{
+				if (ig::Button("CLEAN"))
+				{
+					m_CurrentRect.width = 0;
+				}
+				ig::SameLine();
+				ig::Text("-> Remove the current Tile from your cursor");
+			}
 
-			if (ig::TreeNode("Map Texture"))
+			if (ig::TreeNode("Texture"))
 			{
 				std::map<std::string_view, sf::Texture*> texture = TextureManager::Get();
 
@@ -35,7 +44,7 @@ void Editor::Update()
 				{
 					if (ig::Button((*it).first.data()))
 					{
-						currentTexture = (*it).second;
+						m_CurrentTexture = (*it).second;
 					}
 				}
 
@@ -44,35 +53,35 @@ void Editor::Update()
 				ig::TreePop();
 			}
 
-			if (currentTexture)
+			if (m_CurrentTexture)
 			{
 				static int igTileSize = 16;
 				ig::PushItemWidth(400.f);
 				ig::SliderInt("Size", &igTileSize, 0, 64);
 
-
-
-				int sizeX = static_cast<int>(currentTexture->getSize().x) / TILE_SIZE;
-				int sizeY = static_cast<int>(currentTexture->getSize().y) / TILE_SIZE;
-
-				sf::Sprite spr(*currentTexture);
-
-				ig::NewLine();
-				for (int y = 0; y < sizeY; y++)
+				if (igTileSize > 0)
 				{
-					for (int x = 0; x < sizeX; x++)
-					{
-						ig::SameLine(0.f, 4.f);
-						spr.setTextureRect(sf::IntRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE));
-						if (ig::ImageButton(std::to_string(y * 100 + x).c_str(), spr, sf::Vector2f(sf::Vector2i(igTileSize, igTileSize))))
-						{
-						}
-					}
+					int sizeX = static_cast<int>(m_CurrentTexture->getSize().x) / TILE_SIZE;
+					int sizeY = static_cast<int>(m_CurrentTexture->getSize().y) / TILE_SIZE;
+
+					sf::Sprite spr(*m_CurrentTexture);
+
 					ig::NewLine();
+					for (int y = 0; y < sizeY; y++)
+					{
+						for (int x = 0; x < sizeX; x++)
+						{
+							ig::SameLine(0.f, 4.f);
+							spr.setTextureRect(sf::IntRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE));
+							if (ig::ImageButton(std::to_string(y * 100 + x).c_str(), spr, sf::Vector2f(sf::Vector2i(igTileSize, igTileSize))))
+							{
+								m_CurrentRect = sf::IntRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+							}
+						}
+						ig::NewLine();
+					}
 				}
 			}
-
-			
 
 			ig::TreePop();
 		}
@@ -87,4 +96,18 @@ void Editor::Update()
 void Editor::Display()
 {
 	m_Map.Display();
+
+	if (m_CurrentTexture && m_CurrentRect.width != 0)
+	{
+		Window::rectangle.setTexture(m_CurrentTexture);
+		Window::rectangle.setTextureRect(m_CurrentRect);
+		Window::rectangle.setPosition(Window::GetMousePos());
+		Window::rectangle.setSize(sf::Vector2f(sf::Vector2i(TILE_SIZE, TILE_SIZE)));
+		Window::rectangle.setOrigin(sf::Vector2f());
+		Window::rectangle.setFillColor(sf::Color(255, 255, 255));
+		Window::Draw();
+
+		Window::rectangle.setTexture(nullptr);
+	}
+
 }
