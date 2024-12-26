@@ -21,10 +21,13 @@ public:
 	static inline bool IsDone() { return m_isDone; }
 	static inline bool HasFocus() { return m_hasFocus; }
 	static inline sf::Vector2f GetMousePos() { return m_mousePos; }
+	static inline sf::Vector2f GetMouseViewPos() { return m_renderTexture.mapPixelToCoords(sf::Vector2i(m_mousePos)); }
 	static void Draw(const sf::Drawable& drawable = rectangle, const sf::RenderStates& states = sf::RenderStates::Default);
+	static void SetView(const sf::View& view = view);
 
 	static sf::RectangleShape rectangle;
 	static sf::Text text;
+	static sf::View view;
 
 private:
 	static sf::RenderWindow m_renderWindow;

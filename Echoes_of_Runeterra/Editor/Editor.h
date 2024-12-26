@@ -11,7 +11,7 @@ public:
 	~Editor();
 
 	virtual void Update() override;
-	void UpdateImGui();
+	bool UpdateImGui();
 	virtual void Display() override;
 
 

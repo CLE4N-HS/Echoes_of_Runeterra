@@ -4,6 +4,7 @@
 
 sf::RectangleShape Window::rectangle = sf::RectangleShape();
 sf::Text Window::text = sf::Text();
+sf::View Window::view = sf::View();
 
 sf::RenderWindow Window::m_renderWindow = sf::RenderWindow();
 sf::RenderTexture Window::m_renderTexture = sf::RenderTexture();
@@ -33,6 +34,10 @@ Window::Window(const sf::String& title, sf::Uint32 style)
 	m_renderTexture.create(m_videoMode.width, m_videoMode.height);
 	m_font.loadFromFile("../Resources/NeoTech.ttf"); // default font for now
 	text.setFont(m_font);
+	view.setCenter(960.f, 540.f);
+	view.setSize(1920.f, 1080.f);
+	m_renderWindow.setView(view);
+	m_renderTexture.setView(view);
 
 	ImGui::SFML::Init(m_renderWindow);
 }
@@ -76,6 +81,11 @@ void Window::Display()
 void Window::Draw(const sf::Drawable& drawable, const sf::RenderStates& states)
 {
 	m_renderTexture.draw(drawable, states);
+}
+
+void Window::SetView(const sf::View& view)
+{
+	m_renderTexture.setView(view);
 }
 
 void Window::ToggleFullscreen()

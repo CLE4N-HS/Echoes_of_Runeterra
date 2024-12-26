@@ -7,8 +7,8 @@
 
 Map::Map()
 {
-	size_t sizeY = 20;
-	size_t sizeX = 10;
+	size_t sizeY = 10;
+	size_t sizeX = 20;
 
 	m_Map.reserve(sizeY);
 	for (size_t y = 0; y < sizeY; y++)
@@ -34,7 +34,7 @@ void Map::Display()
 		{
 			Window::rectangle.setTexture(TileTextureManager::GetTexture(m_Map[y][x]->GetTextureName()));
 			Window::rectangle.setTextureRect(m_Map[y][x]->GetRect());
-			Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(y * 32, x * 32)));
+			Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(x * 32, y * 32)));
 			Window::rectangle.setSize(sf::Vector2f(32.f, 32.f));
 			Window::Draw();
 		}

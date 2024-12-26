@@ -16,22 +16,55 @@ Editor::~Editor()
 
 void Editor::Update()
 {
-	this->UpdateImGui();
-
-	if (TileTextureManager::GetTexture(m_CurrentTextureName) && m_CurrentRect.width != 0)
+	if (!(this->UpdateImGui()))
 	{
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (TileTextureManager::GetTexture(m_CurrentTextureName) && m_CurrentRect.width != 0)
 		{
-			sf::Vector2f mousePos = Window::GetMousePos();
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				sf::Vector2f mousePos = Window::GetMouseViewPos();
 
-			m_MapEdit.EditTile(mousePos, m_CurrentTextureName, m_CurrentRect);
+				m_MapEdit.EditTile(mousePos, m_CurrentTextureName, m_CurrentRect);
+			}
 		}
+	}
+
+	float dt = Tools::GetDeltaTime();
+
+	float viewSpeed = 500.f * dt;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+	{
+		Window::view.move(sf::Vector2f(0.f, -viewSpeed));
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+	{
+		Window::view.move(sf::Vector2f(-viewSpeed, 0.f));
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		Window::view.move(sf::Vector2f(0.f, viewSpeed));
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		Window::view.move(sf::Vector2f(viewSpeed, 0.f));
+	}
+
+	float viewZoomSpeed = dt;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		Window::view.zoom(1.f + viewZoomSpeed);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+	{
+		Window::view.zoom(1.f - viewZoomSpeed);
 	}
 }
 
-void Editor::UpdateImGui()
+bool Editor::UpdateImGui()
 {
 	namespace ig = ImGui;
+
+	bool isMouseOnWindow(false);
 
 	bool* igUselessBool = nullptr;
 	if (ig::Begin("Editor", igUselessBool, ImGuiWindowFlags_HorizontalScrollbar))
@@ -98,22 +131,30 @@ void Editor::UpdateImGui()
 			ig::TreePop();
 		}
 
-
-
 		//ig::Image(m_MapTexture, sf::Vector2f(m_MapTexture.getSize()));
+
+		float windowOffset = 20.f;
+		if (sf::FloatRect(ig::GetWindowPos().x - windowOffset, ig::GetWindowPos().y - windowOffset, ig::GetWindowSize().x + windowOffset * 2.f, ig::GetWindowSize().y + windowOffset * 2.f).contains(Window::GetMousePos()))
+		{
+			isMouseOnWindow = true;
+		}
 	}
 	ig::End();
+
+	return isMouseOnWindow;
 }
 
 void Editor::Display()
 {
+	Window::SetView();
+
 	m_Map.Display();
 
 	if (sf::Texture* currentTexture = TileTextureManager::GetTexture(m_CurrentTextureName); m_CurrentRect.width != 0)
 	{
 		Window::rectangle.setTexture(currentTexture);
 		Window::rectangle.setTextureRect(m_CurrentRect);
-		Window::rectangle.setPosition(Window::GetMousePos());
+		Window::rectangle.setPosition(Window::GetMouseViewPos());
 		Window::rectangle.setSize(sf::Vector2f(sf::Vector2i(Tile::SIZE, Tile::SIZE)));
 		Window::rectangle.setOrigin(sf::Vector2f());
 		Window::rectangle.setFillColor(sf::Color(255, 255, 255));
