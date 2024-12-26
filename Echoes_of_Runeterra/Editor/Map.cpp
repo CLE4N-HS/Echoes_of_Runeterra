@@ -3,6 +3,7 @@
 #include "AutoTile.h"
 #include "SimpleTile.h"
 #include "Window.h"
+#include "TileTextureManager.h"
 
 Map::Map()
 {
@@ -31,6 +32,8 @@ void Map::Display()
 	{
 		for (size_t x = 0; x < m_Map[y].size(); x++)
 		{
+			Window::rectangle.setTexture(TileTextureManager::GetTexture("tileset"));
+			Window::rectangle.setTextureRect(sf::IntRect(100, 100, 32, 32));
 			Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(y * 32, x * 32)));
 			Window::rectangle.setSize(sf::Vector2f(32.f, 32.f));
 			Window::Draw();

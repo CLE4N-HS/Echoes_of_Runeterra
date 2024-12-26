@@ -36,7 +36,7 @@
     <ClCompile Include="SimpleTile.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="TileTextureManager.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Tools.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -53,7 +53,7 @@
     <ClInclude Include="SimpleTile.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
-    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="TileTextureManager.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Tools.h" />
     <ClInclude Include="Window.h" />

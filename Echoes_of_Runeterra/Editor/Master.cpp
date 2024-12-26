@@ -2,11 +2,9 @@
 #include "Window.h"
 #include "MouseManager.h"
 #include "StateManager.h"
-#include "TextureManager.h"
 
 Master::Master()
 {
-	new TextureManager();
 	new StateManager();
 }
 

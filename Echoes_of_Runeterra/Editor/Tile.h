@@ -1,9 +1,13 @@
 #pragma once
 #include "Tools.h"
+#include <string_view>
 
 class Tile
 {
 public:
+	static constexpr int SIZE = 32;
+
+
 	enum Type : uint8_t
 	{
 		VOID = 0,
@@ -31,10 +35,21 @@ public:
 
 	inline uint8_t GetType() const { return static_cast<uint8_t>(m_Type); }
 
+	inline std::string_view GetTextureName() const { return m_TextureName; }
+	inline void SetTextureName(std::string_view _name) { m_TextureName = _name; }
+
+	inline sf::Vector2f GetPos() const { return m_Pos; }
+	inline void SetPos(sf::Vector2f _pos) { m_Pos = _pos; }
+
+	inline sf::IntRect GetRect() const { return m_Rect; }
+	inline void SetRect(sf::IntRect _rect) { m_Rect = _rect; }
+
 protected:
 	sf::IntRect m_Rect = sf::IntRect();
 	sf::Vector2f m_Pos = sf::Vector2f();
 	Tile::Type m_Type = Tile::Type::VOID;
 	//Tile::Direction m_Direction = Tile::Direction::VOID;
+
+	std::string_view m_TextureName = "";
 
 };

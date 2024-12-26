@@ -90,7 +90,7 @@
     <ClCompile Include="MapEdit.cpp">
       <Filter>Fichiers sources\EDITOR</Filter>
     </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
+    <ClCompile Include="TileTextureManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">
@@ -137,7 +137,7 @@
     <ClInclude Include="MapEdit.h">
       <Filter>Fichiers d%27en-tête\EDITOR</Filter>
     </ClInclude>
-    <ClInclude Include="TextureManager.h">
+    <ClInclude Include="TileTextureManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">

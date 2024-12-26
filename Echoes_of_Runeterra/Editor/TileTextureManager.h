@@ -3,13 +3,13 @@
 #include <map>
 #include <string_view>
 
-#define TEXTURE_PATH "../Resources/Textures/"
+#define TILE_TEXTURE_PATH "../Resources/Textures/Map/"
 
-class TextureManager
+class TileTextureManager
 {
 public:
-	TextureManager();
-	~TextureManager();
+	TileTextureManager();
+	~TileTextureManager();
 
 	static bool AddTexture(std::string_view _name, std::string_view _path);
 	static sf::Texture* GetTexture(std::string_view _name);
