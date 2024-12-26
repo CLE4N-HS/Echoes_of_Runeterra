@@ -32,8 +32,8 @@ void Map::Display()
 	{
 		for (size_t x = 0; x < m_Map[y].size(); x++)
 		{
-			Window::rectangle.setTexture(TileTextureManager::GetTexture("tileset"));
-			Window::rectangle.setTextureRect(sf::IntRect(100, 100, 32, 32));
+			Window::rectangle.setTexture(TileTextureManager::GetTexture(m_Map[y][x]->GetTextureName()));
+			Window::rectangle.setTextureRect(m_Map[y][x]->GetRect());
 			Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(y * 32, x * 32)));
 			Window::rectangle.setSize(sf::Vector2f(32.f, 32.f));
 			Window::Draw();

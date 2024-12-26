@@ -4,7 +4,7 @@
 #include "TileTextureManager.h"
 #include "Window.h"
 
-Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(m_Map.getMap())
+Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap())
 {
 	TileTextureManager::AddTexture("tileset", TILE_TEXTURE_PATH "tileset.png");
 	TileTextureManager::AddTexture("tile", TILE_TEXTURE_PATH "tile.png");
@@ -119,7 +119,7 @@ void Editor::Display()
 		Window::rectangle.setFillColor(sf::Color(255, 255, 255));
 		Window::Draw();
 
-		Window::rectangle.setTexture(nullptr);
+		//Window::rectangle.setTexture(nullptr);
 	}
 
 }
