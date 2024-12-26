@@ -1,4 +1,5 @@
 #include "MapEdit.h"
+#include "SimpleTile.h"
 
 MapEdit::MapEdit(std::vector<std::vector<Tile*>>* _map) : m_Map(_map)
 {
@@ -29,4 +30,32 @@ bool MapEdit::EditTile(sf::Vector2f _pos, std::string_view _textureName, sf::Int
 	(*m_Map)[tilePos.y][tilePos.x]->SetRect(_rect);
 
 	return true;
+}
+
+void MapEdit::Resize(sf::Vector2<size_t> _size)
+{
+	// Add Y
+	for (size_t y = (*m_Map).size() - 1; y < _size.y - 1; y++)
+	{
+		(*m_Map).push_back(std::vector<Tile*>());
+		size_t nbX = (*m_Map)[y].size();
+		for (size_t x = 0; x < nbX; x++)
+		{
+			(*m_Map)[y + 1].push_back(new SimpleTile());
+		}
+	}
+
+	// Add X
+	for (size_t x = (*m_Map)[0].size() - 1; x < _size.x - 1; x++)
+	{
+		//for (size_t y = 0; y < (*m_map); y++)
+		//{
+
+		//}
+		//size_t nbX = (*m_Map)[y].size();
+		//for (size_t y = 0; y < nbY; y++)
+		//{
+		//	(*m_Map)[y + 1].push_back(new SimpleTile());
+		//}
+	}
 }

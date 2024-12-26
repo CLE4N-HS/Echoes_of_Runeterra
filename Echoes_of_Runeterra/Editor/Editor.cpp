@@ -69,8 +69,58 @@ bool Editor::UpdateImGui()
 	bool* igUselessBool = nullptr;
 	if (ig::Begin("Editor", igUselessBool, ImGuiWindowFlags_HorizontalScrollbar))
 	{
+		if (ig::TreeNode("Keys"))
+		{
+			if (ig::TreeNode("View"))
+			{
+				ig::Text("Z/Q/S/D : Move the View");
+				ig::Text("A/E     : Zoom the View");
+
+				ig::TreePop();
+			}
+
+			ig::TreePop();
+		}
+
 		if (ig::TreeNode("Map"))
 		{
+			if (ig::TreeNode("Size"))
+			{
+				sf::Vector2i mapSize = m_MapEdit.GetSize<int>();
+				sf::Vector2i saveMapSize(mapSize);
+
+				ig::Text(std::string("X (" + std::to_string(mapSize.x) + ") : ").c_str());
+				ig::SameLine();
+				if (ig::Button(" - ##SIZEX-"))
+				{
+					mapSize.x -= 1;
+				}
+				ig::SameLine();
+				if (ig::Button(" + ##SIZEX+"))
+				{
+					mapSize.x += 1;
+				}
+
+				ig::Text(std::string("Y (" + std::to_string(mapSize.y) + ") : ").c_str());
+				ig::SameLine();
+				if (ig::Button(" - ##SIZEY-"))
+				{
+					mapSize.y -= 1;
+				}
+				ig::SameLine();
+				if (ig::Button(" + ##SIZEY+"))
+				{
+					mapSize.y += 1;
+				}
+
+				if (mapSize != saveMapSize)
+				{
+					m_MapEdit.Resize(sf::Vector2<size_t>(mapSize));
+				}
+
+				ig::TreePop();
+			}
+
 			if (m_CurrentRect.width != 0)
 			{
 				if (ig::Button("CLEAN"))
