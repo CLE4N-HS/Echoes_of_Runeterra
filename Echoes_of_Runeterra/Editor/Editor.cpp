@@ -117,7 +117,7 @@ bool Editor::UpdateImGui()
 				}
 				ig::SameLine(240.f);
 				ig::PushItemWidth(300.f);
-				ig::SliderInt("##SIZEYSLIDER", &mapSize.y, 1, 100);
+				ig::SliderInt("##SIZEYSLIDER", &mapSize.y, MapEdit::MIN_SIZE, MapEdit::MAX_SIZE);
 
 				mapSize.x = std::max(MapEdit::MIN_SIZE, mapSize.x);
 				mapSize.y = std::max(MapEdit::MIN_SIZE, mapSize.y);
