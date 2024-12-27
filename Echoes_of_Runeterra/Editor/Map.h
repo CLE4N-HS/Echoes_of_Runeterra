@@ -1,6 +1,5 @@
 #pragma once
-#include "Tools.h"
-#include "Tile.h"
+#include "Layer.h"
 
 class Map
 {
@@ -10,10 +9,10 @@ public:
 
 	void Display();
 
-	inline std::vector<std::vector<Tile*>>& getMap() { return m_Map; }
+	inline std::vector<Layer*>& GetMap() { return m_Map; }
 
 private:
-	std::vector<std::vector<Tile*>> m_Map;
+	std::vector<Layer*> m_Map;
 
 };
 

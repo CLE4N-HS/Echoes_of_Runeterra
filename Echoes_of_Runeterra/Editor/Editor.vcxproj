@@ -27,6 +27,7 @@
     <ClCompile Include="imgui_draw.cpp" />
     <ClCompile Include="imgui_tables.cpp" />
     <ClCompile Include="imgui_widgets.cpp" />
+    <ClCompile Include="Layer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapEdit.cpp" />
@@ -45,6 +46,7 @@
     <ClInclude Include="AutoTile.h" />
     <ClInclude Include="AutoTileDatabase.h" />
     <ClInclude Include="Editor.h" />
+    <ClInclude Include="Layer.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapEdit.h" />
     <ClInclude Include="Master.h" />

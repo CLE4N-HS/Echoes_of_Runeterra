@@ -7,6 +7,8 @@
 
 Map::Map()
 {
+	m_Map[0]->layer[0][0]->SetPos(sf::Vector2f(0.f, 0.f));
+
 	size_t sizeY = 10;
 	size_t sizeX = 20;
 
