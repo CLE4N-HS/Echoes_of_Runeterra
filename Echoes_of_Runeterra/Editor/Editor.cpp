@@ -73,8 +73,8 @@ bool Editor::UpdateImGui()
 		{
 			if (ig::TreeNode("View"))
 			{
-				ig::Text("Z/Q/S/D : Move the View");
-				ig::Text("A/E     : Zoom the View");
+				ig::Text("Z/Q/S/D : Move");
+				ig::Text("A/E     : Zoom");
 
 				ig::TreePop();
 			}
@@ -90,29 +90,39 @@ bool Editor::UpdateImGui()
 				sf::Vector2i saveMapSize(mapSize);
 
 				ig::Text(std::string("X (" + std::to_string(mapSize.x) + ") : ").c_str());
-				ig::SameLine();
+				ig::SameLine(120.f);
 				if (ig::Button(" - ##SIZEX-"))
 				{
 					mapSize.x -= 1;
 				}
-				ig::SameLine();
+				ig::SameLine(160.f);
 				if (ig::Button(" + ##SIZEX+"))
 				{
 					mapSize.x += 1;
 				}
+				ig::SameLine(240.f);
+				ig::PushItemWidth(300.f);
+				ig::SliderInt("##SIZEXSLIDER", &mapSize.x, MapEdit::MIN_SIZE, MapEdit::MAX_SIZE);
 
 				ig::Text(std::string("Y (" + std::to_string(mapSize.y) + ") : ").c_str());
-				ig::SameLine();
+				ig::SameLine(120.f);
 				if (ig::Button(" - ##SIZEY-"))
 				{
 					mapSize.y -= 1;
 				}
-				ig::SameLine();
+				ig::SameLine(160.f);
 				if (ig::Button(" + ##SIZEY+"))
 				{
 					mapSize.y += 1;
 				}
+				ig::SameLine(240.f);
+				ig::PushItemWidth(300.f);
+				ig::SliderInt("##SIZEYSLIDER", &mapSize.y, 1, 100);
 
+				mapSize.x = std::max(MapEdit::MIN_SIZE, mapSize.x);
+				mapSize.y = std::max(MapEdit::MIN_SIZE, mapSize.y);
+				mapSize.x = std::min(MapEdit::MAX_SIZE, mapSize.x);
+				mapSize.y = std::min(MapEdit::MAX_SIZE, mapSize.y);
 				if (mapSize != saveMapSize)
 				{
 					m_MapEdit.Resize(sf::Vector2<size_t>(mapSize));
@@ -133,50 +143,57 @@ bool Editor::UpdateImGui()
 
 			if (ig::TreeNode("Texture"))
 			{
-				std::map<std::string_view, sf::Texture*> texture = TileTextureManager::Get();
-
-				for (std::map<std::string_view, sf::Texture*>::iterator it = texture.begin(); it != texture.end(); it++)
+				if (ig::TreeNode("Name##MAP_TEXTURE_NAME"))
 				{
-					if (ig::Button((*it).first.data()))
+					std::map<std::string_view, sf::Texture*> texture = TileTextureManager::Get();
+
+					for (std::map<std::string_view, sf::Texture*>::iterator it = texture.begin(); it != texture.end(); it++)
 					{
-						m_CurrentTextureName = (*it).first;
+						if (ig::Button((*it).first.data()))
+						{
+							m_CurrentTextureName = (*it).first;
+						}
 					}
+
+					ig::NewLine();
+
+					ig::TreePop();
 				}
 
-				ig::NewLine();
+				if (sf::Texture* currentTexture = TileTextureManager::GetTexture(m_CurrentTextureName))
+				{
+					static int igTileSize = 16;
+					ig::PushItemWidth(400.f);
+					ig::SliderInt("Size##SIZECURRENTTEXTURE", &igTileSize, 0, 64);
+
+					if (igTileSize > 0)
+					{
+						int sizeX = static_cast<int>(currentTexture->getSize().x) / Tile::SIZE;
+						int sizeY = static_cast<int>(currentTexture->getSize().y) / Tile::SIZE;
+
+						sf::Sprite spr(*currentTexture);
+
+						ig::NewLine();
+						for (int y = 0; y < sizeY; y++)
+						{
+							for (int x = 0; x < sizeX; x++)
+							{
+								ig::SameLine(0.f, 4.f);
+								spr.setTextureRect(sf::IntRect(x * Tile::SIZE, y * Tile::SIZE, Tile::SIZE, Tile::SIZE));
+								if (ig::ImageButton(std::to_string(y * 100 + x).c_str(), spr, sf::Vector2f(sf::Vector2i(igTileSize, igTileSize))))
+								{
+									m_CurrentRect = sf::IntRect(x * Tile::SIZE, y * Tile::SIZE, Tile::SIZE, Tile::SIZE);
+								}
+							}
+							ig::NewLine();
+						}
+					}
+				}
 
 				ig::TreePop();
 			}
 
-			if (sf::Texture* currentTexture = TileTextureManager::GetTexture(m_CurrentTextureName))
-			{
-				static int igTileSize = 16;
-				ig::PushItemWidth(400.f);
-				ig::SliderInt("Size", &igTileSize, 0, 64);
 
-				if (igTileSize > 0)
-				{
-					int sizeX = static_cast<int>(currentTexture->getSize().x) / Tile::SIZE;
-					int sizeY = static_cast<int>(currentTexture->getSize().y) / Tile::SIZE;
-
-					sf::Sprite spr(*currentTexture);
-
-					ig::NewLine();
-					for (int y = 0; y < sizeY; y++)
-					{
-						for (int x = 0; x < sizeX; x++)
-						{
-							ig::SameLine(0.f, 4.f);
-							spr.setTextureRect(sf::IntRect(x * Tile::SIZE, y * Tile::SIZE, Tile::SIZE, Tile::SIZE));
-							if (ig::ImageButton(std::to_string(y * 100 + x).c_str(), spr, sf::Vector2f(sf::Vector2i(igTileSize, igTileSize))))
-							{
-								m_CurrentRect = sf::IntRect(x * Tile::SIZE, y * Tile::SIZE, Tile::SIZE, Tile::SIZE);
-							}
-						}
-						ig::NewLine();
-					}
-				}
-			}
 
 			ig::TreePop();
 		}

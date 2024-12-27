@@ -48,14 +48,35 @@ void MapEdit::Resize(sf::Vector2<size_t> _size)
 	// Add X
 	for (size_t x = (*m_Map)[0].size() - 1; x < _size.x - 1; x++)
 	{
-		//for (size_t y = 0; y < (*m_map); y++)
-		//{
-
-		//}
-		//size_t nbX = (*m_Map)[y].size();
-		//for (size_t y = 0; y < nbY; y++)
-		//{
-		//	(*m_Map)[y + 1].push_back(new SimpleTile());
-		//}
+		for (size_t y = 0; y < (*m_Map).size(); y++)
+		{
+			(*m_Map)[y].push_back(new SimpleTile());
+		}
 	}
+
+	// Remove Y
+	for (size_t y = (*m_Map).size() - 1; y > _size.y - 1; y--)
+	{
+		for (size_t x = 0; (*m_Map)[y].begin() != (*m_Map)[y].end();)
+		{
+			delete (*m_Map)[y][x];
+			std::vector<Tile*>::iterator it2 = (*m_Map)[y].begin();
+			(*m_Map)[y].erase(it2);
+		}
+		std::vector<std::vector<Tile*>>::iterator it1 = (*m_Map).begin() + y;
+		(*m_Map).erase(it1);
+	}
+
+	// Remove X
+	for (size_t x = (*m_Map)[0].size() - 1; x > _size.x - 1; x--)
+	{
+		size_t nbY = (*m_Map).size();
+		for (size_t y = 0; y < nbY; y++)
+		{
+			delete (*m_Map)[y][x];
+			std::vector<Tile*>::iterator it2 = (*m_Map)[y].begin() + x;
+			(*m_Map)[y].erase(it2);
+		}
+	}
+
 }

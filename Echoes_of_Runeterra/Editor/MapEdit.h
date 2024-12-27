@@ -4,6 +4,9 @@
 class MapEdit
 {
 public:
+	constexpr static int MIN_SIZE = 1;
+	constexpr static int MAX_SIZE = 100;
+
 	MapEdit(std::vector<std::vector<Tile*>>* _map);
 	~MapEdit();
 
