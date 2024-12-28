@@ -25,6 +25,6 @@ private:
 	std::string_view m_CurrentTextureName = "";
 	sf::IntRect m_CurrentRect = sf::IntRect();
 	std::array<bool, Map::Layer::COUNT> m_Layer{};
-	Map::Layer m_CurrentLayer = Map::Layer::FOREGROUND;
+	Map::Layer m_CurrentLayer = Map::Layer::BACKGROUND;
 
 };

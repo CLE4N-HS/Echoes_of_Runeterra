@@ -10,6 +10,7 @@ Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap())
 	TileTextureManager::AddTexture("tile", TILE_TEXTURE_PATH "tile.png");
 
 	m_Layer.fill(true);
+	m_CurrentLayer = m_MapEdit.GetLayer();
 }
 
 Editor::~Editor()
@@ -150,7 +151,22 @@ bool Editor::UpdateImGui()
 				if (m_CurrentLayer != saveCurrentLayer)
 				{
 					m_MapEdit.SetLayer(m_CurrentLayer);
-					// TODO smth compare affiche
+
+					bool isInNONEMode(true);
+					for (size_t l = 0; l < m_Layer.size(); l++)
+					{
+						if (m_Layer[l] && l != saveCurrentLayer)
+						{
+							isInNONEMode = false;
+							break;
+						}
+					}
+
+					if (isInNONEMode)
+					{
+						m_Layer.fill(false);
+						m_Layer[m_CurrentLayer] = true;
+					}
 				}
 
 				// EDITOR / MAP / LAYER / DISPLAY
@@ -192,7 +208,8 @@ bool Editor::UpdateImGui()
 			// EDITOR / MAP / TEXTURE
 			if (ig::TreeNode("Texture"))
 			{
-				if (ig::TreeNode("Name##MAP_TEXTURE_NAME"))
+				// EDITOR / MAP / TEXTURE / NAME
+				if (ig::TreeNode("Name##EDITOR_MAP_TEXTURE_NAME"))
 				{
 					std::map<std::string_view, sf::Texture*> texture = TileTextureManager::Get();
 
