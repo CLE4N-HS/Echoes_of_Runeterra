@@ -8,6 +8,8 @@ Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap())
 {
 	TileTextureManager::AddTexture("tileset", TILE_TEXTURE_PATH "tileset.png");
 	TileTextureManager::AddTexture("tile", TILE_TEXTURE_PATH "tile.png");
+
+	m_Layer.fill(true);
 }
 
 Editor::~Editor()
@@ -67,8 +69,10 @@ bool Editor::UpdateImGui()
 	bool isMouseOnWindow(false);
 
 	bool* igUselessBool = nullptr;
+	// EDITOR
 	if (ig::Begin("Editor", igUselessBool, ImGuiWindowFlags_HorizontalScrollbar))
 	{
+		// EDITOR / KEYS
 		if (ig::TreeNode("Keys"))
 		{
 			if (ig::TreeNode("View"))
@@ -82,8 +86,10 @@ bool Editor::UpdateImGui()
 			ig::TreePop();
 		}
 
+		// EDITOR / MAP
 		if (ig::TreeNode("Map"))
 		{
+			// EDITOR / MAP / SIZE
 			if (ig::TreeNode("Size"))
 			{
 				sf::Vector2i mapSize = m_MapEdit.GetSize<int>();
@@ -131,6 +137,48 @@ bool Editor::UpdateImGui()
 				ig::TreePop();
 			}
 
+			// EDITOR / MAP / LAYER
+			if (ig::TreeNode("Layer"))
+			{
+				Map::Layer saveCurrentLayer = m_CurrentLayer;
+				int iCurrentLayer = static_cast<int>(m_CurrentLayer);
+				ig::PushItemWidth(200.f);
+				ig::SliderInt("Current Layer", &iCurrentLayer, 0, static_cast<int>(Map::Layer::COUNT - 1));
+
+				m_CurrentLayer = static_cast<Map::Layer>(iCurrentLayer);
+
+				if (m_CurrentLayer != saveCurrentLayer)
+				{
+					m_MapEdit.SetLayer(m_CurrentLayer);
+					// TODO smth compare affiche
+				}
+
+				// EDITOR / MAP / LAYER / DISPLAY
+				if (ig::TreeNode("Display##EDITOR_MAP_LAYER_DISPLAY"))
+				{
+					if (ig::Button("ALL##EDITOR_MAP_LAYER_ALL"))
+					{
+						m_Layer.fill(true);
+					}
+					if (ig::Button(std::string("NONE (only [" + std::to_string(m_CurrentLayer) + "])##EDITOR_MAP_LAYER_NONE").c_str()))
+					{
+						m_Layer.fill(false);
+						m_Layer[m_CurrentLayer] = true;
+					}
+
+					ig::Separator();
+
+					size_t nbLayer = m_MapEdit.GetNbLayer();
+					for (size_t l = 0; l < nbLayer; l++)
+					{
+						ig::Checkbox(std::string("Layer : " + std::to_string(l) + "##EDITOR_MAP_LAYER_NBLAYER").c_str(), &m_Layer[l]);
+					}
+					ig::TreePop();
+				}
+
+				ig::TreePop();
+			}
+
 			if (m_CurrentRect.width != 0)
 			{
 				if (ig::Button("CLEAN"))
@@ -141,6 +189,7 @@ bool Editor::UpdateImGui()
 				ig::Text("-> Remove the current Tile from your cursor");
 			}
 
+			// EDITOR / MAP / TEXTURE
 			if (ig::TreeNode("Texture"))
 			{
 				if (ig::TreeNode("Name##MAP_TEXTURE_NAME"))
@@ -216,6 +265,30 @@ void Editor::Display()
 	Window::SetView();
 
 	m_Map.Display();
+
+	std::vector<std::vector<std::vector<Tile*>>> map = m_Map.getMap();
+
+	for (size_t l = 0; l < map.size(); l++)
+	{
+		if (m_Layer[l])
+		{
+			for (size_t y = 0; y < map[l].size(); y++)
+			{
+				for (size_t x = 0; x < map[l][y].size(); x++)
+				{
+					Window::rectangle.setTexture(TileTextureManager::GetTexture(map[l][y][x]->GetTextureName()));
+					Window::rectangle.setTextureRect(map[l][y][x]->GetRect());
+					Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(x * 32, y * 32)));
+					Window::rectangle.setSize(sf::Vector2f(32.f, 32.f));
+
+					//test
+					Window::rectangle.setFillColor(sf::Color(255, 255, 255, 100));
+
+					Window::Draw();
+				}
+			}
+		}
+	}
 
 	if (sf::Texture* currentTexture = TileTextureManager::GetTexture(m_CurrentTextureName); m_CurrentRect.width != 0)
 	{
