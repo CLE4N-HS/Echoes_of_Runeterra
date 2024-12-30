@@ -138,6 +138,14 @@ bool Editor::UpdateImGui()
 				ig::TreePop();
 			}
 
+			// EDITOR / MAP / GRID
+			if (ig::TreeNode("Grid##EDITOR_MAP_GRID"))
+			{
+
+
+				ig::TreePop();
+			}
+
 			// EDITOR / MAP / LAYER
 			if (ig::TreeNode("Layer"))
 			{
@@ -295,8 +303,8 @@ void Editor::Display()
 				{
 					Window::rectangle.setTexture(TileTextureManager::GetTexture(map[l][y][x]->GetTextureName()));
 					Window::rectangle.setTextureRect(map[l][y][x]->GetRect());
-					Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(x * 32, y * 32)));
-					Window::rectangle.setSize(sf::Vector2f(32.f, 32.f));
+					Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(x * Tile::SIZE, y * Tile::SIZE)));
+					Window::rectangle.setSize(sf::Vector2f(sf::Vector2<int>(Tile::SIZE, Tile::SIZE)));
 
 					//test
 					Window::rectangle.setFillColor(sf::Color(255, 255, 255, 100));

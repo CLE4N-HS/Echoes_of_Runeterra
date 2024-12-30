@@ -11,7 +11,10 @@ MapEdit::~MapEdit()
 
 sf::Vector2i MapEdit::TilePos(sf::Vector2f _pos)
 {
-	sf::Vector2i tmp(sf::Vector2f(_pos.x - (*m_Map)[m_Layer][0][0]->GetPos().x, _pos.y - (*m_Map)[m_Layer][0][0]->GetPos().y));
+	//sf::Vector2i tmp(sf::Vector2f(_pos.x - (*m_Map)[m_Layer][0][0]->GetPos().x, _pos.y - (*m_Map)[m_Layer][0][0]->GetPos().y));
+
+	// assuming the map is in 0,0
+	sf::Vector2i tmp(_pos);
 	return sf::Vector2i(tmp.x / Tile::SIZE, tmp.y / Tile::SIZE);
 }
 

@@ -38,15 +38,15 @@ public:
 	inline std::string_view GetTextureName() const { return m_TextureName; }
 	inline void SetTextureName(std::string_view _name) { m_TextureName = _name; }
 
-	inline sf::Vector2f GetPos() const { return m_Pos; }
-	inline void SetPos(sf::Vector2f _pos) { m_Pos = _pos; }
+	//inline sf::Vector2f GetPos() const { return m_Pos; }
+	//inline void SetPos(sf::Vector2f _pos) { m_Pos = _pos; }
 
 	inline sf::IntRect GetRect() const { return m_Rect; }
 	inline void SetRect(sf::IntRect _rect) { m_Rect = _rect; }
 
 protected:
 	sf::IntRect m_Rect = sf::IntRect();
-	sf::Vector2f m_Pos = sf::Vector2f();
+	//sf::Vector2f m_Pos = sf::Vector2f();
 	Tile::Type m_Type = Tile::Type::VOID;
 	//Tile::Direction m_Direction = Tile::Direction::VOID;
 
