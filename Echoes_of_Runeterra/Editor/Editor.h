@@ -3,7 +3,6 @@
 #include "AutoTileDatabase.h"
 #include "Map.h"
 #include "MapEdit.h"
-
 #include <array>
 
 class Editor : public State
@@ -16,7 +15,6 @@ public:
 	bool UpdateImGui();
 	virtual void Display() override;
 
-
 private:
 	AutoTileDatabase m_AutoTileDatabase;
 	Map m_Map;
@@ -26,5 +24,8 @@ private:
 	sf::IntRect m_CurrentRect = sf::IntRect();
 	std::array<bool, Map::Layer::COUNT> m_Layer{};
 	Map::Layer m_CurrentLayer = Map::Layer::BACKGROUND;
+	bool m_Grid = false;
+	sf::Color m_GridColor = sf::Color(0, 0, 0, 255);
+	float m_GridSize = 2.f;
 
 };

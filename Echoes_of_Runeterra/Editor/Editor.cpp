@@ -141,7 +141,26 @@ bool Editor::UpdateImGui()
 			// EDITOR / MAP / GRID
 			if (ig::TreeNode("Grid##EDITOR_MAP_GRID"))
 			{
+				ig::Checkbox("Display##EDITOR_MAP_GRID_DISPLAY", &m_Grid);
 
+				// EDITOR / MAP / GRID / SETTINGS
+				if (ig::TreeNode("Settings##EDITOR_MAP_GRID_SETTINGS"))
+				{
+					ig::SliderFloat("Size##EDITOR_MAP_GRID_SETTINGS_SIZE", &m_GridSize, 0.f, static_cast<float>(Tile::SIZE / 2), "%.1f");
+
+					ig::Separator();
+
+					ig::Text("Color : ");
+
+					float color[4]{static_cast<float>(m_GridColor.r) / 255.f, static_cast<float>(m_GridColor.g) / 255.f, static_cast<float>(m_GridColor.b) / 255.f , static_cast<float>(m_GridColor.a) / 255.f };
+					ig::ColorEdit4("qdz", color);
+					m_GridColor.r = static_cast<sf::Uint8>(color[0]* 255.f);
+					m_GridColor.g = static_cast<sf::Uint8>(color[1]* 255.f);
+					m_GridColor.b = static_cast<sf::Uint8>(color[2]* 255.f);
+					m_GridColor.a = static_cast<sf::Uint8>(color[3]* 255.f);
+
+					ig::TreePop();
+				}
 
 				ig::TreePop();
 			}
@@ -293,6 +312,10 @@ void Editor::Display()
 
 	std::vector<std::vector<std::vector<Tile*>>> map = m_Map.getMap();
 
+	Window::rectangle.setOrigin(sf::Vector2f());
+	Window::rectangle.setSize(sf::Vector2f(sf::Vector2<int>(Tile::SIZE, Tile::SIZE)));
+	//test
+	Window::rectangle.setFillColor(sf::Color(255, 255, 255, 100));
 	for (size_t l = 0; l < map.size(); l++)
 	{
 		if (m_Layer[l])
@@ -304,14 +327,32 @@ void Editor::Display()
 					Window::rectangle.setTexture(TileTextureManager::GetTexture(map[l][y][x]->GetTextureName()));
 					Window::rectangle.setTextureRect(map[l][y][x]->GetRect());
 					Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(x * Tile::SIZE, y * Tile::SIZE)));
-					Window::rectangle.setSize(sf::Vector2f(sf::Vector2<int>(Tile::SIZE, Tile::SIZE)));
-
-					//test
-					Window::rectangle.setFillColor(sf::Color(255, 255, 255, 100));
 
 					Window::Draw();
 				}
 			}
+		}
+	}
+
+	if (m_Grid)
+	{
+		Window::rectangle.setFillColor(m_GridColor);
+
+		Window::rectangle.setSize(sf::Vector2f(static_cast<float>(map[0][0].size() * Tile::SIZE), m_GridSize));
+		Window::rectangle.setOrigin(sf::Vector2f(0.f, Window::rectangle.getSize().y * 0.5f));
+		for (size_t y = 1; y < map[0].size(); y++)
+		{
+			Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(0, y * Tile::SIZE)));
+
+			Window::Draw();
+		}
+		Window::rectangle.setSize(sf::Vector2f(m_GridSize, static_cast<float>(map[0].size() * Tile::SIZE)));
+		Window::rectangle.setOrigin(sf::Vector2f(Window::rectangle.getSize().x * 0.5f, 0.f));
+		for (size_t x = 1; x < map[0][0].size(); x++)
+		{
+			Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(x * Tile::SIZE, 0)));
+
+			Window::Draw();
 		}
 	}
 
