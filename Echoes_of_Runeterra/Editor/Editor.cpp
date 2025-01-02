@@ -5,10 +5,11 @@
 #include "Window.h"
 #include "RenderStatesManager.h"
 
-Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap())
+Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap()), m_DayNightSystem()
 {
 	TileTextureManager::AddTexture("tileset", TILE_TEXTURE_PATH "tileset.png");
 	TileTextureManager::AddTexture("tile", TILE_TEXTURE_PATH "tile.png");
+	TileTextureManager::AddTexture("torch", TILE_TEXTURE_PATH "torch.png");
 
 	m_Layer.fill(true);
 	m_CurrentLayer = m_MapEdit.GetLayer();
@@ -64,6 +65,8 @@ void Editor::Update()
 	{
 		Window::view.zoom(1.f - viewZoomSpeed);
 	}
+
+	m_DayNightSystem.Update();
 }
 
 bool Editor::UpdateImGui()
@@ -289,7 +292,18 @@ bool Editor::UpdateImGui()
 				ig::TreePop();
 			}
 
+			ig::TreePop();
+		}
 
+		// EDITOR / DAY NIGHT SYSTEM
+		if (ig::TreeNode("Day-Night System##EDITOR_DAY_NIGHT_SYSTEM"))
+		{
+			ig::PushItemWidth(300.f);
+			ig::SliderInt("Hour##EDITOR_DAY_NIGHT_SYSTEM_HOUR", &m_DayNightSystem.GetHour(), 0, 23);
+
+			ig::SliderInt("Minute##EDITOR_DAY_NIGHT_SYSTEM_MINUTE", &m_DayNightSystem.GetMinute(), 0, 59);
+
+			ig::DragInt("Coefficient##EDITOR_DAY_NIGHT_SYSTEM_COEFFICIENT", &m_DayNightSystem.GetCoefficient(), 60.f);
 
 			ig::TreePop();
 		}
@@ -358,6 +372,8 @@ void Editor::Display()
 			Window::Draw();
 		}
 	}
+
+	m_DayNightSystem.Display();
 
 	if (sf::Texture* currentTexture = TileTextureManager::GetTexture(m_CurrentTextureName); m_CurrentRect.width != 0)
 	{

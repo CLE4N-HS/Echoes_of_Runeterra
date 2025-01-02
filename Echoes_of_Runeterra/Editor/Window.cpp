@@ -46,6 +46,11 @@ Window::Window(const sf::String& title, sf::Uint32 style)
 	ImGui::SFML::Init(m_renderWindow);
 }
 
+Window::~Window()
+{
+	ImGui::SFML::Shutdown();
+}
+
 void Window::Update()
 {
 	while (m_renderWindow.pollEvent(m_event))
@@ -79,7 +84,7 @@ void Window::Display()
 	m_renderTexture.clear();
 	RenderStatesManager::SetTexture(m_texture);
 	m_sprite.setTexture(m_texture, true);
-	m_renderWindow.draw(m_sprite, RenderStatesManager::RenderStates);
+	m_renderWindow.draw(m_sprite/*, RenderStatesManager::RenderStates*/);
 	m_renderWindow.display();
 }
 
@@ -88,9 +93,12 @@ void Window::Draw(const sf::Drawable& drawable, const sf::RenderStates& states)
 	m_renderTexture.draw(drawable, states);
 }
 
-void Window::SetView(const sf::View& view)
+void Window::SetView(bool _defaultView)
 {
-	m_renderTexture.setView(view);
+	if (_defaultView)
+		m_renderTexture.setView(m_renderTexture.getDefaultView());
+	else
+		m_renderTexture.setView(view);
 }
 
 void Window::ToggleFullscreen()

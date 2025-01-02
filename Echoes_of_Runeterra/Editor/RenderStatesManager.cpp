@@ -36,3 +36,18 @@ void RenderStatesManager::SetTexture(const sf::Texture& _texture)
 	sf::Texture* tmp = new sf::Texture(_texture);
 	RenderStates.texture = tmp;
 }
+
+bool RenderStatesManager::AddShader(std::string_view _name, std::string_view _path, sf::Shader::Type _type)
+{
+	sf::Shader* newShader = new sf::Shader();
+
+	if (!newShader->loadFromFile(std::string(_path), _type))
+	{
+		delete newShader;
+		return false;
+	}
+
+	Shader.insert({ _name, newShader});
+
+	return true;
+}

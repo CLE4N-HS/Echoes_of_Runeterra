@@ -6,7 +6,7 @@ class Window
 public:
 	Window();
 	Window(const sf::String& title, sf::Uint32 style = sf::Style::Default);
-	~Window() = default;
+	~Window();
 
 	/// <summary>
 	/// Call this at the start of every frame
@@ -23,7 +23,7 @@ public:
 	static inline sf::Vector2f GetMousePos() { return m_mousePos; }
 	static inline sf::Vector2f GetMouseViewPos() { return m_renderTexture.mapPixelToCoords(sf::Vector2i(m_mousePos)); }
 	static void Draw(const sf::Drawable& drawable = rectangle, const sf::RenderStates& states = sf::RenderStates::Default);
-	static void SetView(const sf::View& view = view);
+	static void SetView(bool _defaultView = false);
 
 	static sf::RectangleShape rectangle;
 	static sf::Text text;

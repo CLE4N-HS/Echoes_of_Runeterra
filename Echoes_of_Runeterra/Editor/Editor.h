@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "MapEdit.h"
 #include <array>
+#include "DayNightSystem.h"
 
 class Editor : public State
 {
@@ -19,6 +20,7 @@ private:
 	AutoTileDatabase m_AutoTileDatabase;
 	Map m_Map;
 	MapEdit m_MapEdit;
+	DayNightSystem m_DayNightSystem;
 
 	std::string_view m_CurrentTextureName = "";
 	sf::IntRect m_CurrentRect = sf::IntRect();
