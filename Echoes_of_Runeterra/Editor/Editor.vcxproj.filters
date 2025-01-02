@@ -179,6 +179,9 @@
     <ClInclude Include="ObjectTextureManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Externals\json.hpp">
+      <Filter>Fichiers de ressources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shader\test.frag">

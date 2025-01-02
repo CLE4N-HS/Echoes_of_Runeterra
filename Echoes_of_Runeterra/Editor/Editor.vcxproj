@@ -51,6 +51,7 @@
     <ClInclude Include="AutoTileDatabase.h" />
     <ClInclude Include="DayNightSystem.h" />
     <ClInclude Include="Editor.h" />
+    <ClInclude Include="Externals\json.hpp" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapEdit.h" />
     <ClInclude Include="Master.h" />

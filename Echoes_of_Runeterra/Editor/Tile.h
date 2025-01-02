@@ -1,6 +1,7 @@
 #pragma once
 #include "Tools.h"
 #include <string_view>
+#include "Externals/json.hpp"
 
 class Tile
 {
@@ -43,6 +44,9 @@ public:
 
 	inline sf::IntRect GetRect() const { return m_Rect; }
 	inline void SetRect(sf::IntRect _rect) { m_Rect = _rect; }
+
+	virtual nlohmann::json ToJson() = 0;
+	virtual void FromJson(const nlohmann::json& _j) = 0;
 
 protected:
 	sf::IntRect m_Rect = sf::IntRect();

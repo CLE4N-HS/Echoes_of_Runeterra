@@ -3,16 +3,16 @@
 
 AutoTileDatabase::AutoTileDatabase()
 {
-	AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::VOID));
-	AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::UP, Tile::Type::DIRT));
-	AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::DIRT),  AutoTile::Direction::UP_LEFT, Tile::Type::DIRT));
-	AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::RIGHT, Tile::Type::DIRT));
-	AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::DOWN, Tile::Type::DIRT));
-	AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::LEFT, Tile::Type::DIRT));
-	AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::UP_RIGHT, Tile::Type::DIRT));
-	AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::DOWN_RIGHT, Tile::Type::DIRT));
-	AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::DOWN_LEFT, Tile::Type::DIRT));
-	AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::UP_LEFT, Tile::Type::DIRT));
+	//AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::VOID));
+	//AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::UP, Tile::Type::DIRT));
+	//AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::DIRT),  AutoTile::Direction::UP_LEFT, Tile::Type::DIRT));
+	//AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::RIGHT, Tile::Type::DIRT));
+	//AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::DOWN, Tile::Type::DIRT));
+	//AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::LEFT, Tile::Type::DIRT));
+	//AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::UP_RIGHT, Tile::Type::DIRT));
+	//AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::DOWN_RIGHT, Tile::Type::DIRT));
+	//AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::DOWN_LEFT, Tile::Type::DIRT));
+	//AddAutoTile(new AutoTile(Tile(sf::IntRect(), sf::Vector2f(), Tile::Type::GRASS), AutoTile::Direction::UP_LEFT, Tile::Type::DIRT));
 }
 
 AutoTileDatabase::~AutoTileDatabase()

@@ -20,6 +20,9 @@ public:
 
 	void Display();
 
+	void Save(std::ostream& _file);
+	void Load(std::ifstream& _file);
+
 	inline std::vector<std::vector<std::vector<Tile*>>>& getMap() { return m_Map; }
 	inline std::vector<Object*>& getObject() { return m_Object; }
 

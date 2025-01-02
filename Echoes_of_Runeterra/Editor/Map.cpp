@@ -5,6 +5,8 @@
 #include "Window.h"
 #include "TileTextureManager.h"
 
+#include "Externals/json.hpp"
+
 Map::Map()
 {
 	size_t sizeL = Map::Layer::COUNT;
@@ -48,4 +50,42 @@ void Map::Display()
 	//		}
 	//	}
 	//}
+}
+
+void Map::Save(std::ostream& _file)
+{
+	nlohmann::json j;
+
+	size_t lSize = m_Map.size();
+	size_t ySize = m_Map[0].size();
+	size_t xSize = m_Map[0][0].size();
+
+	j["Size"]["L"] = lSize;
+	j["Size"]["Y"] = ySize;
+	j["Size"]["X"] = xSize;
+
+	for (size_t l = 0; l < lSize; l++)
+	{
+		std::string lStmp = std::to_string(l);
+		const char* lS = lStmp.c_str();
+		for (size_t y = 0; y < ySize; y++)
+		{
+			std::string yStmp = std::to_string(y);
+			const char* yS = yStmp.c_str();
+			for (size_t x = 0; x < xSize; x++)
+			{
+				std::string xStmp = std::to_string(x);
+				const char* xS = xStmp.c_str();
+
+				if (SimpleTile* simpleTile = dynamic_cast<SimpleTile*>(m_Map[l][y][x]))
+					j[lS][yS][xS]["SimpleTile"] = m_Map[l][y][x]->ToJson();
+			}
+		}
+	}
+	
+	_file << j.dump(4);
+}
+
+void Map::Load(std::ifstream& _file)
+{
 }

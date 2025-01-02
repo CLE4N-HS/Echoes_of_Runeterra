@@ -410,7 +410,7 @@ bool Editor::UpdateImGui()
 						if (GetSaveFileName(&ofn))               // Afficher la boîte de dialogue
 						{
 							std::ofstream mapStream(fileName);
-							//_map.save(mapStream);           // Sauvegarder la map dans le chemin sélectionné
+							m_Map.Save(mapStream);           // Sauvegarder la map dans le chemin sélectionné
 						}
 					}
 
@@ -434,7 +434,7 @@ bool Editor::UpdateImGui()
 							std::ifstream mapStream(fileName);   // Ouvrir le fichier sélectionné en lecture
 							if (mapStream.is_open())
 							{
-								//_map.load(mapStream);            // Charger la map à partir du fichier
+								m_Map.Load(mapStream);            // Charger la map à partir du fichier
 								mapStream.close();
 							}
 							else
