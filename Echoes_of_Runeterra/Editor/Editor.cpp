@@ -400,12 +400,12 @@ bool Editor::UpdateImGui()
 
 						ofn.lStructSize = sizeof(ofn);
 						//ofn.hwndOwner = Window::getNativeHandle();                 // Met la window en fenêtre prioritaire
-						ofn.lpstrFilter = L"Fichiers Texte (*.txt)\0*.txt\0Tous les fichiers (*.*)\0*.*\0";
+						ofn.lpstrFilter = L"Fichiers JSON (*.json)\0*.json\0Tous les fichiers (*.*)\0*.*\0";
 						ofn.lpstrFile = fileName;
 						ofn.nMaxFile = MAX_PATH;
 						ofn.lpstrInitialDir = initialDir;        // Répertoire de départ
 						ofn.Flags = OFN_OVERWRITEPROMPT;         // Demander confirmation avant d'écraser
-						ofn.lpstrDefExt = L"txt";                // Extension par défaut
+						ofn.lpstrDefExt = L"json";                // Extension par défaut
 
 						if (GetSaveFileName(&ofn))               // Afficher la boîte de dialogue
 						{
@@ -423,7 +423,7 @@ bool Editor::UpdateImGui()
 
 						ofn.lStructSize = sizeof(ofn);
 						//ofn.hwndOwner = Window::getNativeHandle();                 // Met la window en fenêtre prioritaire
-						ofn.lpstrFilter = L"Fichiers Texte (*.txt)\0*.txt\0Tous les fichiers (*.*)\0*.*\0";
+						ofn.lpstrFilter = L"Fichiers JSON (*.json)\0*.json\0Tous les fichiers (*.*)\0*.*\0";
 						ofn.lpstrFile = fileName;
 						ofn.nMaxFile = MAX_PATH;
 						ofn.lpstrInitialDir = initialDir;        // Répertoire de départ

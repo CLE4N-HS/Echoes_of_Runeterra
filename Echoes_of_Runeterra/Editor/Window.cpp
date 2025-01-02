@@ -71,6 +71,7 @@ void Window::Update()
 		ToggleFullscreen();
 
 	ImGui::SFML::Update(m_renderWindow, Tools::GetSfTime());
+	//ImGui::SFML::Update(sf::Mouse::getPosition(m_renderWindow), sf::Vector2f(m_renderTexture.getSize()), Tools::GetSfTime());
 }
 
 void Window::Display()

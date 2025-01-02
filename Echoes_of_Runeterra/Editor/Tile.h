@@ -49,11 +49,11 @@ public:
 	virtual void FromJson(const nlohmann::json& _j) = 0;
 
 protected:
+	std::string m_TextureName = "";
 	sf::IntRect m_Rect = sf::IntRect();
 	//sf::Vector2f m_Pos = sf::Vector2f();
 	Tile::Type m_Type = Tile::Type::VOID;
 	//Tile::Direction m_Direction = Tile::Direction::VOID;
 
-	std::string_view m_TextureName = "";
 
 };

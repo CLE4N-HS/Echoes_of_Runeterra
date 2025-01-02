@@ -21,4 +21,11 @@ nlohmann::json SimpleTile::ToJson()
 
 void SimpleTile::FromJson(const nlohmann::json& _j)
 {
+	m_Rect = sf::IntRect(_j["Rect"][0], _j["Rect"][1], _j["Rect"][2], _j["Rect"][3]);
+	m_Type = _j["Type"];
+	if (_j["Rect"][0] != 0)
+	{
+		int a = 9;
+	}
+	m_TextureName = _j["TextureName"];
 }
