@@ -3,7 +3,7 @@
 #include <map>
 #include <string_view>
 
-#define TILE_TEXTURE_PATH "../Resources/Textures/Map/"
+#define TILE_TEXTURE_PATH "../Resources/Textures/Map/Tile/"
 
 class TileTextureManager
 {

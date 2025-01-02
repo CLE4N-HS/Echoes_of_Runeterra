@@ -7,6 +7,9 @@
 #include "ObjectTextureManager.h"
 #include "MouseManager.h"
 
+#include <Windows.h>
+#include <commdlg.h>
+
 Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap(), &m_Map.getObject()), m_DayNightSystem()
 {
 	TileTextureManager::AddTexture("tileset", TILE_TEXTURE_PATH "tileset.png");
@@ -380,6 +383,69 @@ bool Editor::UpdateImGui()
 				}
 
 				ig::TreePop();
+			}
+
+			// Hugo Miceli (c)
+			if (1)
+			{
+				// EDITOR / MAP / SAVES
+				if (ig::TreeNode("Saves##EDITOR_MAP_SAVES"))
+				{
+					if (ImGui::Button("Save##EDITOR_MAP_SAVES_SAVE"))
+					{
+						OPENFILENAME ofn;                        // Structure pour configurer la boîte de dialogue
+						wchar_t fileName[MAX_PATH] = L"";        // Stocke le chemin du fichier sélectionné
+						wchar_t initialDir[MAX_PATH] = L"..\\Resources\\Saves\\Map"; // Répertoire initial
+						ZeroMemory(&ofn, sizeof(ofn));
+
+						ofn.lStructSize = sizeof(ofn);
+						//ofn.hwndOwner = Window::getNativeHandle();                 // Met la window en fenêtre prioritaire
+						ofn.lpstrFilter = L"Fichiers Texte (*.txt)\0*.txt\0Tous les fichiers (*.*)\0*.*\0";
+						ofn.lpstrFile = fileName;
+						ofn.nMaxFile = MAX_PATH;
+						ofn.lpstrInitialDir = initialDir;        // Répertoire de départ
+						ofn.Flags = OFN_OVERWRITEPROMPT;         // Demander confirmation avant d'écraser
+						ofn.lpstrDefExt = L"txt";                // Extension par défaut
+
+						if (GetSaveFileName(&ofn))               // Afficher la boîte de dialogue
+						{
+							std::ofstream mapStream(fileName);
+							//_map.save(mapStream);           // Sauvegarder la map dans le chemin sélectionné
+						}
+					}
+
+					if (ImGui::Button("Load##EDITOR_MAP_SAVES_LOAD"))
+					{
+						OPENFILENAME ofn;                        // Structure pour configurer la boîte de dialogue
+						wchar_t fileName[MAX_PATH] = L"";        // Stocke le chemin du fichier sélectionné
+						wchar_t initialDir[MAX_PATH] = L"..\\Resources\\Saves\\Map"; // Répertoire initial
+						ZeroMemory(&ofn, sizeof(ofn));
+
+						ofn.lStructSize = sizeof(ofn);
+						//ofn.hwndOwner = Window::getNativeHandle();                 // Met la window en fenêtre prioritaire
+						ofn.lpstrFilter = L"Fichiers Texte (*.txt)\0*.txt\0Tous les fichiers (*.*)\0*.*\0";
+						ofn.lpstrFile = fileName;
+						ofn.nMaxFile = MAX_PATH;
+						ofn.lpstrInitialDir = initialDir;        // Répertoire de départ
+						ofn.Flags = OFN_FILEMUSTEXIST;           // Assurez-vous que le fichier existe avant d'ouvrir
+
+						if (GetOpenFileName(&ofn))               // Afficher la boîte de dialogue pour OUVRIR un fichier
+						{
+							std::ifstream mapStream(fileName);   // Ouvrir le fichier sélectionné en lecture
+							if (mapStream.is_open())
+							{
+								//_map.load(mapStream);            // Charger la map à partir du fichier
+								mapStream.close();
+							}
+							else
+							{
+								MessageBox(nullptr, L"Impossible d'ouvrir le fichier sélectionné.", L"Erreur", MB_OK | MB_ICONERROR);
+							}
+						}
+					}
+
+					ig::TreePop();
+				}
 			}
 
 			ig::TreePop();
