@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="AutoTile.cpp" />
     <ClCompile Include="AutoTileDatabase.cpp" />
+    <ClCompile Include="DayNightSystem.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="imgui-SFML.cpp" />
     <ClCompile Include="imgui.cpp" />
@@ -33,6 +34,7 @@
     <ClCompile Include="Master.cpp" />
     <ClCompile Include="MouseManager.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="RenderStatesManager.cpp" />
     <ClCompile Include="SimpleTile.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
@@ -44,12 +46,14 @@
   <ItemGroup>
     <ClInclude Include="AutoTile.h" />
     <ClInclude Include="AutoTileDatabase.h" />
+    <ClInclude Include="DayNightSystem.h" />
     <ClInclude Include="Editor.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapEdit.h" />
     <ClInclude Include="Master.h" />
     <ClInclude Include="MouseManager.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="RenderStatesManager.h" />
     <ClInclude Include="SimpleTile.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
@@ -57,6 +61,9 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Tools.h" />
     <ClInclude Include="Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\Shader\test.frag" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

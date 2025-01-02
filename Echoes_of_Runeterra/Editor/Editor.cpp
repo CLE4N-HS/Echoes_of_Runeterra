@@ -3,6 +3,7 @@
 #include "imgui-SFML.h"
 #include "TileTextureManager.h"
 #include "Window.h"
+#include "RenderStatesManager.h"
 
 Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap())
 {
@@ -11,6 +12,8 @@ Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap())
 
 	m_Layer.fill(true);
 	m_CurrentLayer = m_MapEdit.GetLayer();
+
+	RenderStatesManager::LoadShader(SHADER_PATH "test.frag", sf::Shader::Type::Fragment);
 }
 
 Editor::~Editor()

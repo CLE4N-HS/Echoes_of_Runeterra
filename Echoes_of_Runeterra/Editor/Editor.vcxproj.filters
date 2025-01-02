@@ -31,6 +31,12 @@
     <Filter Include="Fichiers sources\EDITOR">
       <UniqueIdentifier>{79fb148a-e47f-43cd-b440-b75207377bba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\GAME">
+      <UniqueIdentifier>{a96d46d9-6d0d-4da6-821a-692bb99f4b2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GAME">
+      <UniqueIdentifier>{2efc369d-2993-44ac-a25e-e07e70fd5da7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui.cpp">
@@ -96,6 +102,12 @@
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="DayNightSystem.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderStatesManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Map.h">
@@ -143,5 +155,16 @@
     <ClInclude Include="ResourceManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="DayNightSystem.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderStatesManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\Shader\test.frag">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
   </ItemGroup>
 </Project>
