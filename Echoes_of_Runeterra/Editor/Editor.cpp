@@ -4,17 +4,20 @@
 #include "TileTextureManager.h"
 #include "Window.h"
 #include "RenderStatesManager.h"
+#include "ObjectTextureManager.h"
+#include "MouseManager.h"
 
-Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap()), m_DayNightSystem()
+Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap(), &m_Map.getObject()), m_DayNightSystem()
 {
 	TileTextureManager::AddTexture("tileset", TILE_TEXTURE_PATH "tileset.png");
 	TileTextureManager::AddTexture("tile", TILE_TEXTURE_PATH "tile.png");
-	TileTextureManager::AddTexture("torch", TILE_TEXTURE_PATH "torch.png");
+
+	ObjectTextureManager::AddTexture("torch", OBJECT_TEXTURE_PATH "torch.png");
 
 	m_Layer.fill(true);
 	m_CurrentLayer = m_MapEdit.GetLayer();
 
-	RenderStatesManager::LoadShader(SHADER_PATH "test.frag", sf::Shader::Type::Fragment);
+	//RenderStatesManager::LoadShader(SHADER_PATH "test.frag", sf::Shader::Type::Fragment);
 }
 
 Editor::~Editor()
@@ -25,13 +28,37 @@ void Editor::Update()
 {
 	if (!(this->UpdateImGui()))
 	{
-		if (TileTextureManager::GetTexture(m_CurrentTextureName) && m_CurrentRect.width != 0)
+		sf::Texture* currentTexture = nullptr;
+		switch (m_CurrentTextureId)
+		{
+		case Editor::TILE:
+			currentTexture = TileTextureManager::GetTexture(m_CurrentTextureName); break;
+		case Editor::OBJECT:
+			currentTexture = ObjectTextureManager::GetTexture(m_CurrentTextureName); break;
+		default:
+			break;
+		}
+		if (currentTexture && m_CurrentRect.width != 0)
 		{
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			{
 				sf::Vector2f mousePos = Window::GetMouseViewPos();
 
-				m_MapEdit.EditTile(mousePos, m_CurrentTextureName, m_CurrentRect);
+				switch (m_CurrentTextureId)
+				{
+				case Editor::TILE:
+					m_MapEdit.EditTile(mousePos, m_CurrentTextureName, m_CurrentRect); break;
+				case Editor::OBJECT:
+				{
+					if (MouseManager::HasJustPressed(sf::Mouse::Left))
+					{
+						m_MapEdit.EditObject(mousePos, m_CurrentTextureName, sf::Vector2f(m_CurrentRect.getSize()), m_CurrentTexture);
+					}
+				}
+				break;
+				default:
+					break;
+				}
 			}
 		}
 	}
@@ -228,65 +255,128 @@ bool Editor::UpdateImGui()
 				ig::TreePop();
 			}
 
-			if (m_CurrentRect.width != 0)
-			{
-				if (ig::Button("CLEAN"))
-				{
-					m_CurrentRect.width = 0;
-				}
-				ig::SameLine();
-				ig::Text("-> Remove the current Tile from your cursor");
-			}
-
 			// EDITOR / MAP / TEXTURE
-			if (ig::TreeNode("Texture"))
+			if (ig::TreeNode("Texture##EDITOR_MAP_TEXTURE"))
 			{
-				// EDITOR / MAP / TEXTURE / NAME
-				if (ig::TreeNode("Name##EDITOR_MAP_TEXTURE_NAME"))
+				if (m_CurrentRect.width != 0)
 				{
-					std::map<std::string_view, sf::Texture*> texture = TileTextureManager::Get();
-
-					for (std::map<std::string_view, sf::Texture*>::iterator it = texture.begin(); it != texture.end(); it++)
+					if (ig::Button("CLEAN"))
 					{
-						if (ig::Button((*it).first.data()))
+						m_CurrentRect.width = 0;
+					}
+					ig::SameLine();
+					ig::Text("-> Remove the current Texture from your cursor");
+				}
+
+				// EDITOR / MAP / TEXTURE / TILE
+				if (ig::TreeNode("Tile##EDITOR_MAP_TILE"))
+				{
+					// EDITOR / MAP / TEXTURE / TILE / NAME
+					if (ig::TreeNode("Name##EDITOR_MAP_TILE_NAME"))
+					{
+						std::map<std::string_view, sf::Texture*> texture = TileTextureManager::Get();
+
+						for (std::map<std::string_view, sf::Texture*>::iterator it = texture.begin(); it != texture.end(); it++)
 						{
-							m_CurrentTextureName = (*it).first;
+							if (ig::Button((*it).first.data()))
+							{
+								m_CurrentTextureName = (*it).first;
+								m_CurrentTextureId = TextureId::TILE;
+								m_CurrentTexture = Texture::SIMPLE_TILE;
+							}
 						}
+
+						ig::NewLine();
+
+						ig::TreePop();
 					}
 
-					ig::NewLine();
+					if (sf::Texture* currentTexture = TileTextureManager::GetTexture(m_CurrentTextureName))
+					{
+						static int igTileSize = 16;
+						ig::PushItemWidth(400.f);
+						ig::SliderInt("Size##SIZECURRENTTEXTURE", &igTileSize, 0, 64);
+
+						if (igTileSize > 0)
+						{
+							int sizeX = static_cast<int>(currentTexture->getSize().x) / Tile::SIZE;
+							int sizeY = static_cast<int>(currentTexture->getSize().y) / Tile::SIZE;
+
+							sf::Sprite spr(*currentTexture);
+
+							ig::NewLine();
+							for (int y = 0; y < sizeY; y++)
+							{
+								for (int x = 0; x < sizeX; x++)
+								{
+									ig::SameLine(0.f, 4.f);
+									spr.setTextureRect(sf::IntRect(x * Tile::SIZE, y * Tile::SIZE, Tile::SIZE, Tile::SIZE));
+									if (ig::ImageButton(std::to_string(y * 100 + x).c_str(), spr, sf::Vector2f(sf::Vector2i(igTileSize, igTileSize))))
+									{
+										m_CurrentRect = sf::IntRect(x * Tile::SIZE, y * Tile::SIZE, Tile::SIZE, Tile::SIZE);
+									}
+								}
+								ig::NewLine();
+							}
+						}
+					}
 
 					ig::TreePop();
 				}
 
-				if (sf::Texture* currentTexture = TileTextureManager::GetTexture(m_CurrentTextureName))
+				// EDITOR / MAP / TEXTURE / OBJECT
+				if (ig::TreeNode("Object##EDITOR_MAP_OBJECT"))
 				{
-					static int igTileSize = 16;
-					ig::PushItemWidth(400.f);
-					ig::SliderInt("Size##SIZECURRENTTEXTURE", &igTileSize, 0, 64);
-
-					if (igTileSize > 0)
+					// EDITOR / MAP / TEXTURE / OBJECT / NAME
+					if (ig::TreeNode("Name##EDITOR_MAP_OBJECT_NAME"))
 					{
-						int sizeX = static_cast<int>(currentTexture->getSize().x) / Tile::SIZE;
-						int sizeY = static_cast<int>(currentTexture->getSize().y) / Tile::SIZE;
+						std::map<std::string_view, sf::Texture*> texture = ObjectTextureManager::Get();
 
-						sf::Sprite spr(*currentTexture);
+						for (std::map<std::string_view, sf::Texture*>::iterator it = texture.begin(); it != texture.end(); it++)
+						{
+							if (ig::Button((*it).first.data()))
+							{
+								m_CurrentTextureName = (*it).first;
+								m_CurrentTextureId = TextureId::OBJECT;
+								m_CurrentTexture = Texture::TORCH;
+							}
+						}
 
 						ig::NewLine();
-						for (int y = 0; y < sizeY; y++)
+
+						ig::TreePop();
+					}
+
+					if (sf::Texture* currentTexture = ObjectTextureManager::GetTexture(m_CurrentTextureName))
+					{
+						static int igTileSize = 16;
+						ig::PushItemWidth(400.f);
+						ig::SliderInt("Size##SIZECURRENTTEXTURE_OBJECT", &igTileSize, 0, 64);
+
+						if (igTileSize > 0)
 						{
-							for (int x = 0; x < sizeX; x++)
-							{
-								ig::SameLine(0.f, 4.f);
-								spr.setTextureRect(sf::IntRect(x * Tile::SIZE, y * Tile::SIZE, Tile::SIZE, Tile::SIZE));
-								if (ig::ImageButton(std::to_string(y * 100 + x).c_str(), spr, sf::Vector2f(sf::Vector2i(igTileSize, igTileSize))))
-								{
-									m_CurrentRect = sf::IntRect(x * Tile::SIZE, y * Tile::SIZE, Tile::SIZE, Tile::SIZE);
-								}
-							}
+							int sizeX = static_cast<int>(currentTexture->getSize().x) / Tile::SIZE;
+							int sizeY = static_cast<int>(currentTexture->getSize().y) / Tile::SIZE;
+
+							sf::Sprite spr(*currentTexture);
+
 							ig::NewLine();
+							for (int y = 0; y < sizeY; y++)
+							{
+								for (int x = 0; x < sizeX; x++)
+								{
+									ig::SameLine(0.f, 4.f);
+									spr.setTextureRect(sf::IntRect(x * Tile::SIZE, y * Tile::SIZE, Tile::SIZE, Tile::SIZE));
+									if (ig::ImageButton(std::string(std::to_string(y * 100 + x) + "##EDITOR_MAP_OBJECT").c_str(), spr, sf::Vector2f(sf::Vector2i(igTileSize, igTileSize))))
+									{
+										m_CurrentRect = sf::IntRect(x * Tile::SIZE, y * Tile::SIZE, Tile::SIZE, Tile::SIZE);
+									}
+								}
+								ig::NewLine();
+							}
 						}
 					}
+					ig::TreePop();
 				}
 
 				ig::TreePop();
@@ -328,6 +418,7 @@ void Editor::Display()
 	m_Map.Display();
 
 	std::vector<std::vector<std::vector<Tile*>>> map = m_Map.getMap();
+	std::vector<Object*> object= m_Map.getObject();
 
 	Window::rectangle.setOrigin(sf::Vector2f());
 	Window::rectangle.setSize(sf::Vector2f(sf::Vector2<int>(Tile::SIZE, Tile::SIZE)));
@@ -348,6 +439,17 @@ void Editor::Display()
 					Window::Draw();
 				}
 			}
+		}
+	}
+
+	if (m_Layer[Map::Layer::COLLISION])
+	{
+		Window::rectangle.setTexture(nullptr);
+		Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
+		Window::rectangle.setOrigin(sf::Vector2f());
+		for (size_t i = 0; i < object.size(); i++)
+		{
+			object[i]->Display();
 		}
 	}
 
@@ -374,8 +476,22 @@ void Editor::Display()
 	}
 
 	m_DayNightSystem.Display();
+	Window::SetView();
 
-	if (sf::Texture* currentTexture = TileTextureManager::GetTexture(m_CurrentTextureName); m_CurrentRect.width != 0)
+	sf::Texture* currentTexture = nullptr;
+	switch (m_CurrentTextureId)
+	{
+	case Editor::TILE:
+		currentTexture = TileTextureManager::GetTexture(m_CurrentTextureName);
+		break;
+	case Editor::OBJECT:
+		currentTexture = ObjectTextureManager::GetTexture(m_CurrentTextureName);
+		break;
+	default:
+		break;
+	}
+	
+	if (currentTexture && m_CurrentRect.width != 0)
 	{
 		Window::rectangle.setTexture(currentTexture);
 		Window::rectangle.setTextureRect(m_CurrentRect);

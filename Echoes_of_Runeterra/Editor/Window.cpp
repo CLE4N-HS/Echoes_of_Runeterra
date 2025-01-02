@@ -41,7 +41,7 @@ Window::Window(const sf::String& title, sf::Uint32 style)
 	m_renderWindow.setView(view);
 	m_renderTexture.setView(view);
 
-	new RenderStatesManager();
+	//new RenderStatesManager();
 
 	ImGui::SFML::Init(m_renderWindow);
 }
@@ -82,7 +82,7 @@ void Window::Display()
 
 	m_texture = m_renderTexture.getTexture();
 	m_renderTexture.clear();
-	RenderStatesManager::SetTexture(m_texture);
+	//RenderStatesManager::SetTexture(m_texture);
 	m_sprite.setTexture(m_texture, true);
 	m_renderWindow.draw(m_sprite/*, RenderStatesManager::RenderStates*/);
 	m_renderWindow.display();

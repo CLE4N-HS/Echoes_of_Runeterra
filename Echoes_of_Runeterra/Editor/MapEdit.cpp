@@ -1,7 +1,9 @@
 #include "MapEdit.h"
 #include "SimpleTile.h"
+#include "Editor.h"
+#include "TorchObject.h"
 
-MapEdit::MapEdit(std::vector<std::vector<std::vector<Tile*>>>* _map) : m_Map(_map)
+MapEdit::MapEdit(std::vector<std::vector<std::vector<Tile*>>>* _map, std::vector<Object*>* _object) : m_Map(_map), m_Object(_object)
 {
 }
 
@@ -31,6 +33,23 @@ bool MapEdit::EditTile(sf::Vector2f _pos, std::string_view _textureName, sf::Int
 
 	(*m_Map)[m_Layer][tilePos.y][tilePos.x]->SetTextureName(_textureName);
 	(*m_Map)[m_Layer][tilePos.y][tilePos.x]->SetRect(_rect);
+
+	return true;
+}
+
+bool MapEdit::EditObject(sf::Vector2f _pos, std::string_view _textureName, sf::Vector2f _size, int _texture)
+{
+	sf::Vector2i objectPos = this->TilePos(_pos);
+	if (!(this->IsInMap(objectPos)))
+		return false;
+
+	switch (_texture)
+	{
+	case Editor::Texture::TORCH:
+		(*m_Object).push_back(new TorchObject(_pos, _size, _textureName)); break;
+	default:
+		break;
+	}
 
 	return true;
 }

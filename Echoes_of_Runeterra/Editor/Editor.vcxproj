@@ -33,6 +33,8 @@
     <ClCompile Include="MapEdit.cpp" />
     <ClCompile Include="Master.cpp" />
     <ClCompile Include="MouseManager.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectTextureManager.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="RenderStatesManager.cpp" />
     <ClCompile Include="SimpleTile.cpp" />
@@ -41,6 +43,7 @@
     <ClCompile Include="TileTextureManager.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Tools.cpp" />
+    <ClCompile Include="TorchObject.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +55,8 @@
     <ClInclude Include="MapEdit.h" />
     <ClInclude Include="Master.h" />
     <ClInclude Include="MouseManager.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectTextureManager.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="RenderStatesManager.h" />
     <ClInclude Include="SimpleTile.h" />
@@ -60,6 +65,7 @@
     <ClInclude Include="TileTextureManager.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Tools.h" />
+    <ClInclude Include="TorchObject.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>

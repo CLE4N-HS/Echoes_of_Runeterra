@@ -7,12 +7,13 @@ public:
 	constexpr static int MIN_SIZE = 1;
 	constexpr static int MAX_SIZE = 100;
 
-	MapEdit(std::vector<std::vector<std::vector<Tile*>>>* _map);
+	MapEdit(std::vector<std::vector<std::vector<Tile*>>>* _map, std::vector<Object*>* _object);
 	~MapEdit();
 
 	sf::Vector2i TilePos(sf::Vector2f _pos);
 	bool IsInMap(sf::Vector2i _pos);
 	bool EditTile(sf::Vector2f _pos, std::string_view _textureName, sf::IntRect _rect);
+	bool EditObject(sf::Vector2f _pos, std::string_view _textureName, sf::Vector2f _size, int _texture);
 
 	template<typename T>
 	inline sf::Vector2<T> GetSize() const
@@ -30,6 +31,8 @@ public:
 private:
 	std::vector<std::vector<std::vector<Tile*>>>* m_Map;
 	Map::Layer m_Layer = Map::Layer::BACKGROUND;
+
+	std::vector<Object*>* m_Object;
 
 };
 
