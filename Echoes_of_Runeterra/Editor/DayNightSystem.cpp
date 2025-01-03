@@ -55,4 +55,5 @@ void DayNightSystem::Display()
 	RenderStatesManager::SetShader("dayNight");
 
 	Window::Draw(Window::rectangle, RenderStatesManager::RenderStates);
+	Window::SetView();
 }

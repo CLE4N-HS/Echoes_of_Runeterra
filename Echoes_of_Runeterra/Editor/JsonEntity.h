@@ -1,5 +1,9 @@
 #pragma once
+
+//#pragma warning(push)
+//#pragma warning(disable : 26819)
 #include "Externals/json.hpp"
+//#pragma warning(pop)
 
 class JsonEntity
 {

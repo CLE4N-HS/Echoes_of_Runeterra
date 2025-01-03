@@ -7,6 +7,7 @@
 #include "ObjectTextureManager.h"
 #include "MouseManager.h"
 #include "TorchObject.h"
+#include "AnimTile.h"
 
 #include <Windows.h>
 #include <commdlg.h>
@@ -15,6 +16,8 @@ Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap(), &m_
 {
 	TileTextureManager::AddTexture("tileset", TILE_TEXTURE_PATH "tileset.png");
 	TileTextureManager::AddTexture("tile", TILE_TEXTURE_PATH "tile.png");
+	TileTextureManager::AddTexture("animTile", TILE_TEXTURE_PATH "animTile.png");
+	TileTextureManager::AddTexture("water", TILE_TEXTURE_PATH "water.png");
 
 	ObjectTextureManager::AddTexture("chest", OBJECT_TEXTURE_PATH "chest.png");
 	ObjectTextureManager::AddTexture("torch", OBJECT_TEXTURE_PATH "torch.png");
@@ -36,7 +39,7 @@ void Editor::Update()
 	if (!(this->UpdateImGui()))
 	{
 		//TEST TODO
-		if (MouseManager::HasJustPressed(sf::Mouse::Right))
+		if (MouseManager::HasJustPressed(sf::Mouse::Right) && 0)
 		{
 			sf::Vector2f mousePos = Window::GetMouseViewPos();
 			m_MapEdit.EditObject(mousePos, "torch", sf::Vector2f(32.f, 32.f), Texture::TORCH);
@@ -61,7 +64,24 @@ void Editor::Update()
 				switch (m_CurrentTextureId)
 				{
 				case Editor::TILE:
-					m_MapEdit.EditTile(mousePos, m_CurrentTextureName, m_CurrentRect); break;
+				{
+					switch (m_CurrentTexture)
+					{
+					case Editor::SIMPLE_TILE:
+						m_MapEdit.EditTile(mousePos, m_CurrentTextureName, m_CurrentRect, m_CurrentTileType); break;
+					case Editor::ANIM_TILE:
+					{
+						if (m_MapEdit.EditAnimTile(mousePos, m_CurrentTextureName, m_CurrentRect, m_CurrentTileType, m_CurrentAnimTileFrameX, m_CurrentAnimTileAnimSpeed))
+						{
+							this->ResetAnimTime();
+						}
+					}
+					break;
+					default:
+						break;
+					}
+				}
+				break;
 				case Editor::OBJECT:
 				{
 					if (MouseManager::HasJustPressed(sf::Mouse::Left))
@@ -314,8 +334,8 @@ bool Editor::UpdateImGui()
 				// EDITOR / MAP / TEXTURE / TILE
 				if (ig::TreeNode("Tile##EDITOR_MAP_TILE"))
 				{
-					// EDITOR / MAP / TEXTURE / TILE / NAME
-					if (ig::TreeNode("Name##EDITOR_MAP_TILE_NAME"))
+					// EDITOR / MAP / TEXTURE / TILE / TILESET
+					if (ig::TreeNode("Tileset##EDITOR_MAP_TILE_TILESET"))
 					{
 						std::map<std::string_view, sf::Texture*> texture = TileTextureManager::Get();
 
@@ -325,7 +345,11 @@ bool Editor::UpdateImGui()
 							{
 								m_CurrentTextureName = (*it).first;
 								m_CurrentTextureId = TextureId::TILE;
-								m_CurrentTexture = Texture::SIMPLE_TILE;
+
+								if (m_CurrentTextureName == "animTile")
+									m_CurrentTexture = Texture::ANIM_TILE;
+								else
+									m_CurrentTexture = Texture::SIMPLE_TILE;
 
 								m_CurrentRect.width = 0;
 							}
@@ -344,6 +368,16 @@ bool Editor::UpdateImGui()
 
 						if (igTileSize > 0)
 						{
+							if (m_CurrentTexture == Texture::ANIM_TILE)
+							{
+								ig::Separator();
+
+								ig::SliderInt("FrameX##EDITOR_MAP_TEXTURE_TILE_FRAMEX", &m_CurrentAnimTileFrameX, 1, 10);
+								ig::SliderFloat("AnimSpeed##EDITOR_MAP_TEXTURE_TILE_ANIMSPEED", &m_CurrentAnimTileAnimSpeed, 0.0f, 1.f, "%.2f");
+							}
+
+							ig::Separator();
+
 							int sizeX = static_cast<int>(currentTexture->getSize().x) / Tile::SIZE;
 							int sizeY = static_cast<int>(currentTexture->getSize().y) / Tile::SIZE;
 
@@ -359,6 +393,15 @@ bool Editor::UpdateImGui()
 									if (ig::ImageButton(std::to_string(y * 100 + x).c_str(), spr, sf::Vector2f(sf::Vector2i(igTileSize, igTileSize))))
 									{
 										m_CurrentRect = sf::IntRect(x * Tile::SIZE, y * Tile::SIZE, Tile::SIZE, Tile::SIZE);
+
+										if (m_CurrentTexture == Texture::ANIM_TILE)
+										{
+											m_CurrentTileType = Tile::Type::WATER;
+										}
+										else
+										{
+											m_CurrentTileType = Tile::Type::NO_TYPE;
+										}
 									}
 								}
 								ig::NewLine();
@@ -372,8 +415,8 @@ bool Editor::UpdateImGui()
 				// EDITOR / MAP / TEXTURE / OBJECT
 				if (ig::TreeNode("Object##EDITOR_MAP_OBJECT"))
 				{
-					// EDITOR / MAP / TEXTURE / OBJECT / NAME
-					if (ig::TreeNode("Name##EDITOR_MAP_OBJECT_NAME"))
+					// EDITOR / MAP / TEXTURE / OBJECT / TILESET
+					if (ig::TreeNode("Tileset##EDITOR_MAP_OBJECT_TILESET"))
 					{
 						std::map<std::string_view, sf::Texture*> texture = ObjectTextureManager::Get();
 
@@ -408,6 +451,8 @@ bool Editor::UpdateImGui()
 
 						if (igTileSize > 0)
 						{
+							ig::Separator();
+
 							int sizeX = static_cast<int>(currentTexture->getSize().x) / Tile::SIZE;
 							int sizeY = static_cast<int>(currentTexture->getSize().y) / Tile::SIZE;
 
@@ -496,27 +541,8 @@ bool Editor::UpdateImGui()
 
 					if (ImGui::Button("New##EDITOR_MAP_SAVES_NEW"))
 					{
-						OPENFILENAME ofn;                        // Structure pour configurer la boîte de dialogue
-						wchar_t fileName[MAX_PATH] = L"";        // Stocke le chemin du fichier sélectionné
-						wchar_t initialDir[MAX_PATH] = L"..\\Resources\\Saves\\Map"; // Répertoire initial
-						ZeroMemory(&ofn, sizeof(ofn));
-
-						ofn.lStructSize = sizeof(ofn);
-						//ofn.hwndOwner = Window::getNativeHandle();                 // Met la window en fenêtre prioritaire
-						ofn.lpstrFilter = L"Fichiers JSON (*.json)\0*.json\0Tous les fichiers (*.*)\0*.*\0";
-						ofn.lpstrFile = fileName;
-						ofn.nMaxFile = MAX_PATH;
-						ofn.lpstrInitialDir = initialDir;        // Répertoire de départ
-						ofn.Flags = OFN_OVERWRITEPROMPT;         // Demander confirmation avant d'écraser
-						ofn.lpstrDefExt = L"json";                // Extension par défaut
-
-						if (GetSaveFileName(&ofn))               // Afficher la boîte de dialogue
-						{
-							std::ofstream mapStream(fileName);
-							m_Map.DeinitMap();
-							m_Map.DefaultMap();
-							m_Map.Save(mapStream);           // Sauvegarder la map dans le chemin sélectionné
-						}
+						m_Map.DeinitMap();
+						m_Map.DefaultMap();
 					}
 
 					ig::TreePop();
@@ -561,10 +587,12 @@ void Editor::Display()
 	std::vector<std::vector<std::vector<Tile*>>> map = m_Map.getMap();
 	std::vector<Object*> object= m_Map.getObject();
 
+	/*
 	Window::rectangle.setOrigin(sf::Vector2f());
 	Window::rectangle.setSize(sf::Vector2f(sf::Vector2<int>(Tile::SIZE, Tile::SIZE)));
 	//test
 	Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
+	float tmpDt = Tools::GetDeltaTime();
 	for (size_t l = 0; l < map.size(); l++)
 	{
 		if (m_Layer[l])
@@ -575,6 +603,11 @@ void Editor::Display()
 				{
 					if (sf::Texture* tex = TileTextureManager::GetTexture(map[l][y][x]->GetTextureName()))
 					{
+						if (AnimTile* animTile = dynamic_cast<AnimTile*>(map[l][y][x]))
+						{
+							animTile->Anim(tmpDt);
+						}
+
 						Window::rectangle.setTexture(tex);
 						Window::rectangle.setTextureRect(map[l][y][x]->GetRect());
 						Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(x * Tile::SIZE, y * Tile::SIZE)));
@@ -585,16 +618,36 @@ void Editor::Display()
 			}
 		}
 	}
+	*/
 
+	if (m_Layer[Map::Layer::BACKGROUND])
+	{
+		this->DisplayLayer(Map::Layer::BACKGROUND);
+	}
 	if (m_Layer[Map::Layer::COLLISION])
 	{
+		this->DisplayLayer(Map::Layer::COLLISION);
+
 		Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
 		Window::rectangle.setOrigin(sf::Vector2f());
 		for (size_t i = 0; i < object.size(); i++)
 		{
 			object[i]->Display();
 		}
+
+		Window::rectangle.setTexture(nullptr);
+		Window::rectangle.setFillColor(sf::Color(0, 0, 0, 0));
+		for (Object* o : object)
+		{
+			if (TorchObject* t = dynamic_cast<TorchObject*>(o))
+				t->DisplayShader(m_DayNightSystem);
+		}
 	}
+	if (m_Layer[Map::Layer::FOREGROUND])
+	{
+		this->DisplayLayer(Map::Layer::FOREGROUND);
+	}
+
 	Window::rectangle.setTexture(nullptr);
 
 	if (m_Grid)
@@ -634,20 +687,6 @@ void Editor::Display()
 	}
 
 	m_DayNightSystem.Display();
-	Window::SetView();
-
-	if (m_Layer[Map::Layer::COLLISION])
-	{
-		Window::rectangle.setTexture(nullptr);
-		Window::rectangle.setFillColor(sf::Color(0, 0, 0, 0));
-		for (Object* o : object)
-		{
-			if (TorchObject* t = dynamic_cast<TorchObject*>(o))
-				t->DisplayShader(m_DayNightSystem);
-		}
-	}
-	Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
-
 
 	sf::Texture* currentTexture = nullptr;
 	switch (m_CurrentTextureId)
@@ -675,4 +714,62 @@ void Editor::Display()
 		//Window::rectangle.setTexture(nullptr);
 	}
 
+}
+
+void Editor::ResetAnimTime()
+{
+	std::vector<std::vector<std::vector<Tile*>>> map = m_Map.getMap();
+
+	for (size_t l = 0; l < map.size(); l++)
+	{
+		if (m_Layer[l])
+		{
+			for (size_t y = 0; y < map[l].size(); y++)
+			{
+				for (size_t x = 0; x < map[l][y].size(); x++)
+				{
+					if (sf::Texture* tex = TileTextureManager::GetTexture(map[l][y][x]->GetTextureName()))
+					{
+						if (AnimTile* animTile = dynamic_cast<AnimTile*>(map[l][y][x]))
+						{
+							animTile->GetAnimTime() = 0.f;
+							animTile->GetFrameX() = 0;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+void Editor::DisplayLayer(size_t _layer)
+{
+	std::vector<std::vector<std::vector<Tile*>>> map = m_Map.getMap();
+
+	Window::rectangle.setOrigin(sf::Vector2f());
+	Window::rectangle.setSize(sf::Vector2f(sf::Vector2<int>(Tile::SIZE, Tile::SIZE)));
+	//test
+	Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
+	float tmpDt = Tools::GetDeltaTime();
+
+	size_t l = _layer;
+	for (size_t y = 0; y < map[l].size(); y++)
+	{
+		for (size_t x = 0; x < map[l][y].size(); x++)
+		{
+			if (sf::Texture* tex = TileTextureManager::GetTexture(map[l][y][x]->GetTextureName()))
+			{
+				if (AnimTile* animTile = dynamic_cast<AnimTile*>(map[l][y][x]))
+				{
+					animTile->Anim(tmpDt);
+				}
+
+				Window::rectangle.setTexture(tex);
+				Window::rectangle.setTextureRect(map[l][y][x]->GetRect());
+				Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(x * Tile::SIZE, y * Tile::SIZE)));
+
+				Window::Draw();
+			}
+		}
+	}
 }

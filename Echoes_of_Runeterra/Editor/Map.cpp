@@ -7,8 +7,7 @@
 #include "TileTextureManager.h"
 #include "TorchObject.h"
 #include "ChestObject.h"
-
-#include "Externals/json.hpp"
+#include "AnimTile.h"
 
 Map::Map()
 {
@@ -69,6 +68,8 @@ void Map::Save(std::ostream& _file)
 
 					if (SimpleTile* simpleTile = dynamic_cast<SimpleTile*>(m_Map[l][y][x]))
 						j["Map"][lS][yS][xS]["SimpleTile"] = m_Map[l][y][x]->ToJson();
+					if (AnimTile* animTile = dynamic_cast<AnimTile*>(m_Map[l][y][x]))
+						j["Map"][lS][yS][xS]["AnimTile"] = m_Map[l][y][x]->ToJson();
 				}
 			}
 		}
@@ -142,6 +143,11 @@ void Map::Load(std::ifstream& _file)
 					m_Map[l][y].push_back(new SimpleTile());
 					m_Map[l][y][x]->FromJson(j["Map"][lS][yS][xS]["SimpleTile"]);
 				}
+				else if (j["Map"][lS][yS][xS].contains("AnimTile"))
+				{
+					m_Map[l][y].push_back(new AnimTile());
+					m_Map[l][y][x]->FromJson(j["Map"][lS][yS][xS]["AnimTile"]);
+				}
 			}
 		}
 	}
@@ -194,8 +200,8 @@ void Map::DeinitMap()
 void Map::DefaultMap()
 {
 	size_t sizeL = Map::Layer::COUNT;
-	size_t sizeY = 10;
-	size_t sizeX = 20;
+	size_t sizeY = 20;
+	size_t sizeX = 34;
 
 	m_Map.reserve(sizeL);
 	for (size_t l = 0; l < sizeL; l++)

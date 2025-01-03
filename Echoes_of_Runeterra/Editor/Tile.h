@@ -11,9 +11,11 @@ public:
 
 	enum Type : uint8_t
 	{
-		VOID = 0,
+		NO_TYPE = 0,
 		GRASS,
-		DIRT
+		DIRT,
+		WATER,
+		WALL
 	};
 	//enum Direction : uint8_t
 	//{
@@ -34,7 +36,8 @@ public:
 	Tile(sf::IntRect _rect, sf::Vector2f _pos, Tile::Type _type);
 	~Tile() = default;
 
-	inline uint8_t GetType() const { return static_cast<uint8_t>(m_Type); }
+	inline uint8_t getType() const { return static_cast<uint8_t>(m_Type); }
+	inline Type& GetType() { return m_Type; }
 
 	inline std::string_view GetTextureName() const { return m_TextureName; }
 	inline void SetTextureName(std::string_view _name) { m_TextureName = _name; }
@@ -52,7 +55,7 @@ protected:
 	std::string m_TextureName = "";
 	sf::IntRect m_Rect = sf::IntRect();
 	//sf::Vector2f m_Pos = sf::Vector2f();
-	Tile::Type m_Type = Tile::Type::VOID;
+	Tile::Type m_Type = Tile::Type::NO_TYPE;
 	//Tile::Direction m_Direction = Tile::Direction::VOID;
 
 

@@ -27,6 +27,7 @@ public:
 	{
 		NO,
 		SIMPLE_TILE,
+		ANIM_TILE,
 
 		CHEST,
 		TORCH
@@ -54,5 +55,13 @@ private:
 	TextureId m_CurrentTextureId = NONE;
 	Texture m_CurrentTexture = NO;
 	Object* m_CurrentObject = nullptr;
+
+	int m_CurrentAnimTileFrameX = 4;
+	float m_CurrentAnimTileAnimSpeed = 0.1f;
+
+	Tile::Type m_CurrentTileType = Tile::Type::NO_TYPE;
+
+	void ResetAnimTime();
+	void DisplayLayer(size_t _layer);
 
 };

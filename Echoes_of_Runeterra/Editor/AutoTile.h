@@ -31,6 +31,6 @@ public:
 
 private:
 	uint8_t m_Inside = 0;
-	Tile::Type m_Outisde = Tile::Type::VOID;
+	Tile::Type m_Outisde = Tile::Type::NO_TYPE;
 
 };

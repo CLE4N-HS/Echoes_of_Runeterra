@@ -21,7 +21,7 @@ AutoTileDatabase::~AutoTileDatabase()
 
 uint32_t AutoTileDatabase::GetId(const AutoTile* const& _autoTile)
 {
-	return uint32_t((_autoTile->GetType() << 0) + (_autoTile->GetInside() << 8) + (_autoTile->GetOutside() << 16));
+	return uint32_t((_autoTile->getType() << 0) + (_autoTile->GetInside() << 8) + (_autoTile->GetOutside() << 16));
 }
 
 void AutoTileDatabase::AddAutoTile(AutoTile* _autoTile)

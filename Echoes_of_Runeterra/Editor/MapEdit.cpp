@@ -3,6 +3,7 @@
 #include "Editor.h"
 #include "TorchObject.h"
 #include "ChestObject.h"
+#include "AnimTile.h"
 
 MapEdit::MapEdit(std::vector<std::vector<std::vector<Tile*>>>* _map, std::vector<Object*>* _object) : m_Map(_map), m_Object(_object)
 {
@@ -26,14 +27,51 @@ bool MapEdit::IsInMap(sf::Vector2i _pos)
 	return (_pos.x >= 0 && _pos.y >= 0 && _pos.y < (*m_Map)[m_Layer].size() && _pos.x < (*m_Map)[m_Layer][0].size());
 }
 
-bool MapEdit::EditTile(sf::Vector2f _pos, std::string_view _textureName, sf::IntRect _rect)
+bool MapEdit::EditTile(sf::Vector2f _pos, std::string_view _textureName, sf::IntRect _rect, Tile::Type _type)
 {
 	sf::Vector2i tilePos = this->TilePos(_pos);
 	if (!(this->IsInMap(tilePos)))
 		return false;
 
+	SimpleTile* simpleTile = dynamic_cast<SimpleTile*>((*m_Map)[m_Layer][tilePos.y][tilePos.x]);
+	if (!simpleTile)
+	{
+		delete (*m_Map)[m_Layer][tilePos.y][tilePos.x];
+		(*m_Map)[m_Layer][tilePos.y][tilePos.x] = new SimpleTile();
+	}
+
 	(*m_Map)[m_Layer][tilePos.y][tilePos.x]->SetTextureName(_textureName);
 	(*m_Map)[m_Layer][tilePos.y][tilePos.x]->SetRect(_rect);
+	(*m_Map)[m_Layer][tilePos.y][tilePos.x]->GetType() = _type;
+
+	return true;
+}
+
+bool MapEdit::EditAnimTile(sf::Vector2f _pos, std::string_view _textureName, sf::IntRect _rect, Tile::Type _type, int _frameX, float _animSpeed)
+{
+	sf::Vector2i tilePos = this->TilePos(_pos);
+	if (!(this->IsInMap(tilePos)))
+		return false;
+
+	AnimTile* animTile = dynamic_cast<AnimTile*>((*m_Map)[m_Layer][tilePos.y][tilePos.x]);
+	if (!animTile)
+	{
+		delete (*m_Map)[m_Layer][tilePos.y][tilePos.x];
+		(*m_Map)[m_Layer][tilePos.y][tilePos.x] = new AnimTile();
+		animTile = dynamic_cast<AnimTile*>((*m_Map)[m_Layer][tilePos.y][tilePos.x]);
+	}
+
+	animTile->GetMaxFrameX() = _frameX;
+	animTile->GetAnimSpeed() = _animSpeed;
+
+	if (_textureName == "animTile")
+	{
+		_textureName = "water";
+	}
+
+	(*m_Map)[m_Layer][tilePos.y][tilePos.x]->SetTextureName(_textureName);
+	(*m_Map)[m_Layer][tilePos.y][tilePos.x]->SetRect(_rect);
+	(*m_Map)[m_Layer][tilePos.y][tilePos.x]->GetType() = _type;
 
 	return true;
 }

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimTile.cpp" />
     <ClCompile Include="AutoTile.cpp" />
     <ClCompile Include="AutoTileDatabase.cpp" />
     <ClCompile Include="ChestObject.cpp" />
@@ -49,6 +50,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimTile.h" />
     <ClInclude Include="AutoTile.h" />
     <ClInclude Include="AutoTileDatabase.h" />
     <ClInclude Include="ChestObject.h" />

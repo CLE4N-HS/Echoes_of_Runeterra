@@ -12,7 +12,8 @@ public:
 
 	sf::Vector2i TilePos(sf::Vector2f _pos);
 	bool IsInMap(sf::Vector2i _pos);
-	bool EditTile(sf::Vector2f _pos, std::string_view _textureName, sf::IntRect _rect);
+	bool EditTile(sf::Vector2f _pos, std::string_view _textureName, sf::IntRect _rect, Tile::Type _type);
+	bool EditAnimTile(sf::Vector2f _pos, std::string_view _textureName, sf::IntRect _rect, Tile::Type _type, int _frameX, float _animSpeed);
 	bool EditObject(sf::Vector2f _pos, std::string_view _textureName, sf::Vector2f _size, int _texture);
 
 	template<typename T>
