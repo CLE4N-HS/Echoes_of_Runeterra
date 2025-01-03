@@ -393,7 +393,7 @@ bool Editor::UpdateImGui()
 				ig::TreePop();
 			}
 
-			// Hugo Miceli (c)
+			// Hugo Miceli (c) for the library usage
 			if (1)
 			{
 				// EDITOR / MAP / SAVES
@@ -452,6 +452,31 @@ bool Editor::UpdateImGui()
 						}
 					}
 
+					if (ImGui::Button("New##EDITOR_MAP_SAVES_NEW"))
+					{
+						OPENFILENAME ofn;                        // Structure pour configurer la boîte de dialogue
+						wchar_t fileName[MAX_PATH] = L"";        // Stocke le chemin du fichier sélectionné
+						wchar_t initialDir[MAX_PATH] = L"..\\Resources\\Saves\\Map"; // Répertoire initial
+						ZeroMemory(&ofn, sizeof(ofn));
+
+						ofn.lStructSize = sizeof(ofn);
+						//ofn.hwndOwner = Window::getNativeHandle();                 // Met la window en fenêtre prioritaire
+						ofn.lpstrFilter = L"Fichiers JSON (*.json)\0*.json\0Tous les fichiers (*.*)\0*.*\0";
+						ofn.lpstrFile = fileName;
+						ofn.nMaxFile = MAX_PATH;
+						ofn.lpstrInitialDir = initialDir;        // Répertoire de départ
+						ofn.Flags = OFN_OVERWRITEPROMPT;         // Demander confirmation avant d'écraser
+						ofn.lpstrDefExt = L"json";                // Extension par défaut
+
+						if (GetSaveFileName(&ofn))               // Afficher la boîte de dialogue
+						{
+							std::ofstream mapStream(fileName);
+							m_Map.DeinitMap();
+							m_Map.DefaultMap();
+							m_Map.Save(mapStream);           // Sauvegarder la map dans le chemin sélectionné
+						}
+					}
+
 					ig::TreePop();
 				}
 			}
@@ -497,7 +522,7 @@ void Editor::Display()
 	Window::rectangle.setOrigin(sf::Vector2f());
 	Window::rectangle.setSize(sf::Vector2f(sf::Vector2<int>(Tile::SIZE, Tile::SIZE)));
 	//test
-	Window::rectangle.setFillColor(sf::Color(255, 255, 255, 100));
+	Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
 	for (size_t l = 0; l < map.size(); l++)
 	{
 		if (m_Layer[l])
@@ -506,11 +531,14 @@ void Editor::Display()
 			{
 				for (size_t x = 0; x < map[l][y].size(); x++)
 				{
-					Window::rectangle.setTexture(TileTextureManager::GetTexture(map[l][y][x]->GetTextureName()));
-					Window::rectangle.setTextureRect(map[l][y][x]->GetRect());
-					Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(x * Tile::SIZE, y * Tile::SIZE)));
+					if (sf::Texture* tex = TileTextureManager::GetTexture(map[l][y][x]->GetTextureName()))
+					{
+						Window::rectangle.setTexture(tex);
+						Window::rectangle.setTextureRect(map[l][y][x]->GetRect());
+						Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(x * Tile::SIZE, y * Tile::SIZE)));
 
-					Window::Draw();
+						Window::Draw();
+					}
 				}
 			}
 		}

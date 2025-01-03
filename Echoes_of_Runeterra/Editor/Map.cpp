@@ -3,31 +3,15 @@
 #include "AutoTile.h"
 #include "SimpleTile.h"
 #include "Window.h"
+
 #include "TileTextureManager.h"
+#include "TorchObject.h"
 
 #include "Externals/json.hpp"
 
 Map::Map()
 {
-	size_t sizeL = Map::Layer::COUNT;
-	size_t sizeY = 10;
-	size_t sizeX = 20;
-
-	m_Map.reserve(sizeL);
-	for (size_t l = 0; l < sizeL; l++)
-	{
-		m_Map.push_back(std::vector<std::vector<Tile*>>());
-		m_Map[l].reserve(sizeY);
-		for (size_t y = 0; y < sizeY; y++)
-		{
-			m_Map[l].push_back(std::vector<Tile*>());
-			m_Map[l][y].reserve(sizeX);
-			for (size_t x = 0; x < sizeX; x++)
-			{
-				m_Map[l][y].push_back(new SimpleTile());
-			}
-		}
-	}
+	DefaultMap();
 }
 
 Map::~Map()
@@ -88,6 +72,24 @@ void Map::Save(std::ostream& _file)
 			}
 		}
 	}
+
+	// Object
+	{
+		size_t oSize = m_Object.size();
+		std::string oSizeToS = std::to_string(oSize);
+
+		j["Object"]["Size"] = oSize;
+
+		for (size_t i = 0; i < oSize; i++)
+		{
+			std::string iToS = std::to_string(i);
+			std::string iStmp(std::string(oSizeToS.length() - iToS.length(), '0') + iToS);
+			const char* iS = iStmp.c_str();
+
+			if (TorchObject* torchObject = dynamic_cast<TorchObject*>(m_Object[i]))
+				j["Object"][iS]["TorchObject"] = torchObject->ToJson();
+		}
+	}
 	
 	_file << j.dump(4);
 }
@@ -135,6 +137,22 @@ void Map::Load(std::ifstream& _file)
 			}
 		}
 	}
+
+	size_t oSize = j["Object"]["Size"];
+	std::string oSizeToS = std::to_string(oSize);
+
+	for (size_t i = 0; i < oSize; i++)
+	{
+		std::string iToS = std::to_string(i);
+		std::string iStmp(std::string(oSizeToS.length() - iToS.length(), '0') + iToS);
+		const char* iS = iStmp.c_str();
+
+		if (j["Object"][iS].contains("TorchObject"))
+		{
+			m_Object.push_back(new TorchObject());
+			m_Object[i]->FromJson(j["Object"][iS]["TorchObject"]);
+		}
+	}
 }
 
 void Map::DeinitMap()
@@ -146,13 +164,48 @@ void Map::DeinitMap()
 			while (m_Map[0][0].size() > 0)
 			{
 				delete m_Map[0][0][0];
-				std::vector<Tile*>::iterator it = m_Map[0][0].begin();
-				m_Map[0][0].erase(it);
+				m_Map[0][0].erase(m_Map[0][0].begin());
 			}
-			std::vector<std::vector<Tile*>>::iterator it2 = m_Map[0].begin();
-			m_Map[0].erase(it2);
+			m_Map[0].erase(m_Map[0].begin());
 		}
-		std::vector<std::vector<std::vector<Tile*>>>::iterator it3 = m_Map.begin();
-		m_Map.erase(it3);
+		m_Map.erase(m_Map.begin());
+	}
+
+	while (m_Object.size() > 0)
+	{
+		delete m_Object[0];
+		m_Object.erase(m_Object.begin());
+	}
+}
+
+void Map::DefaultMap()
+{
+	size_t sizeL = Map::Layer::COUNT;
+	size_t sizeY = 10;
+	size_t sizeX = 20;
+
+	m_Map.reserve(sizeL);
+	for (size_t l = 0; l < sizeL; l++)
+	{
+		m_Map.push_back(std::vector<std::vector<Tile*>>());
+		m_Map[l].reserve(sizeY);
+		for (size_t y = 0; y < sizeY; y++)
+		{
+			m_Map[l].push_back(std::vector<Tile*>());
+			m_Map[l][y].reserve(sizeX);
+			for (size_t x = 0; x < sizeX; x++)
+			{
+				if (l == 0)
+				{
+					m_Map[l][y].push_back(new SimpleTile());
+					m_Map[l][y][x]->SetTextureName("tileset");
+					m_Map[l][y][x]->SetRect(sf::IntRect(64, 0, 32, 32));
+				}
+				else
+				{
+					m_Map[l][y].push_back(new SimpleTile());
+				}
+			}
+		}
 	}
 }

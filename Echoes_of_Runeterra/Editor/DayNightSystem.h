@@ -28,7 +28,4 @@ private:
 	float m_Time = 0.f;
 	float m_NormalizedTime = 0.f;
 
-	sf::Shader* m_Shader;
-	sf::RenderStates m_RenderStates;
-
 };

@@ -117,6 +117,9 @@
     <ClCompile Include="ObjectTextureManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="JsonEntity.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Map.h">
@@ -181,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="Externals\json.hpp">
       <Filter>Fichiers de ressources</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonEntity.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

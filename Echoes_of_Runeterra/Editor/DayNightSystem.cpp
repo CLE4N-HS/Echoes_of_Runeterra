@@ -1,15 +1,15 @@
 #include "DayNightSystem.h"
 #include "Tools.h"
 #include "Window.h"
+#include "RenderStatesManager.h"
 
-DayNightSystem::DayNightSystem() : m_Shader(new sf::Shader()), m_RenderStates()
+DayNightSystem::DayNightSystem()
 {
-	m_Shader->loadFromFile("../Resources/Shader/test.frag", sf::Shader::Fragment);
+	RenderStatesManager::AddShader("dayNight", SHADER_PATH "test.frag", sf::Shader::Fragment);
 }
 
 DayNightSystem::~DayNightSystem()
 {
-	delete m_Shader;
 }
 
 void DayNightSystem::Update()
@@ -38,9 +38,6 @@ void DayNightSystem::Update()
 		m_Hour = 0;
 	}
 
-	float uTime = static_cast<float>(m_Hour) + static_cast<float>(m_Minute) / 60.f;
-	m_Shader->setUniform("u_time", uTime);
-
 	m_Time = static_cast<float>(m_Hour) + static_cast<float>(m_Minute) / 60.f;
 	m_NormalizedTime = m_Time / 24.f;
 }
@@ -52,7 +49,10 @@ void DayNightSystem::Display()
 	Window::rectangle.setSize(Window::view.getSize());
 	Window::rectangle.setOrigin(sf::Vector2f(0.f, 0.f));
 	Window::rectangle.setTexture(nullptr);
-	Window::rectangle.setFillColor(sf::Color(255, 255, 255, 0));
-	m_RenderStates.shader = m_Shader;
-	Window::Draw(Window::rectangle, m_RenderStates);
+	Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
+
+	RenderStatesManager::SetShaderUniform("dayNight", "u_time", m_NormalizedTime);
+	RenderStatesManager::SetShader("dayNight");
+
+	Window::Draw(Window::rectangle, RenderStatesManager::RenderStates);
 }

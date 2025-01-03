@@ -14,6 +14,9 @@ public:
 	void DisplayShader(DayNightSystem& _system);
 	void DisplayParticles();
 
+	virtual nlohmann::json ToJson() override;
+	virtual void FromJson(const nlohmann::json& _j) override;
+
 private:
 
 };

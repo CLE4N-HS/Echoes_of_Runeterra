@@ -49,3 +49,21 @@ void TorchObject::DisplayShader(DayNightSystem& _system)
 void TorchObject::DisplayParticles()
 {
 }
+
+nlohmann::json TorchObject::ToJson()
+{
+	nlohmann::json j;
+
+	j["Position"] = { m_Pos.x, m_Pos.y };
+	j["Size"] = { m_Size.x, m_Size.y };
+	j["TextureName"] = m_TextureName;
+
+	return j;
+}
+
+void TorchObject::FromJson(const nlohmann::json& _j)
+{
+	m_Pos = sf::Vector2f(_j["Position"][0], _j["Position"][1]);
+	m_Size = sf::Vector2f(_j["Size"][0], _j["Size"][1]);
+	m_TextureName = _j["TextureName"];
+}

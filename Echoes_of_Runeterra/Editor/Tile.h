@@ -1,9 +1,9 @@
 #pragma once
 #include "Tools.h"
 #include <string_view>
-#include "Externals/json.hpp"
+#include "JsonEntity.h"
 
-class Tile
+class Tile : public JsonEntity
 {
 public:
 	static constexpr int SIZE = 32;

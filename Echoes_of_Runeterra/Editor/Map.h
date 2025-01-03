@@ -24,6 +24,7 @@ public:
 	void Load(std::ifstream& _file);
 
 	void DeinitMap();
+	void DefaultMap();
 
 	inline std::vector<std::vector<std::vector<Tile*>>>& getMap() { return m_Map; }
 	inline std::vector<Object*>& getObject() { return m_Object; }
