@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+#include "DayNightSystem.h"
 
 class TorchObject : public Object
 {
@@ -9,6 +10,9 @@ public:
 	~TorchObject();
 
 	virtual void Display() override;
+
+	void DisplayShader(DayNightSystem& _system);
+	void DisplayParticles();
 
 private:
 

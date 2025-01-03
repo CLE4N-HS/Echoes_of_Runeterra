@@ -70,7 +70,10 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Resources\Shader\sim.frag" />
     <None Include="..\Resources\Shader\test.frag" />
+    <None Include="..\Resources\Shader\torch - Copie.frag" />
+    <None Include="..\Resources\Shader\torch.frag" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

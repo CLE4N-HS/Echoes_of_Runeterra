@@ -6,6 +6,7 @@
 #include "RenderStatesManager.h"
 #include "ObjectTextureManager.h"
 #include "MouseManager.h"
+#include "TorchObject.h"
 
 #include <Windows.h>
 #include <commdlg.h>
@@ -31,6 +32,13 @@ void Editor::Update()
 {
 	if (!(this->UpdateImGui()))
 	{
+		//TEST TODO
+		if (MouseManager::HasJustPressed(sf::Mouse::Right))
+		{
+			sf::Vector2f mousePos = Window::GetMouseViewPos();
+			m_MapEdit.EditObject(mousePos, "torch", sf::Vector2f(32.f, 32.f), Texture::TORCH);
+		}
+
 		sf::Texture* currentTexture = nullptr;
 		switch (m_CurrentTextureId)
 		{
@@ -510,13 +518,20 @@ void Editor::Display()
 
 	if (m_Layer[Map::Layer::COLLISION])
 	{
-		Window::rectangle.setTexture(nullptr);
 		Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
 		Window::rectangle.setOrigin(sf::Vector2f());
 		for (size_t i = 0; i < object.size(); i++)
 		{
 			object[i]->Display();
 		}
+
+		Window::rectangle.setTexture(nullptr);
+		for (Object* o : object)
+		{
+			if (TorchObject* t = dynamic_cast<TorchObject*>(o))
+				t->DisplayShader(m_DayNightSystem);
+		}
+
 	}
 
 	if (m_Grid)
