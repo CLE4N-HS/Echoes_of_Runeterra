@@ -26,32 +26,22 @@ void TorchObject::Display()
 
 void TorchObject::DisplayShader(DayNightSystem& _system)
 {
-	sf::RenderTexture tmp;
-	//m_Pos = sf::Vector2f(400.f, 200.f);
-	sf::RectangleShape rect(m_Size);
-	rect.setPosition(m_Pos);
+	float factor = 1080.f / Window::view.getSize().y;
+	float size = m_Size.x * 4.f;
+	float halfSize = size * 0.5f;
+	sf::Vector2f centerPos(m_Pos + m_Size * 0.5f);
+	
+	Window::rectangle.setPosition(centerPos);
+	Window::rectangle.setSize(sf::Vector2f(size, size));
+	Window::rectangle.setOrigin(Window::rectangle.getSize() * 0.5f);
+	Window::rectangle.setFillColor(sf::Color(0, 0, 0, 0));
 
-	tmp.create(m_Size.x, m_Size.y);
+	sf::Glsl::Vec2 lightPos(Window::ScreenPos(centerPos));
+	lightPos.y = 1080.f - lightPos.y;
 
-	tmp.draw(rect);
-
-	sf::Texture tex = tmp.getTexture();
-
-	Window::rectangle.setTexture(&tex, true);
-
-	Window::rectangle.setPosition(m_Pos);
-	Window::rectangle.setSize(m_Size);
-	//Window::rectangle.setOrigin(Window::rectangle.getSize() * 0.5f);
-	Window::rectangle.setFillColor(sf::Color(100, 0, 200, 100));
-	float az = 540.f;
-	sf::Glsl::Vec2 ttt(m_Pos);
-	ttt.y = 1080.f - m_Pos.y;
-	ttt.x += m_Size.x * 0.5f;
-	ttt.y -= m_Size.y * 0.5f;
-	RenderStatesManager::SetShaderUniform("torch", "lightPosition", ttt);
-	//RenderStatesManager::SetShaderUniform("torch", "lightPosition", sf::Glsl::Vec2(m_Size * 0.5f));
-	RenderStatesManager::SetShaderUniform("torch", "lightRadius", float(10.f));
-	RenderStatesManager::SetShaderUniform("torch", "texture", tex);
+	RenderStatesManager::SetShaderUniform("torch", "lightPosition", lightPos);
+	RenderStatesManager::SetShaderUniform("torch", "lightRadius", halfSize * factor);
+	RenderStatesManager::SetShaderUniform("torch", "lightIntensity", _system.GetNormalizedTime());
 	RenderStatesManager::SetShader("torch");
 
 	Window::Draw(Window::rectangle, RenderStatesManager::RenderStates);

@@ -102,6 +102,11 @@ void Window::SetView(bool _defaultView)
 		m_renderTexture.setView(view);
 }
 
+sf::Vector2f Window::ScreenPos(const sf::Vector2f& _pos)
+{
+	return sf::Vector2f(m_renderTexture.mapCoordsToPixel(_pos));
+}
+
 void Window::ToggleFullscreen()
 {
 	m_fullscreenTimer = 0.f;

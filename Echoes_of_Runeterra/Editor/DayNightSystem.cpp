@@ -40,6 +40,9 @@ void DayNightSystem::Update()
 
 	float uTime = static_cast<float>(m_Hour) + static_cast<float>(m_Minute) / 60.f;
 	m_Shader->setUniform("u_time", uTime);
+
+	m_Time = static_cast<float>(m_Hour) + static_cast<float>(m_Minute) / 60.f;
+	m_NormalizedTime = m_Time / 24.f;
 }
 
 void DayNightSystem::Display()
