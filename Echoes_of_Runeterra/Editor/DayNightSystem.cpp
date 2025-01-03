@@ -46,7 +46,7 @@ void DayNightSystem::Display()
 {
 	Window::SetView(true);
 	Window::rectangle.setPosition(sf::Vector2f(0.f, 0.f));
-	Window::rectangle.setSize(Window::view.getSize());
+	Window::rectangle.setSize(Window::view.getSize() * 1080.f / Window::view.getSize().y);
 	Window::rectangle.setOrigin(sf::Vector2f(0.f, 0.f));
 	Window::rectangle.setTexture(nullptr);
 	Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));

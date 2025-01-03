@@ -76,7 +76,7 @@ void Editor::Update()
 
 	float dt = Tools::GetDeltaTime();
 
-	float viewSpeed = 500.f * dt;
+	float viewSpeed = 200.f * dt;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 	{
 		Window::view.move(sf::Vector2f(0.f, -viewSpeed));
