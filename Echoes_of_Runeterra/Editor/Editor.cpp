@@ -565,7 +565,7 @@ void Editor::Display()
 						Window::rectangle.setTexture(tex);
 						Window::rectangle.setTextureRect(map[l][y][x]->GetRect());
 						Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(x * Tile::SIZE, y * Tile::SIZE)));
-
+					
 						Window::Draw();
 					}
 				}
@@ -582,6 +582,7 @@ void Editor::Display()
 			object[i]->Display();
 		}
 	}
+	Window::rectangle.setTexture(nullptr);
 
 	if (m_Grid)
 	{
@@ -606,6 +607,7 @@ void Editor::Display()
 	}
 	if (m_Border)
 	{
+		Window::rectangle.setTexture(nullptr);
 		Window::rectangle.setFillColor(sf::Color(0, 0, 0, 0));
 		Window::rectangle.setSize(sf::Vector2f(static_cast<float>(map[0][0].size() * Tile::SIZE), static_cast<float>(map[0].size() * Tile::SIZE)));
 		Window::rectangle.setPosition(sf::Vector2f());
@@ -613,6 +615,9 @@ void Editor::Display()
 		Window::rectangle.setOutlineThickness(m_BorderSize);
 		Window::rectangle.setOutlineColor(m_BorderColor);
 		Window::Draw();
+
+		Window::rectangle.setOutlineThickness(0.f);
+		Window::rectangle.setOutlineColor(sf::Color(0, 0, 0, 0));
 	}
 
 	m_DayNightSystem.Display();
@@ -628,6 +633,7 @@ void Editor::Display()
 				t->DisplayShader(m_DayNightSystem);
 		}
 	}
+	Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
 
 
 	sf::Texture* currentTexture = nullptr;

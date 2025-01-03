@@ -13,7 +13,7 @@ Object::~Object()
 
 void Object::SetupDraw()
 {
-	Window::rectangle.setTexture(ObjectTextureManager::GetTexture(m_TextureName));
+	Window::rectangle.setTexture(ObjectTextureManager::GetTexture(m_TextureName), true);
 	Window::rectangle.setPosition(m_Pos);
 	Window::rectangle.setSize(m_Size);
 }

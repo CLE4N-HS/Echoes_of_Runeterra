@@ -43,8 +43,8 @@ private:
 	bool m_Grid = false;
 	sf::Color m_GridColor = sf::Color(0, 0, 0, 255);
 	float m_GridSize = 2.f;
-	bool m_Border = false;
-	sf::Color m_BorderColor = sf::Color(0, 0, 0, 255);
+	bool m_Border = true;
+	sf::Color m_BorderColor = sf::Color(255, 0, 0, 255);
 	float m_BorderSize = 2.f;
 
 
