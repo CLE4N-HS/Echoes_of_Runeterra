@@ -182,26 +182,55 @@ bool Editor::UpdateImGui()
 				ig::TreePop();
 			}
 
-			// EDITOR / MAP / GRID
-			if (ig::TreeNode("Grid##EDITOR_MAP_GRID"))
+			// EDITOR / MAP / DISPLAY
+			if (ig::TreeNode("Display##EDITOR_MAP_DISPLAY"))
 			{
-				ig::Checkbox("Display##EDITOR_MAP_GRID_DISPLAY", &m_Grid);
-
-				// EDITOR / MAP / GRID / SETTINGS
-				if (ig::TreeNode("Settings##EDITOR_MAP_GRID_SETTINGS"))
+				// EDITOR / MAP / DISPLAY / GRID
+				if (ig::TreeNode("Grid##EDITOR_MAP_DISPLAY_GRID"))
 				{
-					ig::SliderFloat("Size##EDITOR_MAP_GRID_SETTINGS_SIZE", &m_GridSize, 0.f, static_cast<float>(Tile::SIZE / 2), "%.1f");
+					ig::Checkbox("Display##EDITOR_MAP_DISPLAY_GRID_DISPLAY", &m_Grid);
 
-					ig::Separator();
+					// EDITOR / MAP / DISPLAY / GRID / SETTINGS
+					if (ig::TreeNode("Settings##EDITOR_MAP_DISPLAY_GRID_SETTINGS"))
+					{
+						ig::SliderFloat("Size##EDITOR_MAP_DISPLAY_GRID_SETTINGS_SIZE", &m_GridSize, 0.f, static_cast<float>(Tile::SIZE / 2), "%.1f");
 
-					ig::Text("Color : ");
+						ig::Separator();
 
-					float color[4]{static_cast<float>(m_GridColor.r) / 255.f, static_cast<float>(m_GridColor.g) / 255.f, static_cast<float>(m_GridColor.b) / 255.f , static_cast<float>(m_GridColor.a) / 255.f };
-					ig::ColorEdit4("qdz", color);
-					m_GridColor.r = static_cast<sf::Uint8>(color[0]* 255.f);
-					m_GridColor.g = static_cast<sf::Uint8>(color[1]* 255.f);
-					m_GridColor.b = static_cast<sf::Uint8>(color[2]* 255.f);
-					m_GridColor.a = static_cast<sf::Uint8>(color[3]* 255.f);
+						float color[4]{ static_cast<float>(m_GridColor.r) / 255.f, static_cast<float>(m_GridColor.g) / 255.f, static_cast<float>(m_GridColor.b) / 255.f , static_cast<float>(m_GridColor.a) / 255.f };
+						ig::ColorEdit4("Color##EDITOR_MAP_DISPLAY_GRID_SETTINGS_COLOR", color);
+						m_GridColor.r = static_cast<sf::Uint8>(color[0] * 255.f);
+						m_GridColor.g = static_cast<sf::Uint8>(color[1] * 255.f);
+						m_GridColor.b = static_cast<sf::Uint8>(color[2] * 255.f);
+						m_GridColor.a = static_cast<sf::Uint8>(color[3] * 255.f);
+
+						ig::TreePop();
+					}
+
+					ig::TreePop();
+				}
+
+				// EDITOR / MAP / DISPLAY / BORDER
+				if (ig::TreeNode("Border##EDITOR_MAP_DISPLAY_BORDER"))
+				{
+					ig::Checkbox("Display##EDITOR_MAP_DISPLAY_BORDER_DISPLAY", &m_Border);
+
+					// EDITOR / MAP / DISPLAY / BORDER / SETTINGS
+					if (ig::TreeNode("Settings##EDITOR_MAP_DISPLAY_BORDER_SETTINGS"))
+					{
+						ig::SliderFloat("Size##EDITOR_MAP_DISPLAY_BORDER_SETTINGS_SIZE", &m_BorderSize, 0.f, static_cast<float>(Tile::SIZE / 2), "%.1f");
+
+						ig::Separator();
+
+						float color[4]{ static_cast<float>(m_BorderColor.r) / 255.f, static_cast<float>(m_BorderColor.g) / 255.f, static_cast<float>(m_BorderColor.b) / 255.f , static_cast<float>(m_BorderColor.a) / 255.f };
+						ig::ColorEdit4("Color##EDITOR_MAP_DISPLAY_BORDER_SETTINGS_COLOR", color);
+						m_BorderColor.r = static_cast<sf::Uint8>(color[0] * 255.f);
+						m_BorderColor.g = static_cast<sf::Uint8>(color[1] * 255.f);
+						m_BorderColor.b = static_cast<sf::Uint8>(color[2] * 255.f);
+						m_BorderColor.a = static_cast<sf::Uint8>(color[3] * 255.f);
+
+						ig::TreePop();
+					}
 
 					ig::TreePop();
 				}
@@ -574,6 +603,16 @@ void Editor::Display()
 
 			Window::Draw();
 		}
+	}
+	if (m_Border)
+	{
+		Window::rectangle.setFillColor(sf::Color(0, 0, 0, 0));
+		Window::rectangle.setSize(sf::Vector2f(static_cast<float>(map[0][0].size() * Tile::SIZE), static_cast<float>(map[0].size() * Tile::SIZE)));
+		Window::rectangle.setPosition(sf::Vector2f());
+		Window::rectangle.setOrigin(sf::Vector2f());
+		Window::rectangle.setOutlineThickness(m_BorderSize);
+		Window::rectangle.setOutlineColor(m_BorderColor);
+		Window::Draw();
 	}
 
 	m_DayNightSystem.Display();
