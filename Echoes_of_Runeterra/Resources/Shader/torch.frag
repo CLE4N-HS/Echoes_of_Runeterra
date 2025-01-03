@@ -18,7 +18,7 @@ void main()
 
     // 255 174 66
         vec3 color = vec3(1.0 * factor, 1.0 * 174.0 / 255.0 * factor, 1.0 * 66.0 / 255.0 * factor);
-        color = clamp(color, 0.0, 0.8);
+        color = clamp(color, 0.0, 0.6);
 
         gl_FragColor = vec4(color, 1.0 * factor * 0.5);
     }

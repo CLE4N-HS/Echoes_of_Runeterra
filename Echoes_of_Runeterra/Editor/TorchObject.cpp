@@ -34,7 +34,6 @@ void TorchObject::DisplayShader(DayNightSystem& _system)
 	Window::rectangle.setPosition(centerPos);
 	Window::rectangle.setSize(sf::Vector2f(size, size));
 	Window::rectangle.setOrigin(Window::rectangle.getSize() * 0.5f);
-	Window::rectangle.setFillColor(sf::Color(0, 0, 0, 0));
 
 	sf::Glsl::Vec2 lightPos(Window::ScreenPos(centerPos));
 	lightPos.y = 1080.f - lightPos.y;

@@ -524,14 +524,6 @@ void Editor::Display()
 		{
 			object[i]->Display();
 		}
-
-		Window::rectangle.setTexture(nullptr);
-		for (Object* o : object)
-		{
-			if (TorchObject* t = dynamic_cast<TorchObject*>(o))
-				t->DisplayShader(m_DayNightSystem);
-		}
-
 	}
 
 	if (m_Grid)
@@ -558,6 +550,18 @@ void Editor::Display()
 
 	m_DayNightSystem.Display();
 	Window::SetView();
+
+	if (m_Layer[Map::Layer::COLLISION])
+	{
+		Window::rectangle.setTexture(nullptr);
+		Window::rectangle.setFillColor(sf::Color(0, 0, 0, 0));
+		for (Object* o : object)
+		{
+			if (TorchObject* t = dynamic_cast<TorchObject*>(o))
+				t->DisplayShader(m_DayNightSystem);
+		}
+	}
+
 
 	sf::Texture* currentTexture = nullptr;
 	switch (m_CurrentTextureId)
