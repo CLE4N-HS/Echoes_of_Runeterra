@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="AutoTile.cpp" />
     <ClCompile Include="AutoTileDatabase.cpp" />
+    <ClCompile Include="ChestObject.cpp" />
     <ClCompile Include="DayNightSystem.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="imgui-SFML.cpp" />
@@ -50,6 +51,7 @@
   <ItemGroup>
     <ClInclude Include="AutoTile.h" />
     <ClInclude Include="AutoTileDatabase.h" />
+    <ClInclude Include="ChestObject.h" />
     <ClInclude Include="DayNightSystem.h" />
     <ClInclude Include="Editor.h" />
     <ClInclude Include="Externals\json.hpp" />

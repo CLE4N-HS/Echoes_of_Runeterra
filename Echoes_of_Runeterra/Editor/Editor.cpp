@@ -16,7 +16,10 @@ Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap(), &m_
 	TileTextureManager::AddTexture("tileset", TILE_TEXTURE_PATH "tileset.png");
 	TileTextureManager::AddTexture("tile", TILE_TEXTURE_PATH "tile.png");
 
+	ObjectTextureManager::AddTexture("chest", OBJECT_TEXTURE_PATH "chest.png");
 	ObjectTextureManager::AddTexture("torch", OBJECT_TEXTURE_PATH "torch.png");
+
+	RenderStatesManager::AddShader("torch", SHADER_PATH "torch.frag", sf::Shader::Type::Fragment);
 
 	m_Layer.fill(true);
 	m_CurrentLayer = m_MapEdit.GetLayer();
@@ -323,6 +326,8 @@ bool Editor::UpdateImGui()
 								m_CurrentTextureName = (*it).first;
 								m_CurrentTextureId = TextureId::TILE;
 								m_CurrentTexture = Texture::SIMPLE_TILE;
+
+								m_CurrentRect.width = 0;
 							}
 						}
 
@@ -378,7 +383,15 @@ bool Editor::UpdateImGui()
 							{
 								m_CurrentTextureName = (*it).first;
 								m_CurrentTextureId = TextureId::OBJECT;
-								m_CurrentTexture = Texture::TORCH;
+
+								if (m_CurrentTextureName == "chest")
+									m_CurrentTexture = Texture::CHEST;
+								else if (m_CurrentTextureName == "torch")
+									m_CurrentTexture = Texture::TORCH;
+								else
+									m_CurrentTexture = Texture::NO;
+
+								m_CurrentRect.width = 0;
 							}
 						}
 

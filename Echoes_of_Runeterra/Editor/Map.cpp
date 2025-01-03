@@ -6,6 +6,7 @@
 
 #include "TileTextureManager.h"
 #include "TorchObject.h"
+#include "ChestObject.h"
 
 #include "Externals/json.hpp"
 
@@ -86,8 +87,15 @@ void Map::Save(std::ostream& _file)
 			std::string iStmp(std::string(oSizeToS.length() - iToS.length(), '0') + iToS);
 			const char* iS = iStmp.c_str();
 
+			std::string objStmp("");
 			if (TorchObject* torchObject = dynamic_cast<TorchObject*>(m_Object[i]))
-				j["Object"][iS]["TorchObject"] = torchObject->ToJson();
+				objStmp = "TorchObject";
+			else if (ChestObject* chestObject = dynamic_cast<ChestObject*>(m_Object[i]))
+				objStmp = "ChestObject";
+
+			const char* objS = objStmp.c_str();
+
+			j["Object"][iS][objS] = m_Object[i]->ToJson();
 		}
 	}
 	
@@ -151,6 +159,11 @@ void Map::Load(std::ifstream& _file)
 		{
 			m_Object.push_back(new TorchObject());
 			m_Object[i]->FromJson(j["Object"][iS]["TorchObject"]);
+		}
+		else if (j["Object"][iS].contains("ChestObject"))
+		{
+			m_Object.push_back(new ChestObject());
+			m_Object[i]->FromJson(j["Object"][iS]["ChestObject"]);
 		}
 	}
 }

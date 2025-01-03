@@ -1,6 +1,5 @@
 #include "TorchObject.h"
 #include "Window.h"
-#include "ObjectTextureManager.h"
 #include "RenderStatesManager.h"
 
 TorchObject::TorchObject() : Object()
@@ -9,8 +8,6 @@ TorchObject::TorchObject() : Object()
 
 TorchObject::TorchObject(sf::Vector2f _pos, sf::Vector2f _size, std::string_view _textureName) : Object(_pos, _size, _textureName)
 {
-	RenderStatesManager::AddShader("torch", SHADER_PATH "torch.frag", sf::Shader::Type::Fragment);
-	RenderStatesManager::AddShader("sim", SHADER_PATH "sim.frag", sf::Shader::Type::Fragment);
 }
 
 TorchObject::~TorchObject()

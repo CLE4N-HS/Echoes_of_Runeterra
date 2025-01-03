@@ -2,6 +2,7 @@
 #include "SimpleTile.h"
 #include "Editor.h"
 #include "TorchObject.h"
+#include "ChestObject.h"
 
 MapEdit::MapEdit(std::vector<std::vector<std::vector<Tile*>>>* _map, std::vector<Object*>* _object) : m_Map(_map), m_Object(_object)
 {
@@ -47,6 +48,8 @@ bool MapEdit::EditObject(sf::Vector2f _pos, std::string_view _textureName, sf::V
 	{
 	case Editor::Texture::TORCH:
 		(*m_Object).push_back(new TorchObject(_pos, _size, _textureName)); break;
+	case Editor::Texture::CHEST:
+		(*m_Object).push_back(new ChestObject(_pos, _size, _textureName)); break;
 	default:
 		break;
 	}

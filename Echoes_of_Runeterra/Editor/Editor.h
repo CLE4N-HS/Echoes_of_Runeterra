@@ -27,6 +27,8 @@ public:
 	{
 		NO,
 		SIMPLE_TILE,
+
+		CHEST,
 		TORCH
 	};
 
