@@ -44,7 +44,7 @@ private:
 	std::array<bool, Map::Layer::COUNT> m_Layer{};
 	Map::Layer m_CurrentLayer = Map::Layer::BACKGROUND;
 	bool m_Grid = false;
-	sf::Color m_GridColor = sf::Color(0, 0, 0, 255);
+	sf::Color m_GridColor = sf::Color(0, 50, 0, 255);
 	float m_GridSize = 2.f;
 	bool m_Border = true;
 	sf::Color m_BorderColor = sf::Color(255, 0, 0, 255);

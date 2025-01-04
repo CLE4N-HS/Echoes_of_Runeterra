@@ -10,7 +10,9 @@ public:
 	{
 		BACKGROUND = 0,
 		COLLISION,
+		OBJECT,
 		FOREGROUND,
+
 
 		COUNT
 	};

@@ -16,6 +16,9 @@ public:
 	bool EditAnimTile(sf::Vector2f _pos, std::string_view _textureName, sf::IntRect _rect, Tile::Type _type, int _frameX, float _animSpeed);
 	bool EditObject(sf::Vector2f _pos, std::string_view _textureName, sf::Vector2f _size, int _texture);
 
+	bool EraseTile(sf::Vector2f _pos);
+	bool EraseObject(sf::Vector2f _pos);
+
 	template<typename T>
 	inline sf::Vector2<T> GetSize() const
 	{
@@ -27,7 +30,7 @@ public:
 	void Resize(sf::Vector2<size_t> _size);
 
 	inline Map::Layer GetLayer() const { return m_Layer; }
-	inline void SetLayer(Map::Layer _layer) { m_Layer = _layer; }
+	void SetLayer(Map::Layer _layer);
 
 private:
 	std::vector<std::vector<std::vector<Tile*>>>* m_Map;

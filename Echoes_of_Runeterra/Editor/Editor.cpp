@@ -19,6 +19,7 @@ Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap(), &m_
 	TileTextureManager::AddTexture("tile", TILE_TEXTURE_PATH "tile.png");
 	TileTextureManager::AddTexture("animTile", TILE_TEXTURE_PATH "animTile.png");
 	TileTextureManager::AddTexture("water", TILE_TEXTURE_PATH "water.png");
+	TileTextureManager::AddTexture("collision", TILE_TEXTURE_PATH "collision.png");
 
 	ObjectTextureManager::AddTexture("chest", OBJECT_TEXTURE_PATH "chest.png");
 	ObjectTextureManager::AddTexture("torch", OBJECT_TEXTURE_PATH "torch.png");
@@ -40,7 +41,7 @@ void Editor::Update()
 	if (!(this->UpdateImGui()))
 	{
 		//TEST TODO
-		if (MouseManager::HasJustPressed(sf::Mouse::Right) && 1)
+		if (MouseManager::HasJustPressed(sf::Mouse::Right) && 0)
 		{
 			sf::Vector2f mousePos = Window::GetMouseViewPos();
 			m_MapEdit.EditObject(mousePos, "torch", sf::Vector2f(32.f, 32.f), Texture::TORCH);
@@ -56,44 +57,51 @@ void Editor::Update()
 		default:
 			break;
 		}
-		if (currentTexture && m_CurrentRect.width != 0)
+		sf::Vector2f mousePos = Window::GetMouseViewPos();
+		if (currentTexture && m_CurrentRect.width != 0 && sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			switch (m_CurrentTextureId)
 			{
-				sf::Vector2f mousePos = Window::GetMouseViewPos();
-
-				switch (m_CurrentTextureId)
+			case Editor::TILE:
+			{
+				switch (m_CurrentTexture)
 				{
-				case Editor::TILE:
+				case Editor::SIMPLE_TILE:
+					m_MapEdit.EditTile(mousePos, m_CurrentTextureName, m_CurrentRect, m_CurrentTileType); break;
+				case Editor::ANIM_TILE:
 				{
-					switch (m_CurrentTexture)
+					if (m_MapEdit.EditAnimTile(mousePos, m_CurrentTextureName, m_CurrentRect, m_CurrentTileType, m_CurrentAnimTileFrameX, m_CurrentAnimTileAnimSpeed))
 					{
-					case Editor::SIMPLE_TILE:
-						m_MapEdit.EditTile(mousePos, m_CurrentTextureName, m_CurrentRect, m_CurrentTileType); break;
-					case Editor::ANIM_TILE:
-					{
-						if (m_MapEdit.EditAnimTile(mousePos, m_CurrentTextureName, m_CurrentRect, m_CurrentTileType, m_CurrentAnimTileFrameX, m_CurrentAnimTileAnimSpeed))
-						{
-							this->ResetAnimTime();
-						}
-					}
-					break;
-					default:
-						break;
-					}
-				}
-				break;
-				case Editor::OBJECT:
-				{
-					if (MouseManager::HasJustPressed(sf::Mouse::Left))
-					{
-						m_MapEdit.EditObject(mousePos, m_CurrentTextureName, sf::Vector2f(m_CurrentRect.getSize()), m_CurrentTexture);
+						this->ResetAnimTime();
 					}
 				}
 				break;
 				default:
 					break;
 				}
+			}
+			break;
+			case Editor::OBJECT:
+			{
+				if (MouseManager::HasJustPressed(sf::Mouse::Left))
+				{
+					m_MapEdit.EditObject(mousePos, m_CurrentTextureName, sf::Vector2f(m_CurrentRect.getSize()), m_CurrentTexture);
+				}
+			}
+			break;
+			default:
+				break;
+			}
+		}
+		else if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+		{
+			if (m_CurrentLayer == Map::Layer::OBJECT)
+			{
+				m_MapEdit.EraseObject(mousePos);
+			}
+			else
+			{
+				m_MapEdit.EraseTile(mousePos);
 			}
 		}
 	}
@@ -142,13 +150,29 @@ bool Editor::UpdateImGui()
 	// EDITOR
 	if (ig::Begin("Editor", igUselessBool, ImGuiWindowFlags_HorizontalScrollbar))
 	{
-		// EDITOR / KEYS
-		if (ig::TreeNode("Keys"))
+		// EDITOR / INFO
+		if (ig::TreeNode("Info"))
 		{
-			if (ig::TreeNode("View"))
+			// EDITOR / INFO / VIEW
+			if (ig::TreeNode("View##EDITOR_INFO_VIEW"))
 			{
 				ig::Text("Z/Q/S/D : Move");
 				ig::Text("A/E     : Zoom");
+
+				ig::TreePop();
+			}
+
+			// EDITOR / INFO / TEXTURE
+			if (ig::TreeNode("Texture##EDITOR_INFO_TEXTURE"))
+			{
+				ig::Text("Left Click  : Place a Texture (if one has been selected)");
+				ig::Text("Right Click : Erase a Texture (on the Current Layer)");
+				ig::Text("// Clicks have no effects on the map if you are on this ImGui Window");
+
+				ig::Separator();
+
+				ig::Text("// A Tile can't be placed in Layer 2 (OBJECT)");
+				ig::Text("// An Object will automatically be placed in Layer 2 (OBJECT)");
 
 				ig::TreePop();
 			}
@@ -269,7 +293,21 @@ bool Editor::UpdateImGui()
 				Map::Layer saveCurrentLayer = m_CurrentLayer;
 				int iCurrentLayer = static_cast<int>(m_CurrentLayer);
 				ig::PushItemWidth(200.f);
-				ig::SliderInt("Current Layer", &iCurrentLayer, 0, static_cast<int>(Map::Layer::COUNT - 1));
+				std::string tmpLayerName;
+				switch (m_CurrentLayer)
+				{
+				case Map::BACKGROUND: tmpLayerName = "BACKGROUND"; break;
+				case Map::COLLISION: tmpLayerName = "COLLISION"; break;
+				case Map::OBJECT: tmpLayerName = "OBJECT"; break;
+				case Map::FOREGROUND: tmpLayerName = "FOREGROUND"; break;
+				default:
+					break;
+				}
+				ig::SliderInt("Current Layer :##EDITOR_MAP_LAYER_CURRENT_LAYER_NAME_TMP", &iCurrentLayer, 0, static_cast<int>(Map::Layer::COUNT - 1));
+
+				ig::SameLine();
+				ig::Text(tmpLayerName.c_str());
+
 
 				m_CurrentLayer = static_cast<Map::Layer>(iCurrentLayer);
 
@@ -309,11 +347,16 @@ bool Editor::UpdateImGui()
 
 					ig::Separator();
 
-					size_t nbLayer = m_MapEdit.GetNbLayer();
-					for (size_t l = 0; l < nbLayer; l++)
-					{
-						ig::Checkbox(std::string("Layer : " + std::to_string(l) + "##EDITOR_MAP_LAYER_NBLAYER").c_str(), &m_Layer[l]);
-					}
+					ig::Checkbox("Layer : 0 (BACKGROUND)##EDITOR_MAP_LAYER_0", &m_Layer[0]);
+					ig::Checkbox("Layer : 1 (COLLISION -> not displayed in game) ##EDITOR_MAP_LAYER_1", &m_Layer[1]);
+					ig::Checkbox("Layer : 2 (OBJECT)##EDITOR_MAP_LAYER_2", &m_Layer[2]);
+					ig::Checkbox("Layer : 3 (FOREGROUND)##EDITOR_MAP_LAYER_3", &m_Layer[3]);
+
+					//size_t nbLayer = m_Layer.size();
+					//for (size_t l = 0; l < nbLayer; l++)
+					//{
+					//	ig::Checkbox(std::string("Layer : " + std::to_string(l) + "##EDITOR_MAP_LAYER_NBLAYER").c_str(), &m_Layer[l]);
+					//}
 					ig::TreePop();
 				}
 
@@ -343,6 +386,9 @@ bool Editor::UpdateImGui()
 
 						for (std::map<std::string_view, sf::Texture*>::iterator it = texture.begin(); it != texture.end(); it++)
 						{
+							if ((*it).first.data() == "water")
+								continue;
+
 							if (ig::Button((*it).first.data()))
 							{
 								m_CurrentTextureName = (*it).first;
@@ -629,7 +675,9 @@ void Editor::Display()
 	if (m_Layer[Map::Layer::COLLISION])
 	{
 		this->DisplayLayer(Map::Layer::COLLISION);
-
+	}
+	if (m_Layer[Map::Layer::OBJECT])
+	{
 		Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
 		Window::rectangle.setOrigin(sf::Vector2f());
 		for (size_t i = 0; i < object.size(); i++)
@@ -651,7 +699,7 @@ void Editor::Display()
 	}
 	if (m_Layer[Map::Layer::FOREGROUND])
 	{
-		this->DisplayLayer(Map::Layer::FOREGROUND);
+		this->DisplayLayer(Map::Layer::FOREGROUND - 1);
 	}
 
 	Window::rectangle.setTexture(nullptr);

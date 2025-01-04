@@ -24,41 +24,59 @@ sf::Vector2i MapEdit::TilePos(sf::Vector2f _pos)
 
 bool MapEdit::IsInMap(sf::Vector2i _pos)
 {
-	return (_pos.x >= 0 && _pos.y >= 0 && _pos.y < (*m_Map)[m_Layer].size() && _pos.x < (*m_Map)[m_Layer][0].size());
+	Map::Layer currentLayer = m_Layer;
+	if (currentLayer == Map::Layer::FOREGROUND)
+		currentLayer = Map::Layer::OBJECT;
+
+	return (_pos.x >= 0 && _pos.y >= 0 && _pos.y < (*m_Map)[currentLayer].size() && _pos.x < (*m_Map)[currentLayer][0].size());
 }
 
 bool MapEdit::EditTile(sf::Vector2f _pos, std::string_view _textureName, sf::IntRect _rect, Tile::Type _type)
 {
+	if (m_Layer == Map::Layer::OBJECT)
+		return false;
+
+	Map::Layer currentLayer = m_Layer;
+	if (currentLayer == Map::Layer::FOREGROUND)
+		currentLayer = Map::Layer::OBJECT;
+
 	sf::Vector2i tilePos = this->TilePos(_pos);
 	if (!(this->IsInMap(tilePos)))
 		return false;
 
-	SimpleTile* simpleTile = dynamic_cast<SimpleTile*>((*m_Map)[m_Layer][tilePos.y][tilePos.x]);
+	SimpleTile* simpleTile = dynamic_cast<SimpleTile*>((*m_Map)[currentLayer][tilePos.y][tilePos.x]);
 	if (!simpleTile)
 	{
-		delete (*m_Map)[m_Layer][tilePos.y][tilePos.x];
-		(*m_Map)[m_Layer][tilePos.y][tilePos.x] = new SimpleTile();
+		delete (*m_Map)[currentLayer][tilePos.y][tilePos.x];
+		(*m_Map)[currentLayer][tilePos.y][tilePos.x] = new SimpleTile();
 	}
 
-	(*m_Map)[m_Layer][tilePos.y][tilePos.x]->SetTextureName(_textureName);
-	(*m_Map)[m_Layer][tilePos.y][tilePos.x]->SetRect(_rect);
-	(*m_Map)[m_Layer][tilePos.y][tilePos.x]->GetType() = _type;
+	(*m_Map)[currentLayer][tilePos.y][tilePos.x]->SetTextureName(_textureName);
+	(*m_Map)[currentLayer][tilePos.y][tilePos.x]->SetRect(_rect);
+	(*m_Map)[currentLayer][tilePos.y][tilePos.x]->GetType() = _type;
 
 	return true;
 }
 
 bool MapEdit::EditAnimTile(sf::Vector2f _pos, std::string_view _textureName, sf::IntRect _rect, Tile::Type _type, int _frameX, float _animSpeed)
 {
+	if (m_Layer == Map::Layer::OBJECT)
+		return false;
+
+	Map::Layer currentLayer = m_Layer;
+	if (currentLayer == Map::Layer::FOREGROUND)
+		currentLayer = Map::Layer::OBJECT;
+
 	sf::Vector2i tilePos = this->TilePos(_pos);
 	if (!(this->IsInMap(tilePos)))
 		return false;
 
-	AnimTile* animTile = dynamic_cast<AnimTile*>((*m_Map)[m_Layer][tilePos.y][tilePos.x]);
+	AnimTile* animTile = dynamic_cast<AnimTile*>((*m_Map)[currentLayer][tilePos.y][tilePos.x]);
 	if (!animTile)
 	{
-		delete (*m_Map)[m_Layer][tilePos.y][tilePos.x];
-		(*m_Map)[m_Layer][tilePos.y][tilePos.x] = new AnimTile();
-		animTile = dynamic_cast<AnimTile*>((*m_Map)[m_Layer][tilePos.y][tilePos.x]);
+		delete (*m_Map)[currentLayer][tilePos.y][tilePos.x];
+		(*m_Map)[currentLayer][tilePos.y][tilePos.x] = new AnimTile();
+		animTile = dynamic_cast<AnimTile*>((*m_Map)[currentLayer][tilePos.y][tilePos.x]);
 	}
 
 	animTile->GetMaxFrameX() = _frameX;
@@ -69,18 +87,18 @@ bool MapEdit::EditAnimTile(sf::Vector2f _pos, std::string_view _textureName, sf:
 		_textureName = "water";
 	}
 
-	(*m_Map)[m_Layer][tilePos.y][tilePos.x]->SetTextureName(_textureName);
-	(*m_Map)[m_Layer][tilePos.y][tilePos.x]->SetRect(_rect);
-	(*m_Map)[m_Layer][tilePos.y][tilePos.x]->GetType() = _type;
+	(*m_Map)[currentLayer][tilePos.y][tilePos.x]->SetTextureName(_textureName);
+	(*m_Map)[currentLayer][tilePos.y][tilePos.x]->SetRect(_rect);
+	(*m_Map)[currentLayer][tilePos.y][tilePos.x]->GetType() = _type;
 
 	return true;
 }
 
 bool MapEdit::EditObject(sf::Vector2f _pos, std::string_view _textureName, sf::Vector2f _size, int _texture)
 {
-	sf::Vector2i objectPos = this->TilePos(_pos);
-	if (!(this->IsInMap(objectPos)))
-		return false;
+	//sf::Vector2i objectPos = this->TilePos(_pos);
+	//if (!(this->IsInMap(objectPos)))
+	//	return false;
 
 	switch (_texture)
 	{
@@ -90,6 +108,43 @@ bool MapEdit::EditObject(sf::Vector2f _pos, std::string_view _textureName, sf::V
 		(*m_Object).push_back(new ChestObject(_pos, _size, _textureName)); break;
 	default:
 		break;
+	}
+
+	return true;
+}
+
+bool MapEdit::EraseTile(sf::Vector2f _pos)
+{
+	if (m_Layer == Map::Layer::OBJECT)
+		return false;
+
+	Map::Layer currentLayer = m_Layer;
+	if (currentLayer == Map::Layer::FOREGROUND)
+		currentLayer = Map::Layer::OBJECT;
+
+	sf::Vector2i tilePos = this->TilePos(_pos);
+	if (!(this->IsInMap(tilePos)))
+		return false;
+
+	delete (*m_Map)[currentLayer][tilePos.y][tilePos.x];
+	(*m_Map)[currentLayer][tilePos.y][tilePos.x] = new SimpleTile();
+
+	return true;
+}
+
+bool MapEdit::EraseObject(sf::Vector2f _pos)
+{
+	for (std::vector<Object*>::iterator it = (*m_Object).begin(); it != (*m_Object).end();)
+	{
+		if (sf::FloatRect((*it)->GetPos(), (*it)->GetSize()).contains(_pos))
+		{
+			delete (*it);
+			it = (*m_Object).erase(it);
+		}
+		else
+		{
+			it++;
+		}
 	}
 
 	return true;
@@ -157,4 +212,9 @@ void MapEdit::Resize(sf::Vector2<size_t> _size)
 	}
 
 
+}
+
+void MapEdit::SetLayer(Map::Layer _layer)
+{
+	m_Layer = _layer;
 }

@@ -199,7 +199,7 @@ void Map::DeinitMap()
 
 void Map::DefaultMap()
 {
-	size_t sizeL = Map::Layer::COUNT;
+	size_t sizeL = Map::Layer::FOREGROUND;
 	size_t sizeY = 20;
 	size_t sizeX = 34;
 
