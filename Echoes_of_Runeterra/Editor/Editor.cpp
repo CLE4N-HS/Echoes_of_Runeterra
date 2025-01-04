@@ -171,7 +171,8 @@ bool Editor::UpdateImGui()
 				ig::Separator();
 
 				ig::Text("// A Tile can't be placed in Layer 2 (OBJECT)");
-				ig::Text("// An Object will automatically be placed in Layer 2 (OBJECT)");
+				ig::Text("// An Object have to be placed in Layer 2 (OBJECT)");
+				//ig::Text("// An Object will automatically be placed in Layer 2 (OBJECT)");
 
 				ig::TreePop();
 			}
@@ -409,6 +410,14 @@ bool Editor::UpdateImGui()
 
 					if (sf::Texture* currentTexture = TileTextureManager::GetTexture(m_CurrentTextureName))
 					{
+						if (m_CurrentLayer == Map::Layer::OBJECT)
+						{
+							ig::Separator();
+							ig::Text("// A Tile can't be placed in this Current Layer");
+							ig::Separator();
+							ig::NewLine();
+						}
+
 						static int igTileSize = 16;
 						ig::PushItemWidth(400.f);
 						ig::SliderInt("Size##SIZECURRENTTEXTURE", &igTileSize, 0, 64);
@@ -492,6 +501,14 @@ bool Editor::UpdateImGui()
 
 					if (sf::Texture* currentTexture = ObjectTextureManager::GetTexture(m_CurrentTextureName))
 					{
+						if (m_CurrentLayer != Map::Layer::OBJECT)
+						{
+							ig::Separator();
+							ig::Text("// An Object can't be placed in this Current Layer");
+							ig::Separator();
+							ig::NewLine();
+						}
+
 						static int igTileSize = 16;
 						ig::PushItemWidth(400.f);
 						ig::SliderInt("Size##SIZECURRENTTEXTURE_OBJECT", &igTileSize, 0, 64);

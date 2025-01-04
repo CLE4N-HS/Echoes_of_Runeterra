@@ -99,6 +99,8 @@ bool MapEdit::EditObject(sf::Vector2f _pos, std::string_view _textureName, sf::V
 	//sf::Vector2i objectPos = this->TilePos(_pos);
 	//if (!(this->IsInMap(objectPos)))
 	//	return false;
+	if (m_Layer != Map::Layer::OBJECT)
+		return false;
 
 	switch (_texture)
 	{
