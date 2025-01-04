@@ -18,5 +18,7 @@ public:
 	virtual void FromJson(const nlohmann::json& _j) override;
 
 private:
+	float m_ParticleTime = 0.f;
+	float m_TimeToParticle = 0.2f;
 
 };

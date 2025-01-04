@@ -8,6 +8,7 @@
 #include "MouseManager.h"
 #include "TorchObject.h"
 #include "AnimTile.h"
+#include "ParticleManager.h"
 
 #include <Windows.h>
 #include <commdlg.h>
@@ -39,7 +40,7 @@ void Editor::Update()
 	if (!(this->UpdateImGui()))
 	{
 		//TEST TODO
-		if (MouseManager::HasJustPressed(sf::Mouse::Right) && 0)
+		if (MouseManager::HasJustPressed(sf::Mouse::Right) && 1)
 		{
 			sf::Vector2f mousePos = Window::GetMouseViewPos();
 			m_MapEdit.EditObject(mousePos, "torch", sf::Vector2f(32.f, 32.f), Texture::TORCH);
@@ -128,6 +129,7 @@ void Editor::Update()
 	}
 
 	m_DayNightSystem.Update();
+	ParticleManager::Update();
 }
 
 bool Editor::UpdateImGui()
@@ -640,8 +642,12 @@ void Editor::Display()
 		for (Object* o : object)
 		{
 			if (TorchObject* t = dynamic_cast<TorchObject*>(o))
+			{
 				t->DisplayShader(m_DayNightSystem);
+				t->DisplayParticles();
+			}
 		}
+		ParticleManager::Display();
 	}
 	if (m_Layer[Map::Layer::FOREGROUND])
 	{
