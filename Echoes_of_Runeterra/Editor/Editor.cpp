@@ -690,7 +690,11 @@ bool Editor::UpdateImGui()
 				if (ig::Button("Start##EDITOR_GAME_START"))
 				{
 					Window::Exit();
+#ifdef _DEBUG
 					int result = std::system("..\\Debug\\Echoes_of_Runeterra.exe");
+#else
+					int result = std::system("..\\Release\\Echoes_of_Runeterra.exe");
+#endif // _DEBUG
 
 					if (result == 0)
 					{
