@@ -62,6 +62,8 @@ private:
 
 	Tile::Type m_CurrentTileType = Tile::Type::NO_TYPE;
 
+	std::string m_GameMapPath = "";
+
 	void ResetAnimTime();
 	void DisplayLayer(size_t _layer);
 

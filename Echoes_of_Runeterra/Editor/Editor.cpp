@@ -13,6 +13,23 @@
 #include <Windows.h>
 #include <commdlg.h>
 
+std::string wcharToString(const wchar_t* wcharStr) {
+	if (!wcharStr) return "";
+
+	// Get the required buffer size
+	int bufferSize = WideCharToMultiByte(CP_UTF8, 0, wcharStr, -1, nullptr, 0, nullptr, nullptr);
+	if (bufferSize == 0) {
+		return ""; // Conversion failed
+	}
+
+	// Allocate a buffer for the converted string
+	std::string str(bufferSize - 1, '\0'); // Exclude the null terminator
+	WideCharToMultiByte(CP_UTF8, 0, wcharStr, -1, &str[0], bufferSize, nullptr, nullptr);
+
+	return str;
+}
+
+
 Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap(), &m_Map.getObject()), m_DayNightSystem()
 {
 	TileTextureManager::AddTexture("tileset", TILE_TEXTURE_PATH "tileset.png");
@@ -570,6 +587,7 @@ bool Editor::UpdateImGui()
 						{
 							std::ofstream mapStream(fileName);
 							m_Map.Save(mapStream);           // Sauvegarder la map dans le chemin sélectionné
+							m_GameMapPath = wcharToString(fileName);
 						}
 					}
 
@@ -595,6 +613,7 @@ bool Editor::UpdateImGui()
 							{
 								m_Map.Load(mapStream);            // Charger la map à partir du fichier
 								mapStream.close();
+								m_GameMapPath = wcharToString(fileName);
 							}
 							else
 							{
@@ -625,6 +644,55 @@ bool Editor::UpdateImGui()
 			ig::SliderInt("Minute##EDITOR_DAY_NIGHT_SYSTEM_MINUTE", &m_DayNightSystem.GetMinute(), 0, 59);
 
 			ig::DragInt("Coefficient##EDITOR_DAY_NIGHT_SYSTEM_COEFFICIENT", &m_DayNightSystem.GetCoefficient(), 60.f);
+
+			ig::TreePop();
+		}
+
+		// EDITOR / GAME
+		if (ig::TreeNode("GAME##EDITOR_GAME"))
+		{
+			ig::Text("// Save or Load the Map you want to test");
+
+			ig::Separator();
+
+			if (m_GameMapPath != "")
+			{
+				std::string pathName = m_GameMapPath;
+
+				size_t iPathName = 0;
+
+				size_t nbErase = 0;
+				while (iPathName <= pathName.size())
+				{
+					if (pathName[iPathName] == '\\')
+						nbErase = iPathName + 1;
+
+					iPathName++;
+				}
+
+				for (size_t i = 0; i < nbErase; i++)
+				{
+					pathName.erase(pathName.begin());
+				}
+
+				if (pathName.size() > 4)
+				{
+					pathName.erase(pathName.size() - 1);
+					pathName.erase(pathName.size() - 1);
+					pathName.erase(pathName.size() - 1);
+					pathName.erase(pathName.size() - 1);
+					pathName.erase(pathName.size() - 1);
+				}
+
+				ig::Text(std::string("Map : " + pathName).c_str());
+
+				if (ig::Button("Start##EDITOR_GAME_START"))
+				{
+					Window::Exit();
+					std::system("../Debug/Echoes_of_Runetera.exe");
+				}
+			}
+
 
 			ig::TreePop();
 		}
