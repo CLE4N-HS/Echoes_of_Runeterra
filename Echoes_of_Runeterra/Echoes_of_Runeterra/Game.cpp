@@ -6,8 +6,51 @@
 //#include "MapManager.h"
 #include "FightManager.h"
 
-Game::Game() //: m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager()//, m_skillsSystem(m_treeDB)
+#include "TileTextureManager.h"
+#include "Window.h"
+#include "RenderStatesManager.h"
+#include "ObjectTextureManager.h"
+#include "TorchObject.h"
+#include "AnimTile.h"
+#include "ParticleManager.h"
+
+Game::Game() : m_Map(), m_DayNightSystem() //: m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager()//, m_skillsSystem(m_treeDB)
 {
+	std::ifstream mapToLoad("../Resources/Saves/GameMap/MapToLoad.txt");
+
+	bool hasFoundMap = false;
+	if (mapToLoad.is_open())
+	{
+		std::string path;
+		mapToLoad >> path;
+
+		std::ifstream map(path);
+
+		if (map.is_open())
+		{
+			hasFoundMap = true;
+			m_Map.Load(map);
+		}
+	}
+
+	if (!hasFoundMap)
+	{
+		m_Map.DefaultMap();
+	}
+
+	TileTextureManager::AddTexture("tileset", TILE_TEXTURE_PATH "tileset.png");
+	TileTextureManager::AddTexture("tile", TILE_TEXTURE_PATH "tile.png");
+	TileTextureManager::AddTexture("animTile", TILE_TEXTURE_PATH "animTile.png");
+	TileTextureManager::AddTexture("water", TILE_TEXTURE_PATH "water.png");
+	TileTextureManager::AddTexture("collision", TILE_TEXTURE_PATH "collision.png");
+
+	ObjectTextureManager::AddTexture("chest", OBJECT_TEXTURE_PATH "chest.png");
+	ObjectTextureManager::AddTexture("torch", OBJECT_TEXTURE_PATH "torch.png");
+
+	RenderStatesManager::AddShader("torch", SHADER_PATH "torch.frag", sf::Shader::Type::Fragment);
+	RenderStatesManager::AddShader("dayNight", SHADER_PATH "dayNight.frag", sf::Shader::Type::Fragment);
+
+
 	DatabaseManager::loadAllDatabase();
 	new PawnManager();
 	new SkillTreeManager();
@@ -31,6 +74,10 @@ Game::~Game()
 
 void Game::Update()
 {
+	m_DayNightSystem.Update();
+
+	ParticleManager::Update();
+
 	if (DialogueManager::IsInDialogue())
 	{
 		DialogueManager::Update();
@@ -61,16 +108,95 @@ void Game::Update()
 
 void Game::Display()
 {
+	sf::Vector2f centerViewPos = Window::view.getCenter();
+	if (Player* player = dynamic_cast<Player*>(PawnManager::GetPawn("Player")))
+	{
+		centerViewPos = player->transform->getPos();
+	}
 
-	if (FightManager::IsInFight())
+	Window::view.setCenter(centerViewPos);
+	Window::SetView();
+
+	m_Map.Display();
+
+	std::vector<std::vector<std::vector<Tile*>>> map = m_Map.getMap();
+	std::vector<Object*> object = m_Map.getObject();
+
+	/*
+	Window::rectangle.setOrigin(sf::Vector2f());
+	Window::rectangle.setSize(sf::Vector2f(sf::Vector2<int>(Tile::SIZE, Tile::SIZE)));
+	//test
+	Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
+	float tmpDt = Tools::GetDeltaTime();
+	for (size_t l = 0; l < map.size(); l++)
 	{
-		FightManager::Display();
+		if (m_Layer[l])
+		{
+			for (size_t y = 0; y < map[l].size(); y++)
+			{
+				for (size_t x = 0; x < map[l][y].size(); x++)
+				{
+					if (sf::Texture* tex = TileTextureManager::GetTexture(map[l][y][x]->GetTextureName()))
+					{
+						if (AnimTile* animTile = dynamic_cast<AnimTile*>(map[l][y][x]))
+						{
+							animTile->Anim(tmpDt);
+						}
+
+						Window::rectangle.setTexture(tex);
+						Window::rectangle.setTextureRect(map[l][y][x]->GetRect());
+						Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(x * Tile::SIZE, y * Tile::SIZE)));
+
+						Window::Draw();
+					}
+				}
+			}
+		}
 	}
-	else
+	*/
+
+	this->DisplayLayer(Map::Layer::BACKGROUND);
+
+	//this->DisplayLayer(Map::Layer::COLLISION);
+
 	{
-		//MapManager::Display();
-		PawnManager::Display();
+		Window::rectangle.setTexture(nullptr);
+
+		if (FightManager::IsInFight())
+		{
+			FightManager::Display();
+		}
+		else
+		{
+			//MapManager::Display();
+			PawnManager::Display();
+		}
+
+		Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
+		Window::rectangle.setOrigin(sf::Vector2f());
+		for (size_t i = 0; i < object.size(); i++)
+		{
+			object[i]->Display();
+		}
+
+		Window::rectangle.setTexture(nullptr);
+		Window::rectangle.setFillColor(sf::Color(0, 0, 0, 0));
+		for (Object* o : object)
+		{
+			if (TorchObject* t = dynamic_cast<TorchObject*>(o))
+			{
+				t->DisplayShader(m_DayNightSystem);
+				t->DisplayParticles(m_DayNightSystem);
+			}
+		}
+		ParticleManager::Display();
 	}
+
+	this->DisplayLayer(Map::Layer::FOREGROUND - 1);
+
+	Window::rectangle.setTexture(nullptr);
+
+	m_DayNightSystem.Display();
 
 	if (DialogueManager::IsInDialogue())
 	{
@@ -93,4 +219,36 @@ void Game::Display()
 	//_window.text.setString("You can interact with an NPC by being\nclose to him and clicking on him\nSame with Items");
 	//_window.text.setPosition(sf::Vector2f(10.f, 55.f));
 	//_window.draw(_window.text);
+}
+
+void Game::DisplayLayer(size_t _layer)
+{
+	std::vector<std::vector<std::vector<Tile*>>> map = m_Map.getMap();
+
+	Window::rectangle.setOrigin(sf::Vector2f());
+	Window::rectangle.setSize(sf::Vector2f(sf::Vector2<int>(Tile::SIZE, Tile::SIZE)));
+	//test
+	Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
+	float tmpDt = Tools::GetDeltaTime();
+
+	size_t l = _layer;
+	for (size_t y = 0; y < map[l].size(); y++)
+	{
+		for (size_t x = 0; x < map[l][y].size(); x++)
+		{
+			if (sf::Texture* tex = TileTextureManager::GetTexture(map[l][y][x]->GetTextureName()))
+			{
+				if (AnimTile* animTile = dynamic_cast<AnimTile*>(map[l][y][x]))
+				{
+					animTile->Anim(tmpDt);
+				}
+
+				Window::rectangle.setTexture(tex);
+				Window::rectangle.setTextureRect(map[l][y][x]->GetRect());
+				Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(x * Tile::SIZE, y * Tile::SIZE)));
+
+				Window::Draw();
+			}
+		}
+	}
 }

@@ -80,6 +80,8 @@ void Inventory::Update()
 
 void Inventory::Display()
 {
+	Window::SetView(true);
+
 	Window::text.setFillColor(sf::Color::White);
 	Window::text.setCharacterSize(30);
 	Window::text.setString((m_isOpen ? "I -> to close the Inventory" : "I -> to open the Inventory"));
@@ -88,7 +90,10 @@ void Inventory::Display()
 	Window::Draw(Window::text);
 
 	if (!m_isOpen)
+	{
+		Window::SetView(false);
 		return;
+	}
 
 	// bg
 	transform->CorrectWindowRectangle();
@@ -276,6 +281,7 @@ void Inventory::Display()
 	//	}
 	//}
 
+	Window::SetView(false);
 }
 
 void Inventory::AddItem(const GameItem& _item)

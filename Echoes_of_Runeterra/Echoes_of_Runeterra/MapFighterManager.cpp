@@ -17,7 +17,7 @@ MapFighterManager::~MapFighterManager()
 
 void MapFighterManager::Update()
 {
-	const sf::Vector2f mousePos = Window::GetMousePos();
+	const sf::Vector2f mousePos = Window::GetMouseViewPos();
 
 	Player* player = dynamic_cast<Player*>(PawnManager::GetPawn("Player"));
 

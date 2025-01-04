@@ -33,5 +33,7 @@ void DialogueManager::Update()
 
 void DialogueManager::Display()
 {
+	Window::SetView(true);
 	m_dialogue.Display();
+	Window::SetView(false);
 }

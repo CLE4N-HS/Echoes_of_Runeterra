@@ -11,7 +11,7 @@
 
 Map::Map()
 {
-	DefaultMap();
+	//DefaultMap();
 }
 
 Map::~Map()

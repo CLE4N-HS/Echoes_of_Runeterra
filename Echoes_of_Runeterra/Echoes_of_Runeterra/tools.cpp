@@ -61,7 +61,7 @@ sf::Vector2f Tools::Lerp(const sf::Vector2f& _v1, const sf::Vector2f& _v2, const
     return sf::Vector2f(Tools::Lerp(_v1.x, _v2.x, _t), Tools::Lerp(_v1.y, _v2.y, _t));
 }
 
-sf::Color Lerp(const sf::Color& _c1, const sf::Color& _c2, const float& _t)
+sf::Color Tools::Lerp(const sf::Color& _c1, const sf::Color& _c2, const float& _t)
 {
     sf::Color c;
     c.r = static_cast<sf::Uint8>(Tools::Lerp(static_cast<float>(_c1.r), static_cast<float>(_c2.r), _t));

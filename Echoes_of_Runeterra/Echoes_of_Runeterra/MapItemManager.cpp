@@ -17,7 +17,7 @@ MapItemManager::~MapItemManager()
 
 void MapItemManager::Update()
 {
-	const sf::Vector2f mousePos = Window::GetMousePos();
+	const sf::Vector2f mousePos = Window::GetMouseViewPos();
 
 	for (std::list<MapItem*>::iterator it = m_mapItem.begin(); it != m_mapItem.end();)
 	{

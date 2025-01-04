@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Alchemist.h"
 #include "ComponentName.h"
+#include "DialogueManager.h"
 
 Player::Player() : Player("Player")
 {
@@ -13,7 +14,7 @@ Player::Player(std::string _name) : Pawn(_name)
 {
 	this->AddComponent<ComponentName>(_name);
 
-	this->transform->setSize(sf::Vector2f(50.f, 50.f));
+	this->transform->setSize(sf::Vector2f(20.f, 20.f));
 	this->transform->setOrigin(this->transform->getSize() * 0.5f);
 	this->transform->setPos(sf::Vector2f(960.f, 540.f));
 	m_targetPos = this->transform->getPos();
@@ -168,18 +169,50 @@ void Player::UpdateMovement()
 {
 	float dt = Tools::GetDeltaTime();
 
-	if (MouseManager::OneTimePressed())
+	//if (MouseManager::OneTimePressed())
+	//{
+	//	m_targetPos = Window::GetMousePos();
+	//}
+
+	//sf::Vector2f forwardVec = sf::Vector2f(m_targetPos - this->transform->getPos());
+	//if (Tools::Magnitude(forwardVec) > 100.f)
+	//{
+	//	m_forward = Tools::Normalize(forwardVec);
+
+	//	this->transform->Move(m_forward * m_moveSpeed * dt);
+	//}
+
+	m_forward = sf::Vector2f();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z))
 	{
-		m_targetPos = Window::GetMousePos();
+		m_forward.y -= 1.f;
+		m_targetPos = sf::Vector2f(this->transform->getPos() + sf::Vector2f(0.f, -1.f));
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
+	{
+		m_forward.x -= 1.f;
+		m_targetPos = sf::Vector2f(this->transform->getPos() + sf::Vector2f(-1.f, 0.f));
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+	{
+		m_forward.y += 1.f;
+		m_targetPos = sf::Vector2f(this->transform->getPos() + sf::Vector2f(0.f, 1.f));
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+	{
+		m_forward.x += 1.f;
+		m_targetPos = sf::Vector2f(this->transform->getPos() + sf::Vector2f(1.f, 0.f));
 	}
 
-	sf::Vector2f forwardVec = sf::Vector2f(m_targetPos - this->transform->getPos());
-	if (Tools::Magnitude(forwardVec) > 100.f)
-	{
-		m_forward = Tools::Normalize(forwardVec);
+	sf::Vector2f nextPos = this->transform->getPos() + m_forward * dt * 200.f;
 
-		this->transform->Move(m_forward * m_moveSpeed * dt);
+	if (!m_inventory.isOpen() && !DialogueManager::IsInDialogue())
+	{
+		this->transform->setPos(nextPos);
 	}
+
+
+
 
 	//if (!m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
 	//{
