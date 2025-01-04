@@ -1,16 +1,13 @@
 #include "Window.h"
 
-#include "RenderStatesManager.h"
-
 sf::RectangleShape Window::rectangle = sf::RectangleShape();
 sf::Text Window::text = sf::Text();
-sf::View Window::view = sf::View();
 
 sf::RenderWindow Window::m_renderWindow = sf::RenderWindow();
 sf::RenderTexture Window::m_renderTexture = sf::RenderTexture();
 sf::Font Window::m_font = sf::Font();
 sf::VideoMode Window::m_videoMode = sf::VideoMode::getDesktopMode();
-sf::String Window::m_title = sf::String("Echoes of Runeterra Editor");
+sf::String Window::m_title = sf::String("Echoes of Runeterra");
 sf::Uint32 Window::m_style = sf::Style::Default;
 bool Window::m_isFullscreen = false;
 unsigned int Window::m_framerateLimit = 60;
@@ -34,16 +31,6 @@ Window::Window(const sf::String& title, sf::Uint32 style)
 	m_renderTexture.create(m_videoMode.width, m_videoMode.height);
 	m_font.loadFromFile("../Resources/NeoTech.ttf"); // default font for now
 	text.setFont(m_font);
-	view.setCenter(960.f, 540.f);
-	view.setSize(1920.f, 1080.f);
-	m_renderWindow.setView(view);
-	m_renderTexture.setView(view);
-
-	//new RenderStatesManager();
-}
-
-Window::~Window()
-{
 }
 
 void Window::Update()
@@ -71,34 +58,14 @@ void Window::Display()
 
 	m_texture = m_renderTexture.getTexture();
 	m_renderTexture.clear();
-	//RenderStatesManager::SetTexture(m_texture);
 	m_sprite.setTexture(m_texture, true);
-	m_renderWindow.draw(m_sprite/*, RenderStatesManager::RenderStates*/);
+	m_renderWindow.draw(m_sprite);
 	m_renderWindow.display();
 }
 
 void Window::Draw(const sf::Drawable& drawable, const sf::RenderStates& states)
 {
 	m_renderTexture.draw(drawable, states);
-}
-
-void Window::SetView(bool _defaultView)
-{
-	if (_defaultView)
-		m_renderTexture.setView(m_renderTexture.getDefaultView());
-	else
-		m_renderTexture.setView(view);
-}
-
-sf::Vector2f Window::ScreenPos(const sf::Vector2f& _pos)
-{
-	return sf::Vector2f(m_renderTexture.mapCoordsToPixel(_pos));
-}
-
-void Window::Exit()
-{
-	m_renderWindow.close();
-	m_isDone = true;
 }
 
 void Window::ToggleFullscreen()

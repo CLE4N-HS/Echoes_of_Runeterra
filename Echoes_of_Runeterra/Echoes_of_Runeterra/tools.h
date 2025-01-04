@@ -40,6 +40,7 @@ public:
 	static sf::Vector2f Normalize(const sf::Vector2f& _v);
 	static float Lerp(const float& _a, const float& _b, const float& _t);
 	static sf::Vector2f Lerp(const sf::Vector2f& _v1, const sf::Vector2f& _v2, const float& _t);
+	static sf::Color Lerp(const sf::Color& _c1, const sf::Color& _c2, const float& _t);
 
 	static void CenterTextOrigin(sf::Text& _text);
 	static void CenterTextOriginString(sf::Text& _text);
