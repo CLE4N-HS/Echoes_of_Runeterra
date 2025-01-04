@@ -107,6 +107,12 @@ sf::Vector2f Window::ScreenPos(const sf::Vector2f& _pos)
 	return sf::Vector2f(m_renderTexture.mapCoordsToPixel(_pos));
 }
 
+void Window::Exit()
+{
+	m_renderWindow.close();
+	m_isDone = true;
+}
+
 void Window::ToggleFullscreen()
 {
 	m_fullscreenTimer = 0.f;

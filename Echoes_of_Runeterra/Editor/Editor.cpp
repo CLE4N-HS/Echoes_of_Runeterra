@@ -13,6 +13,8 @@
 #include <Windows.h>
 #include <commdlg.h>
 
+#include <filesystem>
+
 std::string wcharToString(const wchar_t* wcharStr) {
 	if (!wcharStr) return "";
 
@@ -28,7 +30,6 @@ std::string wcharToString(const wchar_t* wcharStr) {
 
 	return str;
 }
-
 
 Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap(), &m_Map.getObject()), m_DayNightSystem()
 {
@@ -580,7 +581,7 @@ bool Editor::UpdateImGui()
 						ofn.lpstrFile = fileName;
 						ofn.nMaxFile = MAX_PATH;
 						ofn.lpstrInitialDir = initialDir;        // Répertoire de départ
-						ofn.Flags = OFN_OVERWRITEPROMPT;         // Demander confirmation avant d'écraser
+						ofn.Flags = OFN_OVERWRITEPROMPT | OFN_NOCHANGEDIR;         // Demander confirmation avant d'écraser
 						ofn.lpstrDefExt = L"json";                // Extension par défaut
 
 						if (GetSaveFileName(&ofn))               // Afficher la boîte de dialogue
@@ -604,7 +605,7 @@ bool Editor::UpdateImGui()
 						ofn.lpstrFile = fileName;
 						ofn.nMaxFile = MAX_PATH;
 						ofn.lpstrInitialDir = initialDir;        // Répertoire de départ
-						ofn.Flags = OFN_FILEMUSTEXIST;           // Assurez-vous que le fichier existe avant d'ouvrir
+						ofn.Flags = OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;           // Assurez-vous que le fichier existe avant d'ouvrir
 
 						if (GetOpenFileName(&ofn))               // Afficher la boîte de dialogue pour OUVRIR un fichier
 						{
@@ -689,7 +690,12 @@ bool Editor::UpdateImGui()
 				if (ig::Button("Start##EDITOR_GAME_START"))
 				{
 					Window::Exit();
-					std::system("../Debug/Echoes_of_Runetera.exe");
+					int result = std::system("..\\Debug\\Echoes_of_Runeterra.exe");
+
+					if (result == 0)
+					{
+						//std::exit(0);
+					}
 				}
 			}
 

@@ -25,7 +25,7 @@ public:
 	static void Draw(const sf::Drawable& drawable = rectangle, const sf::RenderStates& states = sf::RenderStates::Default);
 	static void SetView(bool _defaultView = false);
 	static sf::Vector2f ScreenPos(const sf::Vector2f& _pos);
-	static inline void Exit() { m_isDone = true; }
+	static void Exit();
 
 	static sf::RectangleShape rectangle;
 	static sf::Text text;
