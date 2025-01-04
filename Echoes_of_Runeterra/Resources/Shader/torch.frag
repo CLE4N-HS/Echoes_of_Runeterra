@@ -13,12 +13,12 @@ void main()
     {
         float intensity = 1.0 - smoothstep(0.0, lightRadius, distance);
 
-        float factor = intensity * lightIntensity * 2.0;
+        float factor = intensity * lightIntensity * 10.0;
         factor = clamp(factor, 0.0, 1.0);
 
     // 255 174 66
         vec3 color = vec3(1.0 * factor, 1.0 * 174.0 / 255.0 * factor, 1.0 * 66.0 / 255.0 * factor);
-        color = clamp(color, 0.0, 0.6);
+        color = clamp(color, 0.0, 0.9);
 
         gl_FragColor = vec4(color, 1.0 * factor * 0.5);
     }

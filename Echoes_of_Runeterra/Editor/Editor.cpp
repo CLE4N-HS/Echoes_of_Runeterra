@@ -25,11 +25,10 @@ Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap(), &m_
 	ObjectTextureManager::AddTexture("torch", OBJECT_TEXTURE_PATH "torch.png");
 
 	RenderStatesManager::AddShader("torch", SHADER_PATH "torch.frag", sf::Shader::Type::Fragment);
+	RenderStatesManager::AddShader("dayNight", SHADER_PATH "dayNight.frag", sf::Shader::Type::Fragment);
 
 	m_Layer.fill(true);
 	m_CurrentLayer = m_MapEdit.GetLayer();
-
-	//RenderStatesManager::LoadShader(SHADER_PATH "test.frag", sf::Shader::Type::Fragment);
 }
 
 Editor::~Editor()
@@ -692,7 +691,7 @@ void Editor::Display()
 			if (TorchObject* t = dynamic_cast<TorchObject*>(o))
 			{
 				t->DisplayShader(m_DayNightSystem);
-				t->DisplayParticles();
+				t->DisplayParticles(m_DayNightSystem);
 			}
 		}
 		ParticleManager::Display();
@@ -776,7 +775,7 @@ void Editor::ResetAnimTime()
 
 	for (size_t l = 0; l < map.size(); l++)
 	{
-		if (m_Layer[l])
+		//if (m_Layer[l])
 		{
 			for (size_t y = 0; y < map[l].size(); y++)
 			{

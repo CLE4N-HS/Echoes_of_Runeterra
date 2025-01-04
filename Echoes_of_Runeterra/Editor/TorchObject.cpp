@@ -38,15 +38,18 @@ void TorchObject::DisplayShader(DayNightSystem& _system)
 
 	RenderStatesManager::SetShaderUniform("torch", "lightPosition", lightPos);
 	RenderStatesManager::SetShaderUniform("torch", "lightRadius", halfSize * factor);
-	RenderStatesManager::SetShaderUniform("torch", "lightIntensity", _system.GetNormalizedTime());
+	RenderStatesManager::SetShaderUniform("torch", "lightIntensity", _system.GetIntensity());
 	RenderStatesManager::SetShader("torch");
 
 	Window::Draw(Window::rectangle, RenderStatesManager::RenderStates);
 }
 
-void TorchObject::DisplayParticles()
+void TorchObject::DisplayParticles(DayNightSystem& _system)
 {
 	// Update ik
+	if (_system.GetIntensity() < 0.001f)
+		return;
+
 	m_ParticleTime += Tools::GetDeltaTime();
 
 	if (m_ParticleTime > m_TimeToParticle)

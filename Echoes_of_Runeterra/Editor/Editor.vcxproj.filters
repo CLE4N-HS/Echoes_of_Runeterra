@@ -214,16 +214,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Resources\Shader\test.frag">
+    <None Include="..\Resources\Shader\dayNight.frag">
       <Filter>Fichiers de ressources</Filter>
     </None>
     <None Include="..\Resources\Shader\torch.frag">
-      <Filter>Fichiers de ressources</Filter>
-    </None>
-    <None Include="..\Resources\Shader\torch - Copie.frag">
-      <Filter>Fichiers de ressources</Filter>
-    </None>
-    <None Include="..\Resources\Shader\sim.frag">
       <Filter>Fichiers de ressources</Filter>
     </None>
   </ItemGroup>

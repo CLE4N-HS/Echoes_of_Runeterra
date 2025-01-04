@@ -30,7 +30,8 @@ public:
 		ANIM_TILE,
 
 		CHEST,
-		TORCH
+		TORCH,
+		PNJ
 	};
 
 private:

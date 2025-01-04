@@ -5,7 +5,6 @@
 
 DayNightSystem::DayNightSystem()
 {
-	RenderStatesManager::AddShader("dayNight", SHADER_PATH "test.frag", sf::Shader::Fragment);
 }
 
 DayNightSystem::~DayNightSystem()
@@ -40,6 +39,19 @@ void DayNightSystem::Update()
 
 	m_Time = static_cast<float>(m_Hour) + static_cast<float>(m_Minute) / 60.f;
 	m_NormalizedTime = m_Time / 24.f;
+
+	if (m_Hour >= 6 && m_Hour < 18)
+	{
+		m_Intensity = 0.f;
+	}
+	else if (m_Hour >= 18)
+	{
+		m_Intensity = (m_Time - 18.f) / 6.f;
+	}
+	else
+	{
+		m_Intensity = 1.f - (m_Time / 6.f);
+	}
 }
 
 void DayNightSystem::Display()
@@ -51,7 +63,7 @@ void DayNightSystem::Display()
 	Window::rectangle.setTexture(nullptr);
 	Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
 
-	RenderStatesManager::SetShaderUniform("dayNight", "u_time", m_NormalizedTime);
+	RenderStatesManager::SetShaderUniform("dayNight", "u_time", m_Intensity / 1.5f);
 	RenderStatesManager::SetShader("dayNight");
 
 	Window::Draw(Window::rectangle, RenderStatesManager::RenderStates);

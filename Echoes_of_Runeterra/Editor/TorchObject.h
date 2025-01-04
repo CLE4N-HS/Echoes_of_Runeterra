@@ -12,7 +12,7 @@ public:
 	virtual void Display() override;
 
 	void DisplayShader(DayNightSystem& _system);
-	void DisplayParticles();
+	void DisplayParticles(DayNightSystem& _system);
 
 	virtual nlohmann::json ToJson() override;
 	virtual void FromJson(const nlohmann::json& _j) override;
