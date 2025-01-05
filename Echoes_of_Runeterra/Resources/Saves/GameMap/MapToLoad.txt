@@ -1,1 +1,1 @@
-..\Resources\Saves\Map\yfytfytfctf.json
+..\Resources\Saves\Map\good.json
