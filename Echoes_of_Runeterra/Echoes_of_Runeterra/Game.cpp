@@ -24,12 +24,16 @@ Game::Game() : m_Map(), m_DayNightSystem() //: m_mapManager(), m_dialogueManager
 		std::string path;
 		mapToLoad >> path;
 
+		mapToLoad.close();
+
 		std::ifstream map(path);
 
 		if (map.is_open())
 		{
 			hasFoundMap = true;
 			m_Map.Load(map);
+
+			map.close();
 		}
 	}
 
@@ -43,6 +47,7 @@ Game::Game() : m_Map(), m_DayNightSystem() //: m_mapManager(), m_dialogueManager
 	TileTextureManager::AddTexture("animTile", TILE_TEXTURE_PATH "animTile.png");
 	TileTextureManager::AddTexture("water", TILE_TEXTURE_PATH "water.png");
 	TileTextureManager::AddTexture("collision", TILE_TEXTURE_PATH "collision.png");
+	TileTextureManager::AddTexture("cloud", TILE_TEXTURE_PATH "cloud_75.png");
 
 	ObjectTextureManager::AddTexture("chest", OBJECT_TEXTURE_PATH "chest.png");
 	ObjectTextureManager::AddTexture("torch", OBJECT_TEXTURE_PATH "torch.png");
@@ -90,6 +95,12 @@ void Game::Update()
 	{
 		//MapManager::Update();
 		PawnManager::Update();
+
+		if (Player* player = dynamic_cast<Player*>(PawnManager::GetPawn("Player")))
+		{
+			player->UpdateMovement(m_Map);
+		}
+
 	}
 	//SkillTreeManager::Update();
 

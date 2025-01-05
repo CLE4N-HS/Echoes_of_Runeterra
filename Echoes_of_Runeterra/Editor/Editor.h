@@ -64,6 +64,8 @@ private:
 
 	std::string m_GameMapPath = "";
 
+	bool m_PlaceCollision = false;
+
 	void ResetAnimTime();
 	void DisplayLayer(size_t _layer);
 

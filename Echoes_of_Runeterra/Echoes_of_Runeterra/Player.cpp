@@ -52,7 +52,7 @@ void Player::Update()
 
 	if (!m_inventory.isOpen())
 	{
-		this->UpdateMovement();
+		//this->UpdateMovement();
 	}
 
 	for (size_t i = 0; i < m_companion.size(); i++)
@@ -143,29 +143,7 @@ void Player::Display()
 
 }
 
-void Player::AddCompanion(Companion* _companion)
-{
-	if (m_companion.size() >= 2)
-	{
-		// TODO idk QG or smth
-	}
-	else
-	{
-		m_companion.push_back(_companion);
-	}
-}
-
-void Player::Consume(Consumable* _consumable)
-{
-	if (_consumable)
-	{
-		m_fightStats.hp += _consumable->getHpBuff();
-		m_fightStats.attack += _consumable->GetAttackBuff();
-		m_fightStats.defense += _consumable->getDefenseBuff();
-	}
-}
-
-void Player::UpdateMovement()
+void Player::UpdateMovement(Map& _map)
 {
 	float dt = Tools::GetDeltaTime();
 
@@ -188,49 +166,134 @@ void Player::UpdateMovement()
 		m_forward.y -= 1.f;
 		m_targetPos = sf::Vector2f(this->transform->getPos() + sf::Vector2f(0.f, -1.f));
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
 	{
 		m_forward.x -= 1.f;
 		m_targetPos = sf::Vector2f(this->transform->getPos() + sf::Vector2f(-1.f, 0.f));
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
 	{
 		m_forward.y += 1.f;
 		m_targetPos = sf::Vector2f(this->transform->getPos() + sf::Vector2f(0.f, 1.f));
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
 	{
 		m_forward.x += 1.f;
 		m_targetPos = sf::Vector2f(this->transform->getPos() + sf::Vector2f(1.f, 0.f));
 	}
 
-	sf::Vector2f nextPos = this->transform->getPos() + m_forward * dt * 200.f;
+	sf::Vector2f normalizedForward = Tools::Normalize(m_forward);
 
-	if (!m_inventory.isOpen() && !DialogueManager::IsInDialogue())
+	sf::Vector2f nextPos = this->transform->getPos() + normalizedForward * dt * 200.f;
+
+	std::vector<std::vector<std::vector<Tile*>>> map = _map.getMap();
+
+	size_t collLayer = Map::Layer::COLLISION;
+	if (!m_inventory.isOpen() && map.size() > collLayer)
 	{
-		this->transform->setPos(nextPos);
+		sf::Vector2f pos = this->transform->getPos();
+		sf::Vector2f hSize = this->transform->getSize() * 0.5f;
+		float tSize = static_cast<float>(Tile::SIZE);
+
+		sf::Vector2f nextLocalPosBase = sf::Vector2f(m_forward.x * hSize.x, m_forward.y * hSize.y);
+		bool Side = (nextLocalPosBase.y > -8.f && nextLocalPosBase.y < 8.f);
+
+		sf::Vector2f nextLocalPos1 = (Side ? nextLocalPosBase - sf::Vector2f(0.f, hSize.y * 0.5f) : nextLocalPosBase - sf::Vector2f(hSize.x * 0.5f, 0.f));
+		sf::Vector2f nextLocalPos2 = (Side ? nextLocalPosBase + sf::Vector2f(0.f, hSize.y * 0.5f) : nextLocalPosBase + sf::Vector2f(hSize.x * 0.5f, 0.f));
+
+		sf::Vector2f mapNextPos1 = sf::Vector2f((pos.x + nextLocalPos1.x), (pos.y + nextLocalPos1.y));
+		sf::Vector2f mapNextPos2 = sf::Vector2f((pos.x + nextLocalPos2.x), (pos.y + nextLocalPos2.y));
+
+		//sf::Vector2f mapNextPos = this->transform->getPos() + sf::Vector2f(m_forward.x * this->transform->getSize().x, m_forward.y * this->transform->getSize().y);
+
+		sf::Vector2i tilePos1 = sf::Vector2i(sf::Vector2f(mapNextPos1.x / tSize, mapNextPos1.y / tSize));
+		sf::Vector2i tilePos2 = sf::Vector2i(sf::Vector2f(mapNextPos2.x / tSize, mapNextPos2.y / tSize));
+
+		//sf::Vector2i tileMapPos = sf::Vector2i(sf::Vector2f(nextPos.x / tSize, nextPos.y / Tile::SIZE));
+
+		bool isInMap1 = (tilePos1.x >= 0 && tilePos1.y >= 0 && tilePos1.y < map[collLayer].size() && tilePos1.x < map[collLayer][0].size());
+		bool isInMap2 = (tilePos2.x >= 0 && tilePos2.y >= 0 && tilePos2.y < map[collLayer].size() && tilePos2.x < map[collLayer][0].size());
+
+		//bool isInMap = (tilePos.x >= 0 && tilePos.y >= 0 && tilePos.y < map[collLayer].size() && tilePos.x < map[collLayer][0].size());
+
+		bool allowedToMove(true);
+
+		if (isInMap1)
+		{
+			//sf::FloatRect nextRect(this->transform->getPos(), this->transform->getSize() - this->transform->getOrigin());
+			sf::FloatRect nextRect1(nextPos - this->transform->getOrigin(), this->transform->getSize());
+			sf::FloatRect tileRect1(sf::Vector2f(tilePos1.x * tSize, tilePos1.y * tSize), sf::Vector2f(tSize, tSize));
+
+			if (map[collLayer][tilePos1.y][tilePos1.x]->GetTextureName() != "" && nextRect1.intersects(tileRect1))
+			{
+				allowedToMove = false;
+			}
+		}
+		if (isInMap2)
+		{
+			//sf::FloatRect nextRect(this->transform->getPos(), this->transform->getSize() - this->transform->getOrigin());
+			sf::FloatRect nextRect2(nextPos - this->transform->getOrigin(), this->transform->getSize());
+			sf::FloatRect tileRect2(sf::Vector2f(tilePos2.x * tSize, tilePos2.y * tSize), sf::Vector2f(tSize, tSize));
+
+			if (map[collLayer][tilePos2.y][tilePos2.x]->GetTextureName() != "" && nextRect2.intersects(tileRect2))
+			{
+				allowedToMove = false;
+			}
+		}
+
+		if (allowedToMove)
+		{
+			this->transform->setPos(nextPos);
+		}
 	}
-
-
-
-
-	//if (!m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
-	//{
-	//	m_targetPos = _window.getMousePos();
-	//	m_foward = sf::Vector2f(m_targetPos - m_pos);
-	//	vec2fNormalize(m_foward);
-	//}
-
-	//if (vec2fGetMagnitude(sf::Vector2f(m_targetPos - m_pos)) > 26.f)
-	//{
-	//	m_pos += m_foward * m_moveSpeed * dt;
-	//	m_animState = "walk";
-	//}
-	//else
-	//{
-	//	m_animState = "idle";
-	//}
 }
+
+void Player::AddCompanion(Companion* _companion)
+{
+	if (m_companion.size() >= 2)
+	{
+		// TODO idk QG or smth
+	}
+	else
+	{
+		m_companion.push_back(_companion);
+	}
+}
+
+void Player::Consume(Consumable* _consumable)
+{
+	if (_consumable)
+	{
+		m_fightStats.hp += _consumable->getHpBuff();
+		m_fightStats.attack += _consumable->GetAttackBuff();
+		m_fightStats.defense += _consumable->getDefenseBuff();
+	}
+}
+//
+//void Player::UpdateMovement()
+//{
+//	
+//
+//
+//
+//
+//	//if (!m_inventory->isOpen() && _window.mouseManager.hasJustPressed(sf::Mouse::Left))
+//	//{
+//	//	m_targetPos = _window.getMousePos();
+//	//	m_foward = sf::Vector2f(m_targetPos - m_pos);
+//	//	vec2fNormalize(m_foward);
+//	//}
+//
+//	//if (vec2fGetMagnitude(sf::Vector2f(m_targetPos - m_pos)) > 26.f)
+//	//{
+//	//	m_pos += m_foward * m_moveSpeed * dt;
+//	//	m_animState = "walk";
+//	//}
+//	//else
+//	//{
+//	//	m_animState = "idle";
+//	//}
+//}
 
 void Player::UpdateInventoryInteractions()
 {

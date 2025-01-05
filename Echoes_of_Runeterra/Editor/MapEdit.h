@@ -22,7 +22,7 @@ public:
 	template<typename T>
 	inline sf::Vector2<T> GetSize() const
 	{
-		return sf::Vector2<T>(sf::Vector2<size_t>((*m_Map)[m_Layer][0].size(), (*m_Map)[m_Layer].size()));
+		return sf::Vector2<T>(sf::Vector2<size_t>((*m_Map)[0][0].size(), (*m_Map)[0].size()));
 	}
 
 	inline size_t GetNbLayer() const { return (*m_Map).size(); }
@@ -31,6 +31,8 @@ public:
 
 	inline Map::Layer GetLayer() const { return m_Layer; }
 	void SetLayer(Map::Layer _layer);
+
+	bool PlaceCollision(sf::Vector2f _pos);
 
 private:
 	std::vector<std::vector<std::vector<Tile*>>>* m_Map;

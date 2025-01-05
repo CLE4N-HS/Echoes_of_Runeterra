@@ -220,3 +220,25 @@ void MapEdit::SetLayer(Map::Layer _layer)
 {
 	m_Layer = _layer;
 }
+
+bool MapEdit::PlaceCollision(sf::Vector2f _pos)
+{
+	Map::Layer currentLayer = Map::Layer::COLLISION;
+
+	sf::Vector2i tilePos = this->TilePos(_pos);
+	if (!(this->IsInMap(tilePos)))
+		return false;
+
+	SimpleTile* simpleTile = dynamic_cast<SimpleTile*>((*m_Map)[currentLayer][tilePos.y][tilePos.x]);
+	if (!simpleTile)
+	{
+		delete (*m_Map)[currentLayer][tilePos.y][tilePos.x];
+		(*m_Map)[currentLayer][tilePos.y][tilePos.x] = new SimpleTile();
+	}
+
+	(*m_Map)[currentLayer][tilePos.y][tilePos.x]->SetTextureName("collision");
+	(*m_Map)[currentLayer][tilePos.y][tilePos.x]->SetRect(sf::IntRect(0, 0, 32, 32));
+	(*m_Map)[currentLayer][tilePos.y][tilePos.x]->GetType() = Tile::Type::WALL;
+
+	return true;
+}

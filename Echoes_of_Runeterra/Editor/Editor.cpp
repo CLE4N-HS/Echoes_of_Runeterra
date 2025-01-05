@@ -15,6 +15,19 @@
 
 #include <filesystem>
 
+std::string convertToRelativePath(const std::string& fullPath) {
+	const std::string targetFolder = "\\Resources\\"; // Folder to anchor the relative path
+	std::size_t pos = fullPath.find(targetFolder);
+	if (pos != std::string::npos) {
+		// Replace everything before and including the targetFolder with "..\\"
+		return ".." + fullPath.substr(pos);
+	}
+	else {
+		// If the targetFolder is not found, return the original path
+		return fullPath;
+	}
+}
+
 std::string wcharToString(const wchar_t* wcharStr) {
 	if (!wcharStr) return "";
 
@@ -38,6 +51,7 @@ Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap(), &m_
 	TileTextureManager::AddTexture("animTile", TILE_TEXTURE_PATH "animTile.png");
 	TileTextureManager::AddTexture("water", TILE_TEXTURE_PATH "water.png");
 	TileTextureManager::AddTexture("collision", TILE_TEXTURE_PATH "collision.png");
+	TileTextureManager::AddTexture("cloud", TILE_TEXTURE_PATH "cloud_75.png");
 
 	ObjectTextureManager::AddTexture("chest", OBJECT_TEXTURE_PATH "chest.png");
 	ObjectTextureManager::AddTexture("torch", OBJECT_TEXTURE_PATH "torch.png");
@@ -84,12 +98,25 @@ void Editor::Update()
 				switch (m_CurrentTexture)
 				{
 				case Editor::SIMPLE_TILE:
-					m_MapEdit.EditTile(mousePos, m_CurrentTextureName, m_CurrentRect, m_CurrentTileType); break;
+				{
+					bool succeed = m_MapEdit.EditTile(mousePos, m_CurrentTextureName, m_CurrentRect, m_CurrentTileType);
+
+					if (succeed && m_PlaceCollision && m_CurrentLayer == Map::Layer::BACKGROUND)
+					{
+						m_MapEdit.PlaceCollision(mousePos);
+					}
+
+				}
+				break;
 				case Editor::ANIM_TILE:
 				{
 					if (m_MapEdit.EditAnimTile(mousePos, m_CurrentTextureName, m_CurrentRect, m_CurrentTileType, m_CurrentAnimTileFrameX, m_CurrentAnimTileAnimSpeed))
 					{
 						this->ResetAnimTime();
+						if (m_PlaceCollision && m_CurrentLayer == Map::Layer::BACKGROUND)
+						{
+							m_MapEdit.PlaceCollision(mousePos);
+						}
 					}
 				}
 				break;
@@ -397,6 +424,11 @@ bool Editor::UpdateImGui()
 				// EDITOR / MAP / TEXTURE / TILE
 				if (ig::TreeNode("Tile##EDITOR_MAP_TILE"))
 				{
+					if (m_CurrentLayer == Map::Layer::BACKGROUND)
+					{
+						ig::Checkbox("Automatically place a collision Tile on the Layer 2 (COLLISION)", &m_PlaceCollision);
+					}
+
 					// EDITOR / MAP / TEXTURE / TILE / TILESET
 					if (ig::TreeNode("Tileset##EDITOR_MAP_TILE_TILESET"))
 					{
@@ -588,7 +620,7 @@ bool Editor::UpdateImGui()
 						{
 							std::ofstream mapStream(fileName);
 							m_Map.Save(mapStream);           // Sauvegarder la map dans le chemin sélectionné
-							m_GameMapPath = wcharToString(fileName);
+							m_GameMapPath = convertToRelativePath(wcharToString(fileName));
 						}
 					}
 
@@ -614,7 +646,7 @@ bool Editor::UpdateImGui()
 							{
 								m_Map.Load(mapStream);            // Charger la map à partir du fichier
 								mapStream.close();
-								m_GameMapPath = wcharToString(fileName);
+								m_GameMapPath = convertToRelativePath(wcharToString(fileName));
 							}
 							else
 							{
@@ -689,15 +721,27 @@ bool Editor::UpdateImGui()
 
 				if (ig::Button("Start##EDITOR_GAME_START"))
 				{
+					std::ofstream mapToLoad("../Resources/Saves/GameMap/MapToLoad.txt");
+
+					if (mapToLoad.is_open())
+					{
+						mapToLoad << m_GameMapPath;
+
+						mapToLoad.close();
+					}
+
 					Window::Exit();
+
+					int result = -1;
 #ifdef _DEBUG
-					int result = std::system("..\\Debug\\Echoes_of_Runeterra.exe");
+					result = std::system("..\\Debug\\Echoes_of_Runeterra.exe");
 #else
-					int result = std::system("..\\Release\\Echoes_of_Runeterra.exe");
+					result = std::system("..\\Release\\Echoes_of_Runeterra.exe");
 #endif // _DEBUG
 
-					if (result == 0)
+					if (result != 0)
 					{
+						result = std::system("..\\bin\\Echoes_of_Runeterra.exe");
 						//std::exit(0);
 					}
 				}
