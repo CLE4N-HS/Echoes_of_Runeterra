@@ -31,6 +31,8 @@ public:
 	inline std::vector<std::vector<std::vector<Tile*>>>& getMap() { return m_Map; }
 	inline std::vector<Object*>& getObject() { return m_Object; }
 
+	void UpdateChest();
+
 private:
 	std::vector<std::vector<std::vector<Tile*>>> m_Map{};
 	std::vector<Object*> m_Object{};

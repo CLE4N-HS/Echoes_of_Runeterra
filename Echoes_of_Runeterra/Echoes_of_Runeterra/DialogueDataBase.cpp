@@ -47,6 +47,13 @@ DialogueDataBase::DialogueDataBase()
 	m_interactionTextDB.insert({ "murloc C1", new Comment("MURLOC", commentPos)});
 	m_interactionTextDB.insert({ "murloc C2", new Comment("You're scared ?", commentPos)});
 	m_interactionTextDB.insert({ "murloc E1", new EndButton("Leave.", endButtonPos)});
+
+	m_interactionTextDB.insert({ "default Q1", new Question("Are you talking to me ?", questionPos)});
+	m_interactionTextDB.insert({ "default A1", new Answer("Yes", answerPos)});
+	m_interactionTextDB.insert({ "default A2", new Answer("Surely No.", answerPos + answerOffset)});
+	m_interactionTextDB.insert({ "default C1", new Comment("Cool", commentPos)});
+	m_interactionTextDB.insert({ "default C2", new Comment("Oh ok.", commentPos)});
+	m_interactionTextDB.insert({ "default E1", new EndButton("End.", endButtonPos)});
 }
 
 DialogueDataBase::~DialogueDataBase()

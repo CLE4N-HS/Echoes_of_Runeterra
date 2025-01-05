@@ -9,6 +9,10 @@
 #include "ChestObject.h"
 #include "AnimTile.h"
 
+#include "Player.h"
+#include "CharacterManager.h"
+#include "ItemDatabase.h"
+
 Map::Map()
 {
 	//DefaultMap();
@@ -224,6 +228,30 @@ void Map::DefaultMap()
 				{
 					m_Map[l][y].push_back(new SimpleTile());
 				}
+			}
+		}
+	}
+}
+
+void Map::UpdateChest()
+{
+	size_t l = 2;
+
+	Player* p = dynamic_cast<Player*>(PawnManager::GetPawn("Player"));
+
+	if (!p)
+		return;
+
+	sf::Vector2f pPos = p->transform->getPos();
+
+	for (size_t i = 0; i < m_Object.size(); i++)
+	{
+		if (ChestObject* c = dynamic_cast<ChestObject*>(m_Object[i]))
+		{
+			if ((c->GetRect().left < 2) && (Tools::SqrMagnitude(c->GetPos(), pPos) < 10000.f) && (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) || (sf::FloatRect(c->GetPos(), c->GetSize()).contains(Window::GetMouseViewPos()) && sf::Mouse::isButtonPressed(sf::Mouse::Left))))
+			{
+				c->GetRect().left = 96;
+				p->AddItem(ItemDatabase::GetItem("wood"));
 			}
 		}
 	}

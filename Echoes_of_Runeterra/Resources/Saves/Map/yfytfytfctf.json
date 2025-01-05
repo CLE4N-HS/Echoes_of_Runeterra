@@ -24613,6 +24613,305 @@
         }
     },
     "Object": {
-        "Size": 0
+        "00": {
+            "ChestObject": {
+                "Position": [
+                    1026.0,
+                    410.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "01": {
+            "ChestObject": {
+                "Position": [
+                    968.0,
+                    274.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "02": {
+            "ChestObject": {
+                "Position": [
+                    876.0,
+                    196.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "03": {
+            "ChestObject": {
+                "Position": [
+                    683.0,
+                    187.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "04": {
+            "ChestObject": {
+                "Position": [
+                    673.0,
+                    189.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "05": {
+            "ChestObject": {
+                "Position": [
+                    626.0,
+                    258.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "06": {
+            "ChestObject": {
+                "Position": [
+                    905.0,
+                    567.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "07": {
+            "ChestObject": {
+                "Position": [
+                    723.0,
+                    567.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "08": {
+            "ChestObject": {
+                "Position": [
+                    589.0,
+                    538.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "09": {
+            "ChestObject": {
+                "Position": [
+                    684.0,
+                    375.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "10": {
+            "ChestObject": {
+                "Position": [
+                    758.0,
+                    329.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "11": {
+            "ChestObject": {
+                "Position": [
+                    451.0,
+                    346.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "12": {
+            "ChestObject": {
+                "Position": [
+                    381.0,
+                    338.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "13": {
+            "ChestObject": {
+                "Position": [
+                    338.0,
+                    382.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "14": {
+            "ChestObject": {
+                "Position": [
+                    329.0,
+                    467.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "15": {
+            "ChestObject": {
+                "Position": [
+                    398.0,
+                    489.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "16": {
+            "ChestObject": {
+                "Position": [
+                    435.0,
+                    469.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "chest"
+            }
+        },
+        "17": {
+            "TorchObject": {
+                "Position": [
+                    717.0,
+                    440.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "torch"
+            }
+        },
+        "18": {
+            "TorchObject": {
+                "Position": [
+                    554.0,
+                    443.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "torch"
+            }
+        },
+        "19": {
+            "TorchObject": {
+                "Position": [
+                    389.0,
+                    395.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "torch"
+            }
+        },
+        "20": {
+            "TorchObject": {
+                "Position": [
+                    327.0,
+                    382.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "torch"
+            }
+        },
+        "21": {
+            "TorchObject": {
+                "Position": [
+                    300.0,
+                    355.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "torch"
+            }
+        },
+        "22": {
+            "TorchObject": {
+                "Position": [
+                    435.0,
+                    245.0
+                ],
+                "Size": [
+                    32.0,
+                    32.0
+                ],
+                "TextureName": "torch"
+            }
+        },
+        "Size": 23
     }
 }

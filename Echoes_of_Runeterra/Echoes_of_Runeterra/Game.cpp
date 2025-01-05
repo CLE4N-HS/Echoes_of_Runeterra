@@ -13,8 +13,9 @@
 #include "TorchObject.h"
 #include "AnimTile.h"
 #include "ParticleManager.h"
+#include "ComponentName.h"
 
-Game::Game() : m_Map(), m_DayNightSystem() //: m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager()//, m_skillsSystem(m_treeDB)
+Game::Game() : m_Map(), m_DayNightSystem(), m_Enemy() //: m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager()//, m_skillsSystem(m_treeDB)
 {
 	std::ifstream mapToLoad("../Resources/Saves/GameMap/MapToLoad.txt");
 
@@ -49,7 +50,7 @@ Game::Game() : m_Map(), m_DayNightSystem() //: m_mapManager(), m_dialogueManager
 	TileTextureManager::AddTexture("collision", TILE_TEXTURE_PATH "collision.png");
 	TileTextureManager::AddTexture("cloud", TILE_TEXTURE_PATH "cloud_75.png");
 
-	ObjectTextureManager::AddTexture("chest", OBJECT_TEXTURE_PATH "chest.png");
+	ObjectTextureManager::AddTexture("chest", OBJECT_TEXTURE_PATH "coffre32.png");
 	ObjectTextureManager::AddTexture("torch", OBJECT_TEXTURE_PATH "torch.png");
 
 	RenderStatesManager::AddShader("torch", SHADER_PATH "torch.frag", sf::Shader::Type::Fragment);
@@ -71,6 +72,13 @@ Game::Game() : m_Map(), m_DayNightSystem() //: m_mapManager(), m_dialogueManager
 	//m_mapManager.addItem(m_itemDB->getItem("speedPotion"));
 
 	//m_characterManager.addCharacterItem("Player", m_itemDB->getItem("sword"));
+
+	Enemy* e = EnemyDatabase::CreateNewEnemy("wildCorruptedBeast");
+	if (e)
+	{
+		e->transform->setPos(sf::Vector2f(120.f, 450.f));
+		m_Enemy.push_back(e);
+	}
 }
 
 Game::~Game()
@@ -101,6 +109,39 @@ void Game::Update()
 			player->UpdateMovement(m_Map);
 		}
 
+		m_Map.UpdateChest();
+
+		const sf::Vector2f mousePos = Window::GetMousePos();
+
+		Player* player = dynamic_cast<Player*>(PawnManager::GetPawn("Player"));
+
+		for (std::vector<Enemy*>::iterator it = m_Enemy.begin(); it != m_Enemy.end();)
+		{
+			if (player && player->transform->GetRect().intersects((*it)->transform->GetRect()))
+			{
+				FightManager::SetupFight(new Fight(player, std::vector<Enemy*>{EnemyDatabase::CreateNewEnemy(dynamic_cast<Enemy*>((*it))),
+					EnemyDatabase::CreateNewEnemy(dynamic_cast<Enemy*>((*it))),
+					EnemyDatabase::CreateNewEnemy(dynamic_cast<Enemy*>((*it)))}));
+				delete (*it);
+				it = m_Enemy.erase(it);
+				continue;
+			}
+
+			it++;
+		}
+
+		if (!NightOnePass && m_DayNightSystem.GetHour() <= 5)
+		{
+			Enemy* e = EnemyDatabase::CreateNewEnemy("spiritWolf");
+
+			if (e)
+			{
+				e->transform->setPos(sf::Vector2f(200.f, 200.f));
+				m_Enemy.push_back(e);
+				NightOnePass = true;
+			}
+		}
+
 	}
 	//SkillTreeManager::Update();
 
@@ -120,7 +161,8 @@ void Game::Update()
 void Game::Display()
 {
 	sf::Vector2f centerViewPos = Window::view.getCenter();
-	if (Player* player = dynamic_cast<Player*>(PawnManager::GetPawn("Player")))
+	Player* player = dynamic_cast<Player*>(PawnManager::GetPawn("Player"));
+	if (player)
 	{
 		centerViewPos = player->transform->getPos();
 	}
@@ -166,7 +208,6 @@ void Game::Display()
 	}
 	*/
 
-	this->DisplayLayer(Map::Layer::BACKGROUND);
 
 	//this->DisplayLayer(Map::Layer::COLLISION);
 
@@ -179,31 +220,55 @@ void Game::Display()
 		}
 		else
 		{
+			this->DisplayLayer(Map::Layer::BACKGROUND);
+
+			Window::rectangle.setTexture(nullptr);
 			//MapManager::Display();
 			PawnManager::Display();
-		}
-
-		Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
-		Window::rectangle.setOrigin(sf::Vector2f());
-		for (size_t i = 0; i < object.size(); i++)
-		{
-			object[i]->Display();
-		}
-
-		Window::rectangle.setTexture(nullptr);
-		Window::rectangle.setFillColor(sf::Color(0, 0, 0, 0));
-		for (Object* o : object)
-		{
-			if (TorchObject* t = dynamic_cast<TorchObject*>(o))
+			for (std::vector<Enemy*>::iterator it = m_Enemy.begin(); it != m_Enemy.end(); it++)
 			{
-				t->DisplayShader(m_DayNightSystem);
-				t->DisplayParticles(m_DayNightSystem);
+				(*it)->transform->CorrectWindowRectangle();
+				Window::Draw();
 			}
+			Window::text.setCharacterSize(20);
+			Window::text.setFillColor(sf::Color(255, 255, 255));
+			for (std::vector<Enemy*>::iterator it = m_Enemy.begin(); it != m_Enemy.end(); it++)
+			{
+				Window::rectangle.setFillColor(sf::Color(255, 100, 100));
+				(*it)->transform->CorrectWindowRectangle();
+				Window::Draw();
+
+				Window::text.setPosition((*it)->transform->getPos() + sf::Vector2f(0.f, -50.f));
+				Window::text.setString((*it)->GetComponent<ComponentName>()->GetName());
+				Tools::CenterTextOrigin(Window::text);
+				Window::Draw(Window::text);
+			}
+
+			Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
+			Window::rectangle.setOrigin(sf::Vector2f());
+			for (size_t i = 0; i < object.size(); i++)
+			{
+				object[i]->Display();
+			}
+
+			Window::rectangle.setTexture(nullptr);
+			Window::rectangle.setFillColor(sf::Color(0, 0, 0, 0));
+			for (Object* o : object)
+			{
+				if (TorchObject* t = dynamic_cast<TorchObject*>(o))
+				{
+					t->DisplayShader(m_DayNightSystem);
+					t->DisplayParticles(m_DayNightSystem);
+				}
+			}
+			ParticleManager::Display();
+
+			this->DisplayLayerTransparency(Map::Layer::FOREGROUND - 1);
 		}
-		ParticleManager::Display();
+
+		
 	}
 
-	this->DisplayLayerTransparency(Map::Layer::FOREGROUND - 1);
 
 	Window::rectangle.setTexture(nullptr);
 
@@ -213,6 +278,11 @@ void Game::Display()
 	{
 		DialogueManager::Display();
 	}
+	else
+	{
+		player->GetInventory().Display();
+	}
+
 
 	//if (SkillTreeManager::IsInSkillTree())
 	//{
@@ -315,6 +385,28 @@ void Game::DisplayLayerTransparency(size_t _layer)
 
 				Window::Draw();
 			}
+		}
+	}
+}
+
+void Game::UpdateEnemy()
+{
+	Player* p = dynamic_cast<Player*>(PawnManager::GetPawn("Player"));
+	if (!p)
+		return;
+
+	sf::Vector2f pPos = p->transform->getPos();
+
+	for (std::vector<Enemy*>::iterator it = m_Enemy.begin(); it != m_Enemy.end();)
+	{
+
+		if ((Tools::SqrMagnitude((*it)->transform->getPos(), pPos) < 10000.f) && (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) || ((*it)->transform->GetRect().contains(Window::GetMouseViewPos()) && sf::Mouse::isButtonPressed(sf::Mouse::Left))))
+		{
+			FightManager::SetupFight(new Fight(p, m_Enemy));
+			//it = m_Enemy.erase(it);
+		}
+		else {
+			it++;
 		}
 	}
 }

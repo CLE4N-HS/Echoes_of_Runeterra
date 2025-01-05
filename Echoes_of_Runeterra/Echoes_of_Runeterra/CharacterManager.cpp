@@ -10,11 +10,11 @@ PawnManager::PawnManager()
 	m_pawn.reserve(3);
 	size_t i(0);
 
-	m_pawn.push_back(new Talker("Npc1", "npcHello"));
-	m_pawn[i]->transform->setPos(sf::Vector2f(960.f, 200.f));
+	m_pawn.push_back(new Talker("Npc1", "default"));
+	m_pawn[i]->transform->setPos(sf::Vector2f(100.f, 100.f));
 
-	m_pawn.push_back(new Talker("Npc2", "murloc")); i++;
-	m_pawn[i]->transform->setPos(sf::Vector2f(1460.f, 400.f));
+	m_pawn.push_back(new Talker("Npc2", "default")); i++;
+	m_pawn[i]->transform->setPos(sf::Vector2f(500.f, 300.f));
 
 	m_pawn.push_back(new Player("Player")); i++;
 }

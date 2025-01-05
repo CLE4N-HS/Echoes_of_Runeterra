@@ -12,6 +12,7 @@ public:
 	inline std::string_view GetTextureName() const { return m_TextureName; }
 	inline sf::Vector2f GetPos() const { return m_Pos; }
 	inline sf::Vector2f GetSize() const { return m_Size; }
+	inline sf::IntRect& GetRect() { return m_Rect; }
 
 	virtual void Display() = 0;
 
@@ -22,6 +23,7 @@ protected:
 	sf::Vector2f m_Pos;
 	sf::Vector2f m_Size;
 	std::string m_TextureName;
+	sf::IntRect m_Rect = sf::IntRect(0, 0, 32, 32);
 
 	void SetupDraw();
 

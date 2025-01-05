@@ -24,7 +24,7 @@ void Talker::Update()
 	const sf::Vector2f mousePos = Window::GetMouseViewPos();
 	if (Player* player = dynamic_cast<Player*>(PawnManager::GetPawn("Player")))
 	{
-		if (Tools::SqrMagnitude(player->transform->getPos(), this->transform->getPos()) < 40000.f && (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter) || (this->transform->GetRect().contains(mousePos) &&  sf::Mouse::isButtonPressed(sf::Mouse::Left)) /*MouseManager::OneTimePressed()*/))
+		if (Tools::SqrMagnitude(player->transform->getPos(), this->transform->getPos()) < 10000.f && (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter) || (this->transform->GetRect().contains(mousePos) &&  sf::Mouse::isButtonPressed(sf::Mouse::Left)) /*MouseManager::OneTimePressed()*/))
 		{
 			DialogueManager::SetupDialogue(m_dialogueKey);
 		}
