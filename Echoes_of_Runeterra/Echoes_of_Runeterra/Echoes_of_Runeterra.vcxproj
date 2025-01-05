@@ -356,6 +356,11 @@
     <ClInclude Include="WildCorruptedBeast.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\Shader\dayNight.frag" />
+    <None Include="..\Resources\Shader\torch.frag" />
+    <None Include="..\Resources\Shader\transparency.frag" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

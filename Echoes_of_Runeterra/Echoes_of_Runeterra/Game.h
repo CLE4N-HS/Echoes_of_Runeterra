@@ -18,6 +18,7 @@ private:
 	DayNightSystem m_DayNightSystem;
 
 	void DisplayLayer(size_t _layer);
+	void DisplayLayerTransparency(size_t _layer);
 
 	//DialogueManager m_dialogueManager;
 	//InteractionManager m_interactionManager;

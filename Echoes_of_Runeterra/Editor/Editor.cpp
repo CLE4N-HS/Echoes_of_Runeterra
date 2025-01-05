@@ -58,6 +58,7 @@ Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap(), &m_
 
 	RenderStatesManager::AddShader("torch", SHADER_PATH "torch.frag", sf::Shader::Type::Fragment);
 	RenderStatesManager::AddShader("dayNight", SHADER_PATH "dayNight.frag", sf::Shader::Type::Fragment);
+	RenderStatesManager::AddShader("transparency", SHADER_PATH "transparency.frag", sf::Shader::Type::Fragment);
 
 	m_Layer.fill(true);
 	m_CurrentLayer = m_MapEdit.GetLayer();
@@ -964,4 +965,143 @@ void Editor::DisplayLayer(size_t _layer)
 			}
 		}
 	}
+}
+
+void Editor::DisplayLayerTransparency(size_t _layer)
+{
+	std::vector<std::vector<std::vector<Tile*>>> map = m_Map.getMap();
+
+	Window::rectangle.setOrigin(sf::Vector2f());
+	Window::rectangle.setSize(sf::Vector2f(sf::Vector2<int>(Tile::SIZE, Tile::SIZE)));
+	//test
+	Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
+	float tmpDt = Tools::GetDeltaTime();
+
+	size_t l = _layer;
+	for (size_t y = 0; y < map[l].size(); y++)
+	{
+		for (size_t x = 0; x < map[l][y].size(); x++)
+		{
+			if (sf::Texture* tex = TileTextureManager::GetTexture(map[l][y][x]->GetTextureName()))
+			{
+				if (AnimTile* animTile = dynamic_cast<AnimTile*>(map[l][y][x]))
+				{
+					animTile->Anim(tmpDt);
+				}
+
+				Window::rectangle.setTexture(tex);
+				Window::rectangle.setTextureRect(map[l][y][x]->GetRect());
+				Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(x * Tile::SIZE, y * Tile::SIZE)));
+
+
+
+				Window::Draw();
+			}
+		}
+	}
+
+	//std::vector<std::vector<std::vector<Tile*>>> map = m_Map.getMap();
+
+	//sf::RenderTexture rdrt;
+	//rdrt.create(1920, 1080);
+	//rdrt.clear(sf::Color(0, 0, 0, 0));
+	////rdrt.setView(Window::view);
+
+	//Window::rectangle.setOrigin(sf::Vector2f());
+	//Window::rectangle.setSize(sf::Vector2f(sf::Vector2<int>(Tile::SIZE, Tile::SIZE)));
+	////test
+	//Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
+	//float tmpDt = Tools::GetDeltaTime();
+
+	//float u_radius = 0.1f;
+	//float u_intensity = 0.5f;
+
+	//sf::Vector2f playerPos = sf::Vector2f(400.f, 300.f);
+
+	//size_t l = _layer;
+	//for (size_t y = 0; y < map[l].size(); y++)
+	//{
+	//	for (size_t x = 0; x < map[l][y].size(); x++)
+	//	{
+	//		if (sf::Texture* tex = TileTextureManager::GetTexture(map[l][y][x]->GetTextureName()))
+	//		{
+	//			if (AnimTile* animTile = dynamic_cast<AnimTile*>(map[l][y][x]))
+	//			{
+	//				animTile->Anim(tmpDt);
+	//			}
+
+	//			Window::rectangle.setTexture(tex);
+	//			Window::rectangle.setTextureRect(map[l][y][x]->GetRect());
+	//			sf::Vector2f pos(sf::Vector2<size_t>(x * Tile::SIZE, y * Tile::SIZE));
+	//			Window::rectangle.setPosition(pos);
+
+	//			rdrt.draw(Window::rectangle);
+	//			//Window::Draw();
+
+
+
+	//		}
+	//	}
+	//}
+
+	//Window::rectangle.setPosition(sf::Vector2f(0.f, 0.f));
+	//Window::rectangle.setOrigin(sf::Vector2f(0.0f, 0.0f));
+	//Window::rectangle.setFillColor(sf::Color(255, 255, 255, 0));
+
+	//sf::Glsl::Vec2 u_pos(playerPos);
+	//RenderStatesManager::SetShaderUniform("transparency", "u_pos", u_pos);
+	//RenderStatesManager::SetShaderUniform("transparency", "u_radius", u_radius);
+	//RenderStatesManager::SetShaderUniform("transparency", "u_intensity", u_intensity);
+	//RenderStatesManager::SetShaderUniform("transparency", "u_texture", rdrt.getTexture());
+	//RenderStatesManager::SetShader("transparency");
+	////Window::Draw(Window::rectangle, RenderStatesManager::RenderStates);
+
+	//rdrt.display();
+	//Window::rectangle.setTexture(&rdrt.getTexture(), true);
+	//Window::rectangle.setSize(sf::Vector2f(rdrt.getTexture().getSize()));
+	//Window::Draw(Window::rectangle, RenderStatesManager::RenderStates);
+
+	//std::vector<std::vector<std::vector<Tile*>>> map = m_Map.getMap();
+
+	//sf::RenderTexture rdrt;
+	//rdrt.create(1920, 1080);
+	////rdrt.setView(Window::view);
+
+	//Window::rectangle.setOrigin(sf::Vector2f());
+	//Window::rectangle.setSize(sf::Vector2f(sf::Vector2<int>(Tile::SIZE, Tile::SIZE)));
+	////test
+	//Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
+	//float tmpDt = Tools::GetDeltaTime();
+
+	//size_t l = _layer;
+	//for (size_t y = 0; y < map[l].size(); y++)
+	//{
+	//	for (size_t x = 0; x < map[l][y].size(); x++)
+	//	{
+	//		if (sf::Texture* tex = TileTextureManager::GetTexture(map[l][y][x]->GetTextureName()))
+	//		{
+	//			if (AnimTile* animTile = dynamic_cast<AnimTile*>(map[l][y][x]))
+	//			{
+	//				animTile->Anim(tmpDt);
+	//			}
+
+	//			Window::rectangle.setTexture(tex);
+	//			Window::rectangle.setTextureRect(map[l][y][x]->GetRect());
+	//			sf::Vector2f pos(sf::Vector2<size_t>(x * Tile::SIZE, y * Tile::SIZE));
+	//			Window::rectangle.setPosition(pos);
+
+	//			rdrt.draw(Window::rectangle);
+	//		}
+	//	}
+	//}
+
+	//Window::rectangle.setPosition(sf::Vector2f(0.f, 0.f));
+	//Window::rectangle.setOrigin(sf::Vector2f(0.0f, 0.0f));
+
+	////rdrt.draw(Window::rectangle);
+
+	//rdrt.display();
+	//Window::rectangle.setTexture(&rdrt.getTexture(), true);
+	//Window::rectangle.setSize(sf::Vector2f(rdrt.getTexture().getSize()));
+	//Window::Draw(Window::rectangle);
 }

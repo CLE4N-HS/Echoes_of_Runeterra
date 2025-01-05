@@ -68,5 +68,6 @@ private:
 
 	void ResetAnimTime();
 	void DisplayLayer(size_t _layer);
+	void DisplayLayerTransparency(size_t _layer);
 
 };

@@ -789,4 +789,15 @@
       <Filter>Fichiers d%27en-tête\SAVE</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\Shader\dayNight.frag">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+    <None Include="..\Resources\Shader\torch.frag">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+    <None Include="..\Resources\Shader\transparency.frag">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+  </ItemGroup>
 </Project>

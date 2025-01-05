@@ -203,7 +203,7 @@ void Game::Display()
 		ParticleManager::Display();
 	}
 
-	this->DisplayLayer(Map::Layer::FOREGROUND - 1);
+	this->DisplayLayerTransparency(Map::Layer::FOREGROUND - 1);
 
 	Window::rectangle.setTexture(nullptr);
 
@@ -257,6 +257,61 @@ void Game::DisplayLayer(size_t _layer)
 				Window::rectangle.setTexture(tex);
 				Window::rectangle.setTextureRect(map[l][y][x]->GetRect());
 				Window::rectangle.setPosition(sf::Vector2f(sf::Vector2<size_t>(x * Tile::SIZE, y * Tile::SIZE)));
+
+				Window::Draw();
+			}
+		}
+	}
+}
+
+void Game::DisplayLayerTransparency(size_t _layer)
+{
+	Player* player = dynamic_cast<Player*>(PawnManager::GetPawn("Player"));
+
+	if (!player)
+	{
+		this->DisplayLayer(_layer);
+		return;
+	}
+
+	sf::Vector2f playerPos = sf::Vector2f(player->transform->getPos().x / 32.f, player->transform->getPos().y / 32.f);
+	sf::Vector2f tileHSize(sf::Vector2<size_t>(Tile::SIZE / 2, Tile::SIZE / 2));
+
+	std::vector<std::vector<std::vector<Tile*>>> map = m_Map.getMap();
+
+	Window::rectangle.setOrigin(sf::Vector2f());
+	Window::rectangle.setSize(sf::Vector2f(sf::Vector2<int>(Tile::SIZE, Tile::SIZE)));
+
+	float tmpDt = Tools::GetDeltaTime();
+
+	size_t l = _layer;
+	for (size_t y = 0; y < map[l].size(); y++)
+	{
+		for (size_t x = 0; x < map[l][y].size(); x++)
+		{
+			if (sf::Texture* tex = TileTextureManager::GetTexture(map[l][y][x]->GetTextureName()))
+			{
+				if (AnimTile* animTile = dynamic_cast<AnimTile*>(map[l][y][x]))
+				{
+					animTile->Anim(tmpDt);
+				}
+
+				Window::rectangle.setTexture(tex);
+				Window::rectangle.setTextureRect(map[l][y][x]->GetRect());
+				sf::Vector2f tilePos(sf::Vector2<size_t>(x * Tile::SIZE, y * Tile::SIZE));
+				Window::rectangle.setPosition(tilePos);
+				bool isInMap = (playerPos.x >= 0 && playerPos.y >= 0 && playerPos.y < map[2].size() && playerPos.x < map[2][0].size());
+
+				//sf::Vector2f centerTilePos = tilePos + tileHSize;
+				if (isInMap && std::abs(playerPos.x - x) < 3 && std::abs(playerPos.y - y) < 3)
+				//if (Tools::SqrMagnitude(playerPos, centerTilePos) < 6000.f)
+				{
+					Window::rectangle.setFillColor(sf::Color(255, 255, 255, 127));
+				}
+				else
+				{
+					Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
+				}
 
 				Window::Draw();
 			}
