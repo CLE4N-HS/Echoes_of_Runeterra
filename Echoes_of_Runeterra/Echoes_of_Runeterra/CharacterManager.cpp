@@ -7,14 +7,14 @@ std::vector<Pawn*> PawnManager::m_pawn;
 
 PawnManager::PawnManager()
 {
-	m_pawn.reserve(3);
+	//m_pawn.reserve(3);
 	size_t i(0);
 
-	m_pawn.push_back(new Talker("Npc1", "npcHello"));
-	m_pawn[i]->transform->setPos(sf::Vector2f(960.f, 200.f));
-
-	m_pawn.push_back(new Talker("Npc2", "murloc")); i++;
-	m_pawn[i]->transform->setPos(sf::Vector2f(1460.f, 400.f));
+	//m_pawn.push_back(new Talker("Npc1", "default"));
+	//m_pawn[i]->transform->setPos(sf::Vector2f(100.f, 100.f));
+	//
+	//m_pawn.push_back(new Talker("Npc2", "default")); i++;
+	//m_pawn[i]->transform->setPos(sf::Vector2f(500.f, 300.f));
 
 	m_pawn.push_back(new Player("Player")); i++;
 }
@@ -88,4 +88,12 @@ sf::Vector2f PawnManager::getCharacterPos(std::string _name)
 void PawnManager::addCharacterItem(std::string _name, Item* _item)
 {
 	//m_character[_name]->addItem(_item);
+}
+
+void PawnManager::AddPawn(Pawn* _pawn)
+{
+	if (_pawn)
+	{
+		m_pawn.push_back(_pawn);
+	}
 }

@@ -8,7 +8,7 @@ Npc::Npc() : Npc("Default Npc")
 
 Npc::Npc(std::string _name) : Pawn(_name)
 {
-	this->transform->setSize(sf::Vector2f(50.f, 50.f));
+	this->transform->setSize(sf::Vector2f(20.f, 20.f));
 	this->transform->setOrigin(this->transform->getSize() * 0.5f);
 }
 

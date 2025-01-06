@@ -2,11 +2,6 @@
 #include "ressourcesManager.h"
 #include "Game.h"
 
-//State* StateManager::m_state = new Game();
-
-/// Delay the creation of the state to firstly load resources
-/// don't really have a choice here based on the C resource system
-
 State* StateManager::m_state = nullptr;
 
 StateManager::StateManager()

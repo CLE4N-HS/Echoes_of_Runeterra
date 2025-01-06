@@ -1,23 +1,42 @@
 #pragma once
 #include "Tools.h"
-#include "MapItemManager.h"
-#include "MapFIghterManager.h"
+#include "Tile.h"
+#include "Object.h"
+#include "Enemy.h"
 
 class Map
 {
 public:
+	enum Layer : size_t
+	{
+		BACKGROUND = 0,
+		COLLISION,
+		OBJECT,
+		FOREGROUND,
+
+
+		COUNT
+	};
+
 	Map();
 	~Map();
 
-	void Update();
 	void Display();
 
-	void AddItem(MapItem* _mapItem, Transform _transform);
-	void removeItem(Item* _item);
-	Item* getClosestItem(sf::Vector2f _pos, float _minDistance);
+	void Save(std::ostream& _file);
+	void Load(std::ifstream& _file, std::vector<Enemy*>& _enemy);
+
+	void DeinitMap();
+	void DefaultMap();
+
+	inline std::vector<std::vector<std::vector<Tile*>>>& getMap() { return m_Map; }
+	inline std::vector<Object*>& getObject() { return m_Object; }
+
+	void UpdateChest();
 
 private:
-	MapItemManager m_itemManager;
-	MapFighterManager m_fighterManager;
+	std::vector<std::vector<std::vector<Tile*>>> m_Map{};
+	std::vector<Object*> m_Object{};
 
 };
+

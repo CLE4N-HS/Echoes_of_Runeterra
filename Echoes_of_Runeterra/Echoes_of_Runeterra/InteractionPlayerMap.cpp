@@ -8,7 +8,7 @@ InteractionPlayerMap::~InteractionPlayerMap()
 {
 }
 
-void InteractionPlayerMap::Update(PawnManager* _characterManager, MapManager* _mapManager)
+void InteractionPlayerMap::Update(PawnManager* _characterManager/*, MapManager* _mapManager*/)
 {
 	//sf::Vector2f playerPos = _characterManager->getCharacterPos("Player");
 	//sf::Vector2f mousePos = _window.getMousePos();

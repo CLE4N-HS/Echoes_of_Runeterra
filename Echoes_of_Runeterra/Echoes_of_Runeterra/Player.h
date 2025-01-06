@@ -4,6 +4,7 @@
 #include "Companion.h"
 #include "Consumable.h"
 #include "FightStats.h"
+#include "Map.h"
 
 class Player : public Pawn
 {
@@ -14,6 +15,8 @@ public:
 
 	virtual void Update() override;
 	virtual void Display() override;
+
+	void UpdateMovement(Map& _map);
 
 	inline void AddItem(const GameItem& _gameItem) { m_inventory.AddItem(_gameItem); }
 
@@ -42,7 +45,6 @@ protected:
 
 
 
-	void UpdateMovement();
 	void UpdateInventoryInteractions();
 
 };

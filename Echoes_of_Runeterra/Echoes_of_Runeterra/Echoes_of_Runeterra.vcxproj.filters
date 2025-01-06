@@ -169,6 +169,12 @@
     <Filter Include="Fichiers d%27en-tête\GAME\FIGHT">
       <UniqueIdentifier>{7ead4f38-536c-4ab5-b42a-a5d846518d15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\SAVE">
+      <UniqueIdentifier>{b4b34bdb-ed29-48fe-bad1-1907b6340489}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\SAVE">
+      <UniqueIdentifier>{72e0b2e4-7910-4688-b09a-48f7dba54595}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -197,9 +203,6 @@
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Fichiers sources\GAME</Filter>
-    </ClCompile>
-    <ClCompile Include="particleManager.cpp">
-      <Filter>Fichiers sources\TOOLS\MANAGERS</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
       <Filter>Fichiers sources\GAME\ITEMS</Filter>
@@ -263,12 +266,6 @@
     </ClCompile>
     <ClCompile Include="InteractionManager.cpp">
       <Filter>Fichiers sources\GAME\INTERACTION</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Fichiers sources\GAME\MAP</Filter>
-    </ClCompile>
-    <ClCompile Include="MapManager.cpp">
-      <Filter>Fichiers sources\GAME\MAP</Filter>
     </ClCompile>
     <ClCompile Include="InteractionPlayerMap.cpp">
       <Filter>Fichiers sources\GAME\INTERACTION</Filter>
@@ -435,6 +432,63 @@
     <ClCompile Include="RiverSerpent.cpp">
       <Filter>Fichiers sources\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
     </ClCompile>
+    <ClCompile Include="AnimTile.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoTile.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoTileDatabase.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="ChestObject.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="DayNightSystem.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectTextureManager.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleManager.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderStatesManager.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleTile.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="TileTextureManager.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="TorchObject.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonEntity.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyTextureManager.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="NpcTextureManager.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -460,9 +514,6 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Fichiers d%27en-tête\GAME</Filter>
-    </ClInclude>
-    <ClInclude Include="particleManager.h">
-      <Filter>Fichiers d%27en-tête\TOOLS\MANAGERS</Filter>
     </ClInclude>
     <ClInclude Include="Weapon.h">
       <Filter>Fichiers d%27en-tête\GAME\ITEMS</Filter>
@@ -527,14 +578,8 @@
     <ClInclude Include="CharacterManager.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER</Filter>
     </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Fichiers d%27en-tête\GAME\MAP</Filter>
-    </ClInclude>
     <ClInclude Include="InteractionPlayerMap.h">
       <Filter>Fichiers d%27en-tête\GAME\INTERACTION</Filter>
-    </ClInclude>
-    <ClInclude Include="MapManager.h">
-      <Filter>Fichiers d%27en-tête\GAME\MAP</Filter>
     </ClInclude>
     <ClInclude Include="alignement.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER\RACE</Filter>
@@ -698,5 +743,73 @@
     <ClInclude Include="RiverSerpent.h">
       <Filter>Fichiers d%27en-tête\GAME\CHARACTER\FIGHTER\ENEMY</Filter>
     </ClInclude>
+    <ClInclude Include="TorchObject.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimTile.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoTile.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoTileDatabase.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="ChestObject.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="DayNightSystem.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectTextureManager.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleManager.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderStatesManager.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleTile.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="TileTextureManager.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonEntity.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyTextureManager.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="NpcTextureManager.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\Shader\dayNight.frag">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+    <None Include="..\Resources\Shader\torch.frag">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+    <None Include="..\Resources\Shader\transparency.frag">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -12,7 +12,7 @@ public:
 	InteractionManager();
 	~InteractionManager();
 
-	void update(Window& _window, PawnManager* _characterManager, DialogueManager* _dialogueManager, MapManager* _mapManager);
+	void update(Window& _window, PawnManager* _characterManager, DialogueManager* _dialogueManager/*, MapManager* _mapManager*/);
 
 private:
 	InteractionPlayerNpc* m_interactionPlayerNpc;

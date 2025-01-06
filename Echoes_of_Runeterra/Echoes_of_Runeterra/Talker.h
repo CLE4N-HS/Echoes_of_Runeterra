@@ -14,6 +14,7 @@ public:
 	inline std::string GetDialogueKey() const { return m_dialogueKey; }
 	inline void SetDialogueKey(std::string _dialogueKey) { m_dialogueKey = _dialogueKey; }
 
+	std::string m_TextureName;
 private:
 	std::string m_dialogueKey;
 

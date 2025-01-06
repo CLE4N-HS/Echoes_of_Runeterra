@@ -28,12 +28,14 @@ void Fight::Update()
 
 void Fight::Display()
 {
+	Window::SetView(true);
 	this->DisplayEnemies();
 
 	if (m_player)
 		this->DisplayPlayer();
 
 	m_state->Display();
+	Window::SetView(false);
 }
 
 void Fight::ChangeState(FightState* _state)
