@@ -74,9 +74,11 @@ void Player::Update()
 void Player::Display()
 {
 	Window::rectangle.setFillColor(sf::Color(0, 0, 255));
+	Window::rectangle.setTexture(nullptr);
 	this->transform->CorrectWindowRectangle();
 
 	Window::Draw();
+	Window::rectangle.setFillColor(sf::Color(255, 255, 255));
 
 	//m_inventory.Display();
 

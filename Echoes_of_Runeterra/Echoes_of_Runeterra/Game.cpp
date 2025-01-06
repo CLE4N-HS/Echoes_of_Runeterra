@@ -15,8 +15,13 @@
 #include "ParticleManager.h"
 #include "ComponentName.h"
 
+#include "NpcTextureManager.h"
+#include "EnemyTextureManager.h"
+
 Game::Game() : m_Map(), m_DayNightSystem(), m_Enemy() //: m_mapManager(), m_dialogueManager(), m_interactionManager(), m_craftManager()//, m_skillsSystem(m_treeDB)
 {
+	DatabaseManager::loadAllDatabase();
+
 	std::ifstream mapToLoad("../Resources/Saves/GameMap/MapToLoad.txt");
 
 	bool hasFoundMap = false;
@@ -32,7 +37,7 @@ Game::Game() : m_Map(), m_DayNightSystem(), m_Enemy() //: m_mapManager(), m_dial
 		if (map.is_open())
 		{
 			hasFoundMap = true;
-			m_Map.Load(map);
+			m_Map.Load(map, m_Enemy);
 
 			map.close();
 		}
@@ -53,11 +58,16 @@ Game::Game() : m_Map(), m_DayNightSystem(), m_Enemy() //: m_mapManager(), m_dial
 	ObjectTextureManager::AddTexture("chest", OBJECT_TEXTURE_PATH "coffre32.png");
 	ObjectTextureManager::AddTexture("torch", OBJECT_TEXTURE_PATH "torch.png");
 
+	NpcTextureManager::AddTexture("penguin", NPC_TEXTURE_PATH "penguin.png");
+	NpcTextureManager::AddTexture("bob", NPC_TEXTURE_PATH "bob.png");
+
+	EnemyTextureManager::AddTexture("wildCorruptedBeast", ENEMY_TEXTURE_PATH "wildCorruptedBeast.png");
+	EnemyTextureManager::AddTexture("spiritWolf", ENEMY_TEXTURE_PATH "spiritWolf.png");
+
 	RenderStatesManager::AddShader("torch", SHADER_PATH "torch.frag", sf::Shader::Type::Fragment);
 	RenderStatesManager::AddShader("dayNight", SHADER_PATH "dayNight.frag", sf::Shader::Type::Fragment);
 
 
-	DatabaseManager::loadAllDatabase();
 	new PawnManager();
 	new SkillTreeManager();
 	new DialogueManager();
@@ -73,12 +83,12 @@ Game::Game() : m_Map(), m_DayNightSystem(), m_Enemy() //: m_mapManager(), m_dial
 
 	//m_characterManager.addCharacterItem("Player", m_itemDB->getItem("sword"));
 
-	Enemy* e = EnemyDatabase::CreateNewEnemy("wildCorruptedBeast");
-	if (e)
-	{
-		e->transform->setPos(sf::Vector2f(120.f, 450.f));
-		m_Enemy.push_back(e);
-	}
+	//Enemy* e = EnemyDatabase::CreateNewEnemy("wildCorruptedBeast");
+	//if (e)
+	//{
+	//	e->transform->setPos(sf::Vector2f(120.f, 450.f));
+	//	m_Enemy.push_back(e);
+	//}
 }
 
 Game::~Game()
@@ -137,6 +147,9 @@ void Game::Update()
 			if (e)
 			{
 				e->transform->setPos(sf::Vector2f(200.f, 200.f));
+				e->transform->setSize(sf::Vector2f(32.f, 32.f));
+				e->transform->setOrigin(sf::Vector2f(16.f, 16.f));
+				e->m_TextureName = "spiritWolf";
 				m_Enemy.push_back(e);
 				NightOnePass = true;
 			}
@@ -224,25 +237,29 @@ void Game::Display()
 
 			Window::rectangle.setTexture(nullptr);
 			//MapManager::Display();
+			Window::rectangle.setFillColor(sf::Color(255, 255, 255));
 			PawnManager::Display();
 			for (std::vector<Enemy*>::iterator it = m_Enemy.begin(); it != m_Enemy.end(); it++)
 			{
+				Window::rectangle.setTexture(EnemyTextureManager::GetTexture((*it)->m_TextureName));
+				Window::rectangle.setTextureRect(sf::IntRect(0, 0, 32, 32));
+				Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
 				(*it)->transform->CorrectWindowRectangle();
 				Window::Draw();
 			}
-			Window::text.setCharacterSize(20);
-			Window::text.setFillColor(sf::Color(255, 255, 255));
-			for (std::vector<Enemy*>::iterator it = m_Enemy.begin(); it != m_Enemy.end(); it++)
-			{
-				Window::rectangle.setFillColor(sf::Color(255, 100, 100));
-				(*it)->transform->CorrectWindowRectangle();
-				Window::Draw();
+			//Window::text.setCharacterSize(20);
+			//Window::text.setFillColor(sf::Color(255, 255, 255));
+			//for (std::vector<Enemy*>::iterator it = m_Enemy.begin(); it != m_Enemy.end(); it++)
+			//{
+			//	Window::rectangle.setFillColor(sf::Color(255, 100, 100));
+			//	(*it)->transform->CorrectWindowRectangle();
+			//	Window::Draw();
 
-				Window::text.setPosition((*it)->transform->getPos() + sf::Vector2f(0.f, -50.f));
-				Window::text.setString((*it)->GetComponent<ComponentName>()->GetName());
-				Tools::CenterTextOrigin(Window::text);
-				Window::Draw(Window::text);
-			}
+			//	Window::text.setPosition((*it)->transform->getPos() + sf::Vector2f(0.f, -50.f));
+			//	Window::text.setString((*it)->GetComponent<ComponentName>()->GetName());
+			//	Tools::CenterTextOrigin(Window::text);
+			//	Window::Draw(Window::text);
+			//}
 
 			Window::rectangle.setFillColor(sf::Color(255, 255, 255, 255));
 			Window::rectangle.setOrigin(sf::Vector2f());

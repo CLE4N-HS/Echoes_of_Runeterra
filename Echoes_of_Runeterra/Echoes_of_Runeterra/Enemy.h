@@ -10,6 +10,7 @@ public:
 	virtual void Update() = 0;
 	virtual void Display() = 0;
 
+	std::string m_TextureName;
 private:
 
 };

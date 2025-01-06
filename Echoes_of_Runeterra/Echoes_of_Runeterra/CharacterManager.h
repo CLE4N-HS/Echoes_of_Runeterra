@@ -23,6 +23,8 @@ public:
 	static sf::Vector2f getCharacterPos(std::string _name);
 	static void addCharacterItem(std::string _name, Item* _item);
 
+	static void AddPawn(Pawn* _pawn);
+
 private:
 	static std::vector<Pawn*> m_pawn;
 

@@ -9,6 +9,8 @@
 #include "ChestObject.h"
 #include "AnimTile.h"
 
+#include "NpcObject.h"
+
 Map::Map()
 {
 	DefaultMap();
@@ -99,6 +101,52 @@ void Map::Save(std::ostream& _file)
 			j["Object"][iS][objS] = m_Object[i]->ToJson();
 		}
 	}
+
+	// Npc
+	{
+		size_t oSize = m_NpcObject.size();
+		std::string oSizeToS = std::to_string(oSize);
+
+		j["Npc"]["Size"] = oSize;
+
+		for (size_t i = 0; i < oSize; i++)
+		{
+			std::string iToS = std::to_string(i);
+			std::string iStmp(std::string(oSizeToS.length() - iToS.length(), '0') + iToS);
+			const char* iS = iStmp.c_str();
+
+			std::string objStmp("");
+			if (NpcObject* npcObject = dynamic_cast<NpcObject*>(m_NpcObject[i]))
+				objStmp = "NpcObject";
+
+			const char* objS = objStmp.c_str();
+
+			j["Npc"][iS][objS] = m_NpcObject[i]->ToJson();
+		}
+	}
+
+	// Enemy
+	{
+		size_t oSize = m_EnemyObject.size();
+		std::string oSizeToS = std::to_string(oSize);
+
+		j["Enemy"]["Size"] = oSize;
+
+		for (size_t i = 0; i < oSize; i++)
+		{
+			std::string iToS = std::to_string(i);
+			std::string iStmp(std::string(oSizeToS.length() - iToS.length(), '0') + iToS);
+			const char* iS = iStmp.c_str();
+
+			std::string objStmp("");
+			if (EnemyObject* enemyObject = dynamic_cast<EnemyObject*>(m_EnemyObject[i]))
+				objStmp = "EnemyObject";
+
+			const char* objS = objStmp.c_str();
+
+			j["Enemy"][iS][objS] = m_EnemyObject[i]->ToJson();
+		}
+	}
 	
 	_file << j.dump(4);
 }
@@ -152,24 +200,62 @@ void Map::Load(std::ifstream& _file)
 		}
 	}
 
-	size_t oSize = j["Object"]["Size"];
-	std::string oSizeToS = std::to_string(oSize);
-
-	for (size_t i = 0; i < oSize; i++)
 	{
-		std::string iToS = std::to_string(i);
-		std::string iStmp(std::string(oSizeToS.length() - iToS.length(), '0') + iToS);
-		const char* iS = iStmp.c_str();
+		size_t oSize = j["Object"]["Size"];
+		std::string oSizeToS = std::to_string(oSize);
 
-		if (j["Object"][iS].contains("TorchObject"))
+		for (size_t i = 0; i < oSize; i++)
 		{
-			m_Object.push_back(new TorchObject());
-			m_Object[i]->FromJson(j["Object"][iS]["TorchObject"]);
+			std::string iToS = std::to_string(i);
+			std::string iStmp(std::string(oSizeToS.length() - iToS.length(), '0') + iToS);
+			const char* iS = iStmp.c_str();
+
+			if (j["Object"][iS].contains("TorchObject"))
+			{
+				m_Object.push_back(new TorchObject());
+				m_Object[i]->FromJson(j["Object"][iS]["TorchObject"]);
+			}
+			else if (j["Object"][iS].contains("ChestObject"))
+			{
+				m_Object.push_back(new ChestObject());
+				m_Object[i]->FromJson(j["Object"][iS]["ChestObject"]);
+			}
 		}
-		else if (j["Object"][iS].contains("ChestObject"))
+	}
+
+	{
+		size_t oSize = j["Npc"]["Size"];
+		std::string oSizeToS = std::to_string(oSize);
+
+		for (size_t i = 0; i < oSize; i++)
 		{
-			m_Object.push_back(new ChestObject());
-			m_Object[i]->FromJson(j["Object"][iS]["ChestObject"]);
+			std::string iToS = std::to_string(i);
+			std::string iStmp(std::string(oSizeToS.length() - iToS.length(), '0') + iToS);
+			const char* iS = iStmp.c_str();
+
+			if (j["Npc"][iS].contains("NpcObject"))
+			{
+				m_NpcObject.push_back(new NpcObject());
+				m_NpcObject[i]->FromJson(j["Npc"][iS]["NpcObject"]);
+			}
+		}
+	}
+
+	{
+		size_t oSize = j["Enemy"]["Size"];
+		std::string oSizeToS = std::to_string(oSize);
+
+		for (size_t i = 0; i < oSize; i++)
+		{
+			std::string iToS = std::to_string(i);
+			std::string iStmp(std::string(oSizeToS.length() - iToS.length(), '0') + iToS);
+			const char* iS = iStmp.c_str();
+
+			if (j["Enemy"][iS].contains("EnemyObject"))
+			{
+				m_EnemyObject.push_back(new EnemyObject());
+				m_EnemyObject[i]->FromJson(j["Enemy"][iS]["EnemyObject"]);
+			}
 		}
 	}
 }
@@ -194,6 +280,18 @@ void Map::DeinitMap()
 	{
 		delete m_Object[0];
 		m_Object.erase(m_Object.begin());
+	}
+
+	while (m_NpcObject.size() > 0)
+	{
+		delete m_NpcObject[0];
+		m_NpcObject.erase(m_NpcObject.begin());
+	}
+
+	while (m_EnemyObject.size() > 0)
+	{
+		delete m_EnemyObject[0];
+		m_EnemyObject.erase(m_EnemyObject.begin());
 	}
 }
 

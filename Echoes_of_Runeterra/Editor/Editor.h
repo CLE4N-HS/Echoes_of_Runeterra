@@ -20,7 +20,9 @@ public:
 	{
 		NONE,
 		TILE,
-		OBJECT
+		OBJECT,
+		NPC,
+		ENEMY
 	};
 
 	enum Texture
@@ -31,7 +33,10 @@ public:
 
 		CHEST,
 		TORCH,
-		PNJ
+		PENGUIN,
+		BOB,
+		WILD_CORRUPTED_BEAST,
+		SPIRIT_WOLF,
 	};
 
 private:

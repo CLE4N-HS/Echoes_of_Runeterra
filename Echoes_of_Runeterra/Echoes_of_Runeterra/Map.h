@@ -2,6 +2,7 @@
 #include "Tools.h"
 #include "Tile.h"
 #include "Object.h"
+#include "Enemy.h"
 
 class Map
 {
@@ -23,7 +24,7 @@ public:
 	void Display();
 
 	void Save(std::ostream& _file);
-	void Load(std::ifstream& _file);
+	void Load(std::ifstream& _file, std::vector<Enemy*>& _enemy);
 
 	void DeinitMap();
 	void DefaultMap();

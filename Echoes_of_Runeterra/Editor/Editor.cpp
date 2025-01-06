@@ -9,6 +9,10 @@
 #include "TorchObject.h"
 #include "AnimTile.h"
 #include "ParticleManager.h"
+#include "NpcObject.h"
+
+#include "NpcTextureManager.h"
+#include "EnemyTextureManager.h"
 
 #include <Windows.h>
 #include <commdlg.h>
@@ -44,10 +48,10 @@ std::string wcharToString(const wchar_t* wcharStr) {
 	return str;
 }
 
-Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap(), &m_Map.getObject()), m_DayNightSystem()
+Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap(), &m_Map.getObject(), &m_Map.getNpcObject(), &m_Map.getEnemyObject()), m_DayNightSystem()
 {
 	TileTextureManager::AddTexture("tileset", TILE_TEXTURE_PATH "tileset.png");
-	TileTextureManager::AddTexture("tile", TILE_TEXTURE_PATH "tile.png");
+	//TileTextureManager::AddTexture("tile", TILE_TEXTURE_PATH "tile.png");
 	TileTextureManager::AddTexture("animTile", TILE_TEXTURE_PATH "animTile.png");
 	TileTextureManager::AddTexture("water", TILE_TEXTURE_PATH "water.png");
 	TileTextureManager::AddTexture("collision", TILE_TEXTURE_PATH "collision.png");
@@ -55,6 +59,12 @@ Editor::Editor() : m_AutoTileDatabase(), m_Map(), m_MapEdit(&m_Map.getMap(), &m_
 
 	ObjectTextureManager::AddTexture("chest", OBJECT_TEXTURE_PATH "chest.png");
 	ObjectTextureManager::AddTexture("torch", OBJECT_TEXTURE_PATH "torch.png");
+
+	NpcTextureManager::AddTexture("penguin", NPC_TEXTURE_PATH "penguin.png");
+	NpcTextureManager::AddTexture("bob", NPC_TEXTURE_PATH "bob.png");
+
+	EnemyTextureManager::AddTexture("wildCorruptedBeast", ENEMY_TEXTURE_PATH "wildCorruptedBeast.png");
+	EnemyTextureManager::AddTexture("spiritWolf", ENEMY_TEXTURE_PATH "spiritWolf.png");
 
 	RenderStatesManager::AddShader("torch", SHADER_PATH "torch.frag", sf::Shader::Type::Fragment);
 	RenderStatesManager::AddShader("dayNight", SHADER_PATH "dayNight.frag", sf::Shader::Type::Fragment);
@@ -86,6 +96,10 @@ void Editor::Update()
 			currentTexture = TileTextureManager::GetTexture(m_CurrentTextureName); break;
 		case Editor::OBJECT:
 			currentTexture = ObjectTextureManager::GetTexture(m_CurrentTextureName); break;
+		case Editor::NPC:
+			currentTexture = NpcTextureManager::GetTexture(m_CurrentTextureName); break;
+		case Editor::ENEMY:
+			currentTexture = EnemyTextureManager::GetTexture(m_CurrentTextureName); break;
 		default:
 			break;
 		}
@@ -131,6 +145,22 @@ void Editor::Update()
 				if (MouseManager::HasJustPressed(sf::Mouse::Left))
 				{
 					m_MapEdit.EditObject(mousePos, m_CurrentTextureName, sf::Vector2f(m_CurrentRect.getSize()), m_CurrentTexture);
+				}
+			}
+			break;
+			case Editor::NPC:
+			{
+				if (MouseManager::HasJustPressed(sf::Mouse::Left))
+				{
+					m_MapEdit.EditNpc(mousePos, m_CurrentTextureName, sf::Vector2f(m_CurrentRect.getSize()), m_CurrentTexture);
+				}
+			}
+			break;
+			case Editor::ENEMY:
+			{
+				if (MouseManager::HasJustPressed(sf::Mouse::Left))
+				{
+					m_MapEdit.EditEnemy(mousePos, m_CurrentTextureName, sf::Vector2f(m_CurrentRect.getSize()), m_CurrentTexture);
 				}
 			}
 			break;
@@ -592,6 +622,152 @@ bool Editor::UpdateImGui()
 					ig::TreePop();
 				}
 
+				// EDITOR / MAP / TEXTURE / NPC
+				if (ig::TreeNode("Npc##EDITOR_MAP_NPC"))
+				{
+					// EDITOR / MAP / TEXTURE / NPC / TILESET
+					if (ig::TreeNode("Tileset##EDITOR_MAP_NPC_TILESET"))
+					{
+						std::map<std::string_view, sf::Texture*> texture = NpcTextureManager::Get();
+
+						for (std::map<std::string_view, sf::Texture*>::iterator it = texture.begin(); it != texture.end(); it++)
+						{
+							if (ig::Button((*it).first.data()))
+							{
+								m_CurrentTextureName = (*it).first;
+								m_CurrentTextureId = TextureId::NPC;
+
+								if (m_CurrentTextureName == "penguin")
+									m_CurrentTexture = Texture::PENGUIN;
+								else if (m_CurrentTextureName == "bob")
+									m_CurrentTexture = Texture::BOB;
+								else
+									m_CurrentTexture = Texture::NO;
+
+								m_CurrentRect.width = 0;
+							}
+						}
+
+						ig::NewLine();
+
+						ig::TreePop();
+					}
+
+					if (sf::Texture* currentTexture = NpcTextureManager::GetTexture(m_CurrentTextureName))
+					{
+						if (m_CurrentLayer != Map::Layer::OBJECT)
+						{
+							ig::Separator();
+							ig::Text("// A Npc can't be placed in this Current Layer");
+							ig::Separator();
+							ig::NewLine();
+						}
+
+						static int igTileSize = 16;
+						ig::PushItemWidth(400.f);
+						ig::SliderInt("Size##SIZECURRENTTEXTURE_NPC", &igTileSize, 0, 64);
+
+						if (igTileSize > 0)
+						{
+							ig::Separator();
+
+							int sizeX = static_cast<int>(currentTexture->getSize().x) / Tile::SIZE;
+							int sizeY = static_cast<int>(currentTexture->getSize().y) / Tile::SIZE;
+
+							sf::Sprite spr(*currentTexture);
+
+							ig::NewLine();
+							for (int y = 0; y < sizeY; y++)
+							{
+								for (int x = 0; x < sizeX; x++)
+								{
+									ig::SameLine(0.f, 4.f);
+									spr.setTextureRect(sf::IntRect(x * Tile::SIZE, y * Tile::SIZE, Tile::SIZE, Tile::SIZE));
+									if (ig::ImageButton(std::string(std::to_string(y * 100 + x) + "##EDITOR_MAP_NPC").c_str(), spr, sf::Vector2f(sf::Vector2i(igTileSize, igTileSize))))
+									{
+										m_CurrentRect = sf::IntRect(x * Tile::SIZE, y * Tile::SIZE, Tile::SIZE, Tile::SIZE);
+									}
+								}
+								ig::NewLine();
+							}
+						}
+					}
+					ig::TreePop();
+				}
+				
+				// EDITOR / MAP / TEXTURE / ENEMY
+				if (ig::TreeNode("Enemy##EDITOR_MAP_ENEMY"))
+				{
+					// EDITOR / MAP / TEXTURE / ENEMY / TILESET
+					if (ig::TreeNode("Tileset##EDITOR_MAP_ENEMY_TILESET"))
+					{
+						std::map<std::string_view, sf::Texture*> texture = EnemyTextureManager::Get();
+
+						for (std::map<std::string_view, sf::Texture*>::iterator it = texture.begin(); it != texture.end(); it++)
+						{
+							if (ig::Button((*it).first.data()))
+							{
+								m_CurrentTextureName = (*it).first;
+								m_CurrentTextureId = TextureId::ENEMY;
+
+								if (m_CurrentTextureName == "wildCorruptedBeast")
+									m_CurrentTexture = Texture::WILD_CORRUPTED_BEAST;
+								else if (m_CurrentTextureName == "spiritWolf")
+									m_CurrentTexture = Texture::SPIRIT_WOLF;
+								else
+									m_CurrentTexture = Texture::NO;
+
+								m_CurrentRect.width = 0;
+							}
+						}
+
+						ig::NewLine();
+
+						ig::TreePop();
+					}
+
+					if (sf::Texture* currentTexture = EnemyTextureManager::GetTexture(m_CurrentTextureName))
+					{
+						if (m_CurrentLayer != Map::Layer::OBJECT)
+						{
+							ig::Separator();
+							ig::Text("// An Enemy can't be placed in this Current Layer");
+							ig::Separator();
+							ig::NewLine();
+						}
+
+						static int igTileSize = 16;
+						ig::PushItemWidth(400.f);
+						ig::SliderInt("Size##SIZECURRENTTEXTURE_ENEMY", &igTileSize, 0, 64);
+
+						if (igTileSize > 0)
+						{
+							ig::Separator();
+
+							int sizeX = static_cast<int>(currentTexture->getSize().x) / Tile::SIZE;
+							int sizeY = static_cast<int>(currentTexture->getSize().y) / Tile::SIZE;
+
+							sf::Sprite spr(*currentTexture);
+
+							ig::NewLine();
+							for (int y = 0; y < sizeY; y++)
+							{
+								for (int x = 0; x < sizeX; x++)
+								{
+									ig::SameLine(0.f, 4.f);
+									spr.setTextureRect(sf::IntRect(x * Tile::SIZE, y * Tile::SIZE, Tile::SIZE, Tile::SIZE));
+									if (ig::ImageButton(std::string(std::to_string(y * 100 + x) + "##EDITOR_MAP_ENEMY").c_str(), spr, sf::Vector2f(sf::Vector2i(igTileSize, igTileSize))))
+									{
+										m_CurrentRect = sf::IntRect(x * Tile::SIZE, y * Tile::SIZE, Tile::SIZE, Tile::SIZE);
+									}
+								}
+								ig::NewLine();
+							}
+						}
+					}
+					ig::TreePop();
+				}
+
 				ig::TreePop();
 			}
 
@@ -772,7 +948,9 @@ void Editor::Display()
 	m_Map.Display();
 
 	std::vector<std::vector<std::vector<Tile*>>> map = m_Map.getMap();
-	std::vector<Object*> object= m_Map.getObject();
+	std::vector<Object*> object = m_Map.getObject();
+	std::vector<NpcObject*> npc = m_Map.getNpcObject();
+	std::vector<EnemyObject*> enemy = m_Map.getEnemyObject();
 
 	/*
 	Window::rectangle.setOrigin(sf::Vector2f());
@@ -822,6 +1000,16 @@ void Editor::Display()
 		for (size_t i = 0; i < object.size(); i++)
 		{
 			object[i]->Display();
+		}
+
+		for (size_t i = 0; i < npc.size(); i++)
+		{
+			npc[i]->Display();
+		}
+
+		for (size_t i = 0; i < enemy.size(); i++)
+		{
+			enemy[i]->Display();
 		}
 
 		Window::rectangle.setTexture(nullptr);
@@ -889,6 +1077,12 @@ void Editor::Display()
 		break;
 	case Editor::OBJECT:
 		currentTexture = ObjectTextureManager::GetTexture(m_CurrentTextureName);
+		break;
+	case Editor::NPC:
+		currentTexture = NpcTextureManager::GetTexture(m_CurrentTextureName);
+		break;
+	case Editor::ENEMY:
+		currentTexture = EnemyTextureManager::GetTexture(m_CurrentTextureName);
 		break;
 	default:
 		break;

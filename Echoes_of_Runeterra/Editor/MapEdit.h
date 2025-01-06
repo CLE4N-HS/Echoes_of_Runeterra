@@ -7,7 +7,7 @@ public:
 	constexpr static int MIN_SIZE = 1;
 	constexpr static int MAX_SIZE = 100;
 
-	MapEdit(std::vector<std::vector<std::vector<Tile*>>>* _map, std::vector<Object*>* _object);
+	MapEdit(std::vector<std::vector<std::vector<Tile*>>>* _map, std::vector<Object*>* _object, std::vector<NpcObject*>* _npc, std::vector<EnemyObject*>* _enemy);
 	~MapEdit();
 
 	sf::Vector2i TilePos(sf::Vector2f _pos);
@@ -15,6 +15,8 @@ public:
 	bool EditTile(sf::Vector2f _pos, std::string_view _textureName, sf::IntRect _rect, Tile::Type _type);
 	bool EditAnimTile(sf::Vector2f _pos, std::string_view _textureName, sf::IntRect _rect, Tile::Type _type, int _frameX, float _animSpeed);
 	bool EditObject(sf::Vector2f _pos, std::string_view _textureName, sf::Vector2f _size, int _texture);
+	bool EditNpc(sf::Vector2f _pos, std::string_view _textureName, sf::Vector2f _size, int _texture);
+	bool EditEnemy(sf::Vector2f _pos, std::string_view _textureName, sf::Vector2f _size, int _texture);
 
 	bool EraseTile(sf::Vector2f _pos);
 	bool EraseObject(sf::Vector2f _pos);
@@ -39,6 +41,8 @@ private:
 	Map::Layer m_Layer = Map::Layer::BACKGROUND;
 
 	std::vector<Object*>* m_Object;
+	std::vector<NpcObject*>* m_NpcObject;
+	std::vector<EnemyObject*>* m_EnemyObject;
 
 };
 

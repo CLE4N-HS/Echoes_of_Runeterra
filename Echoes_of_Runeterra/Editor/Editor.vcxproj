@@ -25,6 +25,8 @@
     <ClCompile Include="ChestObject.cpp" />
     <ClCompile Include="DayNightSystem.cpp" />
     <ClCompile Include="Editor.cpp" />
+    <ClCompile Include="EnemyObject.cpp" />
+    <ClCompile Include="EnemyTextureManager.cpp" />
     <ClCompile Include="imgui-SFML.cpp" />
     <ClCompile Include="imgui.cpp" />
     <ClCompile Include="imgui_draw.cpp" />
@@ -36,6 +38,8 @@
     <ClCompile Include="MapEdit.cpp" />
     <ClCompile Include="Master.cpp" />
     <ClCompile Include="MouseManager.cpp" />
+    <ClCompile Include="NpcObject.cpp" />
+    <ClCompile Include="NpcTextureManager.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectTextureManager.cpp" />
     <ClCompile Include="Particle.cpp" />
@@ -58,12 +62,16 @@
     <ClInclude Include="ChestObject.h" />
     <ClInclude Include="DayNightSystem.h" />
     <ClInclude Include="Editor.h" />
+    <ClInclude Include="EnemyObject.h" />
+    <ClInclude Include="EnemyTextureManager.h" />
     <ClInclude Include="Externals\json.hpp" />
     <ClInclude Include="JsonEntity.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapEdit.h" />
     <ClInclude Include="Master.h" />
     <ClInclude Include="MouseManager.h" />
+    <ClInclude Include="NpcObject.h" />
+    <ClInclude Include="NpcTextureManager.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectTextureManager.h" />
     <ClInclude Include="Particle.h" />

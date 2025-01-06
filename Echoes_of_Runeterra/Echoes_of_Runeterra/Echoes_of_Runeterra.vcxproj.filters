@@ -483,6 +483,12 @@
     <ClCompile Include="JsonEntity.cpp">
       <Filter>Fichiers sources\SAVE</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyTextureManager.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
+    <ClCompile Include="NpcTextureManager.cpp">
+      <Filter>Fichiers sources\SAVE</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -786,6 +792,12 @@
       <Filter>Fichiers d%27en-tête\SAVE</Filter>
     </ClInclude>
     <ClInclude Include="JsonEntity.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyTextureManager.h">
+      <Filter>Fichiers d%27en-tête\SAVE</Filter>
+    </ClInclude>
+    <ClInclude Include="NpcTextureManager.h">
       <Filter>Fichiers d%27en-tête\SAVE</Filter>
     </ClInclude>
   </ItemGroup>

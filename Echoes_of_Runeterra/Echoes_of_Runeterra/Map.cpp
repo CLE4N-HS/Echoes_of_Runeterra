@@ -13,6 +13,9 @@
 #include "CharacterManager.h"
 #include "ItemDatabase.h"
 
+#include "Talker.h"
+#include "EnemyDatabase.h"
+
 Map::Map()
 {
 	//DefaultMap();
@@ -103,11 +106,57 @@ void Map::Save(std::ostream& _file)
 			j["Object"][iS][objS] = m_Object[i]->ToJson();
 		}
 	}
+
+	//// Npc
+	//{
+	//	size_t oSize = m_NpcObject.size();
+	//	std::string oSizeToS = std::to_string(oSize);
+
+	//	j["Npc"]["Size"] = oSize;
+
+	//	for (size_t i = 0; i < oSize; i++)
+	//	{
+	//		std::string iToS = std::to_string(i);
+	//		std::string iStmp(std::string(oSizeToS.length() - iToS.length(), '0') + iToS);
+	//		const char* iS = iStmp.c_str();
+
+	//		std::string objStmp("");
+	//		if (NpcObject* npcObject = dynamic_cast<NpcObject*>(m_NpcObject[i]))
+	//			objStmp = "NpcObject";
+
+	//		const char* objS = objStmp.c_str();
+
+	//		j["Npc"][iS][objS] = m_NpcObject[i]->ToJson();
+	//	}
+	//}
+
+	//// Enemy
+	//{
+	//	size_t oSize = m_EnemyObject.size();
+	//	std::string oSizeToS = std::to_string(oSize);
+
+	//	j["Enemy"]["Size"] = oSize;
+
+	//	for (size_t i = 0; i < oSize; i++)
+	//	{
+	//		std::string iToS = std::to_string(i);
+	//		std::string iStmp(std::string(oSizeToS.length() - iToS.length(), '0') + iToS);
+	//		const char* iS = iStmp.c_str();
+
+	//		std::string objStmp("");
+	//		if (EnemyObject* enemyObject = dynamic_cast<EnemyObject*>(m_EnemyObject[i]))
+	//			objStmp = "EnemyObject";
+
+	//		const char* objS = objStmp.c_str();
+
+	//		j["Enemy"][iS][objS] = m_EnemyObject[i]->ToJson();
+	//	}
+	//}
 	
 	_file << j.dump(4);
 }
 
-void Map::Load(std::ifstream& _file)
+void Map::Load(std::ifstream& _file, std::vector<Enemy*>& _enemy)
 {
 	DeinitMap();
 
@@ -156,26 +205,92 @@ void Map::Load(std::ifstream& _file)
 		}
 	}
 
-	size_t oSize = j["Object"]["Size"];
-	std::string oSizeToS = std::to_string(oSize);
-
-	for (size_t i = 0; i < oSize; i++)
 	{
-		std::string iToS = std::to_string(i);
-		std::string iStmp(std::string(oSizeToS.length() - iToS.length(), '0') + iToS);
-		const char* iS = iStmp.c_str();
+		size_t oSize = j["Object"]["Size"];
+		std::string oSizeToS = std::to_string(oSize);
 
-		if (j["Object"][iS].contains("TorchObject"))
+		for (size_t i = 0; i < oSize; i++)
 		{
-			m_Object.push_back(new TorchObject());
-			m_Object[i]->FromJson(j["Object"][iS]["TorchObject"]);
-		}
-		else if (j["Object"][iS].contains("ChestObject"))
-		{
-			m_Object.push_back(new ChestObject());
-			m_Object[i]->FromJson(j["Object"][iS]["ChestObject"]);
+			std::string iToS = std::to_string(i);
+			std::string iStmp(std::string(oSizeToS.length() - iToS.length(), '0') + iToS);
+			const char* iS = iStmp.c_str();
+
+			if (j["Object"][iS].contains("TorchObject"))
+			{
+				m_Object.push_back(new TorchObject());
+				m_Object[i]->FromJson(j["Object"][iS]["TorchObject"]);
+			}
+			else if (j["Object"][iS].contains("ChestObject"))
+			{
+				m_Object.push_back(new ChestObject());
+				m_Object[i]->FromJson(j["Object"][iS]["ChestObject"]);
+			}
 		}
 	}
+
+	{
+		size_t oSize = j["Npc"]["Size"];
+		std::string oSizeToS = std::to_string(oSize);
+
+		for (size_t i = 0; i < oSize; i++)
+		{
+			std::string iToS = std::to_string(i);
+			std::string iStmp(std::string(oSizeToS.length() - iToS.length(), '0') + iToS);
+			const char* iS = iStmp.c_str();
+
+			if (j["Npc"][iS].contains("NpcObject"))
+			{
+				Talker* talker = new Talker("", "default");
+				talker->transform->setPos(sf::Vector2f(j["Npc"][iS]["NpcObject"]["Position"][0], j["Npc"][iS]["NpcObject"]["Position"][1]));
+				talker->transform->setSize(sf::Vector2f(j["Npc"][iS]["NpcObject"]["Size"][0], j["Npc"][iS]["NpcObject"]["Size"][1]));
+				talker->transform->setOrigin(sf::Vector2f(j["Npc"][iS]["NpcObject"]["Size"][0] / 2.f, j["Npc"][iS]["NpcObject"]["Size"][1] / 2.f));
+				talker->m_TextureName = j["Npc"][iS]["NpcObject"]["TextureName"];
+
+				PawnManager::AddPawn(talker);
+				
+				//m_NpcObject.push_back(new NpcObject());
+				//m_NpcObject[i]->FromJson(j["Npc"][iS]["NpcObject"]);
+			}
+		}
+	}
+
+	{
+		size_t oSize = j["Enemy"]["Size"];
+		std::string oSizeToS = std::to_string(oSize);
+
+		for (size_t i = 0; i < oSize; i++)
+		{
+			std::string iToS = std::to_string(i);
+			std::string iStmp(std::string(oSizeToS.length() - iToS.length(), '0') + iToS);
+			const char* iS = iStmp.c_str();
+
+			if (j["Enemy"][iS].contains("EnemyObject"))
+			{
+				std::string name = j["Enemy"][iS]["EnemyObject"]["TextureName"];
+
+				Enemy* e = nullptr;
+
+				if (name == "wildCorruptedBeast")
+					e = EnemyDatabase::CreateNewEnemy("wildCorruptedBeast");
+				else if (name == "spiritWolf")
+					e = EnemyDatabase::CreateNewEnemy("spiritWolf");
+
+				if (e)
+				{
+					e->transform->setPos(sf::Vector2f(j["Enemy"][iS]["EnemyObject"]["Position"][0], j["Enemy"][iS]["EnemyObject"]["Position"][1]));
+					e->transform->setSize(sf::Vector2f(j["Enemy"][iS]["EnemyObject"]["Size"][0], j["Enemy"][iS]["EnemyObject"]["Size"][1]));
+					e->transform->setOrigin(sf::Vector2f(j["Enemy"][iS]["EnemyObject"]["Size"][0] / 2.f, j["Enemy"][iS]["EnemyObject"]["Size"][1] / 2.f));
+					e->m_TextureName = j["Enemy"][iS]["EnemyObject"]["TextureName"];
+					_enemy.push_back(e);
+				}
+
+				//m_EnemyObject.push_back(new EnemyObject());
+				//m_EnemyObject[i]->FromJson(j["Enemy"][iS]["EnemyObject"]);
+			}
+		}
+	}
+
+
 }
 
 void Map::DeinitMap()

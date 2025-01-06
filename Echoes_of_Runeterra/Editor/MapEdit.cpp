@@ -4,8 +4,10 @@
 #include "TorchObject.h"
 #include "ChestObject.h"
 #include "AnimTile.h"
+#include "NpcObject.h"
+#include "EnemyObject.h"
 
-MapEdit::MapEdit(std::vector<std::vector<std::vector<Tile*>>>* _map, std::vector<Object*>* _object) : m_Map(_map), m_Object(_object)
+MapEdit::MapEdit(std::vector<std::vector<std::vector<Tile*>>>* _map, std::vector<Object*>* _object, std::vector<NpcObject*>* _npc, std::vector<EnemyObject*>* _enemy) : m_Map(_map), m_Object(_object), m_NpcObject(_npc), m_EnemyObject(_enemy)
 {
 }
 
@@ -108,6 +110,48 @@ bool MapEdit::EditObject(sf::Vector2f _pos, std::string_view _textureName, sf::V
 		(*m_Object).push_back(new TorchObject(_pos, _size, _textureName)); break;
 	case Editor::Texture::CHEST:
 		(*m_Object).push_back(new ChestObject(_pos, _size, _textureName)); break;
+	default:
+		break;
+	}
+
+	return true;
+}
+
+bool MapEdit::EditNpc(sf::Vector2f _pos, std::string_view _textureName, sf::Vector2f _size, int _texture)
+{
+	//sf::Vector2i objectPos = this->TilePos(_pos);
+	//if (!(this->IsInMap(objectPos)))
+	//	return false;
+	if (m_Layer != Map::Layer::OBJECT)
+		return false;
+
+	switch (_texture)
+	{
+	case Editor::Texture::PENGUIN:
+		(*m_NpcObject).push_back(new NpcObject(_pos, _size, _textureName)); break;
+	case Editor::Texture::BOB:
+		(*m_NpcObject).push_back(new NpcObject(_pos, _size, _textureName)); break;
+	default:
+		break;
+	}
+
+	return true;
+}
+
+bool MapEdit::EditEnemy(sf::Vector2f _pos, std::string_view _textureName, sf::Vector2f _size, int _texture)
+{
+	//sf::Vector2i objectPos = this->TilePos(_pos);
+	//if (!(this->IsInMap(objectPos)))
+	//	return false;
+	if (m_Layer != Map::Layer::OBJECT)
+		return false;
+
+	switch (_texture)
+	{
+	case Editor::Texture::WILD_CORRUPTED_BEAST:
+		(*m_EnemyObject).push_back(new EnemyObject(_pos, _size, _textureName)); break;
+	case Editor::Texture::SPIRIT_WOLF:
+		(*m_EnemyObject).push_back(new EnemyObject(_pos, _size, _textureName)); break;
 	default:
 		break;
 	}

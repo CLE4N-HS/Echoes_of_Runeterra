@@ -178,6 +178,7 @@
     <ClCompile Include="EndButton.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyDatabase.cpp" />
+    <ClCompile Include="EnemyTextureManager.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="ExplorationSkills.cpp" />
     <ClCompile Include="Fight.cpp" />
@@ -212,6 +213,7 @@
     <ClCompile Include="MouseManager.cpp" />
     <ClCompile Include="musicManager.cpp" />
     <ClCompile Include="Npc.cpp" />
+    <ClCompile Include="NpcTextureManager.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectTextureManager.cpp" />
     <ClCompile Include="Particle.cpp" />
@@ -282,6 +284,7 @@
     <ClInclude Include="EndButton.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyDatabase.h" />
+    <ClInclude Include="EnemyTextureManager.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="ExplorationSkills.h" />
     <ClInclude Include="Fight.h" />
@@ -315,6 +318,7 @@
     <ClInclude Include="MouseManager.h" />
     <ClInclude Include="musicManager.h" />
     <ClInclude Include="Npc.h" />
+    <ClInclude Include="NpcTextureManager.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectTextureManager.h" />
     <ClInclude Include="Particle.h" />
