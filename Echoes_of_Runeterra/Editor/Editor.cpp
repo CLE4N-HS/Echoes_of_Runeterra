@@ -247,7 +247,7 @@ bool Editor::UpdateImGui()
 				ig::Separator();
 
 				ig::Text("// A Tile can't be placed in Layer 2 (OBJECT)");
-				ig::Text("// An Object have to be placed in Layer 2 (OBJECT)");
+				ig::Text("// (Object - Npc - Enemy) have to be placed in Layer 2 (OBJECT)");
 				//ig::Text("// An Object will automatically be placed in Layer 2 (OBJECT)");
 
 				ig::TreePop();
